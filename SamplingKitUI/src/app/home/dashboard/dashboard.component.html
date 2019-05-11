@@ -1,0 +1,503 @@
+
+  <div class="app-title">
+    <div>
+      <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+      <p>Medintu Web Application</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    </ul>
+  </div>
+
+
+  <!-- <div *ngIf="role=='ADMIN'">
+    <h1>Welcome to {{role}}</h1>
+  </div> -->
+<!---For Super admin part-->
+  <div *ngIf="role=='SUPERADMIN'">
+    <h1> Welcome to {{role}}</h1>
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+            <button type="button" class="btn btn-primary float-right">Add</button>
+          <h3 class="tile-title">Users</h3>
+          <div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Phone No</th>
+                  <th>Status</th>
+                  <th>Edit</th>
+                  <th>Delete</th>
+                  
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of data">
+                <td>{{x.first_name}}</td>
+                <td>{{x.last_name}}</td>
+                <td>{{x.email}}</td>
+                <td>Admin</td>
+                <td>{{x.phoneno}}</td>
+                <td>{{x.status}}</td>
+                <td>
+                    <span>
+                        <span (click)="edit(x)" class="glyphicon glyphicon-pencil" >
+                          <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
+                        </span>
+                    </span>
+                </td>
+                <td>
+                    <span>
+                        <span (click)="delete(x.id)" value="delete">
+                          <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+                        </span>
+                    </span>
+                </td>
+                
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+
+  <div *ngIf="role=='SPONSORUSER'">
+    <h1> Welcome to {{role}}</h1>
+    
+  </div>
+  <div *ngIf="role=='SUPPORTUSER'">
+    <h1> Welcome to {{role}}</h1>
+    
+  </div>
+  
+  
+  <!-- {{userData|json}} -->
+
+  <!-- <div class="row">
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+        <div class="info">
+          <h4>Users</h4>
+          <p><b>5</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+        <div class="info">
+          <h4>Likes</h4>
+          <p><b>25</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+        <div class="info">
+          <h4>Uploades</h4>
+          <p><b>10</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+        <div class="info">
+          <h4>Stars</h4>
+          <p><b>500</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Monthly Sales</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Support Requests</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Features</h3>
+        <ul>
+          <li>Built with Bootstrap 4, SASS and PUG.js</li>
+          <li>Fully responsive and modular code</li>
+          <li>Seven pages including login, user profile and print friendly invoice page</li>
+          <li>Smart integration of forgot password on login page</li>
+          <li>Chart.js integration to display responsive charts</li>
+          <li>Widgets to effectively display statistics</li>
+          <li>Data tables with sort, search and paginate functionality</li>
+          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>
+          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>
+        </ul>
+        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>
+        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> about customizing the theme colors and functionality.</p>
+        <p class="mt-4 mb-4"><a class="btn btn-primary mr-2 mb-2" href="http://pratikborsadiya.in/blog/vali-admin" target="_blank"><i class="fa fa-file"></i>Webs</a><a class="btn btn-info mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin" target="_blank"><i class="fa fa-github"></i>Hubs</a><a class="btn btn-success mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin/archive/master.zip" target="_blank"><i class="fa fa-download"></i>Rules</a></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Compatibility with frameworks</h3>
+        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>
+        <p>Go to <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> for more details about integrating this theme with various frameworks.</p>
+        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href="https://github.com/pratikborsadiya/vali-admin" target="_blank">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>
+      </div>
+    </div>
+  </div> -->
+
+
+  <!-- <form [formGroup]="myForm">
+  
+    <div formArrayName="phones">
+  
+        <div *ngFor="let phone of phoneForms.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input formControlName="area">
+            <input formControlName="prefix">
+            <input formControlName="line">
+  
+            <button (click)="deletePhone(i)">Delete</button>
+  
+        </div>
+    </div>
+  
+    <button (click)="addPhone()">Add Phone Number</button>
+  
+  </form> -->
+
+  <!-- <form [formGroup]="myForm" style="border:1px solid black">
+
+    <div>
+        <input type="email" placeholder="email" formControlName="email"><br>
+        <input type="text" placeholder="name" formControlName="name"><br>
+        <input type="number" placeholder="phone" formControlName="phone"><br>
+        <input type="text" placeholder="budget" formControlName="budget"><br>
+        <input type="number" placeholder="postCode" formControlName="postCode"><br>
+    </div>
+  
+    <div formArrayName="addressList">
+  
+        <div *ngFor="let phone of addressForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="streetNumber">
+            <input type="text" formControlName="streetName1">
+            <input type="text" formControlName="streetName2">
+            <input type="text" formControlName="suit">
+            <input type="text" formControlName="city">
+            <input type="text" formControlName="country">
+            <input type="text" formControlName="district">
+            <input type="text" formControlName="region">
+            <input type="text" formControlName="state">
+            <input type="number" formControlName="zipcode">
+  
+            <button (click)="deleteAddress(i)">Delete</button>
+  
+        </div>
+    </div>
+    <!--Add RuleList-----------
+    <div formArrayName="ruleList">
+  
+        <div *ngFor="let phone of ruleListForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="ruleName">
+            <input type="number" formControlName="ruleValue"> 
+
+            <button (click)="deleteRulelist(i)">Delete</button>
+  
+        </div>
+    </div>
+    <!--Add TestCodeList---
+   
+    <div formArrayName="testCodeList">
+  
+        <div *ngFor="let phone of testCodeListForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="testCode">
+            <input type="number" formControlName="description"> 
+            <input type="number" formControlName="testName"> 
+            <input type="number" formControlName="testPrice"> 
+             
+            <button (click)="deletetestCodeList(i)">Delete</button>
+  
+        </div>
+    </div>
+  
+    <button (click)="addAddress()">Add Address</button><br><br>
+    <button (click)="addRuleList()">Add Rulelist</button><br><br>
+    <button (click)="addTestCodeList()">Add TestCodeList</button><br><br>
+
+    <button type="submit"  (click)="submitForm()">Save</button>
+  
+  </form> -->
+<!-- 
+  <div class="app-title">
+    <div>
+      <h1><i class="fa fa-dashboard"></i> Dashboard</h1>
+      <p>Ojas Bussness Rules Application</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li>
+      <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+    </ul>
+  </div>
+
+
+  <div *ngIf="role=='ADMIN'">
+    <h1>Welcome to {{role}}</h1>
+  </div>
+<!---For Super admin part--
+  <div *ngIf="role=='SUBERADMIN'">
+    <h1> Welcome to {{role}}</h1>
+    <div class="row">
+      <div class="col-md-6 col-lg-3">
+        <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+          <div class="info">
+            <h4>Users</h4>
+            <!-- <p><b>5</b></p> --
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+          <div class="info">
+            <h4>Likes</h4>
+            <p><b>25</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+          <div class="info">
+            <h4>Uploades</h4>
+            <p><b>10</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+          <div class="info">
+            <h4>Stars</h4>
+            <p><b>500</b></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="tile">
+          <h3 class="tile-title">Users</h3>
+          <button   type="button" class="btn btn-primary float-right">Add</button>
+          <div>
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                  <th>Email</th>
+                  <th>Phone No</th>
+                  <th>Action</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let x of data">
+                <td>{{x.first_name}}</td>
+                <td>{{x.last_name}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phoneno}}</td>
+                <td>
+                    <span>
+                        <button (click)="edit(x)" value="edit" >Edite</button>
+                    </span>
+                    <span>
+                        <button (click)="delete(x.id)" value="delete">Delete</button>
+                    </span>
+                </td>
+                <td>{{x.status}}</td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="role=='USER'">
+    <h1> Welcome to {{role}}</h1>
+    
+  </div> -->
+  
+  <!-- {{userData|json}} -->
+
+  <!-- <div class="row">
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small primary coloured-icon"><i class="icon fa fa-users fa-3x"></i>
+        <div class="info">
+          <h4>Users</h4>
+          <p><b>5</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small info coloured-icon"><i class="icon fa fa-thumbs-o-up fa-3x"></i>
+        <div class="info">
+          <h4>Likes</h4>
+          <p><b>25</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small warning coloured-icon"><i class="icon fa fa-files-o fa-3x"></i>
+        <div class="info">
+          <h4>Uploades</h4>
+          <p><b>10</b></p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-3">
+      <div class="widget-small danger coloured-icon"><i class="icon fa fa-star fa-3x"></i>
+        <div class="info">
+          <h4>Stars</h4>
+          <p><b>500</b></p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Monthly Sales</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <canvas class="embed-responsive-item" id="lineChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Support Requests</h3>
+        <div class="embed-responsive embed-responsive-16by9">
+          <canvas class="embed-responsive-item" id="pieChartDemo"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Features</h3>
+        <ul>
+          <li>Built with Bootstrap 4, SASS and PUG.js</li>
+          <li>Fully responsive and modular code</li>
+          <li>Seven pages including login, user profile and print friendly invoice page</li>
+          <li>Smart integration of forgot password on login page</li>
+          <li>Chart.js integration to display responsive charts</li>
+          <li>Widgets to effectively display statistics</li>
+          <li>Data tables with sort, search and paginate functionality</li>
+          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>
+          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>
+        </ul>
+        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>
+        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> about customizing the theme colors and functionality.</p>
+        <p class="mt-4 mb-4"><a class="btn btn-primary mr-2 mb-2" href="http://pratikborsadiya.in/blog/vali-admin" target="_blank"><i class="fa fa-file"></i>Webs</a><a class="btn btn-info mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin" target="_blank"><i class="fa fa-github"></i>Hubs</a><a class="btn btn-success mr-2 mb-2" href="https://github.com/pratikborsadiya/vali-admin/archive/master.zip" target="_blank"><i class="fa fa-download"></i>Rules</a></p>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="tile">
+        <h3 class="tile-title">Compatibility with frameworks</h3>
+        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>
+        <p>Go to <a href="http://pratikborsadiya.in/blog/vali-admin" target="_blank">documentation</a> for more details about integrating this theme with various frameworks.</p>
+        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href="https://github.com/pratikborsadiya/vali-admin" target="_blank">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <form [formGroup]="myForm" style="border:1px solid black">
+
+    <div>
+        <input type="email" placeholder="email" formControlName="email"><br>
+        <input type="text" placeholder="name" formControlName="name"><br>
+        <input type="number" placeholder="phone" formControlName="phone"><br>
+        <input type="text" placeholder="budget" formControlName="budget"><br>
+        <input type="number" placeholder="postCode" formControlName="postCode"><br>
+    </div>
+  
+    <div formArrayName="addressList">
+  
+        <div *ngFor="let phone of addressForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="streetNumber">
+            <input type="text" formControlName="streetName1">
+            <input type="text" formControlName="streetName2">
+            <input type="text" formControlName="suit">
+            <input type="text" formControlName="city">
+            <input type="text" formControlName="country">
+            <input type="text" formControlName="district">
+            <input type="text" formControlName="region">
+            <input type="text" formControlName="state">
+            <input type="number" formControlName="zipcode">
+  
+            <button (click)="deleteAddress(i)">Delete</button>
+  
+        </div>
+    </div>
+    <!--Add RuleList-----------
+    <div formArrayName="ruleList">
+  
+        <div *ngFor="let phone of ruleListForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="ruleName">
+            <input type="number" formControlName="ruleValue"> 
+
+            <button (click)="deleteRulelist(i)">Delete</button>
+  
+        </div>
+    </div>
+    <!--Add TestCodeList---
+   
+    <div formArrayName="testCodeList">
+  
+        <div *ngFor="let phone of testCodeListForm.controls; let i=index" 
+              [formGroupName]="i">
+  
+            <input type="text" formControlName="testCode">
+            <input type="number" formControlName="description"> 
+            <input type="number" formControlName="testName"> 
+            <input type="number" formControlName="testPrice"> 
+             
+            <button (click)="deletetestCodeList(i)">Delete</button>
+  
+        </div>
+    </div>
+  
+    <button (click)="addAddress()">Add Address</button><br><br>
+    <button (click)="addRuleList()">Add Rulelist</button><br><br>
+    <button (click)="addTestCodeList()">Add TestCodeList</button><br><br>
+
+    <button type="submit"  (click)="submitForm()">Save</button>
+  
+  </form> -->

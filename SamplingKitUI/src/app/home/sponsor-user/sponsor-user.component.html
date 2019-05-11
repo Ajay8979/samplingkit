@@ -1,0 +1,302 @@
+<div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i> Sponsors</h1>
+      <p>Sponsor Details</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+      <!-- <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
+      
+      
+    </ul>
+  </div>
+  
+    <button class="btn btn-danger mr-2 mb-2 pull-right" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i>Add Sponsor</button><br>
+    <br>  
+    
+    <div class="col-md-12">
+      
+      <div class="tile">
+        <h3 class="tile-title">Sponsor Details </h3>
+     
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Budget</th>
+              <th>Post Code</th>
+              <th>View</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+              <td><a class="btn btn-primary btn-sm" href="" data-toggle="modal" data-target="#addressDetails">Address</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ruleDetails">Rules</a>&nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#codeDetails" class="btn btn-warning btn-sm">Test Code</a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+     
+      <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+        
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              
+              <h4 class="modal-title">Sponsor Details</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                    <div class="content" >
+                            <div class="main">
+                          
+                            <ul id="progressbar">
+                            <li class="active">Sponser Personal Details</li>
+                            <li>Address Details</li>
+                            <li>Rule Details</li>
+                            <li>Test Code Details</li>
+                            </ul>
+                           
+                            <fieldset id="first" style="margin-left: 2px;">
+                                 
+                                <p class="subtitle">Step 1</p>
+                                
+                                <input class="text_field"  [(ngModel)]="name" name="name" placeholder="Name" type="text">
+                                <input class="text_field"  [(ngModel)]="email" name="email" placeholder="Email" type="text">
+                                <input class="text_field"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text">
+                                <input class="text_field"  [(ngModel)]="budget" name="budget" placeholder="Budget" type="text">
+                                <input class="text_field"  [(ngModel)]="postcode" name="postcode" placeholder="Post Code" type="text">
+                                <input class="next_btn pull-right" (click)="step1Details(name,email,phone,budget,postcode)" name="next" type="button" value="Next">
+                                </fieldset>
+                                <fieldset style="margin-left: 2px;">
+                             
+                                <p class="subtitle">Step 2</p>
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="streetNumber"  placeholder="Street Number" type="text">
+                                <input class="text_field" name="strename"   [(ngModel)]="strname1" placeholder="Street Name1" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="strname2" placeholder="Street Name2" type="text">
+                                  <input class="text_field" name="streetNumber"  [(ngModel)]="city" placeholder="City" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="country" placeholder="Country" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="district" placeholder="District" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="region" placeholder="Region" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="state" placeholder="State" type="text">
+                                <input class="text_field" name="streetNumber"  [(ngModel)]="zipcode" placeholder="Zip Code" type="text">
+                                <input class="pre_btn" name="previous" type="button" value="Previous">
+                                <input class="next_btn" name="next" type="button" (click)="step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)" value="Next">
+                                </fieldset>
+                                <fieldset style="margin-left: 2px;">
+                             
+                                <p class="subtitle">Step 3</p>
+                                <input class="text_field" name="fname" [(ngModel)]="ruleName" placeholder="Rule Name" type="text">
+                                <input class="text_field" name="fname" [(ngModel)]="ruleValue" placeholder="Rule Value" type="text">
+                                <input class="pre_btn" type="button" value="Previous">
+                                <button class="btn btn-success mr-2 mb-2 pull-right" (click)="ruleTable(ruleName,ruleValue)"><i class="fa fa-plus"></i>Add Rule</button>
+                               
+                                <input class="next_btn" name="next" type="button" value="Next">
+                                <table class="table" *ngIf="ruleDetails">
+                                        <thead>
+                                          <tr>
+                                            <th>Rule Name</th>
+                                            <th>Rule value</th>
+                                    
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let item of ruleList">
+                                            <td>{{item.ruleName}}</td>
+                                            <td>{{item.ruleValue}}</td>
+                                            
+                                          </tr>
+                            
+                                        </tbody>
+                                      </table>
+                                </fieldset>
+                                <fieldset style="margin-left: 2px;">
+                             
+                                    <p class="subtitle">Step 4</p>
+                                     <input class="text_field" name="testname" [(ngModel)]="testName" placeholder="Test Name" type="text">
+                                    <input class="text_field" name="testcode"  [(ngModel)]="testCode" placeholder="Test Code" type="text">
+                                    <textarea class="text_field" name="testdesc"  [(ngModel)]="testDesc" placeholder="Test Description"></textarea>
+                                   
+                                    <input class="text_field" name="isDefault"  [(ngModel)]="isDefault"  type="checkbox">&nbsp;isDefault <br>
+                                    <button class="btn btn-success mr-2 mb-2 pull-right" (click)="testTable(testName,testCode,testDesc,isDefault)"><i class="fa fa-plus"></i>Add Test</button>
+                            
+                                    <input class="pre_btn" type="button" value="Previous">
+                                    
+                                    <input class="submit_btn" type="submit" (click)="submitSponsorDetails()" value="Submit">
+                                    <table class="table table-hover" *ngIf="testDetailsFlag">
+                                            <thead>
+                                              <tr>
+                                                <th>Test Name</th>
+                                                <th>Test Code</th>
+                                                <th>Test Description</th>
+                                                <th>isDefault</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr *ngFor='let item of testCodeList'>
+                                                <td>{{item.testName}}</td>
+                                                <td>{{item.testCode}}</td>
+                                                <td>{{item.testDesc}}</td>
+                                                <td>{{item.isDefault}}</td>
+                                              </tr>
+                                             
+                                            </tbody>
+                                          </table>
+                                    </fieldset>
+                            
+                                </div>
+                                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+ 
+
+
+
+    
+      <!-- Modal address details -->
+     
+<div id="addressDetails" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Address Details</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            </div>
+            <div class="modal-body">
+                
+
+                    <table class="table table-responsive">
+                            <thead>
+                              <tr>
+                                <th>Street No.</th>
+                                <th>Street Name1</th>
+                                <th>Street Name2</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>District</th>
+                                <th>Region</th>
+                                <th>State</th>
+                                <th>Zipcode</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>1</td>
+                                <td>Galaxy</td>
+                                <td>PVR Road</td>
+                                <td>Pune</td>
+                                <td>India</td>
+                                <td>PUne</td>
+                                <td>Nigdi</td>
+                                <td>Maharastra</td>
+                                <td>451222</td>
+                              </tr>
+                              <tr>
+                              
+                            </tbody>
+                          </table>
+                         
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+   
+       <!-- Modal rule details -->
+<div id="ruleDetails" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Rule Details</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            </div>
+            <div class="modal-body">
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Rule Name</th>
+                                <th>Rule Value</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>Age</td>
+                                <td>25</td>
+                              </tr>
+                            </tbody>
+                          </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+       <!-- Modal code details -->
+<div id="codeDetails" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+      
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Modal Header</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            </div>
+            <div class="modal-body">
+                    <table class="table">
+                            <thead>
+                              <tr>
+                                <th>Test Name</th>
+                                <th>Test Code</th>
+                                <th>Test Description</th>
+                                <th>IsDefault</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>HIV Sample</td>
+                                <td>1201</td>
+                                <td>Negative</td>
+                                <td>true</td>
+                              </tr>
+                            </tbody>
+                          </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+      
+        </div>
+      </div>
+      
+      

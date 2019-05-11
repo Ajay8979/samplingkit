@@ -1,0 +1,65 @@
+package com.medintu.samplingkit.entity;
+
+public class TestCodeMapper {
+
+	private Long id;
+	private String testName;
+	private String description;
+	private String testCode;
+	private double testPrice;
+	private boolean isDefalut;
+	private String status;
+	private Long sponsorId;
+	
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getTestName() {
+		return testName;
+	}
+	public void setTestName(String testName) {
+		this.testName = testName;
+	}
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	public String getTestCode() {
+		return testCode;
+	}
+	public void setTestCode(String testCode) {
+		this.testCode = testCode;
+	}
+	public double getTestPrice() {
+		return testPrice;
+	}
+	public void setTestPrice(double testPrice) {
+		this.testPrice = testPrice;
+	}
+	public boolean isDefalut() {
+		return isDefalut;
+	}
+	public void setDefalut(boolean isDefalut) {
+		this.isDefalut = isDefalut;
+	}
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public Long getSponsorId() {
+		return sponsorId;
+	}
+	public void setSponsorId(Long sponsorId) {
+		this.sponsorId = sponsorId;
+	}
+	
+	
+	
+}

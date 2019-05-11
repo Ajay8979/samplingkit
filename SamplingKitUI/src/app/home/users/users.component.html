@@ -1,0 +1,241 @@
+<div class="row">
+  <div class="col-md-12">
+    <!-- Trigger the modal with a button -->
+    <!-- Modal -->
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">User Details</h5>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <!-- Radio Buttons Started-->
+          <div class="modal-body">
+
+            <div>
+              <form [formGroup]="profileForm">
+
+                <div class="form-group row">
+                    <div class="col-md-12">
+                        <label>
+                            Roles:
+                          <input type="radio" name="role" value="SPONSORUSER" (change)="changeUser()"   formControlName="role">Sponsor User
+                        </label>&nbsp;&nbsp;
+                        <label>
+                          <input type="radio" name="role" value="SUPPORTUSER" formControlName="role">Support User
+                        </label>
+    
+                      </div>
+                      <div class="clearfix"></div>
+                  <div class="col-md-6">
+                    <label>
+                      First Name:
+                      <input type="text" class="form-control" formControlName="firstName">
+                    </label>
+                  </div>
+                  <div class="col-md-6">
+                    <label>
+                      Last Name:
+                      <input type="text" class="form-control" formControlName="lastName">
+                    </label>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label>
+                      Email:
+                      <input type="email" class="form-control" formControlName="emailId" >
+                      
+                    </label>
+                  </div>
+                  <div class="col-md-6">
+                      <label>
+                        Username:
+                        <input type="text" class="form-control" formControlName="userName" >
+                      </label>
+                    </div>
+                  
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-6">
+                    <label>
+                      MobileNo:
+                      <input type="text" class="form-control" formControlName="mobileNum" >
+                    </label>
+                  </div>
+                  
+                  <div class="clearfix"></div>
+                  
+                    <div class="col-md-6">
+                        <label>
+                          Password:
+                          <input type="password" class="form-control" formControlName="passWord" >
+                        </label>
+                      </div>
+                </div>
+                <div class="form-group row">
+                 
+                  <div class="col-md-6" *ngIf="profileForm.value.role=='SPONSORUSER'">
+                    <label>Sponsor Users</label>
+                      <select class="form-control" formControlName="sponsorId">
+                          <option  *ngFor="let name of sponserUsers" [value]="name.id" >{{name.name}}</option>
+                        </select>
+                    </div>
+                   
+                  </div>
+                <br>
+                <input type="button" class="btn btn-info float-right" (click)="updateValue()" *ngIf="updatfrm" value="Update" />
+                <input type="submit" class="btn btn-info float-right" (click)="save(profileForm.value)" *ngIf="addfrm" [disabled]="profileForm.invalid" data-dismiss="modal" value="Submit">
+                <!-- <input type="submit" class="btn btn-info" [disabled]="profileForm.invalid" value="Submit"> -->
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+              
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="tile">
+      <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal"
+        (click)="addUsers(profileForm)">Add</button>
+      <h3 class="tile-title">Users</h3>
+      <div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Phone No</th>
+              <th>Status</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let x of data">
+              <td>{{x.firstName}}</td>
+              <td>{{x.lastName}}</td>
+              <td>{{x.emailId}}</td>
+              <td>{{x.roles}}</td>
+              <td>{{x.mobileNum}}</td>
+              <td>{{x.status}}</td>
+              <td>
+                <span>
+                  <span (click)="editForm(x)" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-pencil">
+                    <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
+                  </span>
+                </span>
+              </td>
+              <td>
+                <span>
+                  <span (click)="deleteData(x.id)" value="delete">
+                    <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+                  </span>
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Adding forms-->
+<!-- <div *ngIf="addfrm">
+  <form [formGroup]="profileForm">
+    <br>
+    
+    <div>
+        <label>
+            First Name:
+            <input type="text" formControlName="firstName" [(ngModel)]="pfname">
+        </label>
+    </div>
+
+    <div>
+        <label>
+            Last Name:
+            <input type="text" formControlName="lastName" [(ngModel)]="plname">
+        </label>
+    </div>
+    <div>
+        <label>
+            Email:
+            <input type="email" formControlName="emailId" [(ngModel)]="pemail">
+        </label>
+    </div>
+    <div>
+      <label>
+          Roles:
+          <input type="text" formControlName="username" [(ngModel)]="pusername">
+      </label>
+  </div>
+  <div>
+    <label>
+        MobileNo:
+        <input type="text" formControlName="mobileNum" [(ngModel)]="pmobileno">
+    </label>
+</div>
+    <br>
+    <input type="button" (click)="saveValue()" value="Save" />
+</form>
+  </div> -->
+
+<!--Update Forms--->
+<!-- <div *ngIf="updatfrm">
+  <form [formGroup]="profileForm">
+
+      <div class="form-group row" >
+          <div class="col-md-6">
+              <label>
+                  First Name:
+                  <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="pfname">
+              </label>
+          </div>
+          <div class="col-md-6">
+              <label>
+                  Last Name:
+                  <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="plname">
+              </label>
+          </div>
+      </div>
+
+      <div class="form-group row" >
+      <div class="col-md-6">
+          <label>
+              Email:
+              <input type="email" class="form-control" formControlName="emailId" [(ngModel)]="pemail">
+          </label>
+      </div>
+      <div class="col-md-6">
+        <label>
+            Roles:
+            <input type="text" class="form-control" formControlName="role" [(ngModel)]="prole">
+        </label>
+    </div>
+   </div>
+   <div class="form-group row" >
+    <div class="col-md-6">
+      <label>
+          MobileNo:
+          <input type="text" class="form-control" formControlName="mobileNum" [(ngModel)]="pmobileno">
+      </label>
+  </div>
+  <div class="col-md-6">
+      <label>
+          Username:
+          <input type="text" class="form-control" formControlName="userName" [(ngModel)]="puserName">
+      </label>
+  </div>
+</div>
+      <br>
+      <input type="button" (click)="updateValue()" value="Update" />
+  </form>
+  </div> -->
