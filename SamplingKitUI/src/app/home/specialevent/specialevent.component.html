@@ -1,0 +1,73 @@
+
+<div class="tile">
+  <h5>Special Event</h5>
+  <form class="form-inline ">
+    <div class="input-group ">
+      <input type="text" class="form-control" name="key" [(ngModel)]="key" size="50" placeholder="Search">
+      <div class="input-group-btn">
+        <h1></h1>
+      </div>
+    </div>
+  </form>
+  <div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 class="modal-title">Special Event</h4>
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           
+         </div>
+         <div class="modal-body">
+           <form #regForm='ngForm'>
+               <div class="col-md-6">
+                   <label>
+                    Specialevent:
+                     <input type="text" placeholder="Specialevent" name="eventName" class="form-control" [(ngModel)]= peventName >
+                   </label>
+                 </div>
+                 <button type="submit" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="saveEvent(regForm.value)" *ngIf="addfrm">Submit</button>
+                 <button type="button" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="updateEvent()" *ngIf="updatfrm" >Update</button>
+           </form>
+         </div>
+         <div class="modal-footer">
+           <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+         </div>
+       </div>
+   
+     </div>
+   </div>
+ <button type="button" style="margin-bottom:8px" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal"
+ (click)="add(regForm)">Add</button>
+ 
+ <table class="table table-striped" >
+   <thead>
+     <tr style="font-size:15px">
+       <th>Id</th>
+       <th>Event Name</th>
+       <th>Edit</th>
+       <th>Delete</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor = "let data of eventData">
+       <td>{{data.id}}</td>
+       <td>{{data.eventName}}</td>
+       <td>
+         <span>
+           <span (click)="editSpecialevent(data)" data-toggle="modal" data-target="#myModal"  class="glyphicon glyphicon-pencil">
+             <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
+           </span>
+         </span>
+       </td>
+       <td>
+         <span>
+           <span (click)="deleteSpecialEvent(data.id)" value="delete">
+             <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+           </span>
+         </span>
+       </td>
+     </tr>
+   </tbody>
+ </table>
+ </div>

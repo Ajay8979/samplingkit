@@ -13,6 +13,7 @@ import { NoPageComponent } from './no-page/no-page.component';
 import { HttpClientModule }    from '@angular/common/http'
 import {routes} from './app.router'
 import { DataService } from './services/data.service';
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 
 @NgModule({
@@ -28,6 +29,7 @@ import { DataService } from './services/data.service';
     HomeModule,
     IndexModule,
     HttpClientModule,
+    // Ng2SearchPipeModule,
     RouterModule.forRoot(routes),
   ],
   providers: [AuthService,AuthGuard,DataService],

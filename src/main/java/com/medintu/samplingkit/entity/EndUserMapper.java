@@ -14,7 +14,7 @@ public class EndUserMapper {
 
 	private String oppositeGender;
 
-	private String ethnicGroup;
+	private Long ethnicGroupId;
 
 	private JSONObject quetionary1;
 
@@ -49,6 +49,8 @@ public class EndUserMapper {
 	private String notificationEmail;
 
 	private Boolean lastResortLetter;
+
+	private Long sponsorId;
 
 	public EndUserMapper() {
 		// TODO Auto-generated constructor stub
@@ -86,12 +88,12 @@ public class EndUserMapper {
 		this.oppositeGender = oppositeGender;
 	}
 
-	public String getEthnicGroup() {
-		return ethnicGroup;
+	public Long getEthnicGroupId() {
+		return ethnicGroupId;
 	}
 
-	public void setEthnicGroup(String ethnicGroup) {
-		this.ethnicGroup = ethnicGroup;
+	public void setEthnicGroupId(Long ethnicGroupId) {
+		this.ethnicGroupId = ethnicGroupId;
 	}
 
 	public JSONObject getQuetionary1() {
@@ -228,6 +230,14 @@ public class EndUserMapper {
 
 	public void setLastResortLetter(Boolean lastResortLetter) {
 		this.lastResortLetter = lastResortLetter;
+	}
+
+	public Long getSponsorId() {
+		return sponsorId;
+	}
+
+	public void setSponsorId(Long sponsorId) {
+		this.sponsorId = sponsorId;
 	}
 
 }

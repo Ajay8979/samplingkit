@@ -19,6 +19,9 @@ public interface EthnicGroupService {
 	public List<EthnicGroup> getAllEthnicGroups();
 	
 	
+	public List<String> getEthnicByGroup();
+	
+	
 	
 	
 	

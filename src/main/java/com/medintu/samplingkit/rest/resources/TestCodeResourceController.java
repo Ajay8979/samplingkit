@@ -21,7 +21,7 @@ import com.medintu.samplingkit.entity.TestCodeMapper;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.TestCodeService;
 
-@CrossOrigin(origins="*",allowedHeaders="*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Path("/testCode")
 public class TestCodeResourceController {
 	@Autowired
@@ -40,12 +40,11 @@ public class TestCodeResourceController {
 						&& (null != testCodeMapper.getDescription() && !testCodeMapper.getDescription().isEmpty())) {
 					TestCode testCode = new TestCode();
 					testCode.setStatus("Active");
-					testCode.setDefalut(testCodeMapper.isDefalut());
+					testCode.setIsDefalut(testCodeMapper.isDefalut());
 					testCode.setDescription(testCodeMapper.getDescription());
-					//testCode.setSponsorId(testCodeMapper.getSponsorId());
+					// testCode.setSponsorId(testCodeMapper.getSponsorId());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
-					testCode.setTestPrice(testCodeMapper.getTestPrice());
 					TestCode createTestCode = testCodeService.createTestCode(testCode);
 					return new Response("Success", HttpStatus.OK, "Testcode added Successfully", createTestCode);
 				}
@@ -101,7 +100,7 @@ public class TestCodeResourceController {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response updateTestCode(TestCodeMapper testCodeMapper) {
 		try {
-			
+
 			if (null != testCodeMapper) {
 				if ((null != testCodeMapper.getTestName() && !testCodeMapper.getTestName().isEmpty())
 						&& (null != testCodeMapper.getTestCode() && !testCodeMapper.getTestCode().isEmpty())
@@ -110,9 +109,8 @@ public class TestCodeResourceController {
 					testCode.setId(testCodeMapper.getId());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
-					testCode.setTestPrice(testCodeMapper.getTestPrice());
 					testCode.setDescription(testCodeMapper.getDescription());
-					testCode.setDefalut(testCodeMapper.isDefalut());
+					testCode.setIsDefalut(testCodeMapper.isDefalut());
 
 					testCodeService.updateTestCode(testCode);
 					return new Response("Success", HttpStatus.OK, "Test Code is updated");

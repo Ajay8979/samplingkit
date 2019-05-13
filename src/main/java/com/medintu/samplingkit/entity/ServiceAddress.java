@@ -9,6 +9,7 @@ import javax.persistence.Table;
 @Table(name = "Service_Address")
 public class ServiceAddress implements Entity {
 	private static final long serialVersionUID = 1L;
+	
 	@Id
 	@GeneratedValue
 	private Long id;

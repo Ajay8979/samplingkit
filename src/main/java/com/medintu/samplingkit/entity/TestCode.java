@@ -8,66 +8,30 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "Test_Code")
+@Table(name = "test_code")
 public class TestCode implements com.medintu.samplingkit.entity.Entity {
 
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="testcode_id")
+	@Column(name = "testcode_id")
 	private Long id;
-	@Column(unique = true, name = "test_name")
-	private String testName;
-	@Column
-	private String description;
-	@Column(unique = true, name = "test_code")
-	private String testCode;
-	@Column(name = "test_Price")
-	private double testPrice;
-	@Column
-	private boolean isDefalut;
-	private String status;
-	@Column
-	private Long sponsorId; 
-	public boolean isDefalut() {
-		return isDefalut;
-	}
 
-	public void setDefalut(boolean isDefalut) {
-		this.isDefalut = isDefalut;
-	}
+	@Column(name = "test_name")
+	private String testName;
+
+	private String description;
+
+	@Column(name = "test_code")
+	private String testCode;
+
+	@Column(name = "is_default")
+	private Boolean isDefalut;
+
+	private String status;
 
 	public TestCode() {
 
-	}
-
-	
-
-	
-
-	public Long getSponsorId() {
-		return sponsorId;
-	}
-
-	public void setSponsorId(Long sponsorId) {
-		this.sponsorId = sponsorId;
-	}
-
-	public TestCode(Long id, String testName, String description, String testCode, double testPrice) {
-		super();
-		this.id = id;
-		this.testName = testName;
-		this.description = description;
-		this.testCode = testCode;
-		this.testPrice = testPrice;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getTestName() {
@@ -94,12 +58,12 @@ public class TestCode implements com.medintu.samplingkit.entity.Entity {
 		this.testCode = testCode;
 	}
 
-	public double getTestPrice() {
-		return testPrice;
+	public Boolean getIsDefalut() {
+		return isDefalut;
 	}
 
-	public void setTestPrice(double testPrice) {
-		this.testPrice = testPrice;
+	public void setIsDefalut(Boolean isDefalut) {
+		this.isDefalut = isDefalut;
 	}
 
 	public String getStatus() {
@@ -110,6 +74,14 @@ public class TestCode implements com.medintu.samplingkit.entity.Entity {
 		this.status = status;
 	}
 
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return id;
+	}
 
 }

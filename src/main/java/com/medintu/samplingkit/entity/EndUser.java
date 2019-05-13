@@ -25,7 +25,7 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	private String oppositeGender;
 
-	private String ethnicGroup;
+	private Long ethnicGroupId;
 
 	private JSONObject quetionary1;
 
@@ -60,6 +60,18 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 	private String notificationEmail;
 
 	private Boolean lastResortLetter;
+
+	private String orderCode;
+
+	private Long sponsorId;
+
+	public Long getSponsorId() {
+		return sponsorId;
+	}
+
+	public void setSponsorId(Long sponsorId) {
+		this.sponsorId = sponsorId;
+	}
 
 	public EndUser() {
 
@@ -105,12 +117,12 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 		this.oppositeGender = oppositeGender;
 	}
 
-	public String getEthnicGroup() {
-		return ethnicGroup;
+	public Long getEthnicGroupId() {
+		return ethnicGroupId;
 	}
 
-	public void setEthnicGroup(String ethnicGroup) {
-		this.ethnicGroup = ethnicGroup;
+	public void setEthnicGroupId(Long ethnicGroupId) {
+		this.ethnicGroupId = ethnicGroupId;
 	}
 
 	public JSONObject getQuetionary1() {
@@ -247,6 +259,14 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	public void setLastResortLetter(Boolean lastResortLetter) {
 		this.lastResortLetter = lastResortLetter;
+	}
+
+	public String getOrderCode() {
+		return orderCode;
+	}
+
+	public void setOrderCode(String orderCode) {
+		this.orderCode = orderCode;
 	}
 
 }

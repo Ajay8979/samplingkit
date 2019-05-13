@@ -17,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.medintu.samplingkit.entity.Rule;
+import com.medintu.samplingkit.entity.SpecialEventMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
 import com.medintu.samplingkit.entity.SponsorMapper;
@@ -70,6 +71,17 @@ public class SponsorResourceController {
 						ruleLists.add(rule);
 					}
 				}
+				List<SpecialEventMapper> specialMappers = sponsorMapper.getMappers();
+				if (!CollectionUtils.isEmpty(specialMappers)) {
+					for (SpecialEventMapper specialMapper : specialMappers) {
+						Rule rule = new Rule();
+						rule.setRuleName("SpecialEvent");
+						rule.setRuleValue(specialMapper.getEventValue());
+						rule.setStartDate(specialMapper.getStartDate());
+						rule.setEndDate(specialMapper.getEndDate());
+						ruleLists.add(rule);
+					}
+				}
 
 				List<TestCode> testCodeList = sponsorMapper.getTestCodeList();
 				testList = new ArrayList<>();
@@ -106,43 +118,81 @@ public class SponsorResourceController {
 	@Path("/showAllSponsors")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Sponsor> getAllSponsors() {
+	public Response getAllSponsors() {
 
-		return sponsorService.getAllSponsors();
+		Response response = null;
 
+		List<Sponsor> sponsors = sponsorService.getAllSponsors();
+		if (!CollectionUtils.isEmpty(sponsors)) {
+			response = new Response(sponsors, HttpStatus.OK, "Sponsors Found");
+		} else {
+			response = new Response("Sponsors not found", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
 	}
 
 	@Path("/addresses/{sponsorId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<SponsorAddress> getSponsorAddressesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
-		return sponsorService.getSponsorAddressesBySponsorId(sponsorId);
+	public Response getSponsorAddressesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
+
+		Response response = null;
+		List<SponsorAddress> sponserAddresses = sponsorService.getSponsorAddressesBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(sponserAddresses)) {
+			response = new Response(sponserAddresses, HttpStatus.OK, "Sponsor Addresses Found");
+		} else {
+			response = new Response("Sponsor Addresses not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
 
 	}
 
 	@Path("/{sponsorId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Sponsor getSponsorById(@PathParam("sponsorId") Integer sponsorId) {
-		return sponsorService.getSponsorBySponsorId(sponsorId);
+	public Response getSponsorById(@PathParam("sponsorId") Integer sponsorId) {
 
+		Response response = null;
+		Sponsor sponsor = sponsorService.getSponsorBySponsorId(sponsorId);
+		if (null != sponsor) {
+			response = new Response(sponsor, HttpStatus.OK, "Sponsor Found");
+		} else {
+			response = new Response("Sponsor not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
 	}
-	
+
 	@Path("/testCodes/{sponsorId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<TestCode> getTestCodesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
-		return sponsorService.getTestCodesBySponsorId(sponsorId);
+	public Response getTestCodesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
+
+		Response response = null;
+		List<TestCode> testCodes = sponsorService.getTestCodesBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(testCodes)) {
+			response = new Response(testCodes, HttpStatus.OK, "TestCodes Found");
+		} else {
+			response = new Response("TestCode not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
 
 	}
-	
+
 	@Path("/rules/{sponsorId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Rule> getSponsorRulesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
-		return sponsorService.getSponsorRulesBySponsorId(sponsorId);
+	public Response getSponsorRulesBySponsorId(@PathParam("sponsorId") Integer sponsorId) {
+
+		Response response = null;
+		List<Rule> rules = sponsorService.getSponsorRulesBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(rules)) {
+			response = new Response(rules, HttpStatus.OK, "Rules Found");
+		} else {
+			response = new Response("Rules not Found", HttpStatus.INTERNAL_SERVER_ERROR);
+
+		}
+		return response;
 
 	}
-
 
 }

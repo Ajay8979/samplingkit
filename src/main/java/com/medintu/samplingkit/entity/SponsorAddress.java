@@ -2,16 +2,17 @@ package com.medintu.samplingkit.entity;
 
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "Sponsor_Address")
+@Table(name = "sponsor_address")
 public class SponsorAddress implements Entity {
 	private static final long serialVersionUID = 1L;
 	@Id
-	@GeneratedValue
-	@Column(name = "address_id")
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="address_id")
 	private Long id;
 	private String streetNumber;
 	private String streetName1;
@@ -26,29 +27,6 @@ public class SponsorAddress implements Entity {
 
 	public SponsorAddress() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public SponsorAddress(Long id, String streetNumber, String streetName1, String streetName2, String suit,
-			String city, String country, String district, String region, String state, String zipcode) {
-		this.id = id;
-		this.streetNumber = streetNumber;
-		this.streetName1 = streetName1;
-		this.streetName2 = streetName2;
-		this.suit = suit;
-		this.city = city;
-		this.country = country;
-		this.district = district;
-		this.region = region;
-		this.state = state;
-		this.zipcode = zipcode;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getStreetNumber() {
@@ -131,5 +109,14 @@ public class SponsorAddress implements Entity {
 		this.zipcode = zipcode;
 	}
 
-	
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	@Override
+	public Long getId() {
+		// TODO Auto-generated method stub
+		return this.id;
+	}
+
 }

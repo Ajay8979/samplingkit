@@ -39,38 +39,66 @@ export class SponsorUserComponent implements OnInit {
    region:any;
    state:any;
    zipcode:any;
+  ethenicData: any=[];
+  mappers: any=[];
+  eventdetail:boolean=false;
+  ruleDataTable: any=[];
 
 
   constructor(private fb: FormBuilder,private DataService:DataService) {
-    
+    this.getSponsorList()
    }
-   
-   ruleTable(ruleName,ruleValue){
-     var obj={ruleName:ruleName,ruleValue:ruleValue}
-     this.ruleList.push(obj);
+   getAllEthenic(){
+    this.DataService.getEthenic().subscribe(data=>{
+      this.ethenicData=data.resultData;
+    })
+  }
+  getSponsorList(){
+    this.DataService.getSponsorsList().subscribe(data=>{
+      this.SponsorsData=data.resultData;
+    })
+  }
+   ruleTable(selectedEthenicName,selectedGender,minage,maxage){
+    var tableObj={gender:selectedGender,minage:minage,maxage:maxage}
+    this.ruleDataTable.push(tableObj)
+  
+    var obja={ruleName:'Gender',ruleValue:selectedGender.toString(),ethnicGroupId:selectedEthenicName.id}
+    var objb={ruleName:'Min-Age',ruleValue:minage,ethnicGroupId:selectedEthenicName.id}
+    var objc={ruleName:'Max-Age',ruleValue:maxage,ethnicGroupId:selectedEthenicName.id}
+    this.ruleList.push(obja);
+    this.ruleList.push(objb);
+    this.ruleList.push(objc);
     this.ruleDetails=true;
    }
+   addEventDetails(eventName,startDate,endDate){
+     var obj={eventName:eventName,startDate:startDate,endDate:endDate}
+     this.mappers.push(obj);
+     this.eventdetail=true;
+   }
    testTable(testName,testCode,testDesc,isDefault){
-     var obj={testName:testName,testCode:testCode,testDesc,isDefault:isDefault}
+     var obj={testName:testName,testCode:testCode,description:testDesc,isDefalut:isDefault}
      this.testCodeList.push(obj);
      this.testDetailsFlag=true;
    }
 
    step1Details(name,email,phone,budget,postcode){
-      this.obj1={name:name,email:email,phone:phone,budget:budget,postcode:postcode}
+      this.obj1={name:name,email:email,phone:phone,budget:budget,postCode:postcode}
     // this.SponsorsData.push(obj);
 
    }
    step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode){
-     this.obj2={streetNumber:streetNumber,strname1:strname1,strname2:strname2,city:city,country:country,district:district,region:region,state:state,zipcode:zipcode}
-     
+     this.obj2={streetNumber:streetNumber,streetName1:strname1,streetName2:strname2,city:city,country:country,district:district,region:region,state:state,zipcode:zipcode}
+    this.addressList.push(this.obj2);
+     this.getAllEthenic()
    
      //  this.addressList.push(obj);
     }
    submitSponsorDetails(){
-    this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postcode:this.postcode,addressList: this.obj2,ruleList:this.ruleList,testCodeList:this.testCodeList}
+  
+    this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postCode:this.postcode,addressList: this.addressList,ruleList:this.ruleList,mappers:this.mappers,testCodeList:this.testCodeList}
+    console.log(this.obj1);
     this.DataService.createSponsorDetails(this.obj1).subscribe(data=>{
-            console.log(data);
+            this.getSponsorList();
     })
     
     // this.SponsorsData.push(this.addressList);

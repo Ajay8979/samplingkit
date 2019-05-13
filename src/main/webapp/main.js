@@ -151,6 +151,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// import { Ng2SearchPipeModule } from 'ng2-search-filter';
 var AppModule = /** @class */ (function () {
     function AppModule() {
     }
@@ -168,6 +169,7 @@ var AppModule = /** @class */ (function () {
                 _home_home_module__WEBPACK_IMPORTED_MODULE_4__["HomeModule"],
                 _index_index_module__WEBPACK_IMPORTED_MODULE_3__["IndexModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_13__["HttpClientModule"],
+                // Ng2SearchPipeModule,
                 _angular_router__WEBPACK_IMPORTED_MODULE_7__["RouterModule"].forRoot(_app_router__WEBPACK_IMPORTED_MODULE_14__["routes"]),
             ],
             providers: [_services_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _gaurds_auth_guard__WEBPACK_IMPORTED_MODULE_1__["AuthGuard"], _services_data_service__WEBPACK_IMPORTED_MODULE_15__["DataService"]],
@@ -297,7 +299,7 @@ var LoginGuard = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-dashboard\"></i> Dashboard</h1>\n      <p>Medintu Web Application</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li>\n      <li class=\"breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    </ul>\n  </div>\n\n\n  <!-- <div *ngIf=\"role=='ADMIN'\">\n    <h1>Welcome to {{role}}</h1>\n  </div> -->\n<!---For Super admin part-->\n  <div *ngIf=\"role=='SUPERADMIN'\">\n    <h1> Welcome to {{role}}</h1>\n    <!-- <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"tile\">\n            <button type=\"button\" class=\"btn btn-primary float-right\">Add</button>\n          <h3 class=\"tile-title\">Users</h3>\n          <div>\n            <table class=\"table table-striped\">\n              <thead>\n                <tr>\n                  <th>Firstname</th>\n                  <th>Lastname</th>\n                  <th>Email</th>\n                  <th>Role</th>\n                  <th>Phone No</th>\n                  <th>Status</th>\n                  <th>Edit</th>\n                  <th>Delete</th>\n                  \n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of data\">\n                <td>{{x.first_name}}</td>\n                <td>{{x.last_name}}</td>\n                <td>{{x.email}}</td>\n                <td>Admin</td>\n                <td>{{x.phoneno}}</td>\n                <td>{{x.status}}</td>\n                <td>\n                    <span>\n                        <span (click)=\"edit(x)\" class=\"glyphicon glyphicon-pencil\" >\n                          <i class=\"fa fa-edit\" style=\"font-size:24px;color:rgb(49, 17, 233)\"></i>\n                        </span>\n                    </span>\n                </td>\n                <td>\n                    <span>\n                        <span (click)=\"delete(x.id)\" value=\"delete\">\n                          <i class=\"fa fa-trash\" style=\"font-size:24px;color:red\"></i>\n                        </span>\n                    </span>\n                </td>\n                \n                </tr>\n              </tbody>\n            </table>\n        </div>\n        </div>\n      </div>\n    </div> -->\n  </div>\n\n  <div *ngIf=\"role=='SPONSORUSER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div>\n  <div *ngIf=\"role=='SUPPORTUSER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div>\n  \n  \n  <!-- {{userData|json}} -->\n\n  <!-- <div class=\"row\">\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Users</h4>\n          <p><b>5</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Likes</h4>\n          <p><b>25</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Uploades</h4>\n          <p><b>10</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Stars</h4>\n          <p><b>500</b></p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Monthly Sales</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"lineChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Support Requests</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"pieChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Features</h3>\n        <ul>\n          <li>Built with Bootstrap 4, SASS and PUG.js</li>\n          <li>Fully responsive and modular code</li>\n          <li>Seven pages including login, user profile and print friendly invoice page</li>\n          <li>Smart integration of forgot password on login page</li>\n          <li>Chart.js integration to display responsive charts</li>\n          <li>Widgets to effectively display statistics</li>\n          <li>Data tables with sort, search and paginate functionality</li>\n          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>\n          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>\n        </ul>\n        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>\n        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> about customizing the theme colors and functionality.</p>\n        <p class=\"mt-4 mb-4\"><a class=\"btn btn-primary mr-2 mb-2\" href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\"><i class=\"fa fa-file\"></i>Webs</a><a class=\"btn btn-info mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\"><i class=\"fa fa-github\"></i>Hubs</a><a class=\"btn btn-success mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin/archive/master.zip\" target=\"_blank\"><i class=\"fa fa-download\"></i>Rules</a></p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Compatibility with frameworks</h3>\n        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>\n        <p>Go to <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> for more details about integrating this theme with various frameworks.</p>\n        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>\n      </div>\n    </div>\n  </div> -->\n\n\n  <!-- <form [formGroup]=\"myForm\">\n  \n    <div formArrayName=\"phones\">\n  \n        <div *ngFor=\"let phone of phoneForms.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input formControlName=\"area\">\n            <input formControlName=\"prefix\">\n            <input formControlName=\"line\">\n  \n            <button (click)=\"deletePhone(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addPhone()\">Add Phone Number</button>\n  \n  </form> -->\n\n  <!-- <form [formGroup]=\"myForm\" style=\"border:1px solid black\">\n\n    <div>\n        <input type=\"email\" placeholder=\"email\" formControlName=\"email\"><br>\n        <input type=\"text\" placeholder=\"name\" formControlName=\"name\"><br>\n        <input type=\"number\" placeholder=\"phone\" formControlName=\"phone\"><br>\n        <input type=\"text\" placeholder=\"budget\" formControlName=\"budget\"><br>\n        <input type=\"number\" placeholder=\"postCode\" formControlName=\"postCode\"><br>\n    </div>\n  \n    <div formArrayName=\"addressList\">\n  \n        <div *ngFor=\"let phone of addressForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"streetNumber\">\n            <input type=\"text\" formControlName=\"streetName1\">\n            <input type=\"text\" formControlName=\"streetName2\">\n            <input type=\"text\" formControlName=\"suit\">\n            <input type=\"text\" formControlName=\"city\">\n            <input type=\"text\" formControlName=\"country\">\n            <input type=\"text\" formControlName=\"district\">\n            <input type=\"text\" formControlName=\"region\">\n            <input type=\"text\" formControlName=\"state\">\n            <input type=\"number\" formControlName=\"zipcode\">\n  \n            <button (click)=\"deleteAddress(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add RuleList-----------\n    <div formArrayName=\"ruleList\">\n  \n        <div *ngFor=\"let phone of ruleListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"ruleName\">\n            <input type=\"number\" formControlName=\"ruleValue\"> \n\n            <button (click)=\"deleteRulelist(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add TestCodeList---\n   \n    <div formArrayName=\"testCodeList\">\n  \n        <div *ngFor=\"let phone of testCodeListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"testCode\">\n            <input type=\"number\" formControlName=\"description\"> \n            <input type=\"number\" formControlName=\"testName\"> \n            <input type=\"number\" formControlName=\"testPrice\"> \n             \n            <button (click)=\"deletetestCodeList(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addAddress()\">Add Address</button><br><br>\n    <button (click)=\"addRuleList()\">Add Rulelist</button><br><br>\n    <button (click)=\"addTestCodeList()\">Add TestCodeList</button><br><br>\n\n    <button type=\"submit\"  (click)=\"submitForm()\">Save</button>\n  \n  </form> -->\n<!-- \n  <div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-dashboard\"></i> Dashboard</h1>\n      <p>Ojas Bussness Rules Application</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li>\n      <li class=\"breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    </ul>\n  </div>\n\n\n  <div *ngIf=\"role=='ADMIN'\">\n    <h1>Welcome to {{role}}</h1>\n  </div>\n<!---For Super admin part--\n  <div *ngIf=\"role=='SUBERADMIN'\">\n    <h1> Welcome to {{role}}</h1>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Users</h4>\n            <!-- <p><b>5</b></p> --\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Likes</h4>\n            <p><b>25</b></p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Uploades</h4>\n            <p><b>10</b></p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Stars</h4>\n            <p><b>500</b></p>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"tile\">\n          <h3 class=\"tile-title\">Users</h3>\n          <button   type=\"button\" class=\"btn btn-primary float-right\">Add</button>\n          <div>\n            <table class=\"table table-striped\">\n              <thead>\n                <tr>\n                  <th>Firstname</th>\n                  <th>Lastname</th>\n                  <th>Email</th>\n                  <th>Phone No</th>\n                  <th>Action</th>\n                  <th>Status</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of data\">\n                <td>{{x.first_name}}</td>\n                <td>{{x.last_name}}</td>\n                <td>{{x.email}}</td>\n                <td>{{x.phoneno}}</td>\n                <td>\n                    <span>\n                        <button (click)=\"edit(x)\" value=\"edit\" >Edite</button>\n                    </span>\n                    <span>\n                        <button (click)=\"delete(x.id)\" value=\"delete\">Delete</button>\n                    </span>\n                </td>\n                <td>{{x.status}}</td>\n                </tr>\n              </tbody>\n            </table>\n        </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"role=='USER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div> -->\n  \n  <!-- {{userData|json}} -->\n\n  <!-- <div class=\"row\">\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Users</h4>\n          <p><b>5</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Likes</h4>\n          <p><b>25</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Uploades</h4>\n          <p><b>10</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Stars</h4>\n          <p><b>500</b></p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Monthly Sales</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"lineChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Support Requests</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"pieChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Features</h3>\n        <ul>\n          <li>Built with Bootstrap 4, SASS and PUG.js</li>\n          <li>Fully responsive and modular code</li>\n          <li>Seven pages including login, user profile and print friendly invoice page</li>\n          <li>Smart integration of forgot password on login page</li>\n          <li>Chart.js integration to display responsive charts</li>\n          <li>Widgets to effectively display statistics</li>\n          <li>Data tables with sort, search and paginate functionality</li>\n          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>\n          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>\n        </ul>\n        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>\n        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> about customizing the theme colors and functionality.</p>\n        <p class=\"mt-4 mb-4\"><a class=\"btn btn-primary mr-2 mb-2\" href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\"><i class=\"fa fa-file\"></i>Webs</a><a class=\"btn btn-info mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\"><i class=\"fa fa-github\"></i>Hubs</a><a class=\"btn btn-success mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin/archive/master.zip\" target=\"_blank\"><i class=\"fa fa-download\"></i>Rules</a></p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Compatibility with frameworks</h3>\n        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>\n        <p>Go to <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> for more details about integrating this theme with various frameworks.</p>\n        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <form [formGroup]=\"myForm\" style=\"border:1px solid black\">\n\n    <div>\n        <input type=\"email\" placeholder=\"email\" formControlName=\"email\"><br>\n        <input type=\"text\" placeholder=\"name\" formControlName=\"name\"><br>\n        <input type=\"number\" placeholder=\"phone\" formControlName=\"phone\"><br>\n        <input type=\"text\" placeholder=\"budget\" formControlName=\"budget\"><br>\n        <input type=\"number\" placeholder=\"postCode\" formControlName=\"postCode\"><br>\n    </div>\n  \n    <div formArrayName=\"addressList\">\n  \n        <div *ngFor=\"let phone of addressForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"streetNumber\">\n            <input type=\"text\" formControlName=\"streetName1\">\n            <input type=\"text\" formControlName=\"streetName2\">\n            <input type=\"text\" formControlName=\"suit\">\n            <input type=\"text\" formControlName=\"city\">\n            <input type=\"text\" formControlName=\"country\">\n            <input type=\"text\" formControlName=\"district\">\n            <input type=\"text\" formControlName=\"region\">\n            <input type=\"text\" formControlName=\"state\">\n            <input type=\"number\" formControlName=\"zipcode\">\n  \n            <button (click)=\"deleteAddress(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add RuleList-----------\n    <div formArrayName=\"ruleList\">\n  \n        <div *ngFor=\"let phone of ruleListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"ruleName\">\n            <input type=\"number\" formControlName=\"ruleValue\"> \n\n            <button (click)=\"deleteRulelist(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add TestCodeList---\n   \n    <div formArrayName=\"testCodeList\">\n  \n        <div *ngFor=\"let phone of testCodeListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"testCode\">\n            <input type=\"number\" formControlName=\"description\"> \n            <input type=\"number\" formControlName=\"testName\"> \n            <input type=\"number\" formControlName=\"testPrice\"> \n             \n            <button (click)=\"deletetestCodeList(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addAddress()\">Add Address</button><br><br>\n    <button (click)=\"addRuleList()\">Add Rulelist</button><br><br>\n    <button (click)=\"addTestCodeList()\">Add TestCodeList</button><br><br>\n\n    <button type=\"submit\"  (click)=\"submitForm()\">Save</button>\n  \n  </form> -->"
+module.exports = "\n  <div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-dashboard\"></i> Dashboard</h1>\n      <p>Medintu Web Application</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li>\n      <li class=\"breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    </ul>\n  </div>\n\n\n  <!-- <div *ngIf=\"role=='ADMIN'\">\n    <h1>Welcome to {{role}}</h1>\n  </div> -->\n<!---For Super admin part-->\n  <div *ngIf=\"role=='SUPERADMIN'\">\n    <h3> Welcome to {{role}}</h3>\n    <!-- <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"tile\">\n            <button type=\"button\" class=\"btn btn-primary float-right\">Add</button>\n          <h3 class=\"tile-title\">Users</h3>\n          <div>\n            <table class=\"table table-striped\">\n              <thead>\n                <tr>\n                  <th>Firstname</th>\n                  <th>Lastname</th>\n                  <th>Email</th>\n                  <th>Role</th>\n                  <th>Phone No</th>\n                  <th>Status</th>\n                  <th>Edit</th>\n                  <th>Delete</th>\n                  \n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of data\">\n                <td>{{x.first_name}}</td>\n                <td>{{x.last_name}}</td>\n                <td>{{x.email}}</td>\n                <td>Admin</td>\n                <td>{{x.phoneno}}</td>\n                <td>{{x.status}}</td>\n                <td>\n                    <span>\n                        <span (click)=\"edit(x)\" class=\"glyphicon glyphicon-pencil\" >\n                          <i class=\"fa fa-edit\" style=\"font-size:24px;color:rgb(49, 17, 233)\"></i>\n                        </span>\n                    </span>\n                </td>\n                <td>\n                    <span>\n                        <span (click)=\"delete(x.id)\" value=\"delete\">\n                          <i class=\"fa fa-trash\" style=\"font-size:24px;color:red\"></i>\n                        </span>\n                    </span>\n                </td>\n                \n                </tr>\n              </tbody>\n            </table>\n        </div>\n        </div>\n      </div>\n    </div> -->\n  </div>\n\n  <div *ngIf=\"role=='SPONSORUSER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div>\n  <div *ngIf=\"role=='SUPPORTUSER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div>\n  \n  \n  <!-- {{userData|json}} -->\n\n  <!-- <div class=\"row\">\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Users</h4>\n          <p><b>5</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Likes</h4>\n          <p><b>25</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Uploades</h4>\n          <p><b>10</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Stars</h4>\n          <p><b>500</b></p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Monthly Sales</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"lineChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Support Requests</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"pieChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Features</h3>\n        <ul>\n          <li>Built with Bootstrap 4, SASS and PUG.js</li>\n          <li>Fully responsive and modular code</li>\n          <li>Seven pages including login, user profile and print friendly invoice page</li>\n          <li>Smart integration of forgot password on login page</li>\n          <li>Chart.js integration to display responsive charts</li>\n          <li>Widgets to effectively display statistics</li>\n          <li>Data tables with sort, search and paginate functionality</li>\n          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>\n          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>\n        </ul>\n        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>\n        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> about customizing the theme colors and functionality.</p>\n        <p class=\"mt-4 mb-4\"><a class=\"btn btn-primary mr-2 mb-2\" href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\"><i class=\"fa fa-file\"></i>Webs</a><a class=\"btn btn-info mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\"><i class=\"fa fa-github\"></i>Hubs</a><a class=\"btn btn-success mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin/archive/master.zip\" target=\"_blank\"><i class=\"fa fa-download\"></i>Rules</a></p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Compatibility with frameworks</h3>\n        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>\n        <p>Go to <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> for more details about integrating this theme with various frameworks.</p>\n        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>\n      </div>\n    </div>\n  </div> -->\n\n\n  <!-- <form [formGroup]=\"myForm\">\n  \n    <div formArrayName=\"phones\">\n  \n        <div *ngFor=\"let phone of phoneForms.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input formControlName=\"area\">\n            <input formControlName=\"prefix\">\n            <input formControlName=\"line\">\n  \n            <button (click)=\"deletePhone(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addPhone()\">Add Phone Number</button>\n  \n  </form> -->\n\n  <!-- <form [formGroup]=\"myForm\" style=\"border:1px solid black\">\n\n    <div>\n        <input type=\"email\" placeholder=\"email\" formControlName=\"email\"><br>\n        <input type=\"text\" placeholder=\"name\" formControlName=\"name\"><br>\n        <input type=\"number\" placeholder=\"phone\" formControlName=\"phone\"><br>\n        <input type=\"text\" placeholder=\"budget\" formControlName=\"budget\"><br>\n        <input type=\"number\" placeholder=\"postCode\" formControlName=\"postCode\"><br>\n    </div>\n  \n    <div formArrayName=\"addressList\">\n  \n        <div *ngFor=\"let phone of addressForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"streetNumber\">\n            <input type=\"text\" formControlName=\"streetName1\">\n            <input type=\"text\" formControlName=\"streetName2\">\n            <input type=\"text\" formControlName=\"suit\">\n            <input type=\"text\" formControlName=\"city\">\n            <input type=\"text\" formControlName=\"country\">\n            <input type=\"text\" formControlName=\"district\">\n            <input type=\"text\" formControlName=\"region\">\n            <input type=\"text\" formControlName=\"state\">\n            <input type=\"number\" formControlName=\"zipcode\">\n  \n            <button (click)=\"deleteAddress(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add RuleList-----------\n    <div formArrayName=\"ruleList\">\n  \n        <div *ngFor=\"let phone of ruleListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"ruleName\">\n            <input type=\"number\" formControlName=\"ruleValue\"> \n\n            <button (click)=\"deleteRulelist(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add TestCodeList---\n   \n    <div formArrayName=\"testCodeList\">\n  \n        <div *ngFor=\"let phone of testCodeListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"testCode\">\n            <input type=\"number\" formControlName=\"description\"> \n            <input type=\"number\" formControlName=\"testName\"> \n            <input type=\"number\" formControlName=\"testPrice\"> \n             \n            <button (click)=\"deletetestCodeList(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addAddress()\">Add Address</button><br><br>\n    <button (click)=\"addRuleList()\">Add Rulelist</button><br><br>\n    <button (click)=\"addTestCodeList()\">Add TestCodeList</button><br><br>\n\n    <button type=\"submit\"  (click)=\"submitForm()\">Save</button>\n  \n  </form> -->\n<!-- \n  <div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-dashboard\"></i> Dashboard</h1>\n      <p>Ojas Bussness Rules Application</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li>\n      <li class=\"breadcrumb-item\"><a href=\"#\">Dashboard</a></li>\n    </ul>\n  </div>\n\n\n  <div *ngIf=\"role=='ADMIN'\">\n    <h1>Welcome to {{role}}</h1>\n  </div>\n<!---For Super admin part--\n  <div *ngIf=\"role=='SUBERADMIN'\">\n    <h1> Welcome to {{role}}</h1>\n    <div class=\"row\">\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Users</h4>\n            <!-- <p><b>5</b></p> --\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Likes</h4>\n            <p><b>25</b></p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Uploades</h4>\n            <p><b>10</b></p>\n          </div>\n        </div>\n      </div>\n      <div class=\"col-md-6 col-lg-3\">\n        <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n          <div class=\"info\">\n            <h4>Stars</h4>\n            <p><b>500</b></p>\n          </div>\n        </div>\n      </div>\n    </div>\n    <div class=\"row\">\n      <div class=\"col-md-12\">\n        <div class=\"tile\">\n          <h3 class=\"tile-title\">Users</h3>\n          <button   type=\"button\" class=\"btn btn-primary float-right\">Add</button>\n          <div>\n            <table class=\"table table-striped\">\n              <thead>\n                <tr>\n                  <th>Firstname</th>\n                  <th>Lastname</th>\n                  <th>Email</th>\n                  <th>Phone No</th>\n                  <th>Action</th>\n                  <th>Status</th>\n                </tr>\n              </thead>\n              <tbody>\n                <tr *ngFor=\"let x of data\">\n                <td>{{x.first_name}}</td>\n                <td>{{x.last_name}}</td>\n                <td>{{x.email}}</td>\n                <td>{{x.phoneno}}</td>\n                <td>\n                    <span>\n                        <button (click)=\"edit(x)\" value=\"edit\" >Edite</button>\n                    </span>\n                    <span>\n                        <button (click)=\"delete(x.id)\" value=\"delete\">Delete</button>\n                    </span>\n                </td>\n                <td>{{x.status}}</td>\n                </tr>\n              </tbody>\n            </table>\n        </div>\n        </div>\n      </div>\n    </div>\n  </div>\n\n  <div *ngIf=\"role=='USER'\">\n    <h1> Welcome to {{role}}</h1>\n    \n  </div> -->\n  \n  <!-- {{userData|json}} -->\n\n  <!-- <div class=\"row\">\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small primary coloured-icon\"><i class=\"icon fa fa-users fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Users</h4>\n          <p><b>5</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small info coloured-icon\"><i class=\"icon fa fa-thumbs-o-up fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Likes</h4>\n          <p><b>25</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small warning coloured-icon\"><i class=\"icon fa fa-files-o fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Uploades</h4>\n          <p><b>10</b></p>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6 col-lg-3\">\n      <div class=\"widget-small danger coloured-icon\"><i class=\"icon fa fa-star fa-3x\"></i>\n        <div class=\"info\">\n          <h4>Stars</h4>\n          <p><b>500</b></p>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Monthly Sales</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"lineChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Support Requests</h3>\n        <div class=\"embed-responsive embed-responsive-16by9\">\n          <canvas class=\"embed-responsive-item\" id=\"pieChartDemo\"></canvas>\n        </div>\n      </div>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Features</h3>\n        <ul>\n          <li>Built with Bootstrap 4, SASS and PUG.js</li>\n          <li>Fully responsive and modular code</li>\n          <li>Seven pages including login, user profile and print friendly invoice page</li>\n          <li>Smart integration of forgot password on login page</li>\n          <li>Chart.js integration to display responsive charts</li>\n          <li>Widgets to effectively display statistics</li>\n          <li>Data tables with sort, search and paginate functionality</li>\n          <li>Custom form elements like toggle buttons, auto-complete, tags and date-picker</li>\n          <li>A inbuilt toast library for providing meaningful response messages to user's actions</li>\n        </ul>\n        <p>Vali is a free and responsive admin theme built with Bootstrap 4, SASS and PUG.js. It's fully customizable and modular.</p>\n        <p>Vali is is light-weight, expendable and good looking theme. The theme has all the features required in a dashboard theme but this features are built like plug and play module. Take a look at the <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> about customizing the theme colors and functionality.</p>\n        <p class=\"mt-4 mb-4\"><a class=\"btn btn-primary mr-2 mb-2\" href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\"><i class=\"fa fa-file\"></i>Webs</a><a class=\"btn btn-info mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\"><i class=\"fa fa-github\"></i>Hubs</a><a class=\"btn btn-success mr-2 mb-2\" href=\"https://github.com/pratikborsadiya/vali-admin/archive/master.zip\" target=\"_blank\"><i class=\"fa fa-download\"></i>Rules</a></p>\n      </div>\n    </div>\n    <div class=\"col-md-6\">\n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Compatibility with frameworks</h3>\n        <p>This theme is not built for a specific framework or technology like Angular or React etc. But due to it's modular nature it's very easy to incorporate it into any front-end or back-end framework like Angular, React or Laravel.</p>\n        <p>Go to <a href=\"http://pratikborsadiya.in/blog/vali-admin\" target=\"_blank\">documentation</a> for more details about integrating this theme with various frameworks.</p>\n        <p>The source code is available on GitHub. If anything is missing or weird please report it as an issue on <a href=\"https://github.com/pratikborsadiya/vali-admin\" target=\"_blank\">GitHub</a>. If you want to contribute to this theme pull requests are always welcome.</p>\n      </div>\n    </div>\n  </div> -->\n\n  <!-- <form [formGroup]=\"myForm\" style=\"border:1px solid black\">\n\n    <div>\n        <input type=\"email\" placeholder=\"email\" formControlName=\"email\"><br>\n        <input type=\"text\" placeholder=\"name\" formControlName=\"name\"><br>\n        <input type=\"number\" placeholder=\"phone\" formControlName=\"phone\"><br>\n        <input type=\"text\" placeholder=\"budget\" formControlName=\"budget\"><br>\n        <input type=\"number\" placeholder=\"postCode\" formControlName=\"postCode\"><br>\n    </div>\n  \n    <div formArrayName=\"addressList\">\n  \n        <div *ngFor=\"let phone of addressForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"streetNumber\">\n            <input type=\"text\" formControlName=\"streetName1\">\n            <input type=\"text\" formControlName=\"streetName2\">\n            <input type=\"text\" formControlName=\"suit\">\n            <input type=\"text\" formControlName=\"city\">\n            <input type=\"text\" formControlName=\"country\">\n            <input type=\"text\" formControlName=\"district\">\n            <input type=\"text\" formControlName=\"region\">\n            <input type=\"text\" formControlName=\"state\">\n            <input type=\"number\" formControlName=\"zipcode\">\n  \n            <button (click)=\"deleteAddress(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add RuleList-----------\n    <div formArrayName=\"ruleList\">\n  \n        <div *ngFor=\"let phone of ruleListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"ruleName\">\n            <input type=\"number\" formControlName=\"ruleValue\"> \n\n            <button (click)=\"deleteRulelist(i)\">Delete</button>\n  \n        </div>\n    </div>\n    <!--Add TestCodeList---\n   \n    <div formArrayName=\"testCodeList\">\n  \n        <div *ngFor=\"let phone of testCodeListForm.controls; let i=index\" \n              [formGroupName]=\"i\">\n  \n            <input type=\"text\" formControlName=\"testCode\">\n            <input type=\"number\" formControlName=\"description\"> \n            <input type=\"number\" formControlName=\"testName\"> \n            <input type=\"number\" formControlName=\"testPrice\"> \n             \n            <button (click)=\"deletetestCodeList(i)\">Delete</button>\n  \n        </div>\n    </div>\n  \n    <button (click)=\"addAddress()\">Add Address</button><br><br>\n    <button (click)=\"addRuleList()\">Add Rulelist</button><br><br>\n    <button (click)=\"addTestCodeList()\">Add TestCodeList</button><br><br>\n\n    <button type=\"submit\"  (click)=\"submitForm()\">Save</button>\n  \n  </form> -->"
 
 /***/ }),
 
@@ -451,7 +453,7 @@ var DashboardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-title\">\n  <div>\n    <h1><i class=\"fa fa-th-list\"></i> Ethenic</h1>\n    <p>Create Ethenic Details</p>\n  </div>\n  <ul class=\"app-breadcrumb breadcrumb\">\n     <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li> \n    \n    \n  </ul>\n</div>\n\n  <button class=\"btn btn-danger mr-2 mb-2 pull-right\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-plus\"></i>Add Ethenic</button><br>\n  <br>  \n  \n  <div class=\"col-md-12\">\n    \n    <div class=\"tile\">\n      <h3 class=\"tile-title\">Ethenic Details </h3>\n   \n      <table class=\"table\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Group Type</th>\n            <th>Group Name</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr>\n            <td>1</td>\n            <td>Mark</td>\n            <td>Otto</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n  <!-- Modal -->\n  <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n    \n      <!-- Modal content-->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">Add Ethenic Details</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n        <div class=\"modal-body\">\n          <form [formGroup]=\"ethenicForm\" (ngSubmit)=\"onSubmit(ethenicForm.value)\">\n            <div class=\"form-group\">\n              <label for=\"grouptype\">Group Type:</label>\n              <input type=\"text\" class=\"form-control\" id=\"grouptype\" formControlName=\"ethnicType\" required>\n            </div>\n            <div class=\"form-group\">\n              <label for=\"groupname\">Group Name:</label>\n              <input type=\"text\" class=\"form-control\" id=\"groupname\"  formControlName=\"ethnicName\" required>\n            </div>\n            <button type=\"submit\" class=\"btn btn-success pull-right\" [disabled]=\"ethenicForm.invalid\">Submit</button>\n          </form>\n        </div>\n        <div class=\"modal-footer\">\n          <button type=\"button\" class=\"btn btn-info\" data-dismiss=\"modal\">Close</button>\n          \n        </div>\n      </div>\n      \n    </div>\n  </div>"
+module.exports = "<div class=\"app-title\">\n  <div>\n    <h1><i class=\"fa fa-th-list\"></i> Ethenic</h1>\n    <p>Create Ethenic Details</p>\n  </div>\n  <ul class=\"app-breadcrumb breadcrumb\">\n     <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li> \n    \n    \n  </ul>\n</div>\n\n  <button class=\"btn btn-danger mr-2 mb-2 pull-right\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-plus\"></i>Add Ethenic</button><br>\n  <br>  \n  \n  <div class=\"col-md-12\">\n    \n    <div class=\"tile\">\n      <h3 class=\"tile-title\">Ethenic Details </h3>\n   \n      <table class=\"table\">\n        <thead>\n          <tr>\n            <th>#</th>\n            <th>Group Name</th>\n            <th>Group Type</th>\n          </tr>\n        </thead>\n        <tbody>\n          <tr *ngFor=\"let item of ethenicData; let i = index\">\n            <td>{{i+1}}</td>\n            <td>{{item.ethnicName}}</td>\n            <td>{{item.ethnicType}}</td>\n          </tr>\n        </tbody>\n      </table>\n    </div>\n\n  <!-- Modal -->\n\n  <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n    \n      <!-- Modal content-->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">Add Ethenic Details</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n        </div>\n        <div class=\"modal-body\">\n            <div class=\"form-group\">\n                <label for=\"groupname\">Group Name:</label>\n                <select class=\"col-md-7 form-control\" [(ngModel)]=\"ethnicName\">\n                    <option value=\"white\">White</option>\n                    <option value=\"Mixed\">Mixed</option>\n                    <option value=\"British\">British</option>\n                    <option value=\"Black British\">Black British</option>\n                  </select>\n               \n              </div>\n            <div class=\"form-group\">\n              <label for=\"grouptype\">Group Type:</label>\n              <input type=\"text\" class=\"form-control col-md-7\" id=\"grouptype\" [(ngModel)]=\"ethnicType\" required>\n            </div>\n          \n        </div>\n        <div class=\"modal-footer\">\n          <button  class=\"btn btn-success pull-right\" data-dismiss=\"modal\" (click)=\"createEthenic(ethnicType,ethnicName)\">Submit</button>\n          <button type=\"button\" class=\"btn btn-info\" data-dismiss=\"modal\">Close</button>\n        </div>\n      </div>\n      \n    </div>\n  </div>\n"
 
 /***/ }),
 
@@ -478,26 +480,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EthenicgroupComponent", function() { return EthenicgroupComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
-
+/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
 
 
 
 var EthenicgroupComponent = /** @class */ (function () {
-    function EthenicgroupComponent(fb, dataService) {
-        this.fb = fb;
+    function EthenicgroupComponent(dataService) {
         this.dataService = dataService;
+        this.ethenicData = [];
+        this.getAllEthenic();
     }
     EthenicgroupComponent.prototype.ngOnInit = function () {
-        this.EmployeeForm = this.fb.group({
-            'ethnicType': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
-            'ethnicName': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["Validators"].required],
+    };
+    EthenicgroupComponent.prototype.createEthenic = function (ethnicType, ethnicName) {
+        var _this = this;
+        var obj = { ethnicType: ethnicType, ethnicName: ethnicName };
+        this.dataService.setEthenic(obj).subscribe(function (data) {
+            _this.getAllEthenic();
         });
     };
-    EthenicgroupComponent.prototype.onSubmit = function (formData) {
-        this.dataService.setEthenic(formData).subscribe(function (data) {
-            console.log(data);
+    EthenicgroupComponent.prototype.getAllEthenic = function () {
+        var _this = this;
+        this.dataService.getEthenic().subscribe(function (data) {
+            _this.ethenicData = data.resultData;
         });
     };
     EthenicgroupComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -506,7 +511,7 @@ var EthenicgroupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./ethenicgroup.component.html */ "./src/app/home/ethenicgroup/ethenicgroup.component.html"),
             styles: [__webpack_require__(/*! ./ethenicgroup.component.scss */ "./src/app/home/ethenicgroup/ethenicgroup.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"]])
     ], EthenicgroupComponent);
     return EthenicgroupComponent;
 }());
@@ -578,7 +583,7 @@ var HelpComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n  <div class=\"app sidebar-mini rtl\">\n    <header class=\"app-header\"><a class=\"app-header__logo\" href=\"index.html\">Medintu</a>\n      <!-- Sidebar toggle button--><a class=\"app-sidebar__toggle\" href=\"#\" data-toggle=\"sidebar\" aria-label=\"Hide Sidebar\"></a>\n      <!-- Navbar Right Menu-->\n      <ul class=\"app-nav\">\n        <li class=\"app-search\">\n          <input class=\"app-search__input\" type=\"search\" placeholder=\"Search\">\n          <button class=\"app-search__button\"><i class=\"fa fa-search\"></i></button>\n        </li>\n        <!--Notification Menu-->\n        <li class=\"dropdown\"><a class=\"app-nav__item\" href=\"#\" data-toggle=\"dropdown\" aria-label=\"Show notifications\"><i class=\"fa fa-bell-o fa-lg\"></i></a>\n          <ul class=\"app-notification dropdown-menu dropdown-menu-right\">\n            <li class=\"app-notification__title\">You have 4 new notifications.</li>\n            <div class=\"app-notification__content\">\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-primary\"></i><i class=\"fa fa-envelope fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Lisa sent you a mail</p>\n                    <p class=\"app-notification__meta\">2 min ago</p>\n                  </div></a></li>\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-danger\"></i><i class=\"fa fa-hdd-o fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Mail server not working</p>\n                    <p class=\"app-notification__meta\">5 min ago</p>\n                  </div></a></li>\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-success\"></i><i class=\"fa fa-money fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Transaction complete</p>\n                    <p class=\"app-notification__meta\">2 days ago</p>\n                  </div></a></li>\n              <div class=\"app-notification__content\">\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-primary\"></i><i class=\"fa fa-envelope fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Lisa sent you a mail</p>\n                      <p class=\"app-notification__meta\">2 min ago</p>\n                    </div></a></li>\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-danger\"></i><i class=\"fa fa-hdd-o fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Mail server not working</p>\n                      <p class=\"app-notification__meta\">5 min ago</p>\n                    </div></a></li>\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-success\"></i><i class=\"fa fa-money fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Transaction complete</p>\n                      <p class=\"app-notification__meta\">2 days ago</p>\n                    </div></a></li>\n              </div>\n            </div>\n            <li class=\"app-notification__footer\"><a href=\"#\">See all notifications.</a></li>\n          </ul>\n        </li>\n        <!-- User Menu-->\n        <li class=\"dropdown\"><a class=\"app-nav__item\" href=\"#\" data-toggle=\"dropdown\" aria-label=\"Open Profile Menu\"><i class=\"fa fa-user fa-lg\"></i></a>\n          <ul class=\"dropdown-menu settings-menu dropdown-menu-right\">\n            <li><a class=\"dropdown-item\" href=\"page-user.html\"><i class=\"fa fa-cog fa-lg\"></i> Settings</a></li>\n            <li><a class=\"dropdown-item\" href=\"page-user.html\"><i class=\"fa fa-user fa-lg\"></i> Profile</a></li>\n            <li  (click)=\"logoutAction()\"><a class=\"dropdown-item\" href=\"\"><i class=\"fa fa-sign-out fa-lg\"></i> Logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </header>\n    <!-- Sidebar menu-->\n    <div class=\"app-sidebar__overlay\" data-toggle=\"sidebar\"></div>\n    <aside class=\"app-sidebar\">\n      <div class=\"app-sidebar__user\"><img class=\"app-sidebar__user-avatar\" src=\"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg\" alt=\"User Image\">\n        <div>\n          <p class=\"app-sidebar__user-name\">{{role}}</p>\n         \n        </div>\n      </div>\n      <ul class=\"app-menu\">\n        <li><a class=\"app-menu__item active\" routerLink=\"/dashboard\" routerLinkActive=\"active\"><i class=\"app-menu__icon fa fa-dashboard\"></i><span class=\"app-menu__label\">Dashboard</span></a></li>\n       \n         <li class=\"treeview\"><a class=\"app-menu__item\" href=\"#\" data-toggle=\"treeview\"><i class=\"app-menu__icon fa fa-edit\"></i><span class=\"app-menu__label\">Management</span><i class=\"treeview-indicator fa fa-angle-right\"></i></a>\n          <ul class=\"treeview-menu\">\n            <li><a class=\"treeview-item\"  routerLink=\"/users\" routerLinkActive=\"active\"><i class=\"icon fa fa-users\"></i>Users</a></li>\n            <li><a class=\"treeview-item\"  routerLink=\"/sponsorUser\" routerLinkActive=\"active\"><i class=\"icon fa fa-user\"></i>Sponsor</a></li>\n            <li><a class=\"treeview-item\"  routerLink=\"/ethenicgroup\" routerLinkActive=\"active\"><i class=\"icon fa fa-users\"></i>Ethenic Group</a></li>\n          </ul>\n        </li>\n        <li><a class=\"app-menu__item\" href=\"\" (click)=\"logoutAction()\"><i class=\"app-menu__icon fa fa-sign-out\"></i><span class=\"app-menu__label\">Logout</span></a></li>\n      </ul>\n    </aside>\n    <main  class=\"app-content\">\n      <router-outlet></router-outlet>\n    </main>\n    </div>\n    \n    "
+module.exports = "\n  <div class=\"app sidebar-mini rtl\">\n    <header class=\"app-header\"><a class=\"app-header__logo\" href=\"index.html\">Medintu</a>\n      <!-- Sidebar toggle button--><a class=\"app-sidebar__toggle\" href=\"#\" data-toggle=\"sidebar\" aria-label=\"Hide Sidebar\"></a>\n      <!-- Navbar Right Menu-->\n      <ul class=\"app-nav\">\n        <li class=\"app-search\">\n          <input class=\"app-search__input\" type=\"search\" placeholder=\"Search\">\n          <button class=\"app-search__button\"><i class=\"fa fa-search\"></i></button>\n        </li>\n        <!--Notification Menu-->\n        <li class=\"dropdown\"><a class=\"app-nav__item\" href=\"#\" data-toggle=\"dropdown\" aria-label=\"Show notifications\"><i class=\"fa fa-bell-o fa-lg\"></i></a>\n          <ul class=\"app-notification dropdown-menu dropdown-menu-right\">\n            <li class=\"app-notification__title\">You have 4 new notifications.</li>\n            <div class=\"app-notification__content\">\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-primary\"></i><i class=\"fa fa-envelope fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Lisa sent you a mail</p>\n                    <p class=\"app-notification__meta\">2 min ago</p>\n                  </div></a></li>\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-danger\"></i><i class=\"fa fa-hdd-o fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Mail server not working</p>\n                    <p class=\"app-notification__meta\">5 min ago</p>\n                  </div></a></li>\n              <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-success\"></i><i class=\"fa fa-money fa-stack-1x fa-inverse\"></i></span></span>\n                  <div>\n                    <p class=\"app-notification__message\">Transaction complete</p>\n                    <p class=\"app-notification__meta\">2 days ago</p>\n                  </div></a></li>\n              <div class=\"app-notification__content\">\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-primary\"></i><i class=\"fa fa-envelope fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Lisa sent you a mail</p>\n                      <p class=\"app-notification__meta\">2 min ago</p>\n                    </div></a></li>\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-danger\"></i><i class=\"fa fa-hdd-o fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Mail server not working</p>\n                      <p class=\"app-notification__meta\">5 min ago</p>\n                    </div></a></li>\n                <li><a class=\"app-notification__item\" href=\"javascript:;\"><span class=\"app-notification__icon\"><span class=\"fa-stack fa-lg\"><i class=\"fa fa-circle fa-stack-2x text-success\"></i><i class=\"fa fa-money fa-stack-1x fa-inverse\"></i></span></span>\n                    <div>\n                      <p class=\"app-notification__message\">Transaction complete</p>\n                      <p class=\"app-notification__meta\">2 days ago</p>\n                    </div></a></li>\n              </div>\n            </div>\n            <li class=\"app-notification__footer\"><a href=\"#\">See all notifications.</a></li>\n          </ul>\n        </li>\n        <!-- User Menu-->\n        <li class=\"dropdown\"><a class=\"app-nav__item\" href=\"#\" data-toggle=\"dropdown\" aria-label=\"Open Profile Menu\"><i class=\"fa fa-user fa-lg\"></i></a>\n          <ul class=\"dropdown-menu settings-menu dropdown-menu-right\">\n            <li><a class=\"dropdown-item\" href=\"page-user.html\"><i class=\"fa fa-cog fa-lg\"></i> Settings</a></li>\n            <li><a class=\"dropdown-item\" href=\"page-user.html\"><i class=\"fa fa-user fa-lg\"></i> Profile</a></li>\n            <li  (click)=\"logoutAction()\"><a class=\"dropdown-item\" href=\"\"><i class=\"fa fa-sign-out fa-lg\"></i> Logout</a></li>\n          </ul>\n        </li>\n      </ul>\n    </header>\n    <!-- Sidebar menu-->\n    <div class=\"app-sidebar__overlay\" data-toggle=\"sidebar\"></div>\n    <aside class=\"app-sidebar\">\n      <div class=\"app-sidebar__user\"><img class=\"app-sidebar__user-avatar\" src=\"https://s3.amazonaws.com/uifaces/faces/twitter/jsa/48.jpg\" alt=\"User Image\">\n        <div>\n          <p class=\"app-sidebar__user-name\">{{role}}</p>\n         \n        </div>\n      </div>\n      <ul class=\"app-menu\">\n        <li><a class=\"app-menu__item active\" routerLink=\"/dashboard\" routerLinkActive=\"active\"><i class=\"app-menu__icon fa fa-dashboard\"></i><span class=\"app-menu__label\">Dashboard</span></a></li>\n       \n         <li class=\"treeview\"><a class=\"app-menu__item\" href=\"#\" data-toggle=\"treeview\"><i class=\"app-menu__icon fa fa-edit\"></i><span class=\"app-menu__label\">Management</span><i class=\"treeview-indicator fa fa-angle-right\"></i></a>\n          <ul class=\"treeview-menu\">\n            <li><a class=\"treeview-item\"  routerLink=\"/users\" routerLinkActive=\"active\"><i class=\"icon fa fa-users\"></i>Users</a></li>\n            <li><a class=\"treeview-item\"  routerLink=\"/sponsorUser\" routerLinkActive=\"active\"><i class=\"icon fa fa-user\"></i>Sponsor</a></li>\n            <li><a class=\"treeview-item\"  routerLink=\"/ethenicgroup\" routerLinkActive=\"active\"><i class=\"icon fa fa-users\"></i>Ethenic Group</a></li>\n\t\t\t<li><a class=\"treeview-item\"  routerLink=\"/status\" routerLinkActive=\"active\"><i class=\"icon fa fa-exclamation\"></i>Status</a></li>\n\n            <li><a class=\"treeview-item\"  routerLink=\"/specialevent\" routerLinkActive=\"active\"><i class=\"icon fa fa-calendar\"></i>Special Event</a></li>\n\n          \n          </ul>\n        </li>\n        <li><a class=\"app-menu__item\" href=\"\" (click)=\"logoutAction()\"><i class=\"app-menu__icon fa fa-sign-out\"></i><span class=\"app-menu__label\">Logout</span></a></li>\n      </ul>\n    </aside>\n    <main  class=\"app-content\">\n      <router-outlet></router-outlet>\n    </main>\n    </div>\n    \n    "
 
 /***/ }),
 
@@ -686,6 +691,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sponsor_user_sponsor_user_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./sponsor-user/sponsor-user.component */ "./src/app/home/sponsor-user/sponsor-user.component.ts");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 /* harmony import */ var _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./ethenicgroup/ethenicgroup.component */ "./src/app/home/ethenicgroup/ethenicgroup.component.ts");
+/* harmony import */ var _status_status_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./status/status.component */ "./src/app/home/status/status.component.ts");
+/* harmony import */ var _specialevent_specialevent_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./specialevent/specialevent.component */ "./src/app/home/specialevent/specialevent.component.ts");
+
+
 
 
 
@@ -702,7 +711,7 @@ var HomeModule = /** @class */ (function () {
     }
     HomeModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"], _report_report_component__WEBPACK_IMPORTED_MODULE_4__["ReportComponent"], _help_help_component__WEBPACK_IMPORTED_MODULE_5__["HelpComponent"], _users_users_component__WEBPACK_IMPORTED_MODULE_7__["UsersComponent"], _sponsor_user_sponsor_user_component__WEBPACK_IMPORTED_MODULE_8__["SponsorUserComponent"], _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_10__["EthenicgroupComponent"]],
+            declarations: [_dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_3__["DashboardComponent"], _report_report_component__WEBPACK_IMPORTED_MODULE_4__["ReportComponent"], _help_help_component__WEBPACK_IMPORTED_MODULE_5__["HelpComponent"], _users_users_component__WEBPACK_IMPORTED_MODULE_7__["UsersComponent"], _sponsor_user_sponsor_user_component__WEBPACK_IMPORTED_MODULE_8__["SponsorUserComponent"], _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_10__["EthenicgroupComponent"], _status_status_component__WEBPACK_IMPORTED_MODULE_11__["StatusComponent"], _specialevent_specialevent_component__WEBPACK_IMPORTED_MODULE_12__["SpecialeventComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"], _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormsModule"], _angular_common_http__WEBPACK_IMPORTED_MODULE_9__["HttpClientModule"]
             ]
@@ -731,6 +740,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _users_users_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./users/users.component */ "./src/app/home/users/users.component.ts");
 /* harmony import */ var _sponsor_user_sponsor_user_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sponsor-user/sponsor-user.component */ "./src/app/home/sponsor-user/sponsor-user.component.ts");
 /* harmony import */ var _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./ethenicgroup/ethenicgroup.component */ "./src/app/home/ethenicgroup/ethenicgroup.component.ts");
+/* harmony import */ var _status_status_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./status/status.component */ "./src/app/home/status/status.component.ts");
+/* harmony import */ var _specialevent_specialevent_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./specialevent/specialevent.component */ "./src/app/home/specialevent/specialevent.component.ts");
+
+
 
 
 
@@ -742,10 +755,11 @@ var HomeRoutes = [
         children: [
             { path: '', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_0__["DashboardComponent"] },
             { path: 'dashboard', component: _dashboard_dashboard_component__WEBPACK_IMPORTED_MODULE_0__["DashboardComponent"] },
-            // {path:'report',component:ReportComponent},
             { path: 'users', component: _users_users_component__WEBPACK_IMPORTED_MODULE_3__["UsersComponent"] },
             { path: 'sponsorUser', component: _sponsor_user_sponsor_user_component__WEBPACK_IMPORTED_MODULE_4__["SponsorUserComponent"] },
-            { path: 'ethenicgroup', component: _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_5__["EthenicgroupComponent"] }
+            { path: 'ethenicgroup', component: _ethenicgroup_ethenicgroup_component__WEBPACK_IMPORTED_MODULE_5__["EthenicgroupComponent"] },
+            { path: 'status', component: _status_status_component__WEBPACK_IMPORTED_MODULE_6__["StatusComponent"] },
+            { path: 'specialevent/:id', component: _specialevent_specialevent_component__WEBPACK_IMPORTED_MODULE_7__["SpecialeventComponent"] }
         ]
     }
 ];
@@ -809,6 +823,137 @@ var ReportComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/home/specialevent/specialevent.component.html":
+/*!***************************************************************!*\
+  !*** ./src/app/home/specialevent/specialevent.component.html ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"tile\">\n  <h5>Special Event</h5>\n  <form class=\"form-inline \">\n    <div class=\"input-group \">\n      <input type=\"text\" class=\"form-control\" name=\"key\" [(ngModel)]=\"key\" size=\"50\" placeholder=\"Search\">\n      <div class=\"input-group-btn\">\n        <h1></h1>\n      </div>\n    </div>\n  </form>\n  <div id=\"myModal\" class=\"modal fade\" role=\"dialog\">\n     <div class=\"modal-dialog\">\n       <!-- Modal content-->\n       <div class=\"modal-content\">\n         <div class=\"modal-header\">\n           <h4 class=\"modal-title\">Special Event</h4>\n           <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n           \n         </div>\n         <div class=\"modal-body\">\n           <form #regForm='ngForm'>\n               <div class=\"col-md-6\">\n                   <label>\n                    Specialevent:\n                     <input type=\"text\" placeholder=\"Specialevent\" name=\"eventName\" class=\"form-control\" [(ngModel)]= peventName >\n                   </label>\n                 </div>\n                 <button type=\"submit\" data-dismiss=\"modal\" class=\"btn btn-primary float-right\" id=\"register\" (click)=\"saveEvent(regForm.value)\" *ngIf=\"addfrm\">Submit</button>\n                 <button type=\"button\" data-dismiss=\"modal\" class=\"btn btn-primary float-right\" id=\"register\" (click)=\"updateEvent()\" *ngIf=\"updatfrm\" >Update</button>\n           </form>\n         </div>\n         <div class=\"modal-footer\">\n           <!-- <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button> -->\n         </div>\n       </div>\n   \n     </div>\n   </div>\n <button type=\"button\" style=\"margin-bottom:8px\" class=\"btn btn-primary float-right\" data-toggle=\"modal\" data-target=\"#myModal\"\n (click)=\"add(regForm)\">Add</button>\n \n <table class=\"table table-striped\" >\n   <thead>\n     <tr style=\"font-size:15px\">\n       <th>Id</th>\n       <th>Event Name</th>\n       <th>Edit</th>\n       <th>Delete</th>\n     </tr>\n   </thead>\n   <tbody>\n     <tr *ngFor = \"let data of eventData\">\n       <td>{{data.id}}</td>\n       <td>{{data.eventName}}</td>\n       <td>\n         <span>\n           <span (click)=\"editSpecialevent(data)\" data-toggle=\"modal\" data-target=\"#myModal\"  class=\"glyphicon glyphicon-pencil\">\n             <i class=\"fa fa-edit\" style=\"font-size:24px;color:rgb(49, 17, 233)\"></i>\n           </span>\n         </span>\n       </td>\n       <td>\n         <span>\n           <span (click)=\"deleteSpecialEvent(data.id)\" value=\"delete\">\n             <i class=\"fa fa-trash\" style=\"font-size:24px;color:red\"></i>\n           </span>\n         </span>\n       </td>\n     </tr>\n   </tbody>\n </table>\n </div>"
+
+/***/ }),
+
+/***/ "./src/app/home/specialevent/specialevent.component.scss":
+/*!***************************************************************!*\
+  !*** ./src/app/home/specialevent/specialevent.component.scss ***!
+  \***************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvc3BlY2lhbGV2ZW50L3NwZWNpYWxldmVudC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/home/specialevent/specialevent.component.ts":
+/*!*************************************************************!*\
+  !*** ./src/app/home/specialevent/specialevent.component.ts ***!
+  \*************************************************************/
+/*! exports provided: SpecialeventComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SpecialeventComponent", function() { return SpecialeventComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var SpecialeventComponent = /** @class */ (function () {
+    function SpecialeventComponent(dataservice, router, route) {
+        var _this = this;
+        this.dataservice = dataservice;
+        this.router = router;
+        this.route = route;
+        this.updatfrm = false;
+        this.addfrm = false;
+        this.route.params.subscribe(function (params) {
+            _this.id = +params['id'];
+            console.log("Id: ", _this.id);
+        });
+    }
+    SpecialeventComponent.prototype.ngOnInit = function () {
+        this.getAllspecialEvent();
+        // this.getEventById(this.id);
+    };
+    SpecialeventComponent.prototype.add = function (regForm) {
+        regForm.reset();
+        this.updatfrm = false;
+        this.addfrm = true;
+    };
+    // Save Special Event
+    SpecialeventComponent.prototype.saveEvent = function (regForm) {
+        var _this = this;
+        this.dataservice.postspecialEvent(regForm).subscribe(function (res) {
+            console.log("savind data is", res);
+            _this.getAllspecialEvent();
+        });
+    };
+    //Update Special Event
+    SpecialeventComponent.prototype.updateEvent = function () {
+        var _this = this;
+        var dt = { id: this.data['id'], eventName: this.peventName };
+        this.dataservice.updateEvents(dt).subscribe(function (res) {
+            console.log(res);
+            _this.getAllspecialEvent();
+        });
+    };
+    // Get all Special Event
+    SpecialeventComponent.prototype.getAllspecialEvent = function () {
+        var _this = this;
+        if (this.id != 0) {
+            this.dataservice.getSpecialEvent().subscribe(function (res) {
+                // console.log("getting data",res)
+                _this.eventData = res.resultData;
+                console.log("getting data", res.resultData);
+            });
+        }
+    };
+    // Get all Special Event By Id
+    SpecialeventComponent.prototype.getEventById = function (id) {
+        this.dataservice.getSpecialEventById(id).subscribe(function (res) {
+            // this.id = res.resultData.id;
+            console.log("getting data gfgfd", res);
+        });
+    };
+    SpecialeventComponent.prototype.editSpecialevent = function (data) {
+        this.updatfrm = true;
+        this.addfrm = false;
+        this.data = data;
+        console.log("hfdhf", this.data);
+        //this.peventName = this.data.eventName
+        this.id = this.data['id'];
+        this.peventName = data['eventName'];
+    };
+    //Delete Special event
+    SpecialeventComponent.prototype.deleteSpecialEvent = function (id) {
+        var _this = this;
+        debugger;
+        this.dataservice.deleteEvent(id).subscribe(function (res) {
+            console.log("deleted status", res);
+            _this.getAllspecialEvent();
+        });
+    };
+    SpecialeventComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-specialevent',
+            template: __webpack_require__(/*! ./specialevent.component.html */ "./src/app/home/specialevent/specialevent.component.html"),
+            styles: [__webpack_require__(/*! ./specialevent.component.scss */ "./src/app/home/specialevent/specialevent.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+    ], SpecialeventComponent);
+    return SpecialeventComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/home/sponsor-user/sponsor-user.component.html":
 /*!***************************************************************!*\
   !*** ./src/app/home/sponsor-user/sponsor-user.component.html ***!
@@ -816,7 +961,7 @@ var ReportComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-th-list\"></i> Sponsors</h1>\n      <p>Sponsor Details</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <!-- <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li> -->\n      \n      \n    </ul>\n  </div>\n  \n    <button class=\"btn btn-danger mr-2 mb-2 pull-right\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-plus\"></i>Add Sponsor</button><br>\n    <br>  \n    \n    <div class=\"col-md-12\">\n      \n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Sponsor Details </h3>\n     \n        <table class=\"table\">\n          <thead>\n            <tr>\n              <th>#</th>\n              <th>Name</th>\n              <th>Email</th>\n              <th>Phone</th>\n              <th>Budget</th>\n              <th>Post Code</th>\n              <th>View</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr>\n              <td>1</td>\n              <td>Mark</td>\n              <td>Otto</td>\n              <td>@mdo</td>\n              <td>Otto</td>\n              <td>@mdo</td>\n              <td><a class=\"btn btn-primary btn-sm\" href=\"\" data-toggle=\"modal\" data-target=\"#addressDetails\">Address</a>&nbsp;&nbsp;<a href=\"\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#ruleDetails\">Rules</a>&nbsp;&nbsp;<a href=\"\" data-toggle=\"modal\" data-target=\"#codeDetails\" class=\"btn btn-warning btn-sm\">Test Code</a>\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n     \n      <!-- Modal -->\n  <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\n        <div class=\"modal-dialog modal-lg\">\n        \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              \n              <h4 class=\"modal-title\">Sponsor Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            </div>\n            <div class=\"modal-body\">\n                    <div class=\"content\" >\n                            <div class=\"main\">\n                          \n                            <ul id=\"progressbar\">\n                            <li class=\"active\">Sponser Personal Details</li>\n                            <li>Address Details</li>\n                            <li>Rule Details</li>\n                            <li>Test Code Details</li>\n                            </ul>\n                           \n                            <fieldset id=\"first\" style=\"margin-left: 2px;\">\n                                 \n                                <p class=\"subtitle\">Step 1</p>\n                                \n                                <input class=\"text_field\"  [(ngModel)]=\"name\" name=\"name\" placeholder=\"Name\" type=\"text\">\n                                <input class=\"text_field\"  [(ngModel)]=\"email\" name=\"email\" placeholder=\"Email\" type=\"text\">\n                                <input class=\"text_field\"  [(ngModel)]=\"phone\" name=\"phone\" placeholder=\"Phone\" type=\"text\">\n                                <input class=\"text_field\"  [(ngModel)]=\"budget\" name=\"budget\" placeholder=\"Budget\" type=\"text\">\n                                <input class=\"text_field\"  [(ngModel)]=\"postcode\" name=\"postcode\" placeholder=\"Post Code\" type=\"text\">\n                                <input class=\"next_btn pull-right\" (click)=\"step1Details(name,email,phone,budget,postcode)\" name=\"next\" type=\"button\" value=\"Next\">\n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                <p class=\"subtitle\">Step 2</p>\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"streetNumber\"  placeholder=\"Street Number\" type=\"text\">\n                                <input class=\"text_field\" name=\"strename\"   [(ngModel)]=\"strname1\" placeholder=\"Street Name1\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"strname2\" placeholder=\"Street Name2\" type=\"text\">\n                                  <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"city\" placeholder=\"City\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"country\" placeholder=\"Country\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"district\" placeholder=\"District\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"region\" placeholder=\"Region\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"state\" placeholder=\"State\" type=\"text\">\n                                <input class=\"text_field\" name=\"streetNumber\"  [(ngModel)]=\"zipcode\" placeholder=\"Zip Code\" type=\"text\">\n                                <input class=\"pre_btn\" name=\"previous\" type=\"button\" value=\"Previous\">\n                                <input class=\"next_btn\" name=\"next\" type=\"button\" (click)=\"step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)\" value=\"Next\">\n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                <p class=\"subtitle\">Step 3</p>\n                                <input class=\"text_field\" name=\"fname\" [(ngModel)]=\"ruleName\" placeholder=\"Rule Name\" type=\"text\">\n                                <input class=\"text_field\" name=\"fname\" [(ngModel)]=\"ruleValue\" placeholder=\"Rule Value\" type=\"text\">\n                                <input class=\"pre_btn\" type=\"button\" value=\"Previous\">\n                                <button class=\"btn btn-success mr-2 mb-2 pull-right\" (click)=\"ruleTable(ruleName,ruleValue)\"><i class=\"fa fa-plus\"></i>Add Rule</button>\n                               \n                                <input class=\"next_btn\" name=\"next\" type=\"button\" value=\"Next\">\n                                <table class=\"table\" *ngIf=\"ruleDetails\">\n                                        <thead>\n                                          <tr>\n                                            <th>Rule Name</th>\n                                            <th>Rule value</th>\n                                    \n                                          </tr>\n                                        </thead>\n                                        <tbody>\n                                          <tr *ngFor=\"let item of ruleList\">\n                                            <td>{{item.ruleName}}</td>\n                                            <td>{{item.ruleValue}}</td>\n                                            \n                                          </tr>\n                            \n                                        </tbody>\n                                      </table>\n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                    <p class=\"subtitle\">Step 4</p>\n                                     <input class=\"text_field\" name=\"testname\" [(ngModel)]=\"testName\" placeholder=\"Test Name\" type=\"text\">\n                                    <input class=\"text_field\" name=\"testcode\"  [(ngModel)]=\"testCode\" placeholder=\"Test Code\" type=\"text\">\n                                    <textarea class=\"text_field\" name=\"testdesc\"  [(ngModel)]=\"testDesc\" placeholder=\"Test Description\"></textarea>\n                                   \n                                    <input class=\"text_field\" name=\"isDefault\"  [(ngModel)]=\"isDefault\"  type=\"checkbox\">&nbsp;isDefault <br>\n                                    <button class=\"btn btn-success mr-2 mb-2 pull-right\" (click)=\"testTable(testName,testCode,testDesc,isDefault)\"><i class=\"fa fa-plus\"></i>Add Test</button>\n                            \n                                    <input class=\"pre_btn\" type=\"button\" value=\"Previous\">\n                                    \n                                    <input class=\"submit_btn\" type=\"submit\" (click)=\"submitSponsorDetails()\" value=\"Submit\">\n                                    <table class=\"table table-hover\" *ngIf=\"testDetailsFlag\">\n                                            <thead>\n                                              <tr>\n                                                <th>Test Name</th>\n                                                <th>Test Code</th>\n                                                <th>Test Description</th>\n                                                <th>isDefault</th>\n                                              </tr>\n                                            </thead>\n                                            <tbody>\n                                              <tr *ngFor='let item of testCodeList'>\n                                                <td>{{item.testName}}</td>\n                                                <td>{{item.testCode}}</td>\n                                                <td>{{item.testDesc}}</td>\n                                                <td>{{item.isDefault}}</td>\n                                              </tr>\n                                             \n                                            </tbody>\n                                          </table>\n                                    </fieldset>\n                            \n                                </div>\n                                </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n          \n        </div>\n      </div>\n \n\n\n\n    \n      <!-- Modal address details -->\n     \n<div id=\"addressDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog modal-lg\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Address Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                \n\n                    <table class=\"table table-responsive\">\n                            <thead>\n                              <tr>\n                                <th>Street No.</th>\n                                <th>Street Name1</th>\n                                <th>Street Name2</th>\n                                <th>City</th>\n                                <th>Country</th>\n                                <th>District</th>\n                                <th>Region</th>\n                                <th>State</th>\n                                <th>Zipcode</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>1</td>\n                                <td>Galaxy</td>\n                                <td>PVR Road</td>\n                                <td>Pune</td>\n                                <td>India</td>\n                                <td>PUne</td>\n                                <td>Nigdi</td>\n                                <td>Maharastra</td>\n                                <td>451222</td>\n                              </tr>\n                              <tr>\n                              \n                            </tbody>\n                          </table>\n                         \n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n   \n       <!-- Modal rule details -->\n<div id=\"ruleDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Rule Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                    <table class=\"table\">\n                            <thead>\n                              <tr>\n                                <th>Rule Name</th>\n                                <th>Rule Value</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>Age</td>\n                                <td>25</td>\n                              </tr>\n                            </tbody>\n                          </table>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n       <!-- Modal code details -->\n<div id=\"codeDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Modal Header</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                    <table class=\"table\">\n                            <thead>\n                              <tr>\n                                <th>Test Name</th>\n                                <th>Test Code</th>\n                                <th>Test Description</th>\n                                <th>IsDefault</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>HIV Sample</td>\n                                <td>1201</td>\n                                <td>Negative</td>\n                                <td>true</td>\n                              </tr>\n                            </tbody>\n                          </table>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n      \n      "
+module.exports = "<div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa fa-th-list\"></i> Sponsors</h1>\n      <p>Sponsor Details</p>\n    </div>\n    <ul class=\"app-breadcrumb breadcrumb\">\n      <!-- <li class=\"breadcrumb-item\"><i class=\"fa fa-home fa-lg\"></i></li> -->\n      \n      \n    </ul>\n  </div>\n  \n    <button class=\"btn btn-danger mr-2 mb-2 pull-right\" data-toggle=\"modal\" data-target=\"#myModal\"><i class=\"fa fa-plus\"></i>Add Sponsor</button><br>\n    <br>  \n    \n    <div class=\"col-md-12\">\n      \n      <div class=\"tile\">\n        <h3 class=\"tile-title\">Sponsor Details </h3>\n     \n        <table class=\"table\">\n          <thead>\n            <tr>\n              <th>#</th>\n              <th>Name</th>\n              <th>Email</th>\n              <th>Phone</th>\n              <th>Budget</th>\n              <th>Post Code</th>\n              <th>View</th>\n              \n            </tr>\n          </thead>\n          <tbody>\n            <tr *ngFor=\"let item of SponsorsData;let i=index\">\n              <td>{{i+1}}</td>\n              <td>{{item.name}}</td>\n              <td>{{item.email}}</td>\n              <td>{{item.phone}}</td>\n              <td>{{item.budget}}</td>\n              <td>{{item.postCode}}</td>\n              <td><a class=\"btn btn-primary btn-sm\" href=\"\" data-toggle=\"modal\" data-target=\"#addressDetails\">Address</a>&nbsp;&nbsp;<a href=\"\" class=\"btn btn-info btn-sm\" data-toggle=\"modal\" data-target=\"#ruleDetails\">Rules</a>&nbsp;&nbsp;<a href=\"\" data-toggle=\"modal\" data-target=\"#codeDetails\" class=\"btn btn-warning btn-sm\">Test Code</a>\n              </td>\n            </tr>\n          </tbody>\n        </table>\n      </div>\n\n     \n      <!-- Modal -->\n  <div class=\"modal fade\" id=\"myModal\" role=\"dialog\">\n        <div class=\"modal-dialog modal-lg\">\n        \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              \n              <h4 class=\"modal-title\">Sponsor Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            </div>\n            <div class=\"modal-body\">\n                    <div class=\"content\" >\n                            <div class=\"main\">\n                          \n                            <ul id=\"progressbar\">\n                            <li class=\"active\">Sponser Personal Details</li>\n                            <li>Address Details</li>\n                            <li>Rule Details</li>\n                            <li>Test Code Details</li>\n                            </ul>\n                           \n                            <fieldset id=\"first\" style=\"margin-left: 2px;\">\n                                 \n                                <p class=\"subtitle\">Step 1</p>\n                                 <label class=\"col-md-2\">Name: </label>\n                                <input class=\"col-md-7\"  [(ngModel)]=\"name\" name=\"name\" placeholder=\"Name\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Email: </label>\n                                <input class=\"col-md-7\"  [(ngModel)]=\"email\" name=\"email\" placeholder=\"Email\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Phone: </label>\n                                <input class=\"col-md-7\"  [(ngModel)]=\"phone\" name=\"phone\" placeholder=\"Phone\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Budget: </label>\n                                <input class=\"col-md-7\"  [(ngModel)]=\"budget\" name=\"budget\" placeholder=\"Budget\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Post Code: </label>\n                                <input class=\"col-md-7\"  [(ngModel)]=\"postcode\" name=\"postcode\" placeholder=\"Post Code\" type=\"text\">\n                                <input class=\"next_btn pull-right\" (click)=\"step1Details(name,email,phone,budget,postcode)\" name=\"next\" type=\"button\" value=\"Next\">\n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                <p class=\"subtitle\">Step 2</p>\n                                <label class=\"col-md-2\">Street No: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"streetNumber\"  placeholder=\"Street Number\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Street Name1: </label>\n                                <input class=\"col-md-7\" name=\"strename\"   [(ngModel)]=\"strname1\" placeholder=\"Street Name1\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Street Name2: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"strname2\" placeholder=\"Street Name2\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">City: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"city\" placeholder=\"City\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Country: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"country\" placeholder=\"Country\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">District: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"district\" placeholder=\"District\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Region: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"region\" placeholder=\"Region\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">State: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"state\" placeholder=\"State\" type=\"text\">\n                                <div class=\"clearfix\"></div>\n                                <label class=\"col-md-2\">Zipcode: </label>\n                                <input class=\"col-md-7\" name=\"streetNumber\"  [(ngModel)]=\"zipcode\" placeholder=\"Zip Code\" type=\"text\">\n                                <br>\n                                <input class=\"pre_btn\" name=\"previous\" type=\"button\" value=\"Previous\">\n                                <input class=\"next_btn\" name=\"next\" type=\"button\" (click)=\"step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)\" value=\"Next\">\n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                <p class=\"subtitle\">Step 3</p>\n                                <label class=\"col-md-3\">Ethenic Group: </label>\n          \n                                    <select [(ngModel)]=\"selectedEthenicName\" class=\"col-md-7\">\n                                        <option *ngFor=\"let c of ethenicData\" [ngValue]=\"c\">{{c.ethnicName}}</option>\n                                    </select>\n                                    <div class=\"clearfix\"></div>\n                                    <label class=\"col-md-3\">Gender:</label>\n                                    \n                                    <select class=\"col-md-7\" [(ngModel)]=\"selectedGender\" multiple style=\"height: 60px;\">\n                                        <option value=\"Male\">Male</option>\n                                        <option value=\"Female\">Female</option>\n                                        <option value=\"Other\">Other</option>\n                                      </select>\n                                <div class=\"clearfix\"></div>\n                              <label class=\"col-md-3\">Min Age: </label>\n                              <input class=\"col-md-7\" name=\"minage\"  [(ngModel)]=\"minage\" placeholder=\"Min Age\" type=\"text\">\n                              <div class=\"clearfix\"></div>\n                              <label class=\"col-md-3\">Max Age: </label>\n                              <input class=\"col-md-7\" name=\"maxage\"  [(ngModel)]=\"maxage\" placeholder=\"Max Age\" type=\"text\">\n                              <div class=\"clearfix\"></div>\n                              <div class=\"col-md-10\">\n                              <button type=\"button\"  (click)=\"ruleTable(selectedEthenicName,selectedGender,minage,maxage)\" class=\"btn btn-success pull-right\">Add Rules</button>\n                              </div>\n                              <div class=\"clearfix\"></div>\n                              <label class=\"col-md-3\">Special Event Name: </label>\n                              <input class=\"col-md-7\"  [(ngModel)]=\"eventName\" placeholder=\"Event Name\" type=\"text\">\n                              <div class=\"clearfix\"></div>\n                              <label class=\"col-md-3\">Start Date: </label>\n                              <input class=\"col-md-7\" [(ngModel)]=\"startDate\" type=\"date\">\n                              <div class=\"clearfix\"></div>\n                              <label class=\"col-md-3\">End Date: </label>\n                              <input class=\"col-md-7\" [(ngModel)]=\"endDate\"  type=\"date\">\n                              <div class=\"clearfix\"></div>\n                              <div class=\"col-md-10\">\n                              <button type=\"button\" (click)=\"addEventDetails(eventName,startDate,endDate)\" class=\"btn btn-success pull-right\">Add Events</button>\n                              </div>\n                         <br><br><hr>\n                               <h4 class=\"text-center text-primary text-center\"  *ngIf=\"ruleDetails\"> Rule Details</h4>\n                                <table class=\"table\" *ngIf=\"ruleDetails\">\n                                        <thead>\n                                          <tr>\n                                            <th>Gender</th>\n                                            <th>Min Age</th>\n                                            <th>Max Age</th>\n                                    \n                                          </tr>\n                                        </thead>\n                                        <tbody>\n                                          <tr *ngFor=\"let item of ruleDataTable\">\n                                            <td><span *ngFor=\"let gender of item.gender\">{{gender}} &nbsp;</span></td>\n                                            <td>{{item.minage}}</td>\n                                            <td>{{item.maxage}}</td>\n                                            \n                                          </tr>\n                            \n                                        </tbody>\n                                      </table>\n                                      <h4 class=\"text-center text-primary\"  *ngIf=\"eventdetail\"> Event Details</h4>\n                                     <table class=\"table\" *ngIf=\"eventdetail\">\n                                        <thead>\n                                          <tr>\n                                            <th>Event Name</th>\n                                            <th>Start Date</th>\n                                            <th>End Date</th>\n                                    \n                                          </tr>\n                                        </thead>\n                                        <tbody>\n                                          <tr *ngFor=\"let item of mappers\">\n                                            <td>{{item.eventName}}</td>\n                                            <td>{{item.startDate}}</td>\n                                            <td>{{item.endDate}}</td>\n                                            \n                                          </tr>\n                            \n                                        </tbody>\n                                      </table>\n                                      <br>\n                                      <input class=\"pre_btn\" type=\"button\" value=\"Previous\">\n                                      <input class=\"next_btn\" name=\"next\" type=\"button\" value=\"Next\">\n                                    \n                                </fieldset>\n                                <fieldset style=\"margin-left: 2px;\">\n                             \n                                    <p class=\"subtitle\">Step 4</p>\n                                    <label class=\"col-md-2\">Test Name: </label>\n                                     <input class=\"col-md-7\" name=\"testname\" [(ngModel)]=\"testName\" placeholder=\"Test Name\" type=\"text\">\n                                     <div class=\"clearfix\"></div>\n                                     <label class=\"col-md-2\">Test Code: </label>\n                                    <input class=\"col-md-7\" name=\"testcode\"  [(ngModel)]=\"testCode\" placeholder=\"Test Code\" type=\"text\">\n                                    <div class=\"clearfix\"></div>\n                                    <label class=\"col-md-2\">Test Desc.: </label>\n                                    <textarea class=\"col-md-7\" name=\"testdesc\"  [(ngModel)]=\"testDesc\" placeholder=\"Test Description\"></textarea>\n                                    <br>\n                                    <label class=\"col-md-2\">IsDefault.: </label>\n                                    <input class=\"col-md-1\" name=\"isDefault\"  [(ngModel)]=\"isDefault\"  type=\"checkbox\"> <br>\n                                    <button class=\"btn btn-success mr-2 mb-2 pull-right\" (click)=\"testTable(testName,testCode,testDesc,isDefault)\"><i class=\"fa fa-plus\"></i>Add Test</button>\n                            \n                                       <table class=\"table table-hover\" *ngIf=\"testDetailsFlag\">\n                                            <thead>\n                                              <tr>\n                                                <th>Test Name</th>\n                                                <th>Test Code</th>\n                                                <th>Test Description</th>\n                                                <th>isDefault</th>\n                                              </tr>\n                                            </thead>\n                                            <tbody>\n                                              <tr *ngFor='let item of testCodeList'>\n                                                <td>{{item.testName}}</td>\n                                                <td>{{item.testCode}}</td>\n                                                <td>{{item.testDesc}}</td>\n                                                <td>{{item.isDefault}}</td>\n                                              </tr>\n                                             \n                                            </tbody>\n                                          </table>\n                                   \n                                          <br>\n                                          <input class=\"pre_btn\" type=\"button\" value=\"Previous\">\n                                         <input class=\"submit_btn\" type=\"submit\" (click)=\"submitSponsorDetails()\" value=\"Submit\">\n                                 \n                                    </fieldset>\n                            \n                                </div>\n                                </div>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n          \n        </div>\n      </div>\n \n\n\n\n    \n      <!-- Modal address details -->\n     \n<div id=\"addressDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog modal-lg\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Address Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                \n\n                    <table class=\"table table-responsive\">\n                            <thead>\n                              <tr>\n                                <th>Street No.</th>\n                                <th>Street Name1</th>\n                                <th>Street Name2</th>\n                                <th>City</th>\n                                <th>Country</th>\n                                <th>District</th>\n                                <th>Region</th>\n                                <th>State</th>\n                                <th>Zipcode</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>1</td>\n                                <td>Galaxy</td>\n                                <td>PVR Road</td>\n                                <td>Pune</td>\n                                <td>India</td>\n                                <td>PUne</td>\n                                <td>Nigdi</td>\n                                <td>Maharastra</td>\n                                <td>451222</td>\n                              </tr>\n                              <tr>\n                              \n                            </tbody>\n                          </table>\n                         \n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n   \n       <!-- Modal rule details -->\n<div id=\"ruleDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Rule Details</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                    <table class=\"table\">\n                            <thead>\n                              <tr>\n                                <th>Rule Name</th>\n                                <th>Rule Value</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>Age</td>\n                                <td>25</td>\n                              </tr>\n                            </tbody>\n                          </table>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n       <!-- Modal code details -->\n<div id=\"codeDetails\" class=\"modal fade\" role=\"dialog\">\n        <div class=\"modal-dialog\">\n      \n          <!-- Modal content-->\n          <div class=\"modal-content\">\n            <div class=\"modal-header\">\n              <h4 class=\"modal-title\">Modal Header</h4>\n              <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n            \n            </div>\n            <div class=\"modal-body\">\n                    <table class=\"table\">\n                            <thead>\n                              <tr>\n                                <th>Test Name</th>\n                                <th>Test Code</th>\n                                <th>Test Description</th>\n                                <th>IsDefault</th>\n                              </tr>\n                            </thead>\n                            <tbody>\n                              <tr>\n                                <td>HIV Sample</td>\n                                <td>1201</td>\n                                <td>Negative</td>\n                                <td>true</td>\n                              </tr>\n                            </tbody>\n                          </table>\n            </div>\n            <div class=\"modal-footer\">\n              <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n            </div>\n          </div>\n      \n        </div>\n      </div>\n      \n      "
 
 /***/ }),
 
@@ -827,7 +972,7 @@ module.exports = "<div class=\"app-title\">\n    <div>\n      <h1><i class=\"fa 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "@import url(http://fonts.googleapis.com/css?family=Droid+Serif);\n/* Above line is to import google font style */\n#progressbar {\n  margin: 0;\n  padding: 0;\n  font-size: 18px; }\n.active {\n  color: green; }\nfieldset {\n  display: none;\n  padding: 20px;\n  margin-left: 85px;\n  border-radius: 5px; }\n#first {\n  display: block;\n  border-radius: 5px;\n  margin-left: 85px; }\ninput[type=text],\ninput[type=password],\nselect {\n  width: 100%;\n  margin: 10px 0;\n  height: 40px;\n  padding: 5px; }\ntextarea {\n  width: 100%;\n  margin: 10px 0;\n  height: 70px;\n  padding: 5px; }\ninput[type=submit],\ninput[type=button] {\n  width: 120px;\n  margin: 15px 25px;\n  padding: 5px;\n  height: 40px;\n  background-color: green;\n  border: none;\n  color: white;\n  font-family: 'Droid Serif', serif; }\nh2, p {\n  text-align: center;\n  font-family: 'Droid Serif', serif; }\nli {\n  margin-right: 52px;\n  display: inline;\n  color: #c1c5cc;\n  font-family: 'Droid Serif', serif; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9zcG9uc29yLXVzZXIvRDpcXExhdGVzdCBPQlNcXE5ldyBmb2xkZXIgKDIpXFxTYW1wbGluZ0tpdFVJL3NyY1xcYXBwXFxob21lXFxzcG9uc29yLXVzZXJcXHNwb25zb3ItdXNlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSwrREFBWTtBQUNaLDhDQUFBO0FBR0E7RUFDQSxTQUFRO0VBQ1IsVUFBUztFQUNULGVBQWMsRUFBQTtBQUVkO0VBQ0EsWUFBVyxFQUFBO0FBRVg7RUFDQSxhQUFZO0VBRVosYUFBWTtFQUVaLGlCQUFpQjtFQUNqQixrQkFBaUIsRUFBQTtBQUdqQjtFQUNBLGNBQWE7RUFHYixrQkFBaUI7RUFDakIsaUJBQWlCLEVBQUE7QUFHakI7OztFQUdBLFdBQVU7RUFDVixjQUFhO0VBQ2IsWUFBVztFQUNYLFlBQVcsRUFBQTtBQUlYO0VBQ0EsV0FBVTtFQUNWLGNBQWE7RUFDYixZQUFXO0VBQ1gsWUFBVyxFQUFBO0FBSVg7O0VBRUEsWUFBWTtFQUNaLGlCQUFnQjtFQUNoQixZQUFZO0VBQ1osWUFBWTtFQUNaLHVCQUF1QjtFQUN2QixZQUFZO0VBRVosWUFBWTtFQUNaLGlDQUFpQyxFQUFBO0FBRWpDO0VBQ0Esa0JBQWlCO0VBQ2pCLGlDQUFpQyxFQUFBO0FBRWpDO0VBQ0Esa0JBQWlCO0VBQ2pCLGVBQWM7RUFDZCxjQUFhO0VBQ2IsaUNBQWlDLEVBQUEiLCJmaWxlIjoic3JjL2FwcC9ob21lL3Nwb25zb3ItdXNlci9zcG9uc29yLXVzZXIuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyJcclxuQGltcG9ydCB1cmwoaHR0cDovL2ZvbnRzLmdvb2dsZWFwaXMuY29tL2Nzcz9mYW1pbHk9RHJvaWQrU2VyaWYpO1xyXG4vKiBBYm92ZSBsaW5lIGlzIHRvIGltcG9ydCBnb29nbGUgZm9udCBzdHlsZSAqL1xyXG5cclxuXHJcbiNwcm9ncmVzc2JhcntcclxubWFyZ2luOjA7XHJcbnBhZGRpbmc6MDtcclxuZm9udC1zaXplOjE4cHg7XHJcbn1cclxuLmFjdGl2ZXtcclxuY29sb3I6Z3JlZW47XHJcbn1cclxuZmllbGRzZXR7XHJcbmRpc3BsYXk6bm9uZTtcclxuXHJcbnBhZGRpbmc6MjBweDtcclxuXHJcbm1hcmdpbi1sZWZ0OiA4NXB4O1xyXG5ib3JkZXItcmFkaXVzOjVweDtcclxuXHJcbn1cclxuI2ZpcnN0e1xyXG5kaXNwbGF5OmJsb2NrO1xyXG5cclxuXHJcbmJvcmRlci1yYWRpdXM6NXB4O1xyXG5tYXJnaW4tbGVmdDogODVweDtcclxuXHJcbn1cclxuaW5wdXRbdHlwZT10ZXh0XSxcclxuaW5wdXRbdHlwZT1wYXNzd29yZF0sXHJcbnNlbGVjdHtcclxud2lkdGg6MTAwJTtcclxubWFyZ2luOjEwcHggMDtcclxuaGVpZ2h0OjQwcHg7XHJcbnBhZGRpbmc6NXB4O1xyXG5cclxuXHJcbn1cclxudGV4dGFyZWF7XHJcbndpZHRoOjEwMCU7XHJcbm1hcmdpbjoxMHB4IDA7XHJcbmhlaWdodDo3MHB4O1xyXG5wYWRkaW5nOjVweDtcclxuXHJcblxyXG59XHJcbmlucHV0W3R5cGU9c3VibWl0XSxcclxuaW5wdXRbdHlwZT1idXR0b25de1xyXG53aWR0aDogMTIwcHg7XHJcbm1hcmdpbjoxNXB4IDI1cHg7XHJcbnBhZGRpbmc6IDVweDtcclxuaGVpZ2h0OiA0MHB4O1xyXG5iYWNrZ3JvdW5kLWNvbG9yOiBncmVlbjtcclxuYm9yZGVyOiBub25lO1xyXG5cclxuY29sb3I6IHdoaXRlO1xyXG5mb250LWZhbWlseTogJ0Ryb2lkIFNlcmlmJywgc2VyaWY7XHJcbn1cclxuaDIscHtcclxudGV4dC1hbGlnbjpjZW50ZXI7XHJcbmZvbnQtZmFtaWx5OiAnRHJvaWQgU2VyaWYnLCBzZXJpZjtcclxufVxyXG5saXtcclxubWFyZ2luLXJpZ2h0OjUycHg7XHJcbmRpc3BsYXk6aW5saW5lO1xyXG5jb2xvcjojYzFjNWNjO1xyXG5mb250LWZhbWlseTogJ0Ryb2lkIFNlcmlmJywgc2VyaWY7XHJcbn1cclxuXHJcblxyXG5cclxuXHJcblxyXG4iXX0= */"
+module.exports = "@import url(http://fonts.googleapis.com/css?family=Droid+Serif);\n/* Above line is to import google font style */\n#progressbar {\n  margin: 0;\n  padding: 0;\n  font-size: 18px; }\n.active {\n  color: green; }\nfieldset {\n  display: none;\n  padding: 20px;\n  margin-left: 85px;\n  border-radius: 5px; }\n#first {\n  display: block;\n  border-radius: 5px;\n  margin-left: 85px; }\ninput[type=text],\ninput[type=password],\ninput[type=date],\nselect {\n  width: 100%;\n  margin: 10px 0;\n  height: 40px;\n  padding: 5px; }\ntextarea {\n  width: 100%;\n  margin: 10px 0;\n  height: 70px;\n  padding: 5px; }\ninput[type=submit],\ninput[type=button] {\n  width: 120px;\n  margin: 15px 25px;\n  padding: 5px;\n  height: 40px;\n  background-color: green;\n  border: none;\n  color: white;\n  font-family: 'Droid Serif', serif; }\nh2, p {\n  text-align: center;\n  font-family: 'Droid Serif', serif; }\nli {\n  margin-right: 52px;\n  display: inline;\n  color: #c1c5cc;\n  font-family: 'Droid Serif', serif; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbInNyYy9hcHAvaG9tZS9zcG9uc29yLXVzZXIvRDpcXExhdGVzdCBPQlNcXE5ldyBmb2xkZXIgKDIpXFxTYW1wbGluZ0tpdFVJL3NyY1xcYXBwXFxob21lXFxzcG9uc29yLXVzZXJcXHNwb25zb3ItdXNlci5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFDQSwrREFBWTtBQUNaLDhDQUFBO0FBR0E7RUFDQSxTQUFRO0VBQ1IsVUFBUztFQUNULGVBQWMsRUFBQTtBQUVkO0VBQ0EsWUFBVyxFQUFBO0FBRVg7RUFDQSxhQUFZO0VBRVosYUFBWTtFQUVaLGlCQUFpQjtFQUNqQixrQkFBaUIsRUFBQTtBQUdqQjtFQUNBLGNBQWE7RUFHYixrQkFBaUI7RUFDakIsaUJBQWlCLEVBQUE7QUFHakI7Ozs7RUFJQSxXQUFVO0VBQ1YsY0FBYTtFQUNiLFlBQVc7RUFDWCxZQUFXLEVBQUE7QUFJWDtFQUNBLFdBQVU7RUFDVixjQUFhO0VBQ2IsWUFBVztFQUNYLFlBQVcsRUFBQTtBQUlYOztFQUVBLFlBQVk7RUFDWixpQkFBZ0I7RUFDaEIsWUFBWTtFQUNaLFlBQVk7RUFDWix1QkFBdUI7RUFDdkIsWUFBWTtFQUVaLFlBQVk7RUFDWixpQ0FBaUMsRUFBQTtBQUVqQztFQUNBLGtCQUFpQjtFQUNqQixpQ0FBaUMsRUFBQTtBQUVqQztFQUNBLGtCQUFpQjtFQUNqQixlQUFjO0VBQ2QsY0FBYTtFQUNiLGlDQUFpQyxFQUFBIiwiZmlsZSI6InNyYy9hcHAvaG9tZS9zcG9uc29yLXVzZXIvc3BvbnNvci11c2VyLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiXHJcbkBpbXBvcnQgdXJsKGh0dHA6Ly9mb250cy5nb29nbGVhcGlzLmNvbS9jc3M/ZmFtaWx5PURyb2lkK1NlcmlmKTtcclxuLyogQWJvdmUgbGluZSBpcyB0byBpbXBvcnQgZ29vZ2xlIGZvbnQgc3R5bGUgKi9cclxuXHJcblxyXG4jcHJvZ3Jlc3NiYXJ7XHJcbm1hcmdpbjowO1xyXG5wYWRkaW5nOjA7XHJcbmZvbnQtc2l6ZToxOHB4O1xyXG59XHJcbi5hY3RpdmV7XHJcbmNvbG9yOmdyZWVuO1xyXG59XHJcbmZpZWxkc2V0e1xyXG5kaXNwbGF5Om5vbmU7XHJcblxyXG5wYWRkaW5nOjIwcHg7XHJcblxyXG5tYXJnaW4tbGVmdDogODVweDtcclxuYm9yZGVyLXJhZGl1czo1cHg7XHJcblxyXG59XHJcbiNmaXJzdHtcclxuZGlzcGxheTpibG9jaztcclxuXHJcblxyXG5ib3JkZXItcmFkaXVzOjVweDtcclxubWFyZ2luLWxlZnQ6IDg1cHg7XHJcblxyXG59XHJcbmlucHV0W3R5cGU9dGV4dF0sXHJcbmlucHV0W3R5cGU9cGFzc3dvcmRdLFxyXG5pbnB1dFt0eXBlPWRhdGVdLFxyXG5zZWxlY3R7XHJcbndpZHRoOjEwMCU7XHJcbm1hcmdpbjoxMHB4IDA7XHJcbmhlaWdodDo0MHB4O1xyXG5wYWRkaW5nOjVweDtcclxuXHJcblxyXG59XHJcbnRleHRhcmVhe1xyXG53aWR0aDoxMDAlO1xyXG5tYXJnaW46MTBweCAwO1xyXG5oZWlnaHQ6NzBweDtcclxucGFkZGluZzo1cHg7XHJcblxyXG5cclxufVxyXG5pbnB1dFt0eXBlPXN1Ym1pdF0sXHJcbmlucHV0W3R5cGU9YnV0dG9uXXtcclxud2lkdGg6IDEyMHB4O1xyXG5tYXJnaW46MTVweCAyNXB4O1xyXG5wYWRkaW5nOiA1cHg7XHJcbmhlaWdodDogNDBweDtcclxuYmFja2dyb3VuZC1jb2xvcjogZ3JlZW47XHJcbmJvcmRlcjogbm9uZTtcclxuXHJcbmNvbG9yOiB3aGl0ZTtcclxuZm9udC1mYW1pbHk6ICdEcm9pZCBTZXJpZicsIHNlcmlmO1xyXG59XHJcbmgyLHB7XHJcbnRleHQtYWxpZ246Y2VudGVyO1xyXG5mb250LWZhbWlseTogJ0Ryb2lkIFNlcmlmJywgc2VyaWY7XHJcbn1cclxubGl7XHJcbm1hcmdpbi1yaWdodDo1MnB4O1xyXG5kaXNwbGF5OmlubGluZTtcclxuY29sb3I6I2MxYzVjYztcclxuZm9udC1mYW1pbHk6ICdEcm9pZCBTZXJpZicsIHNlcmlmO1xyXG59XHJcblxyXG5cclxuXHJcblxyXG5cclxuIl19 */"
 
 /***/ }),
 
@@ -859,29 +1004,61 @@ var SponsorUserComponent = /** @class */ (function () {
         this.testCodeList = [];
         this.addressList = [];
         this.SponsorsData = [];
+        this.ethenicData = [];
+        this.mappers = [];
+        this.eventdetail = false;
+        this.ruleDataTable = [];
+        this.getSponsorList();
     }
-    SponsorUserComponent.prototype.ruleTable = function (ruleName, ruleValue) {
-        var obj = { ruleName: ruleName, ruleValue: ruleValue };
-        this.ruleList.push(obj);
+    SponsorUserComponent.prototype.getAllEthenic = function () {
+        var _this = this;
+        this.DataService.getEthenic().subscribe(function (data) {
+            _this.ethenicData = data.resultData;
+        });
+    };
+    SponsorUserComponent.prototype.getSponsorList = function () {
+        var _this = this;
+        this.DataService.getSponsorsList().subscribe(function (data) {
+            _this.SponsorsData = data.resultData;
+        });
+    };
+    SponsorUserComponent.prototype.ruleTable = function (selectedEthenicName, selectedGender, minage, maxage) {
+        var tableObj = { gender: selectedGender, minage: minage, maxage: maxage };
+        this.ruleDataTable.push(tableObj);
+        var obja = { ruleName: 'Gender', ruleValue: selectedGender.toString(), ethnicGroupId: selectedEthenicName.id };
+        var objb = { ruleName: 'Min-Age', ruleValue: minage, ethnicGroupId: selectedEthenicName.id };
+        var objc = { ruleName: 'Max-Age', ruleValue: maxage, ethnicGroupId: selectedEthenicName.id };
+        this.ruleList.push(obja);
+        this.ruleList.push(objb);
+        this.ruleList.push(objc);
         this.ruleDetails = true;
     };
+    SponsorUserComponent.prototype.addEventDetails = function (eventName, startDate, endDate) {
+        var obj = { eventName: eventName, startDate: startDate, endDate: endDate };
+        this.mappers.push(obj);
+        this.eventdetail = true;
+    };
     SponsorUserComponent.prototype.testTable = function (testName, testCode, testDesc, isDefault) {
-        var obj = { testName: testName, testCode: testCode, testDesc: testDesc, isDefault: isDefault };
+        var obj = { testName: testName, testCode: testCode, description: testDesc, isDefalut: isDefault };
         this.testCodeList.push(obj);
         this.testDetailsFlag = true;
     };
     SponsorUserComponent.prototype.step1Details = function (name, email, phone, budget, postcode) {
-        this.obj1 = { name: name, email: email, phone: phone, budget: budget, postcode: postcode };
+        this.obj1 = { name: name, email: email, phone: phone, budget: budget, postCode: postcode };
         // this.SponsorsData.push(obj);
     };
     SponsorUserComponent.prototype.step2Details = function (streetNumber, strname1, strname2, city, country, district, region, state, zipcode) {
-        this.obj2 = { streetNumber: streetNumber, strname1: strname1, strname2: strname2, city: city, country: country, district: district, region: region, state: state, zipcode: zipcode };
+        this.obj2 = { streetNumber: streetNumber, streetName1: strname1, streetName2: strname2, city: city, country: country, district: district, region: region, state: state, zipcode: zipcode };
+        this.addressList.push(this.obj2);
+        this.getAllEthenic();
         //  this.addressList.push(obj);
     };
     SponsorUserComponent.prototype.submitSponsorDetails = function () {
-        this.obj1 = { name: this.name, email: this.email, phone: this.phone, budget: this.budget, postcode: this.postcode, addressList: this.obj2, ruleList: this.ruleList, testCodeList: this.testCodeList };
+        var _this = this;
+        this.obj1 = { name: this.name, email: this.email, phone: this.phone, budget: this.budget, postCode: this.postcode, addressList: this.addressList, ruleList: this.ruleList, mappers: this.mappers, testCodeList: this.testCodeList };
+        console.log(this.obj1);
         this.DataService.createSponsorDetails(this.obj1).subscribe(function (data) {
-            console.log(data);
+            _this.getSponsorList();
         });
         // this.SponsorsData.push(this.addressList);
         // this.SponsorsData.push(this.ruleList);
@@ -958,6 +1135,128 @@ var SponsorUserComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormBuilder"], src_app_services_data_service__WEBPACK_IMPORTED_MODULE_3__["DataService"]])
     ], SponsorUserComponent);
     return SponsorUserComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/home/status/status.component.html":
+/*!***************************************************!*\
+  !*** ./src/app/home/status/status.component.html ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n<div class=\"tile\">\n <h5>Status</h5>\n <div id=\"myModal\" class=\"modal fade\" role=\"dialog\">\n    <div class=\"modal-dialog\">\n  \n      <!-- Modal content-->\n      <div class=\"modal-content\">\n        <div class=\"modal-header\">\n          <h4 class=\"modal-title\">Status</h4>\n          <button type=\"button\" class=\"close\" data-dismiss=\"modal\">&times;</button>\n          \n        </div>\n        <div class=\"modal-body\">\n          <form #regForm='ngForm'>\n              <div class=\"col-md-6\">\n                  <label>\n                    Status:\n                    <input type=\"text\" placeholder=\"Status\" name=\"nameOfTheStatus\" class=\"form-control\" [(ngModel)]= pstatus >\n                  </label>\n                </div>\n                <button type=\"submit\" data-dismiss=\"modal\" class=\"btn btn-primary float-right\" id=\"register\" (click)=\"save(regForm.value)\" *ngIf=\"addfrm\">Submit</button>\n                <button type=\"button\" data-dismiss=\"modal\" class=\"btn btn-primary float-right\" id=\"register\" (click)=\"updateStatusData()\" *ngIf=\"updatfrm\" >Update</button>\n          </form>\n        </div>\n        <div class=\"modal-footer\">\n          <!-- <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button> -->\n        </div>\n      </div>\n  \n    </div>\n  </div>\n<button type=\"button\" style=\"margin-bottom:8px\" class=\"btn btn-primary float-right\" data-toggle=\"modal\" data-target=\"#myModal\"\n(click)=\"addStatus(regForm)\">Add</button>\n\n<table class=\"table table-striped\" >\n  <thead>\n    <tr style=\"font-size:15px\">\n      <th>Id</th>\n      <th>Status</th>\n      <th>Edit</th>\n      <th>Delete</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr *ngFor=\"let data of statusData\">\n      <td>{{data.id}}</td>\n      <td>{{data.nameOfTheStatus}}</td>\n      <td>\n        <span>\n          <span (click)=\"editStatus(data)\" data-toggle=\"modal\" data-target=\"#myModal\"  class=\"glyphicon glyphicon-pencil\">\n            <i class=\"fa fa-edit\" style=\"font-size:24px;color:rgb(49, 17, 233)\"></i>\n          </span>\n        </span>\n      </td>\n      <td>\n        <span>\n          <span (click)=\"deleteStatus(data.id)\" value=\"delete\">\n            <i class=\"fa fa-trash\" style=\"font-size:24px;color:red\"></i>\n          </span>\n        </span>\n      </td>\n    </tr>\n  </tbody>\n</table>\n</div>"
+
+/***/ }),
+
+/***/ "./src/app/home/status/status.component.scss":
+/*!***************************************************!*\
+  !*** ./src/app/home/status/status.component.scss ***!
+  \***************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2hvbWUvc3RhdHVzL3N0YXR1cy5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/home/status/status.component.ts":
+/*!*************************************************!*\
+  !*** ./src/app/home/status/status.component.ts ***!
+  \*************************************************/
+/*! exports provided: StatusComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "StatusComponent", function() { return StatusComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/data.service */ "./src/app/services/data.service.ts");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+var StatusComponent = /** @class */ (function () {
+    function StatusComponent(dataservice, http) {
+        this.dataservice = dataservice;
+        this.http = http;
+        this.updatfrm = false;
+        this.addfrm = false;
+    }
+    StatusComponent.prototype.ngOnInit = function () {
+        this.getAllstatus();
+    };
+    StatusComponent.prototype.addStatus = function (regForm) {
+        regForm.reset();
+        this.updatfrm = false;
+        this.addfrm = true;
+    };
+    // Save status data
+    StatusComponent.prototype.save = function (regForm) {
+        var _this = this;
+        this.dataservice.postStatus(regForm).subscribe(function (res) {
+            console.log("save data", res);
+            _this.getAllstatus();
+        });
+    };
+    // Get request for status
+    StatusComponent.prototype.getAllstatus = function () {
+        var _this = this;
+        this.dataservice.getStatusData().subscribe(function (data) {
+            _this.statusData = data.resultData;
+            console.log("status data", _this.statusData);
+        });
+    };
+    //Post request for status
+    StatusComponent.prototype.saveStatus = function (formData) {
+        this.dataservice.postStatus(formData).subscribe(function (data) {
+            console.log("adding data", data);
+        });
+    };
+    StatusComponent.prototype.editStatus = function (data) {
+        this.updatfrm = true;
+        this.addfrm = false;
+        console.log("hfdhf", data);
+        this.data = data;
+        this.pstatus = this.data.nameOfTheStatus;
+        this.id = this.data.id;
+    };
+    //Update Status
+    // updateStatusData(){
+    // var dt = { id: this.data.id, nameOfTheStatus: this.pstatus }
+    //   this.dataservice.editStatusData(this.id,dt).subscribe((res)=>{
+    //     console.log("updating data",res)
+    //   })
+    // }
+    StatusComponent.prototype.updateStatusData = function () {
+        var _this = this;
+        var dt = { id: this.data.id, nameOfTheStatus: this.pstatus };
+        this.http.put('http://localhost:8080/samplingkit/rest/Status/updateStatus' + "/" + this.id, dt).subscribe(function (data) {
+            _this.getAllstatus();
+        });
+    };
+    //Delete Status
+    StatusComponent.prototype.deleteStatus = function (id) {
+        var _this = this;
+        this.dataservice.deleteStatus(id).subscribe(function (res) {
+            console.log("deleted status", res);
+            _this.getAllstatus();
+        });
+    };
+    StatusComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-status',
+            template: __webpack_require__(/*! ./status.component.html */ "./src/app/home/status/status.component.html"),
+            styles: [__webpack_require__(/*! ./status.component.scss */ "./src/app/home/status/status.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_data_service__WEBPACK_IMPORTED_MODULE_2__["DataService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+    ], StatusComponent);
+    return StatusComponent;
 }());
 
 
@@ -1133,6 +1432,231 @@ var UsersComponent = /** @class */ (function () {
 
 /***/ }),
 
+/***/ "./src/app/index/address/address.component.html":
+/*!******************************************************!*\
+  !*** ./src/app/index/address/address.component.html ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n    <!--header top start-->\n    <div class=\"header_top header_top_three\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <div class=\"header_top_inner\">\n              <div class=\"top_left\">\n                <ul>\n                  <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n  \n                  </li>\n  \n                  <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n  \n                </ul>\n              </div>\n             \n              <div class=\"logo logo_three\">\n                <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n              </div>\n            </div>\n          </div>\n  \n        </div>\n      </div>\n    </div>\n    <!--header top start-->\n    <!--header middel start-->\n    <div class=\"header_middle\">\n      <div class=\"container\">\n        <div class=\"row align-items-center\">\n          <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n            <div class=\"main_menu menu_three header_position\">\n              <nav>\n                <ul>\n  \n                  <li><a href=\"#\">home</a></li>\n                  <li><a href=\"#\">Aboutus</a></li>\n                  <li><a href=\"#\">Business</a></li>\n                  <li><a href=\"#\">Individuals</a></li>\n                  <li class=\"pull-right google2\">\n                    <div id=\"google_translate_element\"></div>\n                  </li>\n                </ul>\n  \n              </nav>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!--header middel end-->\n  \n    \n  \n  </header>\n  <!--header area end-->\n  \n  <!--Offcanvas menu area start-->\n  \n  <div class=\"off_canvars_overlay\">\n  \n  </div>\n  <div class=\"Offcanvas_menu Offcanvas_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"canvas_open\">\n            <span>MENU</span>\n            <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n          </div>\n          <div class=\"Offcanvas_menu_wrapper\">\n            <div class=\"canvas_close\">\n              <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n            </div>\n  \n            <div id=\"menu\" class=\"text-left \">\n              <ul class=\"offcanvas_main_menu\">\n                <li class=\"menu-item-has-children active\">\n                  <a href=\"#\">Home</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">About</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">Gallery</a>\n                </li>\n  \n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">contact</a>\n                </li>\n  \n              </ul>\n            </div>\n  \n            <div class=\"Offcanvas_footer\">\n              <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n              <ul>\n                <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n                <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n                <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n                <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n                <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n              </ul>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--Offcanvas menu area end-->\n\n\n\n  <!-- delivery  start -->\n\n\n<div class=\"about_section padt5\">\n\n    <div class=\"container\">\n  \n      <h2>ADDRESS AND CONTACT INFORMATION</h2>\n      <p class=\"line\"></p>\n  \n      <div class=\"row padt5\">\n  \n        <div class=\"col-lg-12 col-md-12\">\n  \n          <div class=\"panel\">\n  \n            <div class=\"panel_heading\">\n              <h3>Your name and address</h3>\n            </div>\n  \n  \n            <div class=\"panel_body\">\n  \n              <div class=\"account_form\">\n  \n                <p>Our kits are small, discreet and fit through your letterbox.</p>\n                <p><b>Please note:</b> Kits are pre-completed with your details, so if you are ordering a kit for a friend\n                  or partner please enter their details to ensure we can process your test (we may also remove duplicate\n                  orders addressed to the same name).</p>\n  \n                <form class=\"inner_1 inner_2\" [formGroup]=\"users\" (ngSubmit)=\"datesends(users.value)\">\n  \n                  <p>\n                    <label>First Name <span>*</span></label>\n                    <input type=\"text\" placeholder=\"Firstname\" formControlName=\"firstName\">\n                  </p>\n                  <p>\n                    <label>Last Name <span>*</span></label>\n                    <input type=\"text\" placeholder=\"Lastname\" formControlName=\"lastName\">\n                  </p>\n                  <p>\n                    <label>Address <span>*</span></label>\n                    <input type=\"text\" placeholder=\"Enter Address\" formControlName=\"address\">\n                  </p>\n  \n                    <button class=\"btn btn_look look_3\"><i class=\"fa fa-file-o\"></i> &nbsp; Look up</button>\n                    \n  \n                  <div class=\"inside_3\">\n                    <p>\n                      <label>Country <span>*</span></label>\n                      <input type=\"text\" placeholder=\"Enter Country\" formControlName=\"country\">\n                    </p>\n                    <p>\n                      <label>postcode <span>*</span></label>\n                      <input type=\"text\" placeholder=\"Enter Post Code\" formControlName=\"postcode\">\n                    </p>\n                    \n                  </div>\n  \n                  <div class=\"buttons button_6\">\n                      <button class=\"btn pull-left questionaries_1\" (click)=\"first()\"> <i class=\"fa fa-arrow-circle-left\"></i> Back</button>\n                      <button class=\"btn pull-right questionaries_2\" type=\"submit\">Next <i class=\"fa fa-arrow-circle-right\"></i></button>\n                 </div>\n  \n  \n                     </form>\n  \n  \n              </div>\n            </div>\n  \n          </div>\n        </div>\n  \n  \n  \n      </div>\n  \n      \n  \n    </div>\n  </div>\n  \n  <!-- A delivery end -->\n\n\n  <!--footer start-->\n  \n\n  <!--footer area start-->\n<footer class=\"footer_widgets\">\n    <div class=\"container\">\n      <div class=\"footer_top\">\n        <div class=\"row\">\n          <div class=\"col-lg-4 col-md-6 col-sm-7\">\n            <div class=\"widgets_container contact_us\">\n              <h3>Contacts us</h3>\n              <div class=\"footer_contact\">\n                <ul>\n                  <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                    and typesetting industry. Lorem Ipsum</li>\n                  <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                  <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n                </ul>\n              </div>\n             \n            </div>\n          </div>\n          <div class=\"col-lg-2 col-md-6 col-sm-5\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>Information</h3>\n  \n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-4 col-sm-4\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>My Account</h3>\n              <div class=\"footer_menu\">\n                <div class=\"footer_contact\">\n                  <ul>\n                    <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                      HIV home-sampling screening. </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n  \n  \n  \n        </div>\n      </div>\n    </div>\n    <div class=\"footer_bottom\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12\">\n            <div class=\"copyright_area text-center\">\n              <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </footer>\n  <!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/address/address.component.scss":
+/*!******************************************************!*\
+  !*** ./src/app/index/address/address.component.scss ***!
+  \******************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L2FkZHJlc3MvYWRkcmVzcy5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/index/address/address.component.ts":
+/*!****************************************************!*\
+  !*** ./src/app/index/address/address.component.ts ***!
+  \****************************************************/
+/*! exports provided: AddressComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "AddressComponent", function() { return AddressComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
+
+
+
+var AddressComponent = /** @class */ (function () {
+    function AddressComponent(router, fb, sends) {
+        this.router = router;
+        this.fb = fb;
+        this.sends = sends;
+    }
+    AddressComponent.prototype.ngOnInit = function () {
+        $(document).ready(function () {
+            $(".icon_3").click(function () {
+                $(".inside_3").toggle();
+            });
+        });
+        this.users = this.fb.group({
+            firstName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            lastName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            country: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            postcode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+    };
+    AddressComponent.prototype.datesends = function (formdata) {
+        var requestobj = {};
+        requestobj = this.sends.seconddata;
+        requestobj['firstName'] = this.users.value.firstName;
+        requestobj['lastName'] = this.users.value.lastName;
+        requestobj['address'] = this.users.value.address;
+        this.sends.seconddata = requestobj;
+        this.router.navigate(['result']);
+    };
+    AddressComponent.prototype.first = function () {
+        this.router.navigate(['moredetail']);
+    };
+    AddressComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-address',
+            template: __webpack_require__(/*! ./address.component.html */ "./src/app/index/address/address.component.html"),
+            styles: [__webpack_require__(/*! ./address.component.scss */ "./src/app/index/address/address.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_index_service__WEBPACK_IMPORTED_MODULE_3__["IndexService"]])
+    ], AddressComponent);
+    return AddressComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/edit-details/edit-details.component.html":
+/*!****************************************************************!*\
+  !*** ./src/app/index/edit-details/edit-details.component.html ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n    <!--header top start-->\n    <div class=\"header_top header_top_three\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <div class=\"header_top_inner\">\n              <div class=\"top_left\">\n                <ul>\n                  <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n  \n                  </li>\n  \n                  <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n  \n                </ul>\n              </div>\n             \n              <div class=\"logo logo_three\">\n                <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n              </div>\n            </div>\n          </div>\n  \n        </div>\n      </div>\n    </div>\n    <!--header top start-->\n    <!--header middel start-->\n    <div class=\"header_middle\">\n      <div class=\"container\">\n        <div class=\"row align-items-center\">\n          <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n            <div class=\"main_menu menu_three header_position\">\n              <nav>\n                <ul>\n  \n                  <li><a href=\"#\">home</a></li>\n                  <li><a href=\"#\">Aboutus</a></li>\n                  <li><a href=\"#\">Business</a></li>\n                  <li><a href=\"#\">Individuals</a></li>\n                  <li class=\"pull-right google2\">\n                    <div id=\"google_translate_element\"></div>\n                  </li>\n                </ul>\n  \n              </nav>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!--header middel end-->\n  \n    <!--popup start-->\n   \n      <!-- Modal -->\n    \n  \n  \n    <!--popup end-->\n  \n  </header>\n  <!--header area end-->\n  \n  <!--Offcanvas menu area start-->\n  \n  <div class=\"off_canvars_overlay\">\n  \n  </div>\n  <div class=\"Offcanvas_menu Offcanvas_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"canvas_open\">\n            <span>MENU</span>\n            <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n          </div>\n          <div class=\"Offcanvas_menu_wrapper\">\n            <div class=\"canvas_close\">\n              <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n            </div>\n  \n            <div id=\"menu\" class=\"text-left \">\n              <ul class=\"offcanvas_main_menu\">\n                <li class=\"menu-item-has-children active\">\n                  <a href=\"#\">Home</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">About</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">Gallery</a>\n                </li>\n  \n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">contact</a>\n                </li>\n  \n              </ul>\n            </div>\n  \n            <div class=\"Offcanvas_footer\">\n              <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n              <ul>\n                <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n                <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n                <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n                <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n                <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n              </ul>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--Offcanvas menu area end-->\n\n\n  <div class=\"about_section padt5\">\n      <div class=\"container\">\n    \n        <h2 class=\"heading_top\">please check the details entered</h2>\n    \n        <div class=\"row padt5\">\n    \n          <div class=\"col-lg-4 col-md-4\">\n    \n            <div class=\"address address_5\">\n    \n               <h4 (click)=\"first()\"><span>1</span>Personal Details\n                  <p>(edit)<p>\n                </h4>\n              <ul>\n                <li>Name:{{firstname}}</li>\n                <li>sex:{{gender}}</li>\n                <li>Dob:{{dob}}</li>\n              </ul>\n    \n              <h4 (click)=\"first()\"><span>2</span>Kit and Test Booking</h4>\n              <ul>\n                <li>test:HIV KIT</li>\n                <li>HIV only</li>\n              </ul>\n    \n              <h4 (click)=\"first()\"><span>3</span>Shipping Address \n                  <p>(edit)<p>\n                </h4>\n              <ul>\n                <li>{{address}}</li>\n                \n              </ul>\n    \n              <h4 (click)=\"first()\"><span>4</span>Notification details \n                  <p>(edit)<p>\n              </h4>\n              <ul>\n                <li>{{mobile}}</li>\n                <li>{{gmail}}</li>\n    \n              </ul>\n    \n            </div>\n    \n          </div>\n    \n          <div class=\"col-lg-4 col-md-4\">\n    \n            <div class=\"address\">\n    \n              <h4><span>5</span>Provider details</h4>\n              <ul>\n                <li>Your details test results will be passed\n                  to our partner charity youshine MESMAC for onward care,such as if you were to require testing or\n                  treatement</li>\n    \n              </ul>\n    \n              <h4><span>6</span>Research</h4>\n              <ul>\n                <li>Sometimes we work with external agencis such as public Health England or selected universities in the UK\n                  on research to improve HIV services.If you would be happy to receive an invitation in research please tick\n                  thi box</li>\n                <input type=\"checkbox\"> Yes,I am happy to be contacted\n              </ul>\n    \n              <h4><span>7</span>Agree & Consent</h4>\n              <ul>\n                <li>we want you to know exactly how our service works and how we use the information\n                  you provide.please confirm you have read our\n                  terms of use and privacy policy</li>\n                <input type=\"checkbox\"> I agree with the terms of use and privacy policy\n              </ul>\n    \n            </div>\n    \n          </div>\n    \n          <div class=\"col-lg-2 col-md-2\">\n    \n          </div>\n    \n        </div>\n    \n        <div class=\"buttons\">\n         <button class=\"btn pull-left\" (click)=\"first()\"> <i class=\"fa fa-arrow-circle-left\"></i> Back</button>\n          <button class=\"btn pull-right\" (click)=\"send()\" >Finish</button>\n        </div>\n    \n      </div>\n    </div>\n    \n    <!-- A delivery end -->\n\n    <!--footer area start-->\n<footer class=\"footer_widgets\">\n    <div class=\"container\">\n      <div class=\"footer_top\">\n        <div class=\"row\">\n          <div class=\"col-lg-4 col-md-6 col-sm-7\">\n            <div class=\"widgets_container contact_us\">\n              <h3>Contacts us</h3>\n              <div class=\"footer_contact\">\n                <ul>\n                  <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                    and typesetting industry. Lorem Ipsum</li>\n                  <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                  <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n                </ul>\n              </div>\n             \n            </div>\n          </div>\n          <div class=\"col-lg-2 col-md-6 col-sm-5\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>Information</h3>\n  \n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-4 col-sm-4\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>My Account</h3>\n              <div class=\"footer_menu\">\n                <div class=\"footer_contact\">\n                  <ul>\n                    <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                      HIV home-sampling screening. </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n  \n  \n  \n        </div>\n      </div>\n    </div>\n    <div class=\"footer_bottom\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12\">\n            <div class=\"copyright_area text-center\">\n              <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </footer>\n  <!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/edit-details/edit-details.component.scss":
+/*!****************************************************************!*\
+  !*** ./src/app/index/edit-details/edit-details.component.scss ***!
+  \****************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L2VkaXQtZGV0YWlscy9lZGl0LWRldGFpbHMuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/index/edit-details/edit-details.component.ts":
+/*!**************************************************************!*\
+  !*** ./src/app/index/edit-details/edit-details.component.ts ***!
+  \**************************************************************/
+/*! exports provided: EditDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "EditDetailsComponent", function() { return EditDetailsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+
+
+
+
+var EditDetailsComponent = /** @class */ (function () {
+    function EditDetailsComponent(router, sends) {
+        this.router = router;
+        this.sends = sends;
+    }
+    EditDetailsComponent.prototype.ngOnInit = function () {
+        //  this.router.navigate(['result']);
+        this.requestobj = {};
+        this.resultobj = this.sends.seconddata;
+        this.firstname = this.sends.seconddata['firstName'];
+        this.gender = this.sends.seconddata['gender'];
+        this.dob = this.sends.seconddata['dob'];
+        this.address = this.sends.seconddata['address'];
+        this.mobile = this.sends.seconddata['mobile'];
+        this.email = this.sends.seconddata['email'];
+    };
+    EditDetailsComponent.prototype.send = function () {
+        this.sends.another(this.resultobj);
+    };
+    EditDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-edit-details',
+            template: __webpack_require__(/*! ./edit-details.component.html */ "./src/app/index/edit-details/edit-details.component.html"),
+            styles: [__webpack_require__(/*! ./edit-details.component.scss */ "./src/app/index/edit-details/edit-details.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _services_index_service__WEBPACK_IMPORTED_MODULE_3__["IndexService"]])
+    ], EditDetailsComponent);
+    return EditDetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/final/final.component.html":
+/*!**************************************************!*\
+  !*** ./src/app/index/final/final.component.html ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n    <!--header top start-->\n    <div class=\"header_top header_top_three\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <div class=\"header_top_inner\">\n              <div class=\"top_left\">\n                <ul>\n                  <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n  \n                  </li>\n  \n                  <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n  \n                </ul>\n              </div>\n              \n              <div class=\"logo logo_three\">\n                <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n              </div>\n            </div>\n          </div>\n  \n        </div>\n      </div>\n    </div>\n    <!--header top start-->\n    <!--header middel start-->\n    <div class=\"header_middle\">\n      <div class=\"container\">\n        <div class=\"row align-items-center\">\n          <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n            <div class=\"main_menu menu_three header_position\">\n              <nav>\n                <ul>\n  \n                  <li><a href=\"#\">home</a></li>\n                  <li><a href=\"#\">Aboutus</a></li>\n                  <li><a href=\"#\">Business</a></li>\n                  <li><a href=\"#\">Individuals</a></li>\n                  <li class=\"pull-right google2\">\n                    <div id=\"google_translate_element\"></div>\n                  </li>\n                </ul>\n  \n              </nav>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!--header middel end-->\n  \n    <!--popup start-->\n   \n      <!-- Modal -->\n    \n  \n  \n    <!--popup end-->\n  \n  </header>\n  <!--header area end-->\n  \n  <!--Offcanvas menu area start-->\n  \n  <div class=\"off_canvars_overlay\">\n  \n  </div>\n  <div class=\"Offcanvas_menu Offcanvas_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"canvas_open\">\n            <span>MENU</span>\n            <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n          </div>\n          <div class=\"Offcanvas_menu_wrapper\">\n            <div class=\"canvas_close\">\n              <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n            </div>\n  \n            <div id=\"menu\" class=\"text-left \">\n              <ul class=\"offcanvas_main_menu\">\n                <li class=\"menu-item-has-children active\">\n                  <a href=\"#\">Home</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">About</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">Gallery</a>\n                </li>\n  \n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">contact</a>\n                </li>\n  \n              </ul>\n            </div>\n  \n            <div class=\"Offcanvas_footer\">\n              <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n              <ul>\n                <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n                <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n                <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n                <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n                <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n              </ul>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--Offcanvas menu area end-->\n\n\n\n\n  <div class=\"thanks text-center\">\n\n\n      <h2>Hi {{firstname}}, thank you for ordering your test kit.</h2>\n      \n      <p>your test will be posted shortly via first class mail, and should arrive with you within a few days. if you would like to find out more information about our test kit before it arrives, please see the about the test page.</p>\n      <b>please complete and return your test as soon as you can!</b>\n      <p>Simply follow the instructions in your kit to collect and return your sample for testing. Once we recive your sample, results should be available within 5 working days but are usually much quicker.</p>\n      \n      <h3>Your id is {{id}}</h3>\n\n</div>\n\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n    <div class=\"container\">\n      <div class=\"footer_top\">\n        <div class=\"row\">\n          <div class=\"col-lg-4 col-md-6 col-sm-7\">\n            <div class=\"widgets_container contact_us\">\n              <h3>Contacts us</h3>\n              <div class=\"footer_contact\">\n                <ul>\n                  <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                    and typesetting industry. Lorem Ipsum</li>\n                  <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                  <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n                </ul>\n              </div>\n             \n            </div>\n          </div>\n          <div class=\"col-lg-2 col-md-6 col-sm-5\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>Information</h3>\n  \n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-4 col-sm-4\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>My Account</h3>\n              <div class=\"footer_menu\">\n                <div class=\"footer_contact\">\n                  <ul>\n                    <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                      HIV home-sampling screening. </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n  \n  \n  \n        </div>\n      </div>\n    </div>\n    <div class=\"footer_bottom\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12\">\n            <div class=\"copyright_area text-center\">\n              <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </footer>"
+
+/***/ }),
+
+/***/ "./src/app/index/final/final.component.scss":
+/*!**************************************************!*\
+  !*** ./src/app/index/final/final.component.scss ***!
+  \**************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L2ZpbmFsL2ZpbmFsLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/index/final/final.component.ts":
+/*!************************************************!*\
+  !*** ./src/app/index/final/final.component.ts ***!
+  \************************************************/
+/*! exports provided: FinalComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "FinalComponent", function() { return FinalComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+
+
+
+var FinalComponent = /** @class */ (function () {
+    function FinalComponent(sends) {
+        this.sends = sends;
+    }
+    FinalComponent.prototype.ngOnInit = function () {
+        this.requestobj = {};
+        this.firstname = this.sends.seconddata['firstName'];
+        this.id = sessionStorage.getItem('message');
+    };
+    FinalComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-final',
+            template: __webpack_require__(/*! ./final.component.html */ "./src/app/index/final/final.component.html"),
+            styles: [__webpack_require__(/*! ./final.component.scss */ "./src/app/index/final/final.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_index_service__WEBPACK_IMPORTED_MODULE_1__["IndexService"]])
+    ], FinalComponent);
+    return FinalComponent;
+}());
+
+
+
+/***/ }),
+
 /***/ "./src/app/index/forgot/forgot.component.html":
 /*!****************************************************!*\
   !*** ./src/app/index/forgot/forgot.component.html ***!
@@ -1262,6 +1786,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/index/sign-up/sign-up.component.ts");
 /* harmony import */ var _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./forgot/forgot.component */ "./src/app/index/forgot/forgot.component.ts");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _person_details_person_details_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./person-details/person-details.component */ "./src/app/index/person-details/person-details.component.ts");
+/* harmony import */ var _test_test_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./test/test.component */ "./src/app/index/test/test.component.ts");
+/* harmony import */ var _address_address_component__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./address/address.component */ "./src/app/index/address/address.component.ts");
+/* harmony import */ var _questions_questions_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./questions/questions.component */ "./src/app/index/questions/questions.component.ts");
+/* harmony import */ var _more_detail_more_detail_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./more-detail/more-detail.component */ "./src/app/index/more-detail/more-detail.component.ts");
+/* harmony import */ var _result_result_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./result/result.component */ "./src/app/index/result/result.component.ts");
+/* harmony import */ var _edit_details_edit_details_component__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./edit-details/edit-details.component */ "./src/app/index/edit-details/edit-details.component.ts");
+/* harmony import */ var _final_final_component__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./final/final.component */ "./src/app/index/final/final.component.ts");
+
+
+
+
+
+
+
+
 
 
 
@@ -1274,7 +1814,7 @@ var IndexModule = /** @class */ (function () {
     }
     IndexModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
-            declarations: [_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__["SignUpComponent"], _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_5__["ForgotComponent"]],
+            declarations: [_login_login_component__WEBPACK_IMPORTED_MODULE_3__["LoginComponent"], _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_4__["SignUpComponent"], _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_5__["ForgotComponent"], _person_details_person_details_component__WEBPACK_IMPORTED_MODULE_7__["PersonDetailsComponent"], _test_test_component__WEBPACK_IMPORTED_MODULE_8__["TestComponent"], _address_address_component__WEBPACK_IMPORTED_MODULE_9__["AddressComponent"], _questions_questions_component__WEBPACK_IMPORTED_MODULE_10__["QuestionsComponent"], _more_detail_more_detail_component__WEBPACK_IMPORTED_MODULE_11__["MoreDetailComponent"], _result_result_component__WEBPACK_IMPORTED_MODULE_12__["ResultComponent"], _edit_details_edit_details_component__WEBPACK_IMPORTED_MODULE_13__["EditDetailsComponent"], _final_final_component__WEBPACK_IMPORTED_MODULE_14__["FinalComponent"]],
             imports: [
                 _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_6__["ReactiveFormsModule"],
@@ -1299,22 +1839,46 @@ var IndexModule = /** @class */ (function () {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Indexroutes", function() { return Indexroutes; });
-/* harmony import */ var _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./forgot/forgot.component */ "./src/app/index/forgot/forgot.component.ts");
-/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./login/login.component */ "./src/app/index/login/login.component.ts");
-/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/index/sign-up/sign-up.component.ts");
-/* harmony import */ var _index_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./index.component */ "./src/app/index/index.component.ts");
-/* harmony import */ var _gaurds_login_guard__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../gaurds/login.guard */ "./src/app/gaurds/login.guard.ts");
+/* harmony import */ var _final_final_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./final/final.component */ "./src/app/index/final/final.component.ts");
+/* harmony import */ var _more_detail_more_detail_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./more-detail/more-detail.component */ "./src/app/index/more-detail/more-detail.component.ts");
+/* harmony import */ var _questions_questions_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./questions/questions.component */ "./src/app/index/questions/questions.component.ts");
+/* harmony import */ var _address_address_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./address/address.component */ "./src/app/index/address/address.component.ts");
+/* harmony import */ var _test_test_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./test/test.component */ "./src/app/index/test/test.component.ts");
+/* harmony import */ var _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./forgot/forgot.component */ "./src/app/index/forgot/forgot.component.ts");
+/* harmony import */ var _login_login_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./login/login.component */ "./src/app/index/login/login.component.ts");
+/* harmony import */ var _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./sign-up/sign-up.component */ "./src/app/index/sign-up/sign-up.component.ts");
+/* harmony import */ var _index_component__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./index.component */ "./src/app/index/index.component.ts");
+/* harmony import */ var _gaurds_login_guard__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../gaurds/login.guard */ "./src/app/gaurds/login.guard.ts");
+/* harmony import */ var _result_result_component__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./result/result.component */ "./src/app/index/result/result.component.ts");
+/* harmony import */ var _person_details_person_details_component__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./person-details/person-details.component */ "./src/app/index/person-details/person-details.component.ts");
+/* harmony import */ var _edit_details_edit_details_component__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./edit-details/edit-details.component */ "./src/app/index/edit-details/edit-details.component.ts");
+
+
+
+
+
+
+
+
 
 
 
 
 
 var Indexroutes = [
-    { path: '', component: _index_component__WEBPACK_IMPORTED_MODULE_3__["IndexComponent"], canActivate: [_gaurds_login_guard__WEBPACK_IMPORTED_MODULE_4__["LoginGuard"]],
+    { path: '', component: _index_component__WEBPACK_IMPORTED_MODULE_8__["IndexComponent"], canActivate: [_gaurds_login_guard__WEBPACK_IMPORTED_MODULE_9__["LoginGuard"]],
         children: [
-            { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_1__["LoginComponent"] },
-            { path: 'sing-up', component: _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_2__["SignUpComponent"] },
-            { path: 'forgot', component: _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_0__["ForgotComponent"] },
+            { path: 'login', component: _login_login_component__WEBPACK_IMPORTED_MODULE_6__["LoginComponent"] },
+            { path: 'sing-up', component: _sign_up_sign_up_component__WEBPACK_IMPORTED_MODULE_7__["SignUpComponent"] },
+            { path: 'forgot', component: _forgot_forgot_component__WEBPACK_IMPORTED_MODULE_5__["ForgotComponent"] },
+            { path: 'personsdetails', component: _person_details_person_details_component__WEBPACK_IMPORTED_MODULE_11__["PersonDetailsComponent"] },
+            { path: 'test', component: _test_test_component__WEBPACK_IMPORTED_MODULE_4__["TestComponent"] },
+            { path: 'address', component: _address_address_component__WEBPACK_IMPORTED_MODULE_3__["AddressComponent"] },
+            { path: 'question', component: _questions_questions_component__WEBPACK_IMPORTED_MODULE_2__["QuestionsComponent"] },
+            { path: 'moredetail', component: _more_detail_more_detail_component__WEBPACK_IMPORTED_MODULE_1__["MoreDetailComponent"] },
+            { path: 'result', component: _result_result_component__WEBPACK_IMPORTED_MODULE_10__["ResultComponent"] },
+            { path: 'edit', component: _edit_details_edit_details_component__WEBPACK_IMPORTED_MODULE_12__["EditDetailsComponent"] },
+            { path: 'final', component: _final_final_component__WEBPACK_IMPORTED_MODULE_0__["FinalComponent"] }
         ]
     }
 ];
@@ -1329,7 +1893,7 @@ var Indexroutes = [
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<section class=\"material-half-bg\">\n\t<div class=\"cover\"></div>\n</section>\n<section class=\"login-content\">\n\t<div class=\"logo\">\n\t\t<h1>ds</h1>\n\t</div>\n\t<div class=\"login-box\">\n\t\t<form class=\"login-form\"  [formGroup]=\"OBSLoginForm\" (ngSubmit)=\"LoginAction(OBSLoginForm.value)\">\n\t\t\t<h3 class=\"login-head\"><i class=\"fa fa-lg fa-fw fa-user\"></i>SIGN IN</h3>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label class=\"control-label\">USERNAME</label>\n\t\t\t\t<input type=\"text\" class=\"form-control\" placeholder=\"Username\" required=\"required\"  formControlName=\"username\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label class=\"control-label\">PASSWORD</label>\n\t\t\t\t<input type=\"password\" class=\"form-control\" placeholder=\"Password\" required=\"required\"  formControlName=\"password\">\n\t\t\t</div>\n\t\t\t<!--\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<div class=\"utility\">\n\t\t\t\t\t<div class=\"animated-checkbox\">\n\t\t\t\t\t\t<label>\n\t\t\t\t\t\t\t<input type=\"checkbox\"><span class=\"label-text\">Stay Signed in</span>\n\t\t\t\t\t\t</label>\n\t\t\t\t\t</div>\n\t\t\t\t\t\n\t\t\t\t\t<a href=\"#myModal\" class=\"trigger-btn\" data-toggle=\"modal\" class=\"forgot-link\">Forgot Password ?</a>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t\t-->\n\t\t\t<div class=\"form-group btn-container\">\n\t\t\t\t<button class=\"btn btn-primary btn-block\" [disabled]=\"OBSLoginForm.invalid\"><i class=\"fa fa-sign-in fa-lg fa-fw\"></i>SIGN IN</button>\n\t\t\t</div>\t\n\t\t\t<!--\n\t\t  <a href=\"#\" data-toggle=\"flip\" class=\"pull-right\">Register Here</a>\n\t\t  -->\n\t\t</form>\n\t\t<form class=\"forget-form\">\n\t\t\t<h3 class=\"login-head\"><i class=\"fa fa-lg fa-fw fa-pencil\"></i>Registration Form</h3>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label class=\"control-label\">EMAIL</label>\n\t\t\t\t<input class=\"form-control\" type=\"text\" placeholder=\"Email\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label class=\"control-label\">PASSWORD</label>\n\t\t\t\t<input class=\"form-control\" type=\"password\" placeholder=\"password\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group\">\n\t\t\t\t<label class=\"control-label\">CONFIRM PASSWORD</label>\n\t\t\t\t<input class=\"form-control\" type=\"password\" placeholder=\"confirm password\">\n\t\t\t</div>\n\t\t\t<div class=\"form-group btn-container\">\n\t\t\t\t<button class=\"btn btn-primary btn-block\">SAVE</button>\n\t\t\t</div><br>\n\t\t\t<div class=\"form-group btn-container\">\n\t\t\t\t<button class=\"btn btn-info btn-block\">CLEAR</button>\n\t\t\t</div>\n\t\t\t\n\t\t\t<div class=\"form-group mt-3\">\n\t\t\t\t<p class=\"semibold-text mb-0\"><a href=\"#\" data-toggle=\"flip\"><i class=\"fa fa-angle-left fa-fw\"></i> Back to Login</a></p>\n\t\t\t</div>\n\t\t</form>\n\t</div>\n\t<!--fogot password-->\n<div id=\"myModal\" class=\"modal fade\">\n\t<div class=\"modal-dialog modal-newsletter\">\n\t\t<div class=\"modal-content\">\n\t\t\t<form action=\"/examples/actions/confirmation.php\" method=\"post\">\n\t\t\t\t<div class=\"modal-header\">\n\t\t\t\t\t<div class=\"icon-box\">\t\t\t\t\t\t\n\t\t\t\t\t\t<i class=\"fa fa-envelope-open-o\"></i>\n\t\t\t\t\t</div>\n\t\t\t\t\t<button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-hidden=\"true\"><span>&times;</span></button>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"modal-body text-center\">\n\t\t\t\t\t<h5>Send password to your Email Id</h5>\t\n\t\t\t\t\t<div class=\"input-group\">\n\t\t\t\t\t\t<input type=\"email\" class=\"form-control\" placeholder=\"Enter your email\" required>&nbsp;\n\t\t\t\t\t\t<div class=\"form-group btn-container\">\n\t\t\t\t\t\t\t<button class=\"btn btn-primary btn-block\"><i class=\"fa fa-unlock fa-lg fa-fw\"></i>RESET</button>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</form>\t\t\t\n\t\t</div>\n\t</div>\n</div> \n</section>\n\n\n<style>\n\t.forget-form {\n\t\tposition: relative;\n\t\tmin-width: 350px;\n\t\tmin-height: 500px;\n\t\tbackground-color: #fff;\n\t\tbox-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);\n\t\t-webkit-perspective: 800px;\n\t\tperspective: 800px;\n\t\ttransition: all 0.5s ease-in-out;\n\t}\n\t.login-box{\n\t\tmargin-top: -205px;\n\t}\n</style>"
+module.exports = "\n<!--header start-->\n\n\n<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n\t\t<!--header top start-->\n\t\t<div class=\"header_top header_top_three\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<div class=\"row\">\n\t\t\t\t\t<div class=\"col-12\">\n\t\t\t\t\t\t<div class=\"header_top_inner\">\n\t\t\t\t\t\t\t<div class=\"top_left\">\n\t\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t\t<li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n\t\n\t\t\t\t\t\t\t\t\t</li>\n\t\n\t\t\t\t\t\t\t\t\t<li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n\t\n\t\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t\t<div class=\"top_right\">\n\t\t\t\t\t\t\t\t<form class=\"inner_form\" [formGroup]=\"OBSLoginForm\" (ngSubmit)=\"LoginAction(OBSLoginForm.value)\">\n            \n                  <div class=\"form-group\">\n                    <input type=\"text\" class=\"form-control\" placeholder=\"Username\" required=\"required\"  formControlName=\"username\">\n                  </div>\n                  <div class=\"form-group\">\n                      <input type=\"password\" class=\"form-control\" placeholder=\"Password\" required=\"required\"  formControlName=\"password\">\n                  </div>\n                  <div class=\"form-group btn-container\">\n                      <button class=\"btn btn-primary btn-block\" [disabled]=\"OBSLoginForm.invalid\">SIGN IN</button>\n                  </div>  \n              </form>\n\t\n               </div>\n\t\t\t\t\t\t\t<div class=\"logo logo_three\">\n\t\t\t\t\t\t\t\t<a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n\t\t\t\t\t\t\t</div>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<!--header top start-->\n\t\t<!--header middel start-->\n\t\t<div class=\"header_middle\">\n\t\t\t<div class=\"container\">\n\t\t\t\t<div class=\"row align-items-center\">\n\t\t\t\t\t<div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n\t\t\t\t\t\t<div class=\"main_menu menu_three header_position\">\n\t\t\t\t\t\t\t<nav>\n\t\t\t\t\t\t\t\t<ul>\n\t\n\t\t\t\t\t\t\t\t\t<li><a href=\"#\">home</a></li>\n\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Aboutus</a></li>\n\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Business</a></li>\n\t\t\t\t\t\t\t\t\t<li><a href=\"#\">Individuals</a></li>\n\t\t\t\t\t\t\t\t\t<li class=\"pull-right google2\">\n\t\t\t\t\t\t\t\t\t\t<div id=\"google_translate_element\"></div>\n\t\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t</ul>\n\t\n\t\t\t\t\t\t\t</nav>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t\t<!--header middel end-->\n\t\n\t\n\t\n\t</header>\n\t<!--header area end-->\n\t\n\t<!--Offcanvas menu area start-->\n\t\n\t<div class=\"off_canvars_overlay\">\n\t\n\t</div>\n\t<div class=\"Offcanvas_menu Offcanvas_three\">\n\t\t<div class=\"container\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-12\">\n\t\t\t\t\t<div class=\"canvas_open\">\n\t\t\t\t\t\t<span>MENU</span>\n\t\t\t\t\t\t<a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n\t\t\t\t\t</div>\n\t\t\t\t\t<div class=\"Offcanvas_menu_wrapper\">\n\t\t\t\t\t\t<div class=\"canvas_close\">\n\t\t\t\t\t\t\t<a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n\t\t\t\t\t\t</div>\n\t\n\t\t\t\t\t\t<div id=\"menu\" class=\"text-left \">\n\t\t\t\t\t\t\t<ul class=\"offcanvas_main_menu\">\n\t\t\t\t\t\t\t\t<li class=\"menu-item-has-children active\">\n\t\t\t\t\t\t\t\t\t<a href=\"#\">Home</a>\n\t\n\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t<li class=\"menu-item-has-children\">\n\t\t\t\t\t\t\t\t\t<a href=\"#\">About</a>\n\t\n\t\t\t\t\t\t\t\t</li>\n\t\t\t\t\t\t\t\t<li class=\"menu-item-has-children\">\n\t\t\t\t\t\t\t\t\t<a href=\"#\">Gallery</a>\n\t\t\t\t\t\t\t\t</li>\n\t\n\t\t\t\t\t\t\t\t<li class=\"menu-item-has-children\">\n\t\t\t\t\t\t\t\t\t<a href=\"#\">contact</a>\n\t\t\t\t\t\t\t\t</li>\n\t\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t</div>\n\t\n\t\t\t\t\t\t<div class=\"Offcanvas_footer\">\n\t\t\t\t\t\t\t<span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n\t\t\t\t\t\t\t<ul>\n\t\t\t\t\t\t\t\t<li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n\t\t\t\t\t\t\t\t<li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n\t\t\t\t\t\t\t\t<li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n\t\t\t\t\t\t\t\t<li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n\t\t\t\t\t\t\t\t<li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n\t\t\t\t\t\t\t</ul>\n\t\t\t\t\t\t</div>\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\t<!--Offcanvas menu area end-->\n\t\n\t\n\t<!--header end-->\n\t\n\t<!--first page start -->\n\t<div class=\"about_section mt-60\">\n\t\t<div class=\"container\">\n\t\t\t<div class=\"row\">\n\t\t\t\t<div class=\"col-lg-12 col-md-12\">\n\t\t\t\t\t<div class=\"about_content text-left\">\n\t\t\t\t\t\t<h1>Around 13% of the estimated 100,000 people living with HIV in the UK remain undiagnosed.</h1>\n\t\t\t\t\t\t<p>Free self-sampling HIV test kits are available in many areas of the country — enter your details below to\n\t\t\t\t\t\t\tcheck your eligibility:</p>\n\t\t\t\t\t\t<!--<div class=\"view__work\">\n\t\t\t\t\t\t  <a href=\"#\">view work </a>\n\t\t\t\t</div>-->\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t\t<div class=\"col-lg-12 col-md-12\">\n\t\n\t\t\t\t\t<div class=\"account_form form_4\">\n\t\n\t\t\t\t\t\t<form class=\"inner_1\" [formGroup]=\"user\" (ngSubmit)=\"send()\">\n\n\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t<label>Your age <span>*</span></label>\n\t\t\t\t\t\t\t\t<input type=\"text\" formControlName=\"age\" required />\n\t\t\t\t\t\t\t\t<span *ngIf=\"user.controls['age'].invalid && user.controls['age'].touched\" class='text text-danger'>Age is\n\t\t\t\t\t\t\t\t\tRequired</span>\n\t\t\t\t\t\t\t</p>\n\t\t\t\t\t\t\t<p>\n\t\t\t\t\t\t\t\t<label>Postcode <span>*</span></label>\n\t\t\t\t\t\t\t\t<input type=\"text\" formControlName=\"postCode\" required />\n\t\t\t\t\t\t\t\t<span *ngIf=\"user.controls['postCode'].invalid && user.controls['postCode'].touched\"\n\t\t\t\t\t\t\t\t\tclass='text text-danger'>PostCode is Required</span>\n\t\t\t\t\t\t\t</p>\n\t\n\t\t\t\t\t\t\t<div class=\"login_submit1\">\n\t\t\t\t\t\t\t\t<input type=\"submit\" class=\"btn btn-info btn_another another_4\" value=\"Go\">\n\t\t\t\t\t\t\t</div>\n\t\n\t\t\t\t\t\t\t<!---[disabled]=\"user.invalid\"-->\n\t\n\t\t\t\t\t\t</form>\n\t\n\t\t\t\t\t</div>\n\t\t\t\t</div>\n\t\t\t</div>\n\t\t</div>\n\t</div>\n\n<!--header end-->\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n\t<div class=\"container\">\n\t  <div class=\"footer_top\">\n\t\t<div class=\"row\">\n\t\t  <div class=\"col-lg-4 col-md-6 col-sm-7\">\n\t\t\t<div class=\"widgets_container contact_us\">\n\t\t\t  <h3>Contacts us</h3>\n\t\t\t  <div class=\"footer_contact\">\n\t\t\t\t<ul>\n\t\t\t\t  <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n\t\t\t\t\tand typesetting industry. Lorem Ipsum</li>\n\t\t\t\t  <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n\t\t\t\t  <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n\t\t\t\t</ul>\n\t\t\t  </div>\n\t\t\t \n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"col-lg-2 col-md-6 col-sm-5\">\n\t\t\t<div class=\"widgets_container widget_menu\">\n\t\t\t  <h3>Information</h3>\n  \n\t\t\t</div>\n\t\t  </div>\n\t\t  <div class=\"col-lg-6 col-md-4 col-sm-4\">\n\t\t\t<div class=\"widgets_container widget_menu\">\n\t\t\t  <h3>My Account</h3>\n\t\t\t  <div class=\"footer_menu\">\n\t\t\t\t<div class=\"footer_contact\">\n\t\t\t\t  <ul>\n\t\t\t\t\t<li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n\t\t\t\t\t  HIV home-sampling screening. </li>\n\t\t\t\t  </ul>\n\t\t\t\t</div>\n\t\t\t  </div>\n\t\t\t</div>\n\t\t  </div>\n  \n  \n  \n\t\t</div>\n\t  </div>\n\t</div>\n\t<div class=\"footer_bottom\">\n\t  <div class=\"container\">\n\t\t<div class=\"row\">\n\t\t  <div class=\"col-lg-12 col-md-12\">\n\t\t\t<div class=\"copyright_area text-center\">\n\t\t\t  <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n\t\t\t</div>\n\t\t  </div>\n\t\t</div>\n\t  </div>\n\t</div>\n  </footer>\n  <!--footer area end-->\n\t\n\n\n\n\n\n<style>\n\n.inner_form .form-group\n{\n    margin-bottom: 4px;\n    width: 30%;\n    float: left;\n    margin-right: 5px;\n}\n.inner_form .form-control\n{\n  height:33px;\n}\n.inner_form .btn\n{\n  width: 55%;\n  font-size: 13px;\n  padding: 4px 0px 4px 4px;\n}\n.inner_form\n{\n  position: relative;\n  top: 8px;\n  right: -260px;\n}\n\n\n</style>"
 
 /***/ }),
 
@@ -1359,16 +1923,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+
 
 
 
 
 
 var LoginComponent = /** @class */ (function () {
-    function LoginComponent(fb, authService, routerNavigate) {
+    function LoginComponent(fb, authService, routerNavigate, sendservice) {
         this.fb = fb;
         this.authService = authService;
         this.routerNavigate = routerNavigate;
+        this.sendservice = sendservice;
     }
     LoginComponent.prototype.LoginAction = function (formData) {
         if (this.authService.loginAction(formData)) {
@@ -1386,6 +1953,19 @@ var LoginComponent = /** @class */ (function () {
             'username': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
             'password': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
         });
+        this.OBSLoginForm = this.fb.group({
+            'username': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            'password': [null, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
+        //age validation
+        this.user = this.fb.group({
+            age: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required],
+            postCode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__["Validators"].required]
+        });
+    };
+    LoginComponent.prototype.send = function () {
+        this.sendservice.send(this.user.value);
+        this.sendservice.logindata = this.user.value;
     };
     LoginComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
@@ -1393,9 +1973,500 @@ var LoginComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./login.component.html */ "./src/app/index/login/login.component.html"),
             styles: [__webpack_require__(/*! ./login.component.scss */ "./src/app/index/login/login.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormBuilder"], _services_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"], _services_index_service__WEBPACK_IMPORTED_MODULE_5__["IndexService"]])
     ], LoginComponent);
     return LoginComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/more-detail/more-detail.component.html":
+/*!**************************************************************!*\
+  !*** ./src/app/index/more-detail/more-detail.component.html ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n  <!--header top start-->\n  <div class=\"header_top header_top_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"header_top_inner\">\n            <div class=\"top_left\">\n              <ul>\n                <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n\n                </li>\n\n                <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n\n              </ul>\n            </div>\n            \n            <div class=\"logo logo_three\">\n              <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n  <!--header top start-->\n  <!--header middel start-->\n  <div class=\"header_middle\">\n    <div class=\"container\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n          <div class=\"main_menu menu_three header_position\">\n            <nav>\n              <ul>\n\n                <li><a href=\"#\">home</a></li>\n                <li><a href=\"#\">Aboutus</a></li>\n                <li><a href=\"#\">Business</a></li>\n                <li><a href=\"#\">Individuals</a></li>\n                <li class=\"pull-right google2\">\n                  <div id=\"google_translate_element\"></div>\n                </li>\n              </ul>\n\n            </nav>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--header middel end-->\n\n  <!--popup start-->\n \n    <!-- Modal -->\n  \n\n\n  <!--popup end-->\n\n</header>\n<!--header area end-->\n\n<!--Offcanvas menu area start-->\n\n<div class=\"off_canvars_overlay\">\n\n</div>\n<div class=\"Offcanvas_menu Offcanvas_three\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"canvas_open\">\n          <span>MENU</span>\n          <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n        </div>\n        <div class=\"Offcanvas_menu_wrapper\">\n          <div class=\"canvas_close\">\n            <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n          </div>\n\n          <div id=\"menu\" class=\"text-left \">\n            <ul class=\"offcanvas_main_menu\">\n              <li class=\"menu-item-has-children active\">\n                <a href=\"#\">Home</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">About</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">Gallery</a>\n              </li>\n\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">contact</a>\n              </li>\n\n            </ul>\n          </div>\n\n          <div class=\"Offcanvas_footer\">\n            <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n            <ul>\n              <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n              <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n              <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n              <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n              <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!--Offcanvas menu area end-->\n\n\n\n<!---more start-->\n\n\n<!-- A few questions start -->\n\n\n<div class=\"about_section padt5\">\n\n  <div class=\"container\">\n\n    <div class=\"panel\">\n\n      <div class=\"panel_heading\">\n\n        <h3>A few quick ask questions</h3>\n\n      </div>\n\n      <div class=\"panel_body\">\n\n        <div class=\"row\">\n         \n          <div class=\"col-lg-12 col-md-12\">\n\n           <form  [formGroup]=\"users\" (ngSubmit)=\"datessend(users.value)\">\n\n            <div class=\"text2\">\n              <p>When did you last ahve an HIV test?</p>\n              <label>\n                <input type=\"radio\" name=\"hiv\" value=\"never tested\" formControlName=\"hiv\"  />\n                <span>Never tested</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"hiv\" value=\"Over a year ago\" formControlName=\"hiv\"  />\n                <span>Over a year ago</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"hiv\" value=\"with in last year\" formControlName=\"hiv\"  />\n                <span>with in last year</span>\n              </label>\n            </div>\n\n\n            <div class=\"text2\">\n              <p>Have you had unprotected sex with in the last 12 months?</p>\n              <label>\n                <input type=\"radio\" name=\"protect\" value=\"No\" formControlName=\"protect\" />\n                <span>No</span>\n              </label>\n              <label>\n                <input type=\"radio\"  name=\"protect\" value=\"Yes with i partner\" formControlName=\"protect\" />\n                <span>Yes with i partner</span>\n              </label>\n              <label>\n                <input type=\"radio\"  name=\"protect\" value=\"yes with 2-5 partners\" formControlName=\"protect\" />\n                <span>yes with 2-5 partners</span>\n              </label>\n              <label>\n                <input type=\"radio\"  name=\"protect\" value=\"yes with 6-12 partners\" formControlName=\"protect\" />\n                <span>yes with 6-12 partners</span>\n              </label>\n              <label>\n                <input type=\"radio\"  name=\"protect\" value=\"yes more than 12 partners\" formControlName=\"protect\" />\n                <span>yes more than 12 partners</span>\n              </label>\n            </div>\n\n\n            <div class=\"text2\">\n              <p>How many partners have you had sex with in the last 12 moths?</p>\n              <label>\n                <input type=\"radio\" name=\"protect2\" value=\"No sexual problem\" formControlName=\"protect2\"  />\n                <span>No sexual problem</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect2\" value=\"just 1 partner\" formControlName=\"protect2\" />\n                <span>just 1 partner</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect2\" value=\"2-5 partners\" formControlName=\"protect2\" />\n                <span>2-5 partners</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect2\" value=\"6-12 partners\" formControlName=\"protect2\" />\n                <span>6-12 partners</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect2\" value=\"more than 12 partners\" formControlName=\"protect2\"  />\n                <span>more than 12 partners</span>\n              </label>\n            </div>\n\n\n\n            <div class=\"text2\">\n              <p>How oftner have you had sex under in influence of alchol or recreational drugs?</p>\n              <label>\n                <input type=\"radio\" name=\"protect3\" value=\"Never\" formControlName=\"protect3\"  />\n                <span>Never</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect3\" value=\"Sometime\" formControlName=\"protect3\"  />\n                <span>Sometime</span>\n              </label>\n              <label>\n                <input type=\"radio\"name=\"protect3\" value=\"Usually\" formControlName=\"protect3\"  />\n                <span>Usually</span>\n              </label>\n              <label>\n                <input type=\"radio\" name=\"protect3\" value=\"always\" formControlName=\"protect3\"  />\n                <span>always</span>\n              </label>\n            </div>\n\n             <div class=\"buttons button_5\">\n\n                <button class=\"btn btn-success pull-left question_1\"  (click)=\"first()\" ><i class=\"fa fa-arrow-circle-left\"></i>Back</button>\n                <button class=\"btn pull-right question_2\" type=\"submit\">Next <i class=\"fa fa-arrow-circle-right\"></i></button>\n\n              </div>\n\n            \n            </form>\n\n          </div>\n        </div>\n\n      </div>\n    </div>\n\n   \n\n  </div>\n</div>\n\n<!-- A few questions end -->\n\n\n\n\n<!---more end-->\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n  <div class=\"container\">\n    <div class=\"footer_top\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-7\">\n          <div class=\"widgets_container contact_us\">\n            <h3>Contacts us</h3>\n            <div class=\"footer_contact\">\n              <ul>\n                <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                  and typesetting industry. Lorem Ipsum</li>\n                <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n              </ul>\n            </div>\n           \n          </div>\n        </div>\n        <div class=\"col-lg-2 col-md-6 col-sm-5\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>Information</h3>\n\n          </div>\n        </div>\n        <div class=\"col-lg-6 col-md-4 col-sm-4\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>My Account</h3>\n            <div class=\"footer_menu\">\n              <div class=\"footer_contact\">\n                <ul>\n                  <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                    HIV home-sampling screening. </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n      </div>\n    </div>\n  </div>\n  <div class=\"footer_bottom\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-12 col-md-12\">\n          <div class=\"copyright_area text-center\">\n            <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</footer>\n<!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/more-detail/more-detail.component.scss":
+/*!**************************************************************!*\
+  !*** ./src/app/index/more-detail/more-detail.component.scss ***!
+  \**************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L21vcmUtZGV0YWlsL21vcmUtZGV0YWlsLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/index/more-detail/more-detail.component.ts":
+/*!************************************************************!*\
+  !*** ./src/app/index/more-detail/more-detail.component.ts ***!
+  \************************************************************/
+/*! exports provided: MoreDetailComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MoreDetailComponent", function() { return MoreDetailComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
+
+
+
+var MoreDetailComponent = /** @class */ (function () {
+    function MoreDetailComponent(router, fb, sends) {
+        this.router = router;
+        this.fb = fb;
+        this.sends = sends;
+    }
+    MoreDetailComponent.prototype.ngOnInit = function () {
+        this.users = this.fb.group({
+            hiv: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            protect: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            protect2: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            protect3: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+    };
+    MoreDetailComponent.prototype.datessend = function (formdata) {
+        var requestobj = {};
+        requestobj = this.sends.seconddata;
+        requestobj['quetionary5'] = { '"When did you last ahve an HIV test?"': this.users.value.hiv };
+        requestobj['quetionary6'] = { '"Have you had unprotected sex with in the last 12 months?"': this.users.value.protect };
+        requestobj['quetionary7'] = { '"How many partners have you had sex with in the last 12 moths?"': this.users.value.protect2 };
+        requestobj['quetionary8'] = { '"How oftner have you had sex under in influence of alchol or recreational drugs?"': this.users.value.protect3 };
+        this.sends.seconddata = requestobj;
+        this.router.navigate(['address']);
+    };
+    MoreDetailComponent.prototype.first = function () {
+        this.router.navigate(['questionaries']);
+    };
+    MoreDetailComponent.prototype.second = function () {
+        this.router.navigate(['address']);
+    };
+    MoreDetailComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-more-detail',
+            template: __webpack_require__(/*! ./more-detail.component.html */ "./src/app/index/more-detail/more-detail.component.html"),
+            styles: [__webpack_require__(/*! ./more-detail.component.scss */ "./src/app/index/more-detail/more-detail.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_index_service__WEBPACK_IMPORTED_MODULE_3__["IndexService"]])
+    ], MoreDetailComponent);
+    return MoreDetailComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/person-details/person-details.component.html":
+/*!********************************************************************!*\
+  !*** ./src/app/index/person-details/person-details.component.html ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n  <!--header top start-->\n  <div class=\"header_top header_top_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"header_top_inner\">\n            <div class=\"top_left\">\n              <ul>\n                <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n\n                </li>\n\n                <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n\n              </ul>\n            </div>\n            \n            <div class=\"logo logo_three\">\n              <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n  <!--header top start-->\n  <!--header middel start-->\n  <div class=\"header_middle\">\n    <div class=\"container\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n          <div class=\"main_menu menu_three header_position\">\n            <nav>\n              <ul>\n\n                <li><a href=\"#\">home</a></li>\n                <li><a href=\"#\">Aboutus</a></li>\n                <li><a href=\"#\">Business</a></li>\n                <li><a href=\"#\">Individuals</a></li>\n                <li class=\"pull-right google2\">\n                  <div id=\"google_translate_element\"></div>\n                </li>\n              </ul>\n\n            </nav>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--header middel end-->\n\n  <!--popup start-->\n \n    <!-- Modal -->\n  \n\n\n  <!--popup end-->\n\n</header>\n<!--header area end-->\n\n<!--Offcanvas menu area start-->\n\n<div class=\"off_canvars_overlay\">\n\n</div>\n<div class=\"Offcanvas_menu Offcanvas_three\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"canvas_open\">\n          <span>MENU</span>\n          <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n        </div>\n        <div class=\"Offcanvas_menu_wrapper\">\n          <div class=\"canvas_close\">\n            <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n          </div>\n\n          <div id=\"menu\" class=\"text-left \">\n            <ul class=\"offcanvas_main_menu\">\n              <li class=\"menu-item-has-children active\">\n                <a href=\"#\">Home</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">About</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">Gallery</a>\n              </li>\n\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">contact</a>\n              </li>\n\n            </ul>\n          </div>\n\n          <div class=\"Offcanvas_footer\">\n            <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n            <ul>\n              <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n              <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n              <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n              <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n              <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!--Offcanvas menu area end-->\n\n\n<!--about section area -->\n<div class=\"about_section mt-60\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-lg-12 col-md-12\">\n        <div class=\"about_content text-left\">\n          <h1>Around 13% of the estimated 100,000 people living with HIV in the UK remain undiagnosed.</h1>\n          <p>Free self-sampling HIV test kits are available in many areas of the country — enter your details below to\n            check your eligibility:</p>\n          <!--<div class=\"view__work\">\n                      <a href=\"#\">view work </a>\n                  </div>-->\n        </div>\n      </div>\n      <div class=\"col-lg-12 col-md-12\">\n        <div class=\"account_form another_2\">\n\n          <div class=\"inner_1\">\n\n            <p>\n              <label>I am a <span>*</span></label>\n              <select [(ngModel)]=\"gender\" required>\n                <option value=\"Man\">Man</option>\n                <option  value=\"Female\">Woman</option>\n              </select>\n              <span *ngIf=\"person.controls['gender'].invalid && person.controls['gender'].touched\" class='text text-danger'>This option is Required</span>\n            </p>\n            <p>\n              <label>I have sex with <span>*</span></label>\n           \n              <select [(ngModel)]=\"oppositeGender\" required>\n                <option value=\"Male\">Male</option>\n                <option value=\"Women\">Woman</option>\n              </select>\n              <span *ngIf=\"person.controls['oppositeGender'].invalid && person.controls['oppositeGender'].touched\" class='text text-danger'>This option Required</span>\n            </p>\n            <p>\n              <label>My ethnic group is <span>*</span></label>\n               \n                 <select [(ngModel)]=\"selectedEthenicName\" class=\"col-md-7\">\n                  <option *ngFor=\"let c of ethenicData\" [ngValue]=\"c\">{{c.ethnicName}}</option>\n                </select>\n          \n               </p>\n\n            <button class=\"btn btn-info btn_another6\" (click)=\"createGenderEthenic(gender,oppositeGender,selectedEthenicName)\">SUBMIT</button>\n \n          </div>\n\n         \n            <button class=\"btn btn-info btn_another\" (click)=\"send()\"><i class=\"fa fa-arrow-left fa-2x\"></i></button>\n\n       \n\n        </div>\n\n      </div>\n    </div>\n  </div>\n</div>\n<!--about section end-->\n\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n  <div class=\"container\">\n    <div class=\"footer_top\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-7\">\n          <div class=\"widgets_container contact_us\">\n            <h3>Contacts us</h3>\n            <div class=\"footer_contact\">\n              <ul>\n                <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                  and typesetting industry. Lorem Ipsum</li>\n                <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n              </ul>\n            </div>\n           \n          </div>\n        </div>\n        <div class=\"col-lg-2 col-md-6 col-sm-5\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>Information</h3>\n\n          </div>\n        </div>\n        <div class=\"col-lg-6 col-md-4 col-sm-4\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>My Account</h3>\n            <div class=\"footer_menu\">\n              <div class=\"footer_contact\">\n                <ul>\n                  <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                    HIV home-sampling screening. </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n      </div>\n    </div>\n  </div>\n  <div class=\"footer_bottom\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-12 col-md-12\">\n          <div class=\"copyright_area text-center\">\n            <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</footer>\n<!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/person-details/person-details.component.scss":
+/*!********************************************************************!*\
+  !*** ./src/app/index/person-details/person-details.component.scss ***!
+  \********************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L3BlcnNvbi1kZXRhaWxzL3BlcnNvbi1kZXRhaWxzLmNvbXBvbmVudC5zY3NzIn0= */"
+
+/***/ }),
+
+/***/ "./src/app/index/person-details/person-details.component.ts":
+/*!******************************************************************!*\
+  !*** ./src/app/index/person-details/person-details.component.ts ***!
+  \******************************************************************/
+/*! exports provided: PersonDetailsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "PersonDetailsComponent", function() { return PersonDetailsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+
+
+
+var PersonDetailsComponent = /** @class */ (function () {
+    function PersonDetailsComponent(router, fb, sendservice, http) {
+        this.router = router;
+        this.fb = fb;
+        this.sendservice = sendservice;
+        this.http = http;
+        this.submitted = false;
+        this.ethnic = {};
+        this.some = {};
+        this.requestobj = [];
+        this.getEthenicDetails();
+    }
+    PersonDetailsComponent.prototype.ngOnInit = function () {
+        this.person = this.fb.group({
+            gender: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            oppositeGender: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+        });
+    };
+    PersonDetailsComponent.prototype.LoginAction = function (formdata) {
+        this.submitted = true;
+        // this.sendservice.pass(formdata);
+        this.sendservice.persondata = formdata;
+        var requestobj = formdata;
+        requestobj.age = this.sendservice.logindata['age'];
+        requestobj.postCode = this.sendservice.logindata['postCode'];
+        this.sendservice.sendone(requestobj);
+    };
+    PersonDetailsComponent.prototype.createGenderEthenic = function (gender, oppositeGender, selectedEthenicName) {
+        var id = selectedEthenicName.id;
+        // this.sendservice.ethnicGroupId=id;
+        sessionStorage.setItem('ethenicGroupId', id);
+        var obj = { gender: gender, oppositeGender: oppositeGender, ethnicGroupId: id };
+        this.sendservice.persondata = obj;
+        this.requestobj = obj;
+        this.requestobj.age = this.sendservice.logindata['age'];
+        this.requestobj.postCode = this.sendservice.logindata['postCode'];
+        this.sendservice.sendone(this.requestobj);
+    };
+    PersonDetailsComponent.prototype.send = function () {
+        this.router.navigate(['login']);
+    };
+    PersonDetailsComponent.prototype.getEthenicDetails = function () {
+        var _this = this;
+        this.sendservice.getethnic().subscribe(function (data) {
+            _this.ethenicData = data.resultData;
+        });
+    };
+    PersonDetailsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["Component"])({
+            selector: 'app-person-details',
+            template: __webpack_require__(/*! ./person-details.component.html */ "./src/app/index/person-details/person-details.component.html"),
+            styles: [__webpack_require__(/*! ./person-details.component.scss */ "./src/app/index/person-details/person-details.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_index_service__WEBPACK_IMPORTED_MODULE_1__["IndexService"], _angular_common_http__WEBPACK_IMPORTED_MODULE_5__["HttpClient"]])
+    ], PersonDetailsComponent);
+    return PersonDetailsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/questions/questions.component.html":
+/*!**********************************************************!*\
+  !*** ./src/app/index/questions/questions.component.html ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n  <!--header top start-->\n  <div class=\"header_top header_top_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"header_top_inner\">\n            <div class=\"top_left\">\n              <ul>\n                <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n\n                </li>\n\n                <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n\n              </ul>\n            </div>\n           \n            <div class=\"logo logo_three\">\n              <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n  <!--header top start-->\n  <!--header middel start-->\n  <div class=\"header_middle\">\n    <div class=\"container\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n          <div class=\"main_menu menu_three header_position\">\n            <nav>\n              <ul>\n\n                <li><a href=\"#\">home</a></li>\n                <li><a href=\"#\">Aboutus</a></li>\n                <li><a href=\"#\">Business</a></li>\n                <li><a href=\"#\">Individuals</a></li>\n                <li class=\"pull-right google2\">\n                  <div id=\"google_translate_element\"></div>\n                </li>\n              </ul>\n\n            </nav>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--header middel end-->\n\n  <!--popup start-->\n \n    <!-- Modal -->\n  \n\n\n  <!--popup end-->\n\n</header>\n<!--header area end-->\n\n<!--Offcanvas menu area start-->\n\n<div class=\"off_canvars_overlay\">\n\n</div>\n<div class=\"Offcanvas_menu Offcanvas_three\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"canvas_open\">\n          <span>MENU</span>\n          <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n        </div>\n        <div class=\"Offcanvas_menu_wrapper\">\n          <div class=\"canvas_close\">\n            <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n          </div>\n\n          <div id=\"menu\" class=\"text-left \">\n            <ul class=\"offcanvas_main_menu\">\n              <li class=\"menu-item-has-children active\">\n                <a href=\"#\">Home</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">About</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">Gallery</a>\n              </li>\n\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">contact</a>\n              </li>\n\n            </ul>\n          </div>\n\n          <div class=\"Offcanvas_footer\">\n            <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n            <ul>\n              <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n              <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n              <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n              <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n              <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!--Offcanvas menu area end-->\n\n\n\n<!-- A few questions start -->\n\n\n<div class=\"about_section padt5\">\n\n  <div class=\"container\">\n\n    <div class=\"panel\">\n\n      <div class=\"panel_heading\">\n\n        <h3>A few quick ask questions</h3>\n\n      </div>\n\n      <div class=\"panel_body\">\n\n       \n         <div class=\"account_form\">\n\n             \n\n              <form  [formGroup]=\"user\" (ngSubmit)=\"datesend(user.value)\">\n\n              <div class=\"row\">\n\n              <div class=\"col-lg-6 col-md-6\">\n\n                <p>\n                  <label>Your Dob <span>*</span></label>\n                  <input type=\"date\" formControlName=\"dob\">\n                  <span *ngIf=\"user.controls['dob'].invalid && user.controls['dob'].touched\" class='text text-danger'>date is Required</span>\n                </p>\n\n                <p>\n                  <label>I am a <span>*</span></label>\n                  <select disabled>\n                    <option>Man</option>\n                    <option>Woman</option>\n                  </select>\n                </p>\n\n                <p>\n                  <label>I have sex with <span>*</span></label>\n                  <select disabled>\n                    <option>Man</option>\n                    <option>Woman</option>\n                  </select>\n                </p>\n\n                <p>\n                  <label>My ethnic group is <span>*</span></label>\n                  <select disabled>\n                    <option>African</option>\n                    <option>Indian</option>\n                  </select>\n                </p>\n\n              </div>\n\n              <div class=\"col-lg-6 col-md-6\">\n\n                  <div class=\"text2 text_3\">\n                      <p>When did you last a hive an HIV test?</p>\n                      <label>\n                        <input type=\"radio\" value=\"never tested\" formControlName=\"hiv\" />\n                        <span>Never tested</span>\n                      </label>\n                      <label>\n                        <input type=\"radio\" value=\"over a year ago\" formControlName=\"hiv\" />\n                        <span>Over a year ago</span>\n                      </label>\n                      <label>\n                        <input type=\"radio\"  value=\"with in last year\" formControlName=\"hiv\" />\n                        <span>with in last year</span>\n                      </label>\n                    </div>\n\n\n                    <div class=\"text2 text_3\">\n                        <p>Have you had unprotected sex with in the last 12 months?</p>\n                        <label>\n                          <input type=\"radio\" value=\"No\" formControlName=\"last\"/>\n                          <span>No</span>\n                        </label>\n                        <label>\n                          <input type=\"radio\" value=\"Yes with i partner\"  formControlName=\"last\" />\n                          <span>Yes with i partner</span>\n                        </label>\n                        <label>\n                          <input type=\"radio\" value=\"yes with 2-5 partners\"  formControlName=\"last\" />\n                          <span>yes with 2-5 partners</span>\n                        </label>\n                        <label>\n                          <input type=\"radio\" value=\"yes with 6-12 partners\" formControlName=\"last\"  />\n                          <span>yes with 6-12 partners</span>\n                        </label>\n                        <label>\n                          <input type=\"radio\" value=\"yes more than 12 partners\"  formControlName=\"last\"/>\n                          <span>yes more than 12 partners</span>\n                        </label>\n                      </div>\n\n                      <div class=\"text2 text_3\">\n                          <p>How many partners have you had sex with in the last 12 moths?</p>\n                          <label>\n                            <input type=\"radio\"  value=\"No sexual problem\" formControlName=\"partner\" />\n                            <span>No sexual problem</span>\n                          </label>\n                          <label>\n                            <input type=\"radio\"  value=\"just 1 partner\" formControlName=\"partner\" />\n                            <span>just 1 partner</span>\n                          </label>\n                          <label>\n                            <input type=\"radio\"  value=\"2-5 partners\" formControlName=\"partner\" />\n                            <span>2-5 partners</span>\n                          </label>\n                          <label>\n                            <input type=\"radio\"  value=\"6-12 partners\" formControlName=\"partner\" />\n                            <span>6-12 partners</span>\n                          </label>\n                          <label>\n                            <input type=\"radio\"  value=\"more than 12 partners\" formControlName=\"partner\" />\n                            <span>more than 12 partners</span>\n                          </label>\n                        </div>\n\n                        \n                      <div class=\"text2 text_3\">\n                     <p>How oftner have you had sex under in influence of alchol or recreational drugs?</p>\n                     <label>\n                     <input type=\"radio\"  value=\"Never\" formControlName=\"under\" />\n                     <span>Never</span>\n                      </label>\n                      <label>\n                      <input type=\"radio\"  value=\"Sometime\" formControlName=\"under\"  />\n                      <span>Sometime</span>\n                      </label>\n                     <label>\n                     <input type=\"radio\"  value=\"Usually\" formControlName=\"under\"  />\n                    <span>Usually</span>\n                    </label>\n                    <label>\n                  <input type=\"radio\"  value=\"always\" formControlName=\"under\"  />\n                  <span>always</span>\n                </label>\n              </div>\n  \n               </div>\n\n              </div>\n           \n              <div class=\"buttons button_3\">\n                  <button class=\"btn btn-success pull-left question_1\" (click)=\"first()\" ><i class=\"fa fa-arrow-circle-left\"></i>Back</button>\n                  <button type=\"submit\" class=\"btn pull-right question_2\" >Next <i class=\"fa fa-arrow-circle-right\"></i></button>\n              </div>\n           \n\n             </form>\n           \n          </div>\n      </div>\n    </div>\n\n   \n\n  </div>\n</div>\n\n<!-- A few questions end -->\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n  <div class=\"container\">\n    <div class=\"footer_top\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-7\">\n          <div class=\"widgets_container contact_us\">\n            <h3>Contacts us</h3>\n            <div class=\"footer_contact\">\n              <ul>\n                <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                  and typesetting industry. Lorem Ipsum</li>\n                <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n              </ul>\n            </div>\n           \n          </div>\n        </div>\n        <div class=\"col-lg-2 col-md-6 col-sm-5\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>Information</h3>\n\n          </div>\n        </div>\n        <div class=\"col-lg-6 col-md-4 col-sm-4\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>My Account</h3>\n            <div class=\"footer_menu\">\n              <div class=\"footer_contact\">\n                <ul>\n                  <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                    HIV home-sampling screening. </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n      </div>\n    </div>\n  </div>\n  <div class=\"footer_bottom\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-12 col-md-12\">\n          <div class=\"copyright_area text-center\">\n            <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</footer>\n<!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/questions/questions.component.scss":
+/*!**********************************************************!*\
+  !*** ./src/app/index/questions/questions.component.scss ***!
+  \**********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L3F1ZXN0aW9ucy9xdWVzdGlvbnMuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/index/questions/questions.component.ts":
+/*!********************************************************!*\
+  !*** ./src/app/index/questions/questions.component.ts ***!
+  \********************************************************/
+/*! exports provided: QuestionsComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "QuestionsComponent", function() { return QuestionsComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
+
+
+
+var QuestionsComponent = /** @class */ (function () {
+    function QuestionsComponent(router, fb, sends) {
+        this.router = router;
+        this.fb = fb;
+        this.sends = sends;
+    }
+    QuestionsComponent.prototype.ngOnInit = function () {
+        this.user = this.fb.group({
+            dob: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            hiv: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            last: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            partner: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            under: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+    };
+    QuestionsComponent.prototype.datesend = function (formdata) {
+        var requestobj = {};
+        requestobj['age'] = this.sends.logindata['age'];
+        requestobj['postCode'] = this.sends.logindata['postCode'];
+        requestobj['dob'] = this.user.value.dob;
+        requestobj['quetionary1'] = { '"When did you last have an HIV test?"': this.user.value.dob },
+            requestobj['quetionary2'] = { '"Have you had unprotected sex with in the last 12 months?"': this.user.value.hiv },
+            requestobj['quetionary3'] = { '"How many partners have you had sex with in the last 12 moths?"': this.user.value.last },
+            requestobj['quetionary4'] = { '"How oftner have you had sex under in influence of alchol or recreational drugs?"': this.user.value.partner };
+        requestobj['gender'] = this.sends.persondata['gender'];
+        requestobj['oppositeGender'] = this.sends.persondata['oppositeGender'];
+        requestobj['ethnicGroup'] = this.sends.persondata['ethnicGroup'];
+        this.sends.seconddata = requestobj;
+        console.log(requestobj);
+        this.router.navigate(['moredetail']);
+    };
+    QuestionsComponent.prototype.first = function () {
+        this.router.navigate(['sample']);
+    };
+    QuestionsComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-questions',
+            template: __webpack_require__(/*! ./questions.component.html */ "./src/app/index/questions/questions.component.html"),
+            styles: [__webpack_require__(/*! ./questions.component.scss */ "./src/app/index/questions/questions.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_index_service__WEBPACK_IMPORTED_MODULE_3__["IndexService"]])
+    ], QuestionsComponent);
+    return QuestionsComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/result/result.component.html":
+/*!****************************************************!*\
+  !*** ./src/app/index/result/result.component.html ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n    <!--header top start-->\n    <div class=\"header_top header_top_three\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-12\">\n            <div class=\"header_top_inner\">\n              <div class=\"top_left\">\n                <ul>\n                  <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n  \n                  </li>\n  \n                  <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n  \n                </ul>\n              </div>\n              <div class=\"top_right\">\n                \n                <div class=\"top_links\"><a>\n                    <i class=\"fa fa-lock\" aria-hidden=\"true\"></i> LOGIN</a>\n                </div>\n  \n  \n              </div>\n              <div class=\"logo logo_three\">\n                <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n              </div>\n            </div>\n          </div>\n  \n        </div>\n      </div>\n    </div>\n    <!--header top start-->\n    <!--header middel start-->\n    <div class=\"header_middle\">\n      <div class=\"container\">\n        <div class=\"row align-items-center\">\n          <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n            <div class=\"main_menu menu_three header_position\">\n              <nav>\n                <ul>\n  \n                  <li><a href=\"#\">home</a></li>\n                  <li><a href=\"#\">Aboutus</a></li>\n                  <li><a href=\"#\">Business</a></li>\n                  <li><a href=\"#\">Individuals</a></li>\n                  <li class=\"pull-right google2\">\n                    <div id=\"google_translate_element\"></div>\n                  </li>\n                </ul>\n  \n              </nav>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n    <!--header middel end-->\n  \n    <!--popup start-->\n   \n      <!-- Modal -->\n    \n  \n  \n    <!--popup end-->\n  \n  </header>\n  <!--header area end-->\n  \n  <!--Offcanvas menu area start-->\n  \n  <div class=\"off_canvars_overlay\">\n  \n  </div>\n  <div class=\"Offcanvas_menu Offcanvas_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"canvas_open\">\n            <span>MENU</span>\n            <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n          </div>\n          <div class=\"Offcanvas_menu_wrapper\">\n            <div class=\"canvas_close\">\n              <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n            </div>\n  \n            <div id=\"menu\" class=\"text-left \">\n              <ul class=\"offcanvas_main_menu\">\n                <li class=\"menu-item-has-children active\">\n                  <a href=\"#\">Home</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">About</a>\n  \n                </li>\n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">Gallery</a>\n                </li>\n  \n                <li class=\"menu-item-has-children\">\n                  <a href=\"#\">contact</a>\n                </li>\n  \n              </ul>\n            </div>\n  \n            <div class=\"Offcanvas_footer\">\n              <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n              <ul>\n                <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n                <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n                <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n                <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n                <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n              </ul>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--Offcanvas menu area end-->\n\n\n\n  <!-- delivery  start -->\n\n\n<div class=\"about_section padt5\">\n\n  <div class=\"container\">\n\n    <h2>Result Notification Preference</h2>\n    <p class=\"line\"></p>\n\n    <div class=\"row padt5\">\n\n      <div class=\"col-lg-12 col-md-12\">\n\n        <div class=\"panel\">\n\n          <div class=\"panel_heading\">\n            <h3>Your result notification Preference</h3>\n          </div>\n\n\n          <div class=\"panel_body\">\n\n            <div class=\"account_form\">\n\n              <p>Please choose how you wish to receive your results.</p>\n              <p>We recommend you choose more than one option.</p>\n\n             \n\n              <form [formGroup]=\"users\" (ngSubmit)=\"datesends(users.value)\">\n\n                <span class=\"form_6\"><input type=\"checkbox\" class=\"text10\">Textmessage</span>\n                <span class=\"form_6\"><input type=\"checkbox\" class=\"text11\">Email Notification</span>\n                <span class=\"form_6\"><input type=\"checkbox\" class=\"text12\" formControlName=\"lastResortLetter\">Last Resort Letter</span>\n \n               \n\n                <div class=\"account_form mt-20 first_box\">\n\n                   \n    \n                      <p class=\"panel_heading\">Test message</p>\n                      <p>We will text you as soon as your results are available.</p>\n                      <p>\n                        <label>Mobile<span>*</span></label>\n                        <input type=\"text\" placeholder=\"Enter Mobile\" formControlName=\"notificationPhone\">\n                      </p>\n                      <p>\n                        <label>Confirm <span>*</span></label>\n                        <input type=\"text\" placeholder=\"Repeat Mobile\" formControlName=\"mobile\">\n                      </p>\n    \n\n                     \n    \n                      <input id=\"remember\" type=\"checkbox\">Remind me to get another test in the future?\n    \n    \n                   \n    \n                  </div>\n\n\n                  <div class=\"account_form mt-20 second_box\">\n\n                    \n      \n                        <p class=\"panel_heading\">Email Notification</p>\n      \n                        <p>We will e-mail you as soon as your result is ready. You will also need to provide a second\n                          notification option, in case you test positive and we can't get though to you.</p>\n      \n                        <p>\n                          <label>Email<span>*</span></label>\n                          <input type=\"text\" placeholder=\"Enter Email\" formControlName=\"notificationEmail\">\n                        </p>\n                        <p>\n                          <label>Confirm <span>*</span></label>\n                          <input type=\"text\" placeholder=\"Repeat Email\" formControlName=\"email\">\n                        </p>\n      \n      \n                        <input id=\"remember\" type=\"checkbox\">Remind me to get another test in the future?\n      \n                  </div>\n\n                   <div class=\"account_form mt-20 third_box\">\n\n                         <form>\n        \n                          <p class=\"panel_heading\">Last Resort Letter</p>\n        \n                          <p>Sometimes after a number of attempts are made to contact patients, we can't get through (for\n                            example, a phone number has been disconnected or changed). We would only write to you if your test\n                            is reactive, you may need treatment and we're unable to get through to you.</p>\n                         </form>\n        \n                </div>\n\n\n                <div class=\"buttons button_7\">\n                    <button class=\"btn pull-left questionaries_1\" (click)=\"first()\"> <i class=\"fa fa-arrow-circle-left\"></i> Back</button>\n                    <button class=\"btn pull-right questionaries_2\" type=\"submit\">Next <i class=\"fa fa-arrow-circle-right\"></i></button>\n                  </div>\n\n\n              </form>\n\n\n          </div>\n          </div>\n\n         </div>\n\n\n      </div>\n\n    </div>\n\n  </div>\n</div>\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n    <div class=\"container\">\n      <div class=\"footer_top\">\n        <div class=\"row\">\n          <div class=\"col-lg-4 col-md-6 col-sm-7\">\n            <div class=\"widgets_container contact_us\">\n              <h3>Contacts us</h3>\n              <div class=\"footer_contact\">\n                <ul>\n                  <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                    and typesetting industry. Lorem Ipsum</li>\n                  <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                  <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n                </ul>\n              </div>\n             \n            </div>\n          </div>\n          <div class=\"col-lg-2 col-md-6 col-sm-5\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>Information</h3>\n  \n            </div>\n          </div>\n          <div class=\"col-lg-6 col-md-4 col-sm-4\">\n            <div class=\"widgets_container widget_menu\">\n              <h3>My Account</h3>\n              <div class=\"footer_menu\">\n                <div class=\"footer_contact\">\n                  <ul>\n                    <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                      HIV home-sampling screening. </li>\n                  </ul>\n                </div>\n              </div>\n            </div>\n          </div>\n  \n  \n  \n        </div>\n      </div>\n    </div>\n    <div class=\"footer_bottom\">\n      <div class=\"container\">\n        <div class=\"row\">\n          <div class=\"col-lg-12 col-md-12\">\n            <div class=\"copyright_area text-center\">\n              <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n            </div>\n          </div>\n        </div>\n      </div>\n    </div>\n  </footer>\n  <!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/result/result.component.scss":
+/*!****************************************************!*\
+  !*** ./src/app/index/result/result.component.scss ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L3Jlc3VsdC9yZXN1bHQuY29tcG9uZW50LnNjc3MifQ== */"
+
+/***/ }),
+
+/***/ "./src/app/index/result/result.component.ts":
+/*!**************************************************!*\
+  !*** ./src/app/index/result/result.component.ts ***!
+  \**************************************************/
+/*! exports provided: ResultComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ResultComponent", function() { return ResultComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _services_index_service__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../services/index.service */ "./src/app/index/services/index.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+
+
+
+
+
+var ResultComponent = /** @class */ (function () {
+    function ResultComponent(router, fb, sends) {
+        this.router = router;
+        this.fb = fb;
+        this.sends = sends;
+    }
+    ResultComponent.prototype.ngOnInit = function () {
+        $(document).ready(function () {
+            $('.text10').click(function () {
+                $(".first_box").toggle();
+            });
+            $('.text11').click(function () {
+                $(".second_box").toggle();
+            });
+            $('.text12').click(function () {
+                $(".third_box").toggle();
+            });
+        });
+        this.users = this.fb.group({
+            lastResortLetter: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            notificationPhone: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            notificationEmail: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            mobile: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required],
+            email: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_4__["Validators"].required]
+        });
+    };
+    ResultComponent.prototype.datesends = function (formdata) {
+        var requestobj = {};
+        requestobj = this.sends.seconddata;
+        requestobj['lastResortLetter'] = this.users.value.lastResortLetter;
+        requestobj['notificationPhone'] = this.users.value.notificationPhone;
+        requestobj['notificationEmail'] = this.users.value.notificationEmail;
+        requestobj['mobile'] = this.users.value.mobile;
+        requestobj['email'] = this.users.value.email;
+        this.router.navigate(['edit']);
+    };
+    ResultComponent.prototype.first = function () {
+        this.router.navigate(['address']);
+    };
+    ResultComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-result',
+            template: __webpack_require__(/*! ./result.component.html */ "./src/app/index/result/result.component.html"),
+            styles: [__webpack_require__(/*! ./result.component.scss */ "./src/app/index/result/result.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_forms__WEBPACK_IMPORTED_MODULE_4__["FormBuilder"], _services_index_service__WEBPACK_IMPORTED_MODULE_3__["IndexService"]])
+    ], ResultComponent);
+    return ResultComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/services/index.service.ts":
+/*!*************************************************!*\
+  !*** ./src/app/index/services/index.service.ts ***!
+  \*************************************************/
+/*! exports provided: IndexService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "IndexService", function() { return IndexService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
+var IndexService = /** @class */ (function () {
+    function IndexService(http, router) {
+        this.http = http;
+        this.router = router;
+        this.server = 'rest/endUsers/validateAgeAndPostCode';
+        this.sends = 'rest/endUsers/validateGenderAndEthnicGroup';
+        this.fourth = 'rest/ethnicGroups/getAllEthnics';
+        this.pass_data = [];
+        this.user = {};
+        this.logindata = {};
+        this.persondata = {};
+        this.seconddata = {};
+        this.thirddata = [];
+        this.fourthdata = {};
+    }
+    IndexService.prototype.send = function (user) {
+        var _this = this;
+        console.log(user);
+        return this.http.post(this.server, user).subscribe(function (res) {
+            _this.some = res['status'];
+            if (_this.some == "Success") {
+                _this.router.navigate(['personsdetails']);
+            }
+            else {
+                _this.router.navigate(['not']);
+            }
+        });
+    };
+    IndexService.prototype.sendone = function (user) {
+        var _this = this;
+        console.log(user);
+        return this.http.post(this.sends, user).subscribe(function (res) {
+            if (res['status'] == "Success") {
+                _this.value = res['message'];
+                sessionStorage.setItem('sponsorId', _this.value);
+                _this.router.navigate(['test']);
+            }
+        });
+    };
+    IndexService.prototype.another = function (data) {
+        var _this = this;
+        this.thirdone = 'rest/endUsers/create/' + sessionStorage.getItem('sponsorId');
+        console.log(data);
+        // var obj={EthnicGroupId:sessionStorage.getItem('ethenicGroupId')}
+        data.ethnicGroupId = sessionStorage.getItem('ethenicGroupId');
+        return this.http.post(this.thirdone, data).subscribe(function (res) {
+            _this.message1 = res['message'];
+            sessionStorage.setItem('message', _this.message1);
+            _this.some = res['status'];
+            if (_this.some == "Success") {
+                _this.router.navigate(['final']);
+            }
+        });
+    };
+    IndexService.prototype.anothers = function (data) {
+        var _this = this;
+        return this.http.post(this.thirdone, data).subscribe(function (res) {
+            _this.some = res['status'];
+            if (_this.some == "Success") {
+                _this.router.navigate(['result']);
+            }
+        });
+    };
+    IndexService.prototype.anothers1 = function (data) {
+        var _this = this;
+        console.log(data);
+        return this.http.post(this.thirdone, data).subscribe(function (res) {
+            _this.some = res['status'];
+            if (_this.some == "Success") {
+                alert();
+                // this.router.navigate(['check']);
+            }
+            else {
+                alert();
+            }
+        });
+    };
+    IndexService.prototype.getethnic = function () {
+        return this.http.get(this.fourth);
+    };
+    IndexService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
+    ], IndexService);
+    return IndexService;
 }());
 
 
@@ -1452,6 +2523,71 @@ var SignUpComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
     ], SignUpComponent);
     return SignUpComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/index/test/test.component.html":
+/*!************************************************!*\
+  !*** ./src/app/index/test/test.component.html ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "<!-- Main Wrapper Start -->\n<!--header area start-->\n<header class=\"header_area beader_bg3\">\n  <!--header top start-->\n  <div class=\"header_top header_top_three\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-12\">\n          <div class=\"header_top_inner\">\n            <div class=\"top_left\">\n              <ul>\n                <li class=\"currency\"><a href=\"#\">support@medintu.co.uk</a>\n\n                </li>\n\n                <li><a href=\"tel:+123123321345\">tel: +44-03300587379</a></li>\n\n              </ul>\n            </div>\n            \n            <div class=\"logo logo_three\">\n              <a href=\"index.html\"><img src=\"assets/img/img/logo.png\" alt=\"\"></a>\n            </div>\n          </div>\n        </div>\n\n      </div>\n    </div>\n  </div>\n  <!--header top start-->\n  <!--header middel start-->\n  <div class=\"header_middle\">\n    <div class=\"container\">\n      <div class=\"row align-items-center\">\n        <div class=\"col-lg-9 offset-lg-3 offset-md-0\">\n          <div class=\"main_menu menu_three header_position\">\n            <nav>\n              <ul>\n\n                <li><a href=\"#\">home</a></li>\n                <li><a href=\"#\">Aboutus</a></li>\n                <li><a href=\"#\">Business</a></li>\n                <li><a href=\"#\">Individuals</a></li>\n                <li class=\"pull-right google2\">\n                  <div id=\"google_translate_element\"></div>\n                </li>\n              </ul>\n\n            </nav>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n  <!--header middel end-->\n\n  <!--popup start-->\n \n    <!-- Modal -->\n  \n\n\n  <!--popup end-->\n\n</header>\n<!--header area end-->\n\n<!--Offcanvas menu area start-->\n\n<div class=\"off_canvars_overlay\">\n\n</div>\n<div class=\"Offcanvas_menu Offcanvas_three\">\n  <div class=\"container\">\n    <div class=\"row\">\n      <div class=\"col-12\">\n        <div class=\"canvas_open\">\n          <span>MENU</span>\n          <a href=\"javascript:void(0)\"><i class=\"ion-navicon\"></i></a>\n        </div>\n        <div class=\"Offcanvas_menu_wrapper\">\n          <div class=\"canvas_close\">\n            <a href=\"javascript:void(0)\"><i class=\"ion-android-close\"></i></a>\n          </div>\n\n          <div id=\"menu\" class=\"text-left \">\n            <ul class=\"offcanvas_main_menu\">\n              <li class=\"menu-item-has-children active\">\n                <a href=\"#\">Home</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">About</a>\n\n              </li>\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">Gallery</a>\n              </li>\n\n              <li class=\"menu-item-has-children\">\n                <a href=\"#\">contact</a>\n              </li>\n\n            </ul>\n          </div>\n\n          <div class=\"Offcanvas_footer\">\n            <span><a href=\"#\"><i class=\"fa fa-envelope-o\"></i> info@yourdomain.com</a></span>\n            <ul>\n              <li class=\"facebook\"><a href=\"#\"><i class=\"fa fa-facebook\"></i></a></li>\n              <li class=\"twitter\"><a href=\"#\"><i class=\"fa fa-twitter\"></i></a></li>\n              <li class=\"pinterest\"><a href=\"#\"><i class=\"fa fa-pinterest-p\"></i></a></li>\n              <li class=\"google-plus\"><a href=\"#\"><i class=\"fa fa-google-plus\"></i></a></li>\n              <li class=\"linkedin\"><a href=\"#\"><i class=\"fa fa-linkedin\"></i></a></li>\n            </ul>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>\n<!--Offcanvas menu area end-->\n\n\n\n\n\n\n<!-- delivery  start -->\n\n\n<div class=\"about_section padt5\">\n\n  <div class=\"container\">\n\n    <h2>Great news, you're eligible to request a free test kit.</h2>\n    <p class=\"line\"></p>\n\n    <div class=\"row padt5\">\n\n      <div class=\"col-lg-12 col-md-12\">\n\n        <div class=\"panel\">\n\n          <div class=\"panel_heading\">\n            <h3>collection proces</h3>\n          </div>\n\n\n          <div class=\"panel_body inside_4\">\n\n            <p> To complete your kit you will need to collect a small 'finger-prick' blood sample.</p>\n\n            <p> Unlike some STIs such as Chlamydia (which can be tested from a urine sample), the HIV virus is\n              blood-borne and therefore a small blood sample is the most accurate way to test for the infection.</p>\n\n            <p>Please order a kit only if you are happy with this collection process.</p>\n\n            <img src=\"assets/img/img/bloodcollection.gif\" alt=\"path not correct\" />\n\n            <p>A safety lancet will use a small blade to pierce your finger (they are single-use, but we include\n              spares). You will then need to carefully 'milk' your finger to collect around 10 drops of blood (roughly\n              quarter of a teaspoon) into the tube we provide in the kit.</p>\n\n          </div>\n\n        </div>\n      </div>\n\n\n\n    </div>\n\n    <div class=\"buttons\">\n      <button class=\"btn pull-left\" (click)=\"first()\"><i class=\"fa fa-arrow-circle-left\"></i> Back</button>\n      <button class=\"btn pull-right\" (click)=\"second()\">Next <i class=\"fa fa-arrow-circle-right\"></i></button>\n    </div>\n\n  </div>\n</div>\n\n\n\n<!-- A delivery end -->\n\n\n\n\n<!--footer area start-->\n<footer class=\"footer_widgets\">\n  <div class=\"container\">\n    <div class=\"footer_top\">\n      <div class=\"row\">\n        <div class=\"col-lg-4 col-md-6 col-sm-7\">\n          <div class=\"widgets_container contact_us\">\n            <h3>Contacts us</h3>\n            <div class=\"footer_contact\">\n              <ul>\n                <li><i class=\"fa fa-home\"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing\n                  and typesetting industry. Lorem Ipsum</li>\n                <li><i class=\"fa fa-phone\"></i><span>Phone:</span> (+91) 866-540-3229</li>\n                <li><i class=\"fa fa-envelope-square\"></i><span>Email:</span> info@Lorem Ipsum .com</li>\n              </ul>\n            </div>\n           \n          </div>\n        </div>\n        <div class=\"col-lg-2 col-md-6 col-sm-5\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>Information</h3>\n\n          </div>\n        </div>\n        <div class=\"col-lg-6 col-md-4 col-sm-4\">\n          <div class=\"widgets_container widget_menu\">\n            <h3>My Account</h3>\n            <div class=\"footer_menu\">\n              <div class=\"footer_contact\">\n                <ul>\n                  <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of\n                    HIV home-sampling screening. </li>\n                </ul>\n              </div>\n            </div>\n          </div>\n        </div>\n\n\n\n      </div>\n    </div>\n  </div>\n  <div class=\"footer_bottom\">\n    <div class=\"container\">\n      <div class=\"row\">\n        <div class=\"col-lg-12 col-md-12\">\n          <div class=\"copyright_area text-center\">\n            <p>Copyright &copy; 2019 <a href=\"#\">Medintu</a> All Right Reserved.</p>\n          </div>\n        </div>\n      </div>\n    </div>\n  </div>\n</footer>\n<!--footer area end-->"
+
+/***/ }),
+
+/***/ "./src/app/index/test/test.component.scss":
+/*!************************************************!*\
+  !*** ./src/app/index/test/test.component.scss ***!
+  \************************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsImZpbGUiOiJzcmMvYXBwL2luZGV4L3Rlc3QvdGVzdC5jb21wb25lbnQuc2NzcyJ9 */"
+
+/***/ }),
+
+/***/ "./src/app/index/test/test.component.ts":
+/*!**********************************************!*\
+  !*** ./src/app/index/test/test.component.ts ***!
+  \**********************************************/
+/*! exports provided: TestComponent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TestComponent", function() { return TestComponent; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+var TestComponent = /** @class */ (function () {
+    function TestComponent(router) {
+        this.router = router;
+    }
+    TestComponent.prototype.ngOnInit = function () {
+    };
+    TestComponent.prototype.first = function () {
+        this.router.navigate(['personsdetails']);
+    };
+    TestComponent.prototype.second = function () {
+        this.router.navigate(['question']);
+    };
+    TestComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
+            selector: 'app-test',
+            template: __webpack_require__(/*! ./test.component.html */ "./src/app/index/test/test.component.html"),
+            styles: [__webpack_require__(/*! ./test.component.scss */ "./src/app/index/test/test.component.scss")]
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+    ], TestComponent);
+    return TestComponent;
 }());
 
 
@@ -1566,25 +2702,20 @@ var AuthService = /** @class */ (function () {
         }
     };
     AuthService.prototype.loginAction = function (postData) {
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var body;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                body = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]()
-                    .set('username', postData.username)
-                    .set('password', postData.password);
-                this.http
-                    .post(this.url, body.toString(), {
-                    headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]()
-                        .set('Content-Type', 'application/x-www-form-urlencoded')
-                })
-                    .subscribe(function (res) {
-                    sessionStorage.setItem('userData', res['token']);
-                    sessionStorage.setItem('userRole', res['user.roles[0]']);
-                    // localStorage.setItem("UserName",postData.username);
-                });
-                return [2 /*return*/, true];
-            });
+        var body = new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpParams"]()
+            .set('username', postData.username)
+            .set('password', postData.password);
+        this.http
+            .post(this.url, body.toString(), {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]()
+                .set('Content-Type', 'application/x-www-form-urlencoded')
+        })
+            .subscribe(function (res) {
+            sessionStorage.setItem('userData', res['resultData']['token']);
+            sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
+            // localStorage.setItem("UserName",postData.username);
         });
+        return true;
     };
     AuthService.prototype.SignUp = function (postData) {
         //registraion api
@@ -1670,10 +2801,52 @@ var DataService = /** @class */ (function () {
         return this.http.put("rest/SponsorUser/updateSponsorUser", data);
     };
     DataService.prototype.createSponsorDetails = function (sponsorData) {
-        return this.http.post("rest/SponsorUser/createSponsorUser", sponsorData);
+        return this.http.post("rest/sponsor/createSponsor", sponsorData);
     };
     DataService.prototype.setEthenic = function (ethenicData) {
         return this.http.post("rest/ethnicGroups/save", ethenicData);
+    };
+    DataService.prototype.getEthenic = function () {
+        return this.http.get("rest/ethnicGroups/getAll");
+    };
+    //All status 
+    DataService.prototype.getStatusData = function () {
+        return this.http.get("rest/Status/getAllStatus");
+    };
+    DataService.prototype.getSponsorsList = function () {
+        return this.http.get("rest/sponsor/showAllSponsors ");
+    };
+    // Post Status
+    DataService.prototype.postStatus = function (data) {
+        return this.http.post("rest/Status/createStatus", data);
+    };
+    //Delete Status
+    DataService.prototype.deleteStatus = function (id) {
+        return this.http.delete('rest/Status/getStatusById' + "/" + id);
+    };
+    //Edit Status
+    // editStatusData(data,id):Observable<any>{
+    //   return this.http.put('http://localhost:9999/samplingkit/rest/Status/updateStatus' +"/"+ id );
+    // }
+    //All SpecialEvent 
+    DataService.prototype.getSpecialEvent = function () {
+        return this.http.get("rest/SpecialEvent/getSpecialEvents");
+    };
+    // Get SpecialEvent by Id
+    DataService.prototype.getSpecialEventById = function (id) {
+        return this.http.get("rest/SpecialEvent/getSpecialEventById" + '/' + id);
+    };
+    // Post SpecialEvent
+    DataService.prototype.postspecialEvent = function (data) {
+        return this.http.post("rest/SpecialEvent/createSpecialEvent", data);
+    };
+    //Update SpecialEvent
+    DataService.prototype.updateEvents = function (data) {
+        return this.http.put('rest/SpecialEvent/updateSpecialEvent', data);
+    };
+    //Delete SpecialEvent
+    DataService.prototype.deleteEvent = function (id) {
+        return this.http.delete('http://localhost:8080/samplingkit/rest/SpecialEvent/deleteSpecialEvent' + "/" + id);
     };
     DataService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({

@@ -1,0 +1,66 @@
+
+<div class="tile">
+ <h5>Status</h5>
+ <div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Status</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <form #regForm='ngForm'>
+              <div class="col-md-6">
+                  <label>
+                    Status:
+                    <input type="text" placeholder="Status" name="nameOfTheStatus" class="form-control" [(ngModel)]= pstatus >
+                  </label>
+                </div>
+                <button type="submit" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="save(regForm.value)" *ngIf="addfrm">Submit</button>
+                <button type="button" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="updateStatusData()" *ngIf="updatfrm" >Update</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+        </div>
+      </div>
+  
+    </div>
+  </div>
+<button type="button" style="margin-bottom:8px" class="btn btn-primary float-right" data-toggle="modal" data-target="#myModal"
+(click)="addStatus(regForm)">Add</button>
+
+<table class="table table-striped" >
+  <thead>
+    <tr style="font-size:15px">
+      <th>Id</th>
+      <th>Status</th>
+      <th>Edit</th>
+      <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of statusData">
+      <td>{{data.id}}</td>
+      <td>{{data.nameOfTheStatus}}</td>
+      <td>
+        <span>
+          <span (click)="editStatus(data)" data-toggle="modal" data-target="#myModal"  class="glyphicon glyphicon-pencil">
+            <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
+          </span>
+        </span>
+      </td>
+      <td>
+        <span>
+          <span (click)="deleteStatus(data.id)" value="delete">
+            <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+          </span>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

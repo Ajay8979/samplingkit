@@ -14,23 +14,19 @@ public class EthnicGroup implements com.medintu.samplingkit.entity.Entity {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "ethnic_id")
-	private Long ethnicId;
+	private Long id;
 
-	@Column(name = "ethnic_name")
+	@Column(name = "ethnic_name", unique = true)
 	private String ethnicName;
-	@Column(name = "ethnic_type", unique = true)
+	@Column(name = "ethnic_type")
 	private String ethnicType;
 
 	public EthnicGroup() {
 		super();
 	}
 
-	public Long getEthnicId() {
-		return ethnicId;
-	}
-
-	public void setEthnicId(Long ethnicId) {
-		this.ethnicId = ethnicId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEthnicName() {
@@ -51,7 +47,7 @@ public class EthnicGroup implements com.medintu.samplingkit.entity.Entity {
 
 	@Override
 	public Long getId() {
-		return ethnicId;
+		return id;
 	}
 
 }

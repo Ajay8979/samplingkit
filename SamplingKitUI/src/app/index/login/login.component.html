@@ -1,107 +1,279 @@
 
-<section class="material-half-bg">
-	<div class="cover"></div>
-</section>
-<section class="login-content">
-	<div class="logo">
-		<h1>ds</h1>
-	</div>
-	<div class="login-box">
-		<form class="login-form"  [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
-			<h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>SIGN IN</h3>
-			<div class="form-group">
-				<label class="control-label">USERNAME</label>
-				<input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
-			</div>
-			<div class="form-group">
-				<label class="control-label">PASSWORD</label>
-				<input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
-			</div>
-			<!--
-			<div class="form-group">
-				<div class="utility">
-					<div class="animated-checkbox">
-						<label>
-							<input type="checkbox"><span class="label-text">Stay Signed in</span>
-						</label>
+<!--header start-->
+
+
+<!-- Main Wrapper Start -->
+<!--header area start-->
+<header class="header_area beader_bg3">
+		<!--header top start-->
+		<div class="header_top header_top_three">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<div class="header_top_inner">
+							<div class="top_left">
+								<ul>
+									<li class="currency"><a href="#">support@medintu.co.uk</a>
+	
+									</li>
+	
+									<li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
+	
+								</ul>
+							</div>
+							<div class="top_right">
+								<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+            
+                  <div class="form-group">
+                    <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                  </div>
+                  <div class="form-group">
+                      <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                  </div>
+                  <div class="form-group btn-container">
+                      <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                  </div>  
+              </form>
+	
+               </div>
+							<div class="logo logo_three">
+								<a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+							</div>
+						</div>
 					</div>
-					
-					<a href="#myModal" class="trigger-btn" data-toggle="modal" class="forgot-link">Forgot Password ?</a>
+	
 				</div>
 			</div>
-			-->
-			<div class="form-group btn-container">
-				<button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
-			</div>	
-			<!--
-		  <a href="#" data-toggle="flip" class="pull-right">Register Here</a>
-		  -->
-		</form>
-		<form class="forget-form">
-			<h3 class="login-head"><i class="fa fa-lg fa-fw fa-pencil"></i>Registration Form</h3>
-			<div class="form-group">
-				<label class="control-label">EMAIL</label>
-				<input class="form-control" type="text" placeholder="Email">
-			</div>
-			<div class="form-group">
-				<label class="control-label">PASSWORD</label>
-				<input class="form-control" type="password" placeholder="password">
-			</div>
-			<div class="form-group">
-				<label class="control-label">CONFIRM PASSWORD</label>
-				<input class="form-control" type="password" placeholder="confirm password">
-			</div>
-			<div class="form-group btn-container">
-				<button class="btn btn-primary btn-block">SAVE</button>
-			</div><br>
-			<div class="form-group btn-container">
-				<button class="btn btn-info btn-block">CLEAR</button>
-			</div>
-			
-			<div class="form-group mt-3">
-				<p class="semibold-text mb-0"><a href="#" data-toggle="flip"><i class="fa fa-angle-left fa-fw"></i> Back to Login</a></p>
-			</div>
-		</form>
-	</div>
-	<!--fogot password-->
-<div id="myModal" class="modal fade">
-	<div class="modal-dialog modal-newsletter">
-		<div class="modal-content">
-			<form action="/examples/actions/confirmation.php" method="post">
-				<div class="modal-header">
-					<div class="icon-box">						
-						<i class="fa fa-envelope-open-o"></i>
-					</div>
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span>&times;</span></button>
-				</div>
-				<div class="modal-body text-center">
-					<h5>Send password to your Email Id</h5>	
-					<div class="input-group">
-						<input type="email" class="form-control" placeholder="Enter your email" required>&nbsp;
-						<div class="form-group btn-container">
-							<button class="btn btn-primary btn-block"><i class="fa fa-unlock fa-lg fa-fw"></i>RESET</button>
+		</div>
+		<!--header top start-->
+		<!--header middel start-->
+		<div class="header_middle">
+			<div class="container">
+				<div class="row align-items-center">
+					<div class="col-lg-9 offset-lg-3 offset-md-0">
+						<div class="main_menu menu_three header_position">
+							<nav>
+								<ul>
+	
+									<li><a href="#">home</a></li>
+									<li><a href="#">Aboutus</a></li>
+									<li><a href="#">Business</a></li>
+									<li><a href="#">Individuals</a></li>
+									<li class="pull-right google2">
+										<div id="google_translate_element"></div>
+									</li>
+								</ul>
+	
+							</nav>
 						</div>
 					</div>
 				</div>
-			</form>			
+			</div>
+		</div>
+		<!--header middel end-->
+	
+	
+	
+	</header>
+	<!--header area end-->
+	
+	<!--Offcanvas menu area start-->
+	
+	<div class="off_canvars_overlay">
+	
+	</div>
+	<div class="Offcanvas_menu Offcanvas_three">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="canvas_open">
+						<span>MENU</span>
+						<a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+					</div>
+					<div class="Offcanvas_menu_wrapper">
+						<div class="canvas_close">
+							<a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+						</div>
+	
+						<div id="menu" class="text-left ">
+							<ul class="offcanvas_main_menu">
+								<li class="menu-item-has-children active">
+									<a href="#">Home</a>
+	
+								</li>
+								<li class="menu-item-has-children">
+									<a href="#">About</a>
+	
+								</li>
+								<li class="menu-item-has-children">
+									<a href="#">Gallery</a>
+								</li>
+	
+								<li class="menu-item-has-children">
+									<a href="#">contact</a>
+								</li>
+	
+							</ul>
+						</div>
+	
+						<div class="Offcanvas_footer">
+							<span><a href="#"><i class="fa fa-envelope-o"></i> info@yourdomain.com</a></span>
+							<ul>
+								<li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+								<li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+								<li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+								<li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+								<li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div> 
-</section>
+	<!--Offcanvas menu area end-->
+	
+	
+	<!--header end-->
+	
+	<!--first page start -->
+	<div class="about_section mt-60">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-md-12">
+					<div class="about_content text-left">
+						<h1>Around 13% of the estimated 100,000 people living with HIV in the UK remain undiagnosed.</h1>
+						<p>Free self-sampling HIV test kits are available in many areas of the country — enter your details below to
+							check your eligibility:</p>
+						<!--<div class="view__work">
+						  <a href="#">view work </a>
+				</div>-->
+					</div>
+				</div>
+				<div class="col-lg-12 col-md-12">
+	
+					<div class="account_form form_4">
+	
+						<form class="inner_1" [formGroup]="user" (ngSubmit)="send()">
+
+							<p>
+								<label>Your age <span>*</span></label>
+								<input type="text" formControlName="age" required />
+								<span *ngIf="user.controls['age'].invalid && user.controls['age'].touched" class='text text-danger'>Age is
+									Required</span>
+							</p>
+							<p>
+								<label>Postcode <span>*</span></label>
+								<input type="text" formControlName="postCode" required />
+								<span *ngIf="user.controls['postCode'].invalid && user.controls['postCode'].touched"
+									class='text text-danger'>PostCode is Required</span>
+							</p>
+	
+							<div class="login_submit1">
+								<input type="submit" class="btn btn-info btn_another another_4" value="Go">
+							</div>
+	
+							<!---[disabled]="user.invalid"-->
+	
+						</form>
+	
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<!--header end-->
+
+
+<!--footer area start-->
+<footer class="footer_widgets">
+	<div class="container">
+	  <div class="footer_top">
+		<div class="row">
+		  <div class="col-lg-4 col-md-6 col-sm-7">
+			<div class="widgets_container contact_us">
+			  <h3>Contacts us</h3>
+			  <div class="footer_contact">
+				<ul>
+				  <li><i class="fa fa-home"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing
+					and typesetting industry. Lorem Ipsum</li>
+				  <li><i class="fa fa-phone"></i><span>Phone:</span> (+91) 866-540-3229</li>
+				  <li><i class="fa fa-envelope-square"></i><span>Email:</span> info@Lorem Ipsum .com</li>
+				</ul>
+			  </div>
+			 
+			</div>
+		  </div>
+		  <div class="col-lg-2 col-md-6 col-sm-5">
+			<div class="widgets_container widget_menu">
+			  <h3>Information</h3>
+  
+			</div>
+		  </div>
+		  <div class="col-lg-6 col-md-4 col-sm-4">
+			<div class="widgets_container widget_menu">
+			  <h3>My Account</h3>
+			  <div class="footer_menu">
+				<div class="footer_contact">
+				  <ul>
+					<li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of
+					  HIV home-sampling screening. </li>
+				  </ul>
+				</div>
+			  </div>
+			</div>
+		  </div>
+  
+  
+  
+		</div>
+	  </div>
+	</div>
+	<div class="footer_bottom">
+	  <div class="container">
+		<div class="row">
+		  <div class="col-lg-12 col-md-12">
+			<div class="copyright_area text-center">
+			  <p>Copyright &copy; 2019 <a href="#">Medintu</a> All Right Reserved.</p>
+			</div>
+		  </div>
+		</div>
+	  </div>
+	</div>
+  </footer>
+  <!--footer area end-->
+	
+
+
+
 
 
 <style>
-	.forget-form {
-		position: relative;
-		min-width: 350px;
-		min-height: 500px;
-		background-color: #fff;
-		box-shadow: 0px 29px 147.5px 102.5px rgba(0, 0, 0, 0.05), 0px 29px 95px 0px rgba(0, 0, 0, 0.16);
-		-webkit-perspective: 800px;
-		perspective: 800px;
-		transition: all 0.5s ease-in-out;
-	}
-	.login-box{
-		margin-top: -205px;
-	}
+
+.inner_form .form-group
+{
+    margin-bottom: 4px;
+    width: 30%;
+    float: left;
+    margin-right: 5px;
+}
+.inner_form .form-control
+{
+  height:33px;
+}
+.inner_form .btn
+{
+  width: 55%;
+  font-size: 13px;
+  padding: 4px 0px 4px 4px;
+}
+.inner_form
+{
+  position: relative;
+  top: 8px;
+  right: -260px;
+}
+
+
 </style>

@@ -40,5 +40,10 @@ public class EthnicGroupServiceImpl implements EthnicGroupService {
 		return ethnicGroupdao.save(ethnicgroup);
 
 	}
+	
+	public List<String> getEthnicByGroup(){
+		return ethnicGroupdao.getEthnicByGroup();
+	}
+
 
 }

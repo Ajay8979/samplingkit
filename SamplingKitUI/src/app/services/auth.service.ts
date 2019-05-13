@@ -22,7 +22,7 @@ export class AuthService {
     }
   }
 
-  public async loginAction(postData) {
+  public loginAction(postData){
     const body = new HttpParams()
       .set('username', postData.username)
       .set('password', postData.password);
@@ -34,9 +34,9 @@ export class AuthService {
         }
       )
       .subscribe(
-        (res: HttpResponse<any>) => {
-           sessionStorage.setItem('userData', res['token']);
-          sessionStorage.setItem('userRole', res['user.roles[0]']);
+        (res) => {
+           sessionStorage.setItem('userData', res['resultData']['token']);
+          sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
           // localStorage.setItem("UserName",postData.username);
         });
     return true;

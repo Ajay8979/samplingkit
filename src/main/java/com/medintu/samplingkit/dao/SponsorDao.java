@@ -11,7 +11,7 @@ public interface SponsorDao extends Dao<Sponsor, Long> {
 
 	Boolean getSponsorsByPostCode(Integer age, String postCode);
 
-	Boolean getSponsorsByPostCode(String postCode, String gender, String ethnicGroup);
+	Long getSponsorsByPostCode(String postCode, String gender, Long ethnicGroup,Integer age);
 
 	List<Sponsor> getAllSponsors();
 
@@ -22,4 +22,6 @@ public interface SponsorDao extends Dao<Sponsor, Long> {
 	List<TestCode> getTestCodesBySponsorId(Integer sponsorId);
 
 	List<Rule> getSponsorRulesBySponsorId(Integer sponsorId);
+
+	
 }

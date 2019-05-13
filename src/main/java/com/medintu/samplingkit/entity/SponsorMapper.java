@@ -18,6 +18,8 @@ public class SponsorMapper {
 	private List<Rule> ruleList;
 	private List<TestCode> testCodeList;
 
+	private List<SpecialEventMapper> mappers;
+
 	private Integer postCodeMinValue;
 
 	private Integer postCodeMaxValue;
@@ -108,6 +110,14 @@ public class SponsorMapper {
 
 	public void setPostCodeMaxValue(Integer postCodeMaxValue) {
 		this.postCodeMaxValue = postCodeMaxValue;
+	}
+
+	public List<SpecialEventMapper> getMappers() {
+		return mappers;
+	}
+
+	public void setMappers(List<SpecialEventMapper> mappers) {
+		this.mappers = mappers;
 	}
 
 }

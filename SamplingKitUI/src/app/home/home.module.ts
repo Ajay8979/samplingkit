@@ -8,8 +8,10 @@ import { UsersComponent } from './users/users.component';
 import { SponsorUserComponent } from './sponsor-user/sponsor-user.component';
 import { HttpClientModule } from '@angular/common/http';
 import { EthenicgroupComponent } from './ethenicgroup/ethenicgroup.component';
+import { StatusComponent } from './status/status.component';
+import { SpecialeventComponent } from './specialevent/specialevent.component';
 @NgModule({
-  declarations: [DashboardComponent, ReportComponent, HelpComponent, UsersComponent, SponsorUserComponent, EthenicgroupComponent],
+  declarations: [DashboardComponent, ReportComponent, HelpComponent, UsersComponent, SponsorUserComponent, EthenicgroupComponent,StatusComponent,SpecialeventComponent],
   imports: [
     CommonModule, ReactiveFormsModule, ReactiveFormsModule, FormsModule, HttpClientModule
   ]

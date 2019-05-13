@@ -28,15 +28,15 @@ public class DataBaseInitializer {
 	}
 
 	public void initDataBase() {
-		/*User userUser = new User("user", this.passwordEncoder.encode("user"));
-		userUser.addRole(Role.USER);
-		this.userDao.save(userUser);
-
-		User adminUser = new User("admin", this.passwordEncoder.encode("admin"));
-		adminUser.addRole(Role.SUBERADMIN);
+		
+		User adminUser = new User("medintu", this.passwordEncoder.encode("medintu"));
+		adminUser.setFirstName("medintu");
+		adminUser.setLastName("medintu");
+		adminUser.setEmailId("adminUser@medintu.com");
+		adminUser.addRole(Role.SUPERADMIN);
 		this.userDao.save(adminUser);
 
-		long timestamp = System.currentTimeMillis() - (1000 * 60 * 60 * 24);*/
+		long timestamp = System.currentTimeMillis() - (1000 * 60 * 60 * 24);
 		
 	}
 }

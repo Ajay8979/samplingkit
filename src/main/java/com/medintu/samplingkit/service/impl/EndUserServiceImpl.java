@@ -1,6 +1,9 @@
 package com.medintu.samplingkit.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.medintu.samplingkit.dao.EndUserDao;
 import com.medintu.samplingkit.dao.SponsorDao;
@@ -8,6 +11,7 @@ import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.entity.EndUserMapper;
 import com.medintu.samplingkit.service.EndUserService;
 
+@Service
 public class EndUserServiceImpl implements EndUserService {
 
 	@Autowired
@@ -15,7 +19,6 @@ public class EndUserServiceImpl implements EndUserService {
 
 	@Autowired
 	private EndUserDao endUserDao;
-
 
 	@Override
 	public Boolean validateAgeAndPostCode(Integer age, String postCode) {
@@ -25,15 +28,12 @@ public class EndUserServiceImpl implements EndUserService {
 	}
 
 	@Override
-	public Boolean validateGenderAndEthnicGroup(EndUserMapper endUserMapper) {
+	public Long validateGenderAndEthnicGroup(EndUserMapper endUserMapper) {
 
-		if (sponsorDao.getSponsorsByPostCode(endUserMapper.getAge(), endUserMapper.getPostCode())
-				&& sponsorDao.getSponsorsByPostCode(endUserMapper.getPostCode(), endUserMapper.getGender(),
-						endUserMapper.getEthnicGroup())) {
-			return true;
-		}
+		Long value = sponsorDao.getSponsorsByPostCode(endUserMapper.getPostCode(), endUserMapper.getGender(),
+				endUserMapper.getEthnicGroupId(), endUserMapper.getAge());
+		return value;
 
-		return false;
 	}
 
 	@Override
@@ -42,5 +42,10 @@ public class EndUserServiceImpl implements EndUserService {
 			return true;
 		}
 		return false;
+	}
+	
+	@Override
+	public List<EndUser> getEndUsersBySponserId(Long sponserId) {
+		return endUserDao.getEndUsersBySponserId(sponserId);
 	}
 }

@@ -32,13 +32,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>Otto</td>
-              <td>@mdo</td>
+            <tr *ngFor="let item of SponsorsData;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{item.name}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.phone}}</td>
+              <td>{{item.budget}}</td>
+              <td>{{item.postCode}}</td>
               <td><a class="btn btn-primary btn-sm" href="" data-toggle="modal" data-target="#addressDetails">Address</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ruleDetails">Rules</a>&nbsp;&nbsp;<a href="" data-toggle="modal" data-target="#codeDetails" class="btn btn-warning btn-sm">Test Code</a>
               </td>
             </tr>
@@ -72,70 +72,157 @@
                             <fieldset id="first" style="margin-left: 2px;">
                                  
                                 <p class="subtitle">Step 1</p>
-                                
-                                <input class="text_field"  [(ngModel)]="name" name="name" placeholder="Name" type="text">
-                                <input class="text_field"  [(ngModel)]="email" name="email" placeholder="Email" type="text">
-                                <input class="text_field"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text">
-                                <input class="text_field"  [(ngModel)]="budget" name="budget" placeholder="Budget" type="text">
-                                <input class="text_field"  [(ngModel)]="postcode" name="postcode" placeholder="Post Code" type="text">
+                                 <label class="col-md-2">Name: </label>
+                                <input class="col-md-7"  [(ngModel)]="name" name="name" placeholder="Name" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Email: </label>
+                                <input class="col-md-7"  [(ngModel)]="email" name="email" placeholder="Email" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Phone: </label>
+                                <input class="col-md-7"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Budget: </label>
+                                <input class="col-md-7"  [(ngModel)]="budget" name="budget" placeholder="Budget" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Post Code: </label>
+                                <input class="col-md-7"  [(ngModel)]="postcode" name="postcode" placeholder="Post Code" type="text">
                                 <input class="next_btn pull-right" (click)="step1Details(name,email,phone,budget,postcode)" name="next" type="button" value="Next">
                                 </fieldset>
                                 <fieldset style="margin-left: 2px;">
                              
                                 <p class="subtitle">Step 2</p>
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="streetNumber"  placeholder="Street Number" type="text">
-                                <input class="text_field" name="strename"   [(ngModel)]="strname1" placeholder="Street Name1" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="strname2" placeholder="Street Name2" type="text">
-                                  <input class="text_field" name="streetNumber"  [(ngModel)]="city" placeholder="City" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="country" placeholder="Country" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="district" placeholder="District" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="region" placeholder="Region" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="state" placeholder="State" type="text">
-                                <input class="text_field" name="streetNumber"  [(ngModel)]="zipcode" placeholder="Zip Code" type="text">
+                                <label class="col-md-2">Street No: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="streetNumber"  placeholder="Street Number" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Street Name1: </label>
+                                <input class="col-md-7" name="strename"   [(ngModel)]="strname1" placeholder="Street Name1" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Street Name2: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="strname2" placeholder="Street Name2" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">City: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="city" placeholder="City" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Country: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="country" placeholder="Country" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">District: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="district" placeholder="District" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Region: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="region" placeholder="Region" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">State: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="state" placeholder="State" type="text">
+                                <div class="clearfix"></div>
+                                <label class="col-md-2">Zipcode: </label>
+                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="zipcode" placeholder="Zip Code" type="text">
+                                <br>
                                 <input class="pre_btn" name="previous" type="button" value="Previous">
                                 <input class="next_btn" name="next" type="button" (click)="step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)" value="Next">
                                 </fieldset>
                                 <fieldset style="margin-left: 2px;">
                              
                                 <p class="subtitle">Step 3</p>
-                                <input class="text_field" name="fname" [(ngModel)]="ruleName" placeholder="Rule Name" type="text">
-                                <input class="text_field" name="fname" [(ngModel)]="ruleValue" placeholder="Rule Value" type="text">
-                                <input class="pre_btn" type="button" value="Previous">
-                                <button class="btn btn-success mr-2 mb-2 pull-right" (click)="ruleTable(ruleName,ruleValue)"><i class="fa fa-plus"></i>Add Rule</button>
-                               
-                                <input class="next_btn" name="next" type="button" value="Next">
+                                <label class="col-md-3">Ethenic Group: </label>
+          
+                                    <select [(ngModel)]="selectedEthenicName" class="col-md-7">
+                                        <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+                                    </select>
+                                    <div class="clearfix"></div>
+                                    <label class="col-md-3">Gender:</label>
+                                    
+                                    <select class="col-md-7" [(ngModel)]="selectedGender" multiple style="height: 60px;">
+                                        <option value="Male">Male</option>
+                                        <option value="Female">Female</option>
+                                        <option value="Other">Other</option>
+                                      </select>
+                                <div class="clearfix"></div>
+                              <label class="col-md-3">Min Age: </label>
+                              <input class="col-md-7" name="minage"  [(ngModel)]="minage" placeholder="Min Age" type="text">
+                              <div class="clearfix"></div>
+                              <label class="col-md-3">Max Age: </label>
+                              <input class="col-md-7" name="maxage"  [(ngModel)]="maxage" placeholder="Max Age" type="text">
+                              <div class="clearfix"></div>
+                              <div class="col-md-10">
+                              <button type="button"  (click)="ruleTable(selectedEthenicName,selectedGender,minage,maxage)" class="btn btn-success pull-right">Add Rules</button>
+                              </div>
+                              <div class="clearfix"></div>
+                              <label class="col-md-3">Special Event Name: </label>
+                              <input class="col-md-7"  [(ngModel)]="eventName" placeholder="Event Name" type="text">
+                              <div class="clearfix"></div>
+                              <label class="col-md-3">Start Date: </label>
+                              <input class="col-md-7" [(ngModel)]="startDate" type="date">
+                              <div class="clearfix"></div>
+                              <label class="col-md-3">End Date: </label>
+                              <input class="col-md-7" [(ngModel)]="endDate"  type="date">
+                              <div class="clearfix"></div>
+                              <div class="col-md-10">
+                              <button type="button" (click)="addEventDetails(eventName,startDate,endDate)" class="btn btn-success pull-right">Add Events</button>
+                              </div>
+                         <br><br><hr>
+                               <h4 class="text-center text-primary text-center"  *ngIf="ruleDetails"> Rule Details</h4>
                                 <table class="table" *ngIf="ruleDetails">
                                         <thead>
                                           <tr>
-                                            <th>Rule Name</th>
-                                            <th>Rule value</th>
+                                            <th>Gender</th>
+                                            <th>Min Age</th>
+                                            <th>Max Age</th>
                                     
                                           </tr>
                                         </thead>
                                         <tbody>
-                                          <tr *ngFor="let item of ruleList">
-                                            <td>{{item.ruleName}}</td>
-                                            <td>{{item.ruleValue}}</td>
+                                          <tr *ngFor="let item of ruleDataTable">
+                                            <td><span *ngFor="let gender of item.gender">{{gender}} &nbsp;</span></td>
+                                            <td>{{item.minage}}</td>
+                                            <td>{{item.maxage}}</td>
                                             
                                           </tr>
                             
                                         </tbody>
                                       </table>
+                                      <h4 class="text-center text-primary"  *ngIf="eventdetail"> Event Details</h4>
+                                     <table class="table" *ngIf="eventdetail">
+                                        <thead>
+                                          <tr>
+                                            <th>Event Name</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                    
+                                          </tr>
+                                        </thead>
+                                        <tbody>
+                                          <tr *ngFor="let item of mappers">
+                                            <td>{{item.eventName}}</td>
+                                            <td>{{item.startDate}}</td>
+                                            <td>{{item.endDate}}</td>
+                                            
+                                          </tr>
+                            
+                                        </tbody>
+                                      </table>
+                                      <br>
+                                      <input class="pre_btn" type="button" value="Previous">
+                                      <input class="next_btn" name="next" type="button" value="Next">
+                                    
                                 </fieldset>
                                 <fieldset style="margin-left: 2px;">
                              
                                     <p class="subtitle">Step 4</p>
-                                     <input class="text_field" name="testname" [(ngModel)]="testName" placeholder="Test Name" type="text">
-                                    <input class="text_field" name="testcode"  [(ngModel)]="testCode" placeholder="Test Code" type="text">
-                                    <textarea class="text_field" name="testdesc"  [(ngModel)]="testDesc" placeholder="Test Description"></textarea>
-                                   
-                                    <input class="text_field" name="isDefault"  [(ngModel)]="isDefault"  type="checkbox">&nbsp;isDefault <br>
+                                    <label class="col-md-2">Test Name: </label>
+                                     <input class="col-md-7" name="testname" [(ngModel)]="testName" placeholder="Test Name" type="text">
+                                     <div class="clearfix"></div>
+                                     <label class="col-md-2">Test Code: </label>
+                                    <input class="col-md-7" name="testcode"  [(ngModel)]="testCode" placeholder="Test Code" type="text">
+                                    <div class="clearfix"></div>
+                                    <label class="col-md-2">Test Desc.: </label>
+                                    <textarea class="col-md-7" name="testdesc"  [(ngModel)]="testDesc" placeholder="Test Description"></textarea>
+                                    <br>
+                                    <label class="col-md-2">IsDefault.: </label>
+                                    <input class="col-md-1" name="isDefault"  [(ngModel)]="isDefault"  type="checkbox"> <br>
                                     <button class="btn btn-success mr-2 mb-2 pull-right" (click)="testTable(testName,testCode,testDesc,isDefault)"><i class="fa fa-plus"></i>Add Test</button>
                             
-                                    <input class="pre_btn" type="button" value="Previous">
-                                    
-                                    <input class="submit_btn" type="submit" (click)="submitSponsorDetails()" value="Submit">
-                                    <table class="table table-hover" *ngIf="testDetailsFlag">
+                                       <table class="table table-hover" *ngIf="testDetailsFlag">
                                             <thead>
                                               <tr>
                                                 <th>Test Name</th>
@@ -154,6 +241,11 @@
                                              
                                             </tbody>
                                           </table>
+                                   
+                                          <br>
+                                          <input class="pre_btn" type="button" value="Previous">
+                                         <input class="submit_btn" type="submit" (click)="submitSponsorDetails()" value="Submit">
+                                 
                                     </fieldset>
                             
                                 </div>

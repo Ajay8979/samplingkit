@@ -17,7 +17,7 @@ import javax.persistence.Table;
  * @author ssagar {@code} Sponsor Contains BasicInfo,Rule &ContactInfo
  */
 @Entity
-@Table(name = "Sponsor")
+@Table(name = "sponsor")
 public class Sponsor implements com.medintu.samplingkit.entity.Entity {
 	private static final long serialVersionUID = 1L;
 	@Id
@@ -77,10 +77,6 @@ public class Sponsor implements com.medintu.samplingkit.entity.Entity {
 
 	public Sponsor() {
 		// TODO Auto-generated constructor stub
-	}
-
-	public Long getId() {
-		return id;
 	}
 
 	public void setId(Long id) {
@@ -147,6 +143,11 @@ public class Sponsor implements com.medintu.samplingkit.entity.Entity {
 	public String toString() {
 		return "Sponsor [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", budget=" + budget
 				+ ", addressList=" + addressList + ", ruleList=" + ruleList + ", testCodeList=" + testCodeList + "]";
+	}
+
+	@Override
+	public Long getId() {
+		return id;
 	}
 
 }

@@ -111,7 +111,7 @@
 
 	<bean id="sponsorUserDao"
 		class="com.medintu.samplingkit.dao.JpaSponsorUserDao" />
-
+	<bean id="specialEventDao" class="com.medintu.samplingkit.dao.JpaSpecialEventDao"/>
 	<bean id="ethnicGroupdao"
 		class="com.medintu.samplingkit.dao.JpaEthnicGroupDao" />
 
@@ -128,7 +128,7 @@
 
 	<bean id="ethnicgroupservice"
 		class="com.medintu.samplingkit.service.EthnicGroupServiceImpl" />
-
+	<bean id="specialEventService" class="com.medintu.samplingkit.service.SpecialEventServiceImpl"/>
 	<bean id="sponsorUserService"
 		class="com.medintu.samplingkit.service.SponsorUserServiceImpl">
 
