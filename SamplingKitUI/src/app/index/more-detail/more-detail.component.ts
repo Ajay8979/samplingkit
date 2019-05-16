@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IndexService } from './../services/index.service';
 import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
+import { AuthService } from './../../services/auth.service';
+
 
 @Component({
   selector: 'app-more-detail',
@@ -11,8 +13,9 @@ import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
 export class MoreDetailComponent implements OnInit {
 
   users:FormGroup;
+  OBSLoginForm:FormGroup;
 
-  constructor(private router:Router,private fb:FormBuilder,private sends:IndexService) { }
+  constructor(private router:Router,private fb:FormBuilder,private sends:IndexService,private authService:AuthService) { }
 
   ngOnInit() {
 
@@ -23,6 +26,20 @@ export class MoreDetailComponent implements OnInit {
       protect3 : ['',Validators.required]
      
     });
+
+    
+    this.OBSLoginForm = this.fb.group({
+   'username': [null,Validators.required],
+   'password': [null,Validators.required]
+    });
+
+  }
+
+  LoginAction(formData:any){
+    if(this.authService.loginAction(formData)){
+     this.router.navigate(['dashboard']);
+   }
+  
   }
 
   datessend(formdata)
@@ -40,12 +57,20 @@ export class MoreDetailComponent implements OnInit {
 
   first()
   {
-    this.router.navigate(['questionaries']);
+    this.router.navigate(['question']);
   }
 
   second()
   {
     this.router.navigate(['address']);
+  }
+
+  
+  viewResult(){
+    this.router.navigate(['viewresults']);
+  }
+  LoginPage(){
+    this.router.navigate(['loginpageaction']);
   }
 
 }

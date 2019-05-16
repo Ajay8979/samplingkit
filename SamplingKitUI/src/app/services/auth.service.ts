@@ -37,7 +37,14 @@ export class AuthService {
         (res) => {
            sessionStorage.setItem('userData', res['resultData']['token']);
           sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
-          // localStorage.setItem("UserName",postData.username);
+
+       if(res['resultData']['user'].roles[0]=="SPONSORUSER"){
+            sessionStorage.setItem('sponsorId',res['resultData']['user'].sponsorId)
+          }
+          if(res['resultData']['user'].roles[0]=="SUPPORTUSER"){
+            sessionStorage.setItem('sponsorId',res['resultData']['user'].sponsorId)
+          }
+         
         });
     return true;
   }

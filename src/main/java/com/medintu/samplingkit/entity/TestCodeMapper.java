@@ -6,9 +6,7 @@ public class TestCodeMapper {
 	private String testName;
 	private String description;
 	private String testCode;
-	private Boolean isDefalut;
-	private String status;
-
+	
 	public Long getId() {
 		return id;
 	}
@@ -41,20 +39,6 @@ public class TestCodeMapper {
 		this.testCode = testCode;
 	}
 
-	public boolean isDefalut() {
-		return isDefalut;
-	}
-
-	public void setDefalut(boolean isDefalut) {
-		this.isDefalut = isDefalut;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
+	
 
 }

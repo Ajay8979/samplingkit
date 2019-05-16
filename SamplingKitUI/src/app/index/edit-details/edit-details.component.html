@@ -9,17 +9,33 @@
             <div class="header_top_inner">
               <div class="top_left">
                 <ul>
-                  <li class="currency"><a href="#">support@medintu.co.uk</a>
-  
-                  </li>
-  
+                  <li class="currency"><a href="#">support@medintu.co.uk</a></li>
                   <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
-  
                 </ul>
               </div>
+              <div class="top_right">
+
+                  <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+                
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                      </div>
+                      <div class="form-group btn-container">
+                          <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                      </div>  
+                   </form>-->
+    
+                   <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+                   <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
+                   
+                   </div>
+    
              
               <div class="logo logo_three">
-                <a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+                <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
               </div>
             </div>
           </div>
@@ -133,8 +149,8 @@
     
             <div class="address address_5">
     
-               <h4 (click)="first()"><span>1</span>Personal Details
-                  <p>(edit)<p>
+               <h4 class="link_2"><span>1</span>Personal Details
+                <a  [routerLink]="['/address',id]">(edit)</a>
                 </h4>
               <ul>
                 <li>Name:{{firstname}}</li>
@@ -142,13 +158,13 @@
                 <li>Dob:{{dob}}</li>
               </ul>
     
-              <h4 (click)="first()"><span>2</span>Kit and Test Booking</h4>
+              <h4><span>2</span>Kit and Test Booking</h4>
               <ul>
                 <li>test:HIV KIT</li>
                 <li>HIV only</li>
               </ul>
     
-              <h4 (click)="first()"><span>3</span>Shipping Address 
+              <h4><span>3</span>Shipping Address 
                   <p>(edit)<p>
                 </h4>
               <ul>
@@ -156,13 +172,12 @@
                 
               </ul>
     
-              <h4 (click)="first()"><span>4</span>Notification details 
-                  <p>(edit)<p>
+              <h4 class="link_2"><span>1</span>Personal Details
+                <a  [routerLink]="['/result',id]">(edit)</a>
               </h4>
               <ul>
                 <li>{{mobile}}</li>
-                <li>{{gmail}}</li>
-    
+                <li>{{email}}</li>
               </ul>
     
             </div>
@@ -186,7 +201,7 @@
                 <li>Sometimes we work with external agencis such as public Health England or selected universities in the UK
                   on research to improve HIV services.If you would be happy to receive an invitation in research please tick
                   thi box</li>
-                <input type="checkbox"> Yes,I am happy to be contacted
+                
               </ul>
     
               <h4><span>7</span>Agree & Consent</h4>
@@ -208,8 +223,8 @@
         </div>
     
         <div class="buttons">
-         <button class="btn pull-left" (click)="first()"> <i class="fa fa-arrow-circle-left"></i> Back</button>
-          <button class="btn pull-right" (click)="send()" >Finish</button>
+         <button class="btn pull-left" [routerLink]="['/result',value]"> <i class="fa fa-arrow-circle-left"></i> Back</button>
+          <button class="btn pull-right" (click)="send()">Finish</button>
         </div>
     
       </div>

@@ -70,7 +70,7 @@ export class StatusComponent implements OnInit {
   
   updateStatusData() {
     var dt = { id:  this.data.id, nameOfTheStatus: this.pstatus}
-    this.http.put('http://localhost:8080/samplingkit/rest/Status/updateStatus' + "/" + this.id, dt).subscribe(data => {
+    this.http.put('rest/Status/updateStatus' + "/" + this.id, dt).subscribe(data => {
       this.getAllstatus();
     })
   }

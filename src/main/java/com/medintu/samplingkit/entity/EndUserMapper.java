@@ -1,6 +1,8 @@
 package com.medintu.samplingkit.entity;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 import org.json.simple.JSONObject;
 
@@ -49,6 +51,8 @@ public class EndUserMapper {
 	private String notificationEmail;
 
 	private Boolean lastResortLetter;
+
+	private Set<TestCode> testCodes;
 
 	private Long sponsorId;
 
@@ -238,6 +242,14 @@ public class EndUserMapper {
 
 	public void setSponsorId(Long sponsorId) {
 		this.sponsorId = sponsorId;
+	}
+
+	public Set<TestCode> getTestCodes() {
+		return testCodes;
+	}
+
+	public void setTestCodes(Set<TestCode> testCodes) {
+		this.testCodes = testCodes;
 	}
 
 }

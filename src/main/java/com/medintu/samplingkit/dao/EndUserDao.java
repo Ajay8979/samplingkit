@@ -8,4 +8,6 @@ public interface EndUserDao extends Dao<EndUser, Long> {
 
 	List<EndUser> getEndUsersBySponserId(Long sponserId);
 
+	List<EndUser> getEndUsersByOrderCode(String orderCode);
+	
 }

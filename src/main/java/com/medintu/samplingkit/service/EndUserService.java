@@ -1,9 +1,11 @@
 package com.medintu.samplingkit.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.entity.EndUserMapper;
+import com.medintu.samplingkit.entity.TestCode;
 
 public interface EndUserService {
 
@@ -11,7 +13,17 @@ public interface EndUserService {
 	
 	Long validateGenderAndEthnicGroup(EndUserMapper endUserMapper);
 	
-	Boolean addEndUser(EndUser endUser);
+	EndUser addEndUser(EndUser endUser);
 
 	List<EndUser> getEndUsersBySponserId(Long sponserId);
+
+	List<EndUser> getEndUsers();
+
+	List<EndUser> getEndUsersByOrderCode(String orderCode);
+
+	//public EndUser updateEthnicGroupById(EndUser endUser);
+
+	EndUser updateEndUserById(EndUser endUser);
+
+	Set<TestCode> getDefaultTestCodes(EndUserMapper endUserMapper);
 }

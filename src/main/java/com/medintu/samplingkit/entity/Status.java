@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "Status")
+@Table(name = "status")
 public class Status implements Entity {
 	private static final long serialVersionUID = 1L;
 	@Id

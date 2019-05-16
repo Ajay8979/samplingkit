@@ -1,0 +1,171 @@
+
+<div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i> Sponsor</h1>
+      <p>Sponsor Details</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+    </ul>
+  </div>
+
+      <div class="row">
+         
+            <div class="col-xs-12 col-sm-12">
+        
+              <!-- User info -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+               
+               
+                </div>
+                <div class="panel-body">
+                    <div class="tile">
+                        <h4 class="panel-title">&nbsp;&nbsp;Contact Info</h4>
+                  <table class="table profile__table">
+                    <tbody>
+                      <tr>
+                        <th><strong>Name</strong></th>
+                        <td>{{name}}</td>
+                      </tr>
+                      <tr>
+                        <th><strong>Phone Number</strong></th>
+                        <td>{{phone}}</td>
+                      </tr>
+                      <tr>
+                        <th><strong>Email Id</strong></th>
+                        <td>{{email}}</td>
+
+                      </tr>
+                      <tr>
+                          <th><strong>Budget</strong></th>
+                          <td>{{budget}}</td>
+                          
+                        </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+      
+              <!-- Community -->
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                
+                </div>
+                <div class="panel-body">
+                    <div class="tile">
+                        <h4 class="panel-title">&nbsp;&nbsp;Address Details</h4>
+                  <table class="table profile__table">
+                    <tbody>
+                      <tr>
+                        <th><strong>Street Number:</strong></th>
+                        <td>{{streetNumber}}</td>
+                      </tr>
+                      <tr>
+                        <th><strong>Street Name1</strong></th>
+                        <td>{{streetName1}}</td>
+                      </tr>
+                      <tr>
+                        <th><strong>Street Name2</strong></th>
+                        <td>{{streetName2}}</td>
+                        </tr>
+                        <tr>
+                          <th><strong>City</strong></th>
+                          <td>{{city}}</td>
+                        </tr>
+                        <tr>
+                          <th><strong>Country</strong></th>
+                          <td>{{country}}</td>
+                        </tr>
+                        <tr>
+                          <th><strong>Region</strong></th>
+                          <td>{{region}}</td>
+                        </tr>
+                        <tr>
+                          <th><strong>State</strong></th>
+                          <td>{{state}}</td>
+                        </tr>
+                        <tr>
+                            <th><strong>Zipcode</strong></th>
+                            <td>{{zipcode}}</td>
+                          </tr>
+                    </tbody>
+                  </table>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                  <div class="panel-heading">
+                
+                  </div>
+                  <div class="panel-body">
+                      <div class="tile">
+                          <h4 class="panel-title">&nbsp;&nbsp;Rule Details</h4>
+                      <table class="table">
+                          <thead>
+                            <tr>
+                              <th>Rule Name</th>
+                              <th>Rule Value</th>
+                         
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr *ngFor="let item of sponsorDetailsRule">
+                              <td>{{item.ruleName}}</td>
+                              <td>{{item.ruleValue}}</td>
+                            </tr>
+                          </tbody>
+                        </table>
+                        </div>
+                  </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                   
+                    </div>
+                    <div class="panel-body">
+                        <div class="tile">
+                            <h4 class="panel-title">&nbsp;&nbsp;Post Code Details</h4>
+                      <table class="table profile__table">
+                        <tbody>
+                          <tr>
+                            <th><strong>Postal Code</strong></th>
+                            <td><span *ngFor="let item of postalCodesDetails">{{item.postalCode}} &nbsp;&nbsp;</span></td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                     
+                      </div>
+                      <div class="panel-body">
+                          <div class="tile">
+                              <h4 class="panel-title">&nbsp;&nbsp;Test Codes Details</h4>
+                             <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th>Test Name</th>
+                                      <th>Description</th>
+                                      <th>Test Code</th>
+                                 
+                                    </tr>
+                                  </thead>
+                                  <tbody>
+                                    <tr *ngFor="let item of testcodeDetails">
+                                      <td>{{item.testName}}</td>
+                                      <td>{{item.description}}</td>
+                                      <td>{{item.testCode}}</td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                        </div>
+                      </div>
+                    </div>
+      
+             
+            </div>
+           </div>
+ 

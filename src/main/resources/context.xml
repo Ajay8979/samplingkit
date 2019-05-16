@@ -83,7 +83,7 @@
 		<![CDATA[
                     Hi %s,
 
-                    Your Registration is Completed. Thank You for Registering with us.
+                    Thank You for registering for HIV test kit. You can track the kit with your unique Order Code Id.
 
                     %s.
 		]]>
@@ -108,14 +108,26 @@
 		class="com.medintu.samplingkit.dao.JpaStatusDao" />
 	<bean id="endUserDao"
 		class="com.medintu.samplingkit.dao.JpaEndUserDao" />
+	<bean id="ruleDao" class="com.medintu.samplingkit.dao.JpaRuleDao" />
+	<bean id="addressDao"
+		class="com.medintu.samplingkit.dao.JpaSponsorAddressDao" />
 
 	<bean id="sponsorUserDao"
 		class="com.medintu.samplingkit.dao.JpaSponsorUserDao" />
-	<bean id="specialEventDao" class="com.medintu.samplingkit.dao.JpaSpecialEventDao"/>
+	<bean id="specialEventDao"
+		class="com.medintu.samplingkit.dao.JpaSpecialEventDao" />
 	<bean id="ethnicGroupdao"
 		class="com.medintu.samplingkit.dao.JpaEthnicGroupDao" />
-
+	<bean id="postalCodeDao"
+		class="com.medintu.samplingkit.dao.JpaPostalCodeDao" />
+	<bean id="endUserTestsDao"
+		class="com.medintu.samplingkit.dao.JpaEndUserTestsDao"></bean>
 	<!-- Service class related to SamplingKit -->
+	<bean id="sponsorAddressDao"
+		class="com.medintu.samplingkit.dao.JpaSponsorAddressDao"></bean>
+		<bean id="sponsorPostlcodeDao"
+		class="com.medintu.samplingkit.dao.JpaSponsorPostlcodeDao"></bean>
+	
 
 	<bean id="tesCodeService"
 		class="com.medintu.samplingkit.service.TestCodeServiceImpl" />
@@ -128,7 +140,10 @@
 
 	<bean id="ethnicgroupservice"
 		class="com.medintu.samplingkit.service.EthnicGroupServiceImpl" />
-	<bean id="specialEventService" class="com.medintu.samplingkit.service.SpecialEventServiceImpl"/>
+	<bean id="specialEventService"
+		class="com.medintu.samplingkit.service.SpecialEventServiceImpl" />
+	<bean id="PostalCodeService"
+		class="com.medintu.samplingkit.service.PostalCodeServiceImpl" />
 	<bean id="sponsorUserService"
 		class="com.medintu.samplingkit.service.SponsorUserServiceImpl">
 

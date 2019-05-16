@@ -65,6 +65,8 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	private Long sponsorId;
 
+	private String status;
+
 	public Long getSponsorId() {
 		return sponsorId;
 	}
@@ -267,6 +269,14 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	public void setOrderCode(String orderCode) {
 		this.orderCode = orderCode;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 }

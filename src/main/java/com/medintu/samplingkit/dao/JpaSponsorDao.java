@@ -1,14 +1,18 @@
 package com.medintu.samplingkit.dao;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 import org.springframework.util.CollectionUtils;
 
+import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
@@ -35,10 +39,9 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 	@Override
 	public Boolean getSponsorsByPostCode(Integer age, String postCode) {
 
-		String subPostCode = postCode.substring(0, 3);
-
-		Query query = this.entityManager
-				.createNativeQuery("SELECT * FROM Sponsor s WHERE s.postal_code LIKE '" + subPostCode + "%'");
+		Query query = this.entityManager.createNativeQuery(
+				"SELECT s.id,s.sponsor_name FROM sponsor s ,sponsor_postlcode sp,postalcode p WHERE s.id=sp.sponsor_id and sp.postal_id = p.id and p.postal_code='"
+						+ postCode + "'");
 		List<Object[]> resultList = query.getResultList();
 
 		if (!CollectionUtils.isEmpty(resultList) && resultList.size() > 0) {
@@ -50,37 +53,63 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 	@Override
 	public Long getSponsorsByPostCode(String postCode, String gender, Long ethnicGroupId, Integer age) {
 
-		String subPostCode = postCode.substring(0, 3);
+		Query query = this.getEntityManager()
+				.createNativeQuery("SELECT  gender,min_age_group,max_age_group,sponsor_id,ethnic_groupid "
+						+ "FROM rule_configuration r ,sponsor s ,postalcode p "
+						+ " WHERE s.id=r.sponsor_id  and  ethnic_groupid=" + ethnicGroupId + ""
+						+ " and  p.postal_code='" + postCode + "' and min_age_group <=" + age + " and max_age_group>="
+						+ age);
+		List<Object[]> resultList = query.getResultList();
+
+		Long sponserId = null;
+
+		for (Object[] result : resultList) {
+			String[] genders = result[0].toString().split(",");
+			for (String gen : genders) {
+				if (gen.equalsIgnoreCase(gender)) {
+					sponserId = Long.parseLong(result[3].toString());
+					break;
+				}
+			}
+		}
+		return sponserId;
+	}
+
+	@Override
+	public Set<TestCode> getTestCodeByPostCode(String postCode, String gender, Long ethnicGroupId, Integer age) {
 
 		Query query = this.getEntityManager().createNativeQuery(
-				"SELECT  rule_name,rule_value,Sponsor_Id  FROM rule_configuration r ,Sponsor s WHERE s.id=r.Sponsor_Id AND s.postal_code LIKE '"
-						+ subPostCode + "%' and r.ethnic_groupid=" + ethnicGroupId);
+				"SELECT (test.testcode_id) ," + "         test.test_name ,gender from      rule_configuration r ,"
+						+ "					          sponsor s ,               postalcode p ,"
+						+ "					        sponsor_postlcode sp,                 test_code test "
+						+ "							WHERE s.id=r.sponsor_id                and  ethnic_groupid="
+						+ ethnicGroupId + "						                 and sp.postal_id = p.id  and "
+						+ "                 p.postal_code='" + postCode + "' and min_age_group <=" + age
+						+ " and max_age_group>=" + age );
 		List<Object[]> resultList = query.getResultList();
-		boolean b = false;
-		boolean ageb = false;
-
-		int mage = 0;
-		int mxage = 0;
-		Long sponserId = null;
+		
+		boolean flag = false;
 		for (Object[] result : resultList) {
-			if ((result[0].toString().equalsIgnoreCase("gender") && result[1].toString().contains(gender))) {
-				b = true;
+			String[] genders = result[2].toString().split(",");
+			for (String gen : genders) {
+				if (gen.equalsIgnoreCase(gender)) {
+					flag = true;
+					break;
+				}
 			}
-
-			if (result[0].toString().equalsIgnoreCase("minage")) {
-				mage = Integer.parseInt(result[1].toString());
-			}
-			if (result[0].toString().equalsIgnoreCase("maxage")) {
-				mxage = Integer.parseInt(result[1].toString());
-			}
-			sponserId = Long.parseLong(result[2].toString());
 		}
 
-		if (b && age >= mage && age <= mxage) {
-			return sponserId;
-		}
+		Set<TestCode> setList = new HashSet<TestCode>();
 
-		return null;
+		if (flag) {
+			for (Object[] result : resultList) {
+				TestCode testCode1 = new TestCode();
+				testCode1.setId(Long.parseLong(result[0].toString()));
+				testCode1.setTestName(result[1].toString());
+				setList.add(testCode1);
+			}
+		}
+		return setList;
 	}
 
 	@Override
@@ -96,7 +125,6 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 			sponsor.setEmail(obj[2] + "");
 			sponsor.setName(obj[3] + "");
 			sponsor.setPhone(obj[4] + "");
-			sponsor.setPostCode(obj[5] + "");
 			spons.add(sponsor);
 		}
 		return spons;
@@ -105,8 +133,7 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 	@Override
 	public List<SponsorAddress> getAddressBySPonsorId(Integer sponsorId) {
 
-		Query query = this.entityManager
-				.createNativeQuery("select * from sponsor_address a, sponsor s where a.Sponsor_Id=s.id and s.id=?");
+		Query query = this.entityManager.createNativeQuery("select * from sponsor_address a where a.sponsor_id=?");
 		query.setParameter(1, sponsorId);
 		List<Object[]> objects = (List<Object[]>) query.getResultList();
 
@@ -144,7 +171,6 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 			sponsor.setEmail(obj[2] + "");
 			sponsor.setName(obj[3] + "");
 			sponsor.setPhone(obj[4] + "");
-			sponsor.setPostCode(obj[5] + "");
 		}
 		return sponsor;
 	}
@@ -152,7 +178,7 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 	@Override
 	public List<TestCode> getTestCodesBySponsorId(Integer sponsorId) {
 		Query query = this.entityManager
-				.createNativeQuery("select * from test_code t, sponsor s where t.Sponsor_Id=s.id and s.id=?");
+				.createNativeQuery("select * from test_code t, sponsor s where t.sponsor_id=s.id and s.id=?");
 		query.setParameter(1, sponsorId);
 		List<Object[]> objects = (List<Object[]>) query.getResultList();
 
@@ -162,8 +188,6 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 			TestCode testCode = new TestCode();
 			testCode.setId(Long.parseLong(object[0] + ""));
 			testCode.setDescription(object[1] + "");
-			testCode.setIsDefalut(Boolean.parseBoolean(object[2] + ""));
-			testCode.setStatus(object[3] + "");
 			testCode.setTestCode(object[4] + "");
 			testCode.setTestName(object[5] + "");
 			testCodes.add(testCode);
@@ -173,8 +197,8 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 
 	@Override
 	public List<Rule> getSponsorRulesBySponsorId(Integer sponsorId) {
-		Query query = this.entityManager
-				.createNativeQuery("select * from rule_configuration r, sponsor s where r.Sponsor_Id=s.id and s.id=?");
+		Query query = this.entityManager.createNativeQuery(
+				"select rule_id,gender,min_age_group,max_age_group,sponsor_id,ethnic_groupid,testcode_id from rule_configuration r where r.sponsor_id=?");
 		query.setParameter(1, sponsorId);
 		List<Object[]> objects = (List<Object[]>) query.getResultList();
 
@@ -183,11 +207,47 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 		for (Object[] object : objects) {
 			Rule rule = new Rule();
 			rule.setId(Long.parseLong(object[0] + ""));
-			rule.setRuleName(object[0] + "");
-			rule.setRuleValue(object[1] + "");
+			rule.setGender((object[1] + ""));
+			rule.setEthnicGroupId(Long.parseLong(object[5] + ""));
+			rule.setMinAgeGroup(Long.parseLong(object[2] + ""));
+			rule.setMaxAgeGroup(Long.parseLong(object[3] + ""));
+			rule.setSponsor_id(Long.parseLong(object[4] + ""));
+			rule.setTectCodeId(Long.parseLong(object[6] + ""));
 			rules.add(rule);
 		}
 		return rules;
+	}
+
+	@Override
+	public List<PostalCode> getPostCodesBySponsorId(Long sponsorId) {
+
+		Query query = this.entityManager.createNativeQuery(
+				"select p.id,p.postal_code from postalcode p , sponsor_postlcode s where p.id=s.postal_id "
+						+ " and s.sponsor_id=?",
+				PostalCode.class);
+		query.setParameter(1, sponsorId);
+		return query.getResultList();
+	}
+
+	@Override
+	@Transactional
+	public int updatePostCodesBySponsorId(PostalCode postalCode, Long sponsorId) {
+
+		Query query = this.entityManager.createNativeQuery(
+				"update sponsor_postlcode sp,postalcode p  set sp.postal_id=? where sp.postal_id=p.id and sp.sponsor_id=? and p.postal_Code=?");
+		query.setParameter(1, postalCode.getId());
+		query.setParameter(2, sponsorId);
+		query.setParameter(3, postalCode.getPostalCode());
+		return query.executeUpdate();
+	}
+
+	@Override
+	public List<TestCode> getTestCodesBySponsorId(Long sponsorId) {
+		Query query = this.entityManager.createNativeQuery(
+				"select distinct(t.test_code),t.testcode_id,t.description,t.test_name from test_code t,rule_configuration r where t.testcode_id=r.testcode_id and r.sponsor_id=?",
+				TestCode.class);
+		query.setParameter(1, sponsorId);
+		return query.getResultList();
 	}
 
 }

@@ -13,9 +13,7 @@ export class DataService {
     return this.http.get('rest/SponsorUser/getAllSponsorUsers');
   }
 
-  //addingUsers(data) {
-  //  return this.http.post("http://localhost:8087/samplingkit/rest/SponsorUser/createSponsorUser",data);
- // }
+  
   getSponserUser():Observable<any>{
     return this.http.get("rest/sponsor/showAllSponsors");
   }
@@ -37,7 +35,7 @@ export class DataService {
     return this.http.post("rest/ethnicGroups/save",ethenicData);
   }
   getEthenic():Observable<any>{
-    return this.http.get("rest/ethnicGroups/getAll");
+    return this.http.get("rest/ethnicGroups/getAllEthnics");
   }
   //All status 
 
@@ -72,7 +70,7 @@ export class DataService {
 
   // editStatusData(data,id):Observable<any>{
 
-  //   return this.http.put('http://localhost:9999/samplingkit/rest/Status/updateStatus' +"/"+ id );
+  //   return this.http.put(rest/Status/updateStatus' +"/"+ id );
 
   // }
 
@@ -120,7 +118,113 @@ export class DataService {
 
   deleteEvent(id):Observable<any>{
 
-    return this.http.delete('http://localhost:8080/samplingkit/rest/SpecialEvent/deleteSpecialEvent'+"/"+ id);
+    return this.http.delete('rest/SpecialEvent/deleteSpecialEvent'+"/"+ id);
 
   }
+
+
+
+//sponsors details
+getAddressDetails(id):Observable<any>{
+  return this.http.get('rest/sponsor/addresses/'+id);
 }
+getRulesDetails(id):Observable<any>{
+  return this.http.get('rest/sponsor/rules/'+id);
+}
+getTestCodeDetails(id):Observable<any>{
+  return this.http.get('rest/sponsor/testCodes/'+id);
+}
+
+getServiceRequestDetails(sponsorId):Observable<any>{
+  return this.http.get('rest/endUsers/'+sponsorId);
+}
+createTestDetails(testCodeData){
+  return this.http.post("rest/testCode/createTest",testCodeData);
+
+}
+getAllTestCodeDetails():Observable<any>{
+  return this.http.get('rest/testCode/getAllTestCodes'); 
+}
+updateTestCodeDetails(testCodeData):Observable<any>{
+  return this.http.put('rest/testCode/updateTestCode',testCodeData);
+}
+getMultiplepostCode():Observable<any>{
+  return this.http.get('rest/PostalCode/getAllPostalCodes');
+}
+
+
+
+
+
+
+
+
+
+ //Get All Postalcode 
+ getAllPostalcode():Observable<any>{
+  return this.http.get("rest/PostalCode/getAllPostalCodes");
+}
+// Post Postalcode
+postPostalcode(data):Observable<any>{
+  return this.http.post("rest/PostalCode/createPostalCode",data);
+}
+
+//Update Postalcode
+updatePostalcode(data):Observable<any>{
+  return this.http.put('rest/PostalCode/updatePostalCode',data);
+}
+
+//Delete Postalcode
+
+deletePostalcode(id):Observable<any>{
+  return this.http.delete('rest/PostalCode/deletePostalCode'+"/"+ id);
+}
+getPostCodeList(id):Observable<any>{
+  return this.http.get('rest/sponsor/postCodes/'+id);
+}
+
+
+
+updateSelectedPostalCode(postCode,sponsorId):Observable<any>{
+  return this.http.put('rest/sponsor/postCodes/update/'+sponsorId,postCode);
+}
+updateSelectedAddress(sponsorAddress):Observable<any>{
+  return this.http.put('rest/sponsor/addresses/update',sponsorAddress)  
+}
+
+
+//update ethenic
+
+editEthenicData():Observable<any>{
+  return this.http.get('rest/ethnicGroups/getAllEthnicMapper') 
+}
+editTestListData():Observable<any>{
+  return this.http.get('rest/testCode/getAllTestCodesMapper') 
+}
+
+
+updateEthenicData(ethinicData):Observable<any>{
+  return this.http.put('rest/sponsor/addresses/update',ethinicData) 
+}
+getSponsorbyId(id):Observable<any>{
+  return this.http.get('rest/sponsor/sponsorDetails/'+id) 
+}
+getuserByid(id):Observable<any>{
+  return this.http.get('rest/SponsorUser/getAllUsersBySponsorId/'+id) 
+}
+updateSelectedRule(data):Observable<any>{
+  return this.http.put('rest/sponsor/rules/update',data) 
+}
+getSponsorUpdate(id):Observable<any>{
+  return this.http.get('rest/sponsor/sponsorWithPostalCode/'+id)
+}
+updateSponsorDetails(data,id):Observable<any>{
+  return this.http.put('rest/sponsor/sponsorWithPostalCode/'+id,data) 
+}
+}
+
+
+
+
+
+

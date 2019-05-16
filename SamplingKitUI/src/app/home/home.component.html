@@ -1,7 +1,12 @@
 
   <div class="app sidebar-mini rtl">
-    <header class="app-header"><a class="app-header__logo" href="index.html">Medintu</a>
-      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+    <header class="app-header">	
+      
+      <div class="logo logo_three">
+        <a href="#"><img src="assets/img/img/logo.png" style="width: 98px;" alt=""></a>
+      </div>
+      
+      <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" style="margin-left: 195px;" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
       <!-- Navbar Right Menu-->
       <ul class="app-nav">
         <li class="app-search">
@@ -68,23 +73,51 @@
          
         </div>
       </div>
-      <ul class="app-menu">
-        <li><a class="app-menu__item active" routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+      <ul class="app-menu" *ngIf="role=='SUPERADMIN'">
+        <li><a class="app-menu__item active"  routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
        
          <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
           <ul class="treeview-menu">
-            <li><a class="treeview-item"  routerLink="/users" routerLinkActive="active"><i class="icon fa fa-users"></i>Users</a></li>
-            <li><a class="treeview-item"  routerLink="/sponsorUser" routerLinkActive="active"><i class="icon fa fa-user"></i>Sponsor</a></li>
-            <li><a class="treeview-item"  routerLink="/ethenicgroup" routerLinkActive="active"><i class="icon fa fa-users"></i>Ethenic Group</a></li>
-			<li><a class="treeview-item"  routerLink="/status" routerLinkActive="active"><i class="icon fa fa-exclamation"></i>Status</a></li>
+            <li><a class="treeview-item"   routerLink="/users" routerLinkActive="active"><i class="icon fa fa-users"></i>&nbsp;Users</a></li>
+            <li><a class="treeview-item"  routerLink="/sponsorUser" routerLinkActive="active"><i class="icon fa fa-user"></i>&nbsp;Sponsor</a></li>
+            <li><a class="treeview-item"  routerLink="/ethenicgroup" routerLinkActive="active"><i class="icon fa fa-users"></i>&nbsp;Ethenic Group</a></li>
+			      <li><a class="treeview-item"  routerLink="/status" routerLinkActive="active"><i class="icon fa fa-quora"></i>&nbsp;Status</a></li>
 
-            <li><a class="treeview-item"  routerLink="/specialevent" routerLinkActive="active"><i class="icon fa fa-calendar"></i>Special Event</a></li>
-
-          
+            <li><a class="treeview-item"  routerLink="/specialevent" routerLinkActive="active"><i class="icon fa fa-calendar"></i>&nbsp;Special Event</a></li>
+             <li><a class="treeview-item"  routerLink="/testcode" routerLinkActive="active"><i class="fa fa-hand-o-up" aria-hidden="true"></i>&nbsp;Test Code</a></li>       
+             <li><a class="treeview-item"  routerLink="/postalcode" routerLinkActive="active"><i class="fa fa-hand-o-up" aria-hidden="true"></i>&nbsp;Postal Code</a></li>       
+   
           </ul>
-        </li>
+          
+        </li><hr>
         <li><a class="app-menu__item" href="" (click)="logoutAction()"><i class="app-menu__icon fa fa-sign-out"></i><span class="app-menu__label">Logout</span></a></li>
       </ul>
+      <ul class="app-menu" *ngIf="role=='SPONSORUSER'">
+          <li><a class="app-menu__item active"  routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+         
+           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+              <li><a class="treeview-item"   routerLink="/userdetail" routerLinkActive="active"><i class="icon fa fa-users"></i>Users</a></li>
+              <li><a class="treeview-item"  routerLink="/sponsordetail" routerLinkActive="active"><i class="icon fa fa-user"></i>Sponsor</a></li>
+              <li><a class="treeview-item"  routerLink="/servicerequest" routerLinkActive="active"><i class="icon fa fa-user"></i>Service Request</a></li>
+            </ul>
+            
+          </li><hr>
+          <li><a class="app-menu__item" href="" (click)="logoutAction()"><i class="app-menu__icon fa fa-sign-out"></i><span class="app-menu__label">Logout</span></a></li>
+        </ul>
+          
+        <ul class="app-menu" *ngIf="role=='SUPPORTUSER'">
+          <li><a class="app-menu__item active"  routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+         
+           <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+            <ul class="treeview-menu">
+             <li><a class="treeview-item"  routerLink="/servicerequest" routerLinkActive="active"><i class="icon fa fa-user"></i>Service Request</a></li>
+            </ul>
+            
+          </li><hr>
+          <li><a class="app-menu__item" href="" (click)="logoutAction()"><i class="app-menu__icon fa fa-sign-out"></i><span class="app-menu__label">Logout</span></a></li>
+        </ul>
+
     </aside>
     <main  class="app-content">
       <router-outlet></router-outlet>

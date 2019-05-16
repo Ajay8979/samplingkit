@@ -1,6 +1,7 @@
 import { IndexService } from './../services/index.service';
+import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router,ActivatedRoute } from '@angular/router';
 import {Validators, FormBuilder,FormGroup} from "@angular/forms";
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -12,7 +13,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./person-details.component.scss']
 })
 export class PersonDetailsComponent implements OnInit {
-
+ 
+  OBSLoginForm:FormGroup;
   person:FormGroup;
   submitted = false;
   ethnic={};
@@ -20,24 +22,44 @@ export class PersonDetailsComponent implements OnInit {
   ethenicData: any;
   requestobj: any=[];
   obj1: {};
- 
+  gender:any;
+  oppositeGender:any;
 
-  constructor(private router:Router,private fb:FormBuilder,private sendservice:IndexService,private http:HttpClient) { 
-    this.getEthenicDetails();
+  id:number=1;
+ 
+  constructor(private routerNavigate:Router,private fb:FormBuilder,private sendservice:IndexService,private http:HttpClient,private authService:AuthService,private activatedRoute: ActivatedRoute) 
+  {
+  this.getEthenicDetails();
   }
+
+
 
   ngOnInit() {
 
-    this.person= this.fb.group({
-
-      gender: ['',Validators.required],
-      oppositeGender: ['',Validators.required],
     
-
+   this.OBSLoginForm = this.fb.group({
+      'username': [null,Validators.required],
+      'password': [null,Validators.required]
     });
+
+    let params:any = this.activatedRoute.snapshot.params; 
+
+	
+	  if(params.id==1)
+	  {
+	   this.gender=this.sendservice.persondata['gender'];
+     this.oppositeGender=this.sendservice.persondata['oppositeGender'];
+    }
 
     
    }
+
+   LoginActions(formData:any){
+    if(this.authService.loginAction(formData)){
+     this.routerNavigate.navigate(['dashboard']);
+   }
+  
+  }
 
 
   LoginAction(formdata)
@@ -54,30 +76,40 @@ export class PersonDetailsComponent implements OnInit {
   createGenderEthenic(gender,oppositeGender,selectedEthenicName)
   {
     var id=selectedEthenicName.id;
-   // this.sendservice.ethnicGroupId=id;
-   sessionStorage.setItem('ethenicGroupId',id);
+    // this.sendservice.ethnicGroupId=id;
+    sessionStorage.setItem('ethenicGroupId',id);
     var obj={gender:gender,oppositeGender:oppositeGender,ethnicGroupId:id}
-   
+    this.sendservice.persondata['selectedEthenicName']=selectedEthenicName;
     this.sendservice.persondata=obj;
     this.requestobj=obj;
-    
     this.requestobj.age=this.sendservice.logindata['age'];
     this.requestobj.postCode=this.sendservice.logindata['postCode'];
-    this.sendservice.sendone(this.requestobj);
-     
-    
-
-  }
+    console.log(this.sendservice.persondata)
+    console.log(this.requestobj);
+     this.sendservice.sendone(this.requestobj);
+    //this.routerNavigate.navigate(['test']);
+   }
 
   send()
   {
-    this.router.navigate(['login']);
+    this.routerNavigate.navigate(['login']);
   }
 
- getEthenicDetails(){
-   
-   this.sendservice.getethnic().subscribe(data=>{
+  getEthenicDetails(){
+     this.sendservice.getethnic().subscribe(data=>{
      this.ethenicData=data.resultData;
    })
- }
+  }
+
+  
+  viewResult(){
+    this.routerNavigate.navigate(['viewresults']);
+  }
+  LoginPage(){
+    this.routerNavigate.navigate(['loginpageaction']);
+  }
+
+
+
+
 }

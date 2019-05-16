@@ -2,6 +2,7 @@ package com.medintu.samplingkit.service;
 
 import java.util.List;
 
+import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
@@ -23,8 +24,16 @@ public interface SponsorService {
 
 	public Sponsor getSponsorBySponsorId(Integer sponsorId);
 
-	public List<TestCode> getTestCodesBySponsorId(Integer sponsorId);
-
 	public List<Rule> getSponsorRulesBySponsorId(Integer sponsorId);
+
+	public Rule updateSponsorRulesById(Rule rule);
+
+	public SponsorAddress updateSponsorAddressesById(SponsorAddress sponsorAddress);
+
+	public List<PostalCode> getPostCodesBySponsorId(Long sponsorId);
+
+	public boolean updatePostCodesBySponsorId(PostalCode postalCode, Long sponsorId);
+
+	public List<TestCode> getTestCodesBySponsorId(Long sponsorId);
 
 }

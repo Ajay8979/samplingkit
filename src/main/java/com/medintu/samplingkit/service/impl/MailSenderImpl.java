@@ -29,7 +29,7 @@ public class MailSenderImpl implements MailSender {
 	public void sendMail(String dear, String toMail) {
 
 		String toEmail = toMail;
-		String emailBody = String.format(emailTemplate.getText(), dear, "Ojas IT");
+		String emailBody = String.format(emailTemplate.getText(), dear, "Medintu");
 		String emailSubject = emailTemplate.getSubject();
 		String fromEmail = emailTemplate.getFrom();
 

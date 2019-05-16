@@ -1,0 +1,85 @@
+
+<div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i> Test Code</h1>
+      <p>Test Code Details</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+    </ul>
+  </div>
+  <div class="tile">
+  <span style="font-size: 25px;">Test Code Details</span>
+  <button type="button" class="btn btn-danger pull-right" style="margin-bottom: 10px;"  data-toggle="modal" data-target="#myModal">Add Test</button>
+  <table class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Test Name</th>
+          <th>Test Code</th>
+          <th>Test Code Description</th>
+          <th>Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let item of testCodeData;let i=index'>
+          <td>
+            <div>{{i+1}}</div>
+          </td>
+          <td>
+            <div *ngIf="!item.isEditable">{{item.testName}}</div>
+            <input  [(ngModel)]="item.testName" *ngIf="item.isEditable" type="text" class="form-control">
+          </td>
+          <td>
+            <div *ngIf="!item.isEditable">{{item.testCode}}
+          </div>
+          <input  [(ngModel)]="item.testCode" type="text"  *ngIf="item.isEditable" class="form-control">
+        </td>
+          <td>
+            <div  *ngIf="!item.isEditable">{{item.description}}</div>
+            <input type="text"  [(ngModel)]="item.description" *ngIf="item.isEditable" class="form-control">
+          </td>
+          <td>
+             <button type="button" class="btn btn-info"  (click)="item.isEditable=!item.isEditable" *ngIf="!item.isEditable">Edit</button>
+             <button type="button" class="btn btn-success" *ngIf="item.isEditable" (click)="item.isEditable=!item.isEditable;updateTestCode(item.testName,item.testCode,item.description,item.id)">Save</button>
+            </td>
+             </tr>
+      </tbody>
+    </table>
+    </div>
+
+    
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+           <h4 class="modal-title">Test Details Form</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+        
+              <div class="form-group">
+                <label for="name">Test Name:</label>
+                <input type="text" [(ngModel)]="testName" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="code">Test Code:</label>
+                <input type="text" [(ngModel)]="testCode"  class="form-control" id="code">
+              </div>
+              <div class="form-group">
+                  <label for="desc">Test Description:</label>
+                  <textarea type="text" [(ngModel)]="testDesc"  rows="4" class="form-control" id="desc"></textarea>
+                </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-info" (click)="creattestDetails(testName,testCode,testDesc)" data-dismiss="modal">Submit</button>
+        </div>
+      </div>
+  
+    </div>
+  </div>
+  

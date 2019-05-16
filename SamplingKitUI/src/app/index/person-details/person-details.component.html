@@ -9,17 +9,32 @@
           <div class="header_top_inner">
             <div class="top_left">
               <ul>
-                <li class="currency"><a href="#">support@medintu.co.uk</a>
-
-                </li>
-
+                <li class="currency"><a href="#">support@medintu.co.uk</a></li>
                 <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
-
-              </ul>
+               </ul>
             </div>
+            <div class="top_right">
+
+                <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+              
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                    </div>
+                    <div class="form-group btn-container">
+                        <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                    </div>  
+                 </form>-->
+  
+                 <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+                 <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
+                 
+              </div>
             
             <div class="logo logo_three">
-              <a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+              <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -143,36 +158,54 @@
 
             <p>
               <label>I am a <span>*</span></label>
-              <select [(ngModel)]="gender" required>
+              <select [(ngModel)]="gender" required #persons="ngModel">
                 <option value="Man">Man</option>
                 <option  value="Female">Woman</option>
+                <option value="TransMan">TransMan</option>
+                <option  value="TransWoman">TransWoman</option>
               </select>
-              <span *ngIf="person.controls['gender'].invalid && person.controls['gender'].touched" class='text text-danger'>This option is Required</span>
+              <span *ngIf="persons.invalid && (persons.dirty || persons.touched)" class="error_form">
+                <span *ngIf="persons.errors.required" class="error_form">
+                  required this field
+                </span>
+              </span>
+
             </p>
             <p>
               <label>I have sex with <span>*</span></label>
            
-              <select [(ngModel)]="oppositeGender" required>
-                <option value="Male">Male</option>
+              <select [(ngModel)]="oppositeGender" required #people="ngModel">
+                <option value="Men">Men</option>
                 <option value="Women">Woman</option>
+                <option value="Men and Women">Men and Women</option>
               </select>
-              <span *ngIf="person.controls['oppositeGender'].invalid && person.controls['oppositeGender'].touched" class='text text-danger'>This option Required</span>
+              <span *ngIf="people.invalid && (people.dirty || people.touched)" class="error_form">
+                <span *ngIf="people.errors.required" class="error_form">
+                  required this field
+                </span>
+              </span>
             </p>
             <p>
               <label>My ethnic group is <span>*</span></label>
                
-                 <select [(ngModel)]="selectedEthenicName" class="col-md-7">
-                  <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+                 <select [(ngModel)]="selectedEthenicName" class="col-md-7" required #ethinic="ngModel">
+                   <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+                  
                 </select>
+                <span *ngIf="ethinic.invalid && (ethinic.dirty || ethinic.touched)" class="error_form">
+                  <span *ngIf="ethinic.errors.required" class="error_form">
+                    required this field
+                  </span>
+                </span>
           
                </p>
 
             <button class="btn btn-info btn_another6" (click)="createGenderEthenic(gender,oppositeGender,selectedEthenicName)">SUBMIT</button>
  
-          </div>
+           </div>
 
          
-            <button class="btn btn-info btn_another" (click)="send()"><i class="fa fa-arrow-left fa-2x"></i></button>
+            <button class="btn btn-info btn_another" [routerLink]="['/login',id]"><i class="fa fa-arrow-left fa-2x"></i></button>
 
        
 

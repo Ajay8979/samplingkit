@@ -25,4 +25,9 @@ export class EthenicgroupComponent implements OnInit {
       this.ethenicData=data.resultData;
     })
   }
+  updateEthenicData(item){
+    this.dataService.updateEthenicData(item).subscribe(data=>{
+     alert('updated')
+    })
+  }
 }

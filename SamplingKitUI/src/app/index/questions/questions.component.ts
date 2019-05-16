@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { IndexService } from './../services/index.service';
-
+import { AuthService } from './../../services/auth.service';
 import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
+
 
 @Component({
   selector: 'app-questions',
@@ -12,8 +13,10 @@ import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
 export class QuestionsComponent implements OnInit {
 
   user:FormGroup;
+  OBSLoginForm:FormGroup;
+  id:number=1;
 
-  constructor(private router:Router,private fb:FormBuilder,private sends:IndexService) { }
+  constructor(private router:Router,private fb:FormBuilder,private sends:IndexService,private authService:AuthService) {}
 
   ngOnInit() 
   {
@@ -22,9 +25,30 @@ export class QuestionsComponent implements OnInit {
       hiv : ['',Validators.required],
       last : ['',Validators.required],
       partner : ['',Validators.required],
+      gender: ['',Validators.required],
+      sex : ['',Validators.required],
+      myethicgroup : ['',Validators.required],
       under : ['',Validators.required]
       });
+
+      this.OBSLoginForm = this.fb.group({
+        'username': [null,Validators.required],
+        'password': [null,Validators.required]
+      });
+    
+      this.user.controls.gender.setValue(this.sends.persondata['gender']);
+      this.user.controls.sex.setValue(this.sends.persondata['oppositeGender']);
+    
       
+      
+  }
+
+ 
+  LoginAction(formData:any)
+  {
+     if(this.authService.loginAction(formData)){
+     this.router.navigate(['dashboard']);
+  }
   }
 
   
@@ -45,13 +69,21 @@ export class QuestionsComponent implements OnInit {
     this.sends.seconddata=requestobj;
     console.log(requestobj)
     this.router.navigate(['moredetail']);
-   
   }
  
 
   first()
   {
-    this.router.navigate(['sample']);
+    this.router.navigate(['test']);
+  }
+
+  viewResult()
+  {
+    this.router.navigate(['viewresults']);
+  }
+  LoginPage()
+  {
+    this.router.navigate(['loginpageaction']);
   }
 
  

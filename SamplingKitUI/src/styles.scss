@@ -13559,7 +13559,7 @@ be a descendant of the grid when it is being dragged.
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  background-color: #009688;
+  background-color: #00a9f4;
   z-index: 1030;
   padding-right: 15px;
 }
@@ -13793,7 +13793,7 @@ be a descendant of the grid when it is being dragged.
   width: 230px;
   overflow: auto;
   z-index: 10;
-  background-color: #222d32;
+  background-color: #192e31;
   -webkit-box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
           box-shadow: 0px 8px 17px rgba(0, 0, 0, 0.2);
   -webkit-transition: left 0.3s ease,
@@ -13866,7 +13866,9 @@ be a descendant of the grid when it is being dragged.
   margin-bottom: 0;
   padding-bottom: 40px;
 }
-
+.app-menu li{
+  font-size: 18px;
+}
 .app-menu__item {
   position: relative;
   display: -webkit-box;
@@ -16216,9 +16218,63 @@ input:-ms-input-placeholder {
     line-height: 24px;
   }
 }
+@media only screen and (min-width: 310px) and (max-width: 700px) 
+{
+  .account_form .inner_1 p 
+  {
+   width:100%;
+  }
+  .account_form .inner_1
+  {
+    min-height: 310px;
+  }
+  .another_4
+  {
+    width:100% !important;
+  }
+  .login_submit1 input
+  {
+    width:100% !important;
+  }
+  .btn_another6
+  {
+    width:80% !important;
+  }
+  .button_6 .questionaries_2
+  {
+    top:80px !important;
+  }
+  .button_6 .questionaries_1
+  {
+    
+    position: relative;
+    left: -6.2em !important;
+    top: 6.8em !important;
+    border-radius: 5px;
+    padding: 1px 20px;
+  
+  }
+  .account_form .form_6
+  {
+    width:100%;
+    display:block;
+  }
+}
+
 
 /*about page css end*/
 /* 20. services page css here */
+.login_submit1 input
+{
+    border: 1px solid #007b46;
+    height: 40px;
+    padding: 0 20px;
+    background: none;
+    width: 20%;
+    float: left;
+    color: #007b46;
+    margin-top: 28px;
+}
 .text2 p
 {
 	margin-bottom: 7px;
@@ -16231,8 +16287,6 @@ input:-ms-input-placeholder {
 .panel
 {
 	border:1px solid #cacaca;
-    	
-	
 }
 .panel_heading
 {
@@ -16322,11 +16376,11 @@ input:-ms-input-placeholder {
 }
 .address h4 span
 {
-	color: orange;
+   	color: orange;
     position: absolute;
     font-size: 41px;
     left: -25px;
-    padding-top: 7px;
+    margin-top: -4px;
 }
 .address h4 p
 {
@@ -16508,6 +16562,65 @@ input:-ms-input-placeholder {
   border: 1px solid #17a2b8;
   color: #17a2b8;
 }
+
+.error_data h1
+{
+	  font-size: 41px;
+    color: green;
+    line-height: 4rem;
+    text-align: center;
+}
+.error_data p
+{
+	 font-size: 18px;
+   line-height: 2em;
+	 text-align:left;
+}
+.error_data1 h1
+{
+    color: green;
+    font-size: 11rem;
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+.error_data1 p
+{
+   
+    margin-top: 90px;
+}
+
+.inner_form .form-group
+{
+  margin-bottom: 20px;
+  width: 50%;
+  float: left;
+  margin-right: 5px;
+}
+.inner_form .form-control
+{
+  height:33px;
+}
+.inner_form .btn
+{
+  width: 55%;
+  font-size: 13px;
+  padding: 4px 0px 4px 4px;
+}
+.inner_form
+{
+  position: relative;
+  top: 8px;
+  right: -90px;
+}
+.link_2 a
+{
+  color:#f6b327;
+}
+.error_form
+{
+  color:red;
+}
+
 
 
 

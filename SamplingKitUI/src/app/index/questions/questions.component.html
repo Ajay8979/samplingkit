@@ -9,17 +9,35 @@
           <div class="header_top_inner">
             <div class="top_left">
               <ul>
-                <li class="currency"><a href="#">support@medintu.co.uk</a>
-
-                </li>
+                <li class="currency"><a href="#">support@medintu.co.uk</a></li>
 
                 <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
 
               </ul>
             </div>
+            <div class="top_right">
+
+                <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+              
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                    </div>
+                    <div class="form-group btn-container">
+                        <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                    </div>  
+                 </form>-->
+  
+                 <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+                 <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
+                 
+               </div>
+  
            
             <div class="logo logo_three">
-              <a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+              <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
             </div>
           </div>
         </div>
@@ -143,9 +161,7 @@
        
          <div class="account_form">
 
-             
-
-              <form  [formGroup]="user" (ngSubmit)="datesend(user.value)">
+             <form  [formGroup]="user" (ngSubmit)="datesend(user.value)">
 
               <div class="row">
 
@@ -159,26 +175,20 @@
 
                 <p>
                   <label>I am a <span>*</span></label>
-                  <select disabled>
-                    <option>Man</option>
-                    <option>Woman</option>
-                  </select>
-                </p>
+                  <input type="text" formControlName="gender" readonly>
+                  <a class="error_form" [routerLink]="['/personsdetails',id]">(edit)</a>
+                 </p>
 
                 <p>
                   <label>I have sex with <span>*</span></label>
-                  <select disabled>
-                    <option>Man</option>
-                    <option>Woman</option>
-                  </select>
+                  <input type="text" formControlName="sex" readonly>
+                  <a class="error_form" [routerLink]="['/personsdetails',id]">(edit)</a>
                 </p>
 
                 <p>
                   <label>My ethnic group is <span>*</span></label>
-                  <select disabled>
-                    <option>African</option>
-                    <option>Indian</option>
-                  </select>
+                  <input type="text" readonly>
+                  <a class="error_form" [routerLink]="['/personsdetails',id]">(edit)</a>
                 </p>
 
               </div>
@@ -276,13 +286,15 @@
               </div>
            
               <div class="buttons button_3">
-                  <button class="btn btn-success pull-left question_1" (click)="first()" ><i class="fa fa-arrow-circle-left"></i>Back</button>
-                  <button type="submit" class="btn pull-right question_2" >Next <i class="fa fa-arrow-circle-right"></i></button>
+                  <button class="btn btn-success pull-left question_1"  routerLink="/test"><i class="fa fa-arrow-circle-left"></i>Back</button>
+                  <button type="submit" class="btn pull-right question_2">Next<i class="fa fa-arrow-circle-right"></i></button>
               </div>
            
 
              </form>
            
+
+             
           </div>
       </div>
     </div>

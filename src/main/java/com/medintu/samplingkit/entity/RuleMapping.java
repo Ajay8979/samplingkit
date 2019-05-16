@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "Rule_Mapping")
+@Table(name = "rule_mapping")
 public class RuleMapping implements Entity {
 	private static final long serialVersionUID = 1L;
 	@Id

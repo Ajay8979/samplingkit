@@ -10,9 +10,7 @@ import { DataService } from 'src/app/services/data.service';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  // server: any= "http://192.168.2.151:8087/samplingkit/rest/SponsorUser/getAllSponsorUsers";
-  // addData: any = "http://192.168.2.151:8087/samplingkit/rest/SponsorUser/createUser";
-  // delete: any = "http://192.168.2.151:8087/samplingkit/rest/SponsorUser/deleteSponsorUser"
+ 
   data: Object;
   profileForm: FormGroup;
   pid: number
@@ -74,7 +72,7 @@ export class UsersComponent implements OnInit {
   }
   changeUser(){
     this.dataservice.getSponserUser().subscribe(data => {
-      this.sponserUsers = data
+      this.sponserUsers = data.resultData;
     })
   }
   editForm(data){

@@ -34,4 +34,13 @@ public class JpaEndUserDao extends JpaDao<EndUser, Long> implements EndUserDao {
 		return query.getResultList();
 	}
 
+	@Override
+	public List<EndUser> getEndUsersByOrderCode(String orderCode) {
+
+		Query query = this.entityManager.createNativeQuery("select * from end_user e where e.orderCode=?",
+				EndUser.class);
+		query.setParameter(1, orderCode);
+		return query.getResultList();
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.medintu.samplingkit.rest.resources;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,10 +15,13 @@ import javax.ws.rs.core.MediaType;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.util.CollectionUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import com.medintu.samplingkit.entity.TestCode;
 import com.medintu.samplingkit.entity.TestCodeMapper;
+import com.medintu.samplingkit.entity.TestMapper;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.TestCodeService;
 
@@ -35,14 +39,11 @@ public class TestCodeResourceController {
 
 		try {
 			if (null != testCodeMapper) {
-				if ((null != testCodeMapper.getTestName() && !testCodeMapper.getTestName().isEmpty())
-						&& (null != testCodeMapper.getTestCode() && !testCodeMapper.getTestCode().isEmpty())
-						&& (null != testCodeMapper.getDescription() && !testCodeMapper.getDescription().isEmpty())) {
+				if (!StringUtils.isEmpty(testCodeMapper.getTestName())
+						&& !StringUtils.isEmpty(testCodeMapper.getTestCode())
+						&& !StringUtils.isEmpty(testCodeMapper.getDescription())) {
 					TestCode testCode = new TestCode();
-					testCode.setStatus("Active");
-					testCode.setIsDefalut(testCodeMapper.isDefalut());
 					testCode.setDescription(testCodeMapper.getDescription());
-					// testCode.setSponsorId(testCodeMapper.getSponsorId());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
 					TestCode createTestCode = testCodeService.createTestCode(testCode);
@@ -72,6 +73,36 @@ public class TestCodeResourceController {
 		}
 	}
 
+	@GET
+	@Path("/getAllTestCodesMapper")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllTestcodesMapper() {
+		try {
+			List<TestCode> allTestcodes = testCodeService.getAllTestcodes();
+
+			List<TestMapper> testCodeMappers = new ArrayList<TestMapper>();
+
+			if (!CollectionUtils.isEmpty(allTestcodes)) {
+
+				for (TestCode testCode : allTestcodes) {
+					TestMapper testMapper = new TestMapper();
+					testMapper.setTectCodeId(testCode.getId());
+					testMapper.setTestName(testCode.getTestName());
+					testMapper.setTestCode(testCode.getTestCode());
+					testMapper.setDescription(testCode.getDescription());
+					testCodeMappers.add(testMapper);
+				}
+			}
+
+			if (!CollectionUtils.isEmpty(testCodeMappers)) {
+				return new Response("Success", HttpStatus.OK, "Successfully Retrieved all testCodes", testCodeMappers);
+			}
+			return new Response("Fail", HttpStatus.NOT_FOUND, "Test code  Not Found");
+		} catch (Exception exception) {
+			return new Response("unable to get all records", HttpStatus.NOT_FOUND, "Test code  Not Found");
+		}
+	}
+
 	@DELETE
 	@Path("/deleteTestCode/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -81,7 +112,6 @@ public class TestCodeResourceController {
 			if (null != id) {
 
 				testCode = testCodeService.findTestcodeById(id);
-				testCode.setStatus("");
 				testCodeService.createTestCode(testCode);
 				return new Response("Success", HttpStatus.OK, "Test code is Deleted", id);
 
@@ -102,15 +132,14 @@ public class TestCodeResourceController {
 		try {
 
 			if (null != testCodeMapper) {
-				if ((null != testCodeMapper.getTestName() && !testCodeMapper.getTestName().isEmpty())
-						&& (null != testCodeMapper.getTestCode() && !testCodeMapper.getTestCode().isEmpty())
-						&& (null != testCodeMapper.getDescription() && !testCodeMapper.getDescription().isEmpty())) {
+				if (!StringUtils.isEmpty(testCodeMapper.getTestName())
+						&& !StringUtils.isEmpty(testCodeMapper.getTestCode())
+						&& !StringUtils.isEmpty(testCodeMapper.getDescription())) {
 					TestCode testCode = new TestCode();
 					testCode.setId(testCodeMapper.getId());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
 					testCode.setDescription(testCodeMapper.getDescription());
-					testCode.setIsDefalut(testCodeMapper.isDefalut());
 
 					testCodeService.updateTestCode(testCode);
 					return new Response("Success", HttpStatus.OK, "Test Code is updated");

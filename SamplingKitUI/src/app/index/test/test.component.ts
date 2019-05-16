@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './../../services/auth.service';
+import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-test',
@@ -8,10 +10,25 @@ import { Router } from '@angular/router';
 })
 export class TestComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  OBSLoginForm:FormGroup;
+  id:number=1;
 
-  ngOnInit() {
+  constructor(private router:Router,private authService:AuthService,private fb:FormBuilder) { }
+
+  ngOnInit() 
+  {
+    this.OBSLoginForm = this.fb.group({
+      'username': [null,Validators.required],
+      'password': [null,Validators.required]
+    });
   }
+  
+  LoginAction(formData:any){
+    if(this.authService.loginAction(formData)){
+     this.router.navigate(['dashboard']);
+   }
+  }
+
 
   first()
   {
@@ -21,6 +38,15 @@ export class TestComponent implements OnInit {
   second()
   {
     this.router.navigate(['question']);
+  }
+
+  viewResult()
+  {
+    this.router.navigate(['viewresults']);
+  }
+  LoginPage()
+  {
+    this.router.navigate(['loginpageaction']);
   }
 
 }

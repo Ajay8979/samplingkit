@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -17,6 +18,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 
 import com.medintu.samplingkit.entity.EthnicGroup;
+import com.medintu.samplingkit.entity.EthnicGroupMapper;
 import com.medintu.samplingkit.entity.EthnicGroupResponse;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.EthnicGroupService;
@@ -78,6 +80,33 @@ public class EthnicGroupController {
 		return response;
 	}
 
+	@Path("/getAllEthnicMapper")
+	@GET
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllEthnicGroupsMapperList() {
+		Response response = null;
+		List<EthnicGroup> ethnicGroups = ethnicgroupservice.getAllEthnicGroups();
+
+		List<EthnicGroupMapper> ethnicGroupMappers = new ArrayList<EthnicGroupMapper>();
+		if (!CollectionUtils.isEmpty(ethnicGroups)) {
+			for (EthnicGroup ethnicGroup : ethnicGroups) {
+				EthnicGroupMapper ethnicGroupMapper = new EthnicGroupMapper();
+				ethnicGroupMapper.setEthnicGroupId(ethnicGroup.getId());
+				ethnicGroupMapper.setEthnicName(ethnicGroup.getEthnicName());
+				ethnicGroupMapper.setEthnicType(ethnicGroup.getEthnicType());
+				ethnicGroupMappers.add(ethnicGroupMapper);
+			}
+		}
+
+		if (!CollectionUtils.isEmpty(ethnicGroupMappers)) {
+			response = new Response(ethnicGroupMappers, HttpStatus.OK, "Ethnic Groups found");
+		} else {
+			response = new Response("Ethnic Groups not found", HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return response;
+	}
+
 	@Path("/getAll")
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
@@ -111,7 +140,7 @@ public class EthnicGroupController {
 	}
 
 	@Path("/delete/{id}")
-	@GET
+	@DELETE
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteEthnicGroupById(Long id) {

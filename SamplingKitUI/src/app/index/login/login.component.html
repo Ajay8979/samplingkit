@@ -13,15 +13,12 @@
 						<div class="header_top_inner">
 							<div class="top_left">
 								<ul>
-									<li class="currency"><a href="#">support@medintu.co.uk</a>
-	
-									</li>
-	
-									<li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
-	
-								</ul>
+									<li class="currency"><a href="#">support@medintu.co.uk</a></li>
+	                <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
+	             </ul>
 							</div>
 							<div class="top_right">
+								<!--
 								<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
             
                   <div class="form-group">
@@ -31,17 +28,31 @@
                       <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
                   </div>
                   <div class="form-group btn-container">
-                      <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+											<button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+											<button class="btn btn-danger"  style="margin-top: 8px;width: 80%;" (click)="viewResult()">Track Results</button>
                   </div>  
+
+               </form>
+               </div>
+
               </form>
 	
                </div>
+
+              </form>
+					-->
+					<button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+				<!--	<button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>-->
+				  <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginTemplate()">Login</button>
+              
+							 </div>
+						
 							<div class="logo logo_three">
-								<a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+								<a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
 							</div>
 						</div>
 					</div>
-	
+				
 				</div>
 			</div>
 		</div>
@@ -55,7 +66,7 @@
 							<nav>
 								<ul>
 	
-									<li><a href="#">home</a></li>
+									<li><a href="#" (click)="homePage()">home</a></li>
 									<li><a href="#">Aboutus</a></li>
 									<li><a href="#">Business</a></li>
 									<li><a href="#">Individuals</a></li>
@@ -137,24 +148,21 @@
 	<!--header end-->
 	
 	<!--first page start -->
-	<div class="about_section mt-60">
+	<div class="about_section mt-60" *ngIf="agepostCodeFlag">
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-12 col-md-12">
 					<div class="about_content text-left">
-						<h1>Around 13% of the estimated 100,000 people living with HIV in the UK remain undiagnosed.</h1>
-						<p>Free self-sampling HIV test kits are available in many areas of the country — enter your details below to
+						<h1>Around 13% of the estimated 100,000 people living with HIV,Syphilis in the UK remain undiagnosed.</h1>
+						<p>Free self-sampling HIV, Syphilis test kits are available in many areas of the country — enter your details below to
 							check your eligibility:</p>
-						<!--<div class="view__work">
-						  <a href="#">view work </a>
-				</div>-->
 					</div>
 				</div>
 				<div class="col-lg-12 col-md-12">
 	
 					<div class="account_form form_4">
 	
-						<form class="inner_1" [formGroup]="user" (ngSubmit)="send()">
+						<form class="inner_1" [formGroup]="user" (ngSubmit)="send(this.user.value)">
 
 							<p>
 								<label>Your age <span>*</span></label>
@@ -170,10 +178,9 @@
 							</p>
 	
 							<div class="login_submit1">
-								<input type="submit" class="btn btn-info btn_another another_4" value="Go">
+								<input type="submit" class="btn btn-info btn_another login_button" value="GO">
 							</div>
-	
-							<!---[disabled]="user.invalid"-->
+
 	
 						</form>
 	
@@ -181,7 +188,30 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
+	<div class="about_section mt-60" *ngIf="loginTemplate">
+	<div class="container">
+			<div class="login-box">
+				<form class="login-form"  [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+					<h3>Login to the Application</h3>
+					<div class="form-group">
+						<label class="control-label">USERNAME</label>
+						<input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+					</div>
+					<div class="form-group">
+						<label class="control-label">PASSWORD</label>
+						<input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+					</div>
+					<div class="form-group btn-container">
+						<button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid"><i class="fa fa-sign-in fa-lg fa-fw"></i>SIGN IN</button>
+					</div>	
+				</form>
+		
+			</div>
+	</div>
+	</div>
+
 
 <!--header end-->
 
@@ -251,29 +281,6 @@
 
 <style>
 
-.inner_form .form-group
-{
-    margin-bottom: 4px;
-    width: 30%;
-    float: left;
-    margin-right: 5px;
-}
-.inner_form .form-control
-{
-  height:33px;
-}
-.inner_form .btn
-{
-  width: 55%;
-  font-size: 13px;
-  padding: 4px 0px 4px 4px;
-}
-.inner_form
-{
-  position: relative;
-  top: 8px;
-  right: -260px;
-}
 
 
 </style>

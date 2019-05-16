@@ -24,13 +24,36 @@
             <th>#</th>
             <th>Group Name</th>
             <th>Group Type</th>
+             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let item of ethenicData; let i = index">
             <td>{{i+1}}</td>
-            <td>{{item.ethnicName}}</td>
-            <td>{{item.ethnicType}}</td>
+            <td>
+              <div *ngIf="!item.isEditable2">
+                  {{item.ethnicName}}
+              </div>
+             
+              <select *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.ethnicName">
+                  <option value="white">White</option>
+                  <option value="Mixed">Mixed</option>
+                  <option value="British">British</option>
+                  <option value="Black British">Black British</option>
+                </select>
+             
+            </td>
+              <td>
+                <div *ngIf="!item.isEditable2">
+                    {{item.ethnicType}}
+                </div>
+                <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.ethnicType">
+              </td>
+             
+            <td>
+                <button class="btn btn-info btn-sm" (click)="item.isEditable2=!item.isEditable2" *ngIf="!item.isEditable2">Edit</button>
+                <button  class="btn btn-success btn-sm" *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2;updateEthenicData(item)">Save</button>            
+            </td>
           </tr>
         </tbody>
       </table>
@@ -50,7 +73,7 @@
         <div class="modal-body">
             <div class="form-group">
                 <label for="groupname">Group Name:</label>
-                <select class="col-md-7 form-control" [(ngModel)]="ethnicName">
+                 <select class="col-md-7 form-control" [(ngModel)]="ethnicName">
                     <option value="white">White</option>
                     <option value="Mixed">Mixed</option>
                     <option value="British">British</option>

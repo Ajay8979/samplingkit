@@ -55,12 +55,12 @@ public class SponsorUserResourceController {
 						user2.setSponsorId(userMapper.getSponsorId());
 						user2.addRole(Role.SPONSORUSER);
 						User saveUser = sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "Sponsor is saved Successfully", saveUser);
+						return new Response("Success", HttpStatus.OK, "SponsorUser is saved Successfully", saveUser);
 					}
 					if (userMapper.getRole().equalsIgnoreCase("SUPPORTUSER")) {
 						user2.addRole(Role.SUPPORTUSER);
-						sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "Sponsor is saved Successfully", user2);
+						User saveUser1= sponsorUserService.saveUser(user2);
+						return new Response("Success", HttpStatus.OK, "SupportUser is saved Successfully", saveUser1);
 					}
 
 				}
@@ -135,7 +135,7 @@ public class SponsorUserResourceController {
 			return new Response(new ArrayList<User>(), "SponsorUser List is Empty");
 		} catch (Exception exception) {
 			String message = exception.getMessage();
-			return new Response(message, HttpStatus.CONFLICT, "Unable to retrieve Sponsors ");
+			return new Response(message, HttpStatus.CONFLICT, "Unable to retrieve Users ");
 		}
 
 	}
@@ -156,7 +156,7 @@ public class SponsorUserResourceController {
 			return new Response("failure", HttpStatus.CONFLICT);
 		} catch (Exception exception) {
 			String message = exception.getMessage();
-			return new Response(message, HttpStatus.CONFLICT, "Unable to update Sponsor ");
+			return new Response(message, HttpStatus.CONFLICT, "Unable to delete User ");
 		}
 
 	}

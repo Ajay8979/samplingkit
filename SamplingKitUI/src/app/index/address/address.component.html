@@ -9,17 +9,33 @@
             <div class="header_top_inner">
               <div class="top_left">
                 <ul>
-                  <li class="currency"><a href="#">support@medintu.co.uk</a>
-  
-                  </li>
-  
+                  <li class="currency"><a href="#">support@medintu.co.uk</a></li>
                   <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
-  
                 </ul>
               </div>
+              <div class="top_right">
+
+                  <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+                
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                      </div>
+                      <div class="form-group btn-container">
+                          <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                      </div>  
+                   </form>-->
+    
+                   <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+                   <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
+                   
+               </div>
+    
              
               <div class="logo logo_three">
-                <a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+                <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
               </div>
             </div>
           </div>
@@ -117,8 +133,7 @@
 
 
 
-  <!-- delivery  start -->
-
+<!-- delivery  start -->
 
 <div class="about_section padt5">
 
@@ -151,40 +166,48 @@
   
                   <p>
                     <label>First Name <span>*</span></label>
-                    <input type="text" placeholder="Firstname" formControlName="firstName">
+                    <input type="text" placeholder="Firstname" formControlName="firstName" required>
+                    <span *ngIf="users.controls['firstName'].invalid && users.controls['firstName'].touched" class='text text-danger'>Firstname is
+                      Required</span>
                   </p>
                   <p>
                     <label>Last Name <span>*</span></label>
-                    <input type="text" placeholder="Lastname" formControlName="lastName">
+                    <input type="text" placeholder="Lastname" formControlName="lastName" required>
+                    <span *ngIf="users.controls['lastName'].invalid && users.controls['lastName'].touched" class='text text-danger'>Lastname is
+                      Required</span>
                   </p>
                   <p>
                     <label>Address <span>*</span></label>
-                    <input type="text" placeholder="Enter Address" formControlName="address">
+                    <select>
+                      <option *ngFor="let address of addressDetails">{{address}}</option>
+                    </select>
+                    <span style="color:red;">Too many requests</span>
                   </p>
   
-                    <button class="btn btn_look look_3"><i class="fa fa-file-o"></i> &nbsp; Look up</button>
+                    <button class="btn btn_look look_3" (click)="getAddressDetails();"><i class="fa fa-file-o"></i> &nbsp; Look up</button>
                     
-  
+                    
                   <div class="inside_3">
                     <p>
                       <label>Country <span>*</span></label>
-                      <input type="text" placeholder="Enter Country" formControlName="country">
+                      <input type="text" placeholder="Enter Country">
                     </p>
                     <p>
                       <label>postcode <span>*</span></label>
-                      <input type="text" placeholder="Enter Post Code" formControlName="postcode">
+                      <input type="text" placeholder="Enter Post Code">
                     </p>
                     
                   </div>
   
                   <div class="buttons button_6">
                       <button class="btn pull-left questionaries_1" (click)="first()"> <i class="fa fa-arrow-circle-left"></i> Back</button>
-                      <button class="btn pull-right questionaries_2" type="submit">Next <i class="fa fa-arrow-circle-right"></i></button>
-                 </div>
+                      <button class="btn pull-right questionaries_2" type="submit">{{detail}} <i class="fa fa-arrow-circle-right"></i></button>
+                  </div>
   
   
-                     </form>
-  
+                 </form>
+                        
+               
   
               </div>
             </div>

@@ -10,15 +10,12 @@ public class SponsorMapper {
 
 	private String phone;
 
-	private String postCode;
-
 	private String email;
 	private String budget;
 	private List<SponsorAddress> addressList;
 	private List<Rule> ruleList;
-	private List<TestCode> testCodeList;
 
-	private List<SpecialEventMapper> mappers;
+	private List<PostalCode> postalCodes;
 
 	private Integer postCodeMinValue;
 
@@ -48,13 +45,6 @@ public class SponsorMapper {
 		this.phone = phone;
 	}
 
-	public String getPostCode() {
-		return postCode;
-	}
-
-	public void setPostCode(String postCode) {
-		this.postCode = postCode;
-	}
 
 	public String getEmail() {
 		return email;
@@ -88,14 +78,6 @@ public class SponsorMapper {
 		this.ruleList = ruleList;
 	}
 
-	public List<TestCode> getTestCodeList() {
-		return testCodeList;
-	}
-
-	public void setTestCodeList(List<TestCode> testCodeList) {
-		this.testCodeList = testCodeList;
-	}
-
 	public Integer getPostCodeMinValue() {
 		return postCodeMinValue;
 	}
@@ -112,12 +94,13 @@ public class SponsorMapper {
 		this.postCodeMaxValue = postCodeMaxValue;
 	}
 
-	public List<SpecialEventMapper> getMappers() {
-		return mappers;
+
+	public List<PostalCode> getPostalCodes() {
+		return postalCodes;
 	}
 
-	public void setMappers(List<SpecialEventMapper> mappers) {
-		this.mappers = mappers;
+	public void setPostalCodes(List<PostalCode> postalCodes) {
+		this.postalCodes = postalCodes;
 	}
 
 }

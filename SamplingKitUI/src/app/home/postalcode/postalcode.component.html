@@ -1,0 +1,79 @@
+<div class="app-title">
+    <div>
+      <h1><i class="fa fa-th-list"></i>Postalcode</h1>
+      <p>Create Postalcode</p>
+    </div>
+    <ul class="app-breadcrumb breadcrumb">
+       <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> 
+    </ul>
+  </div>
+  
+  <div class="tile">
+  <h5></h5>
+  <form class="form-inline row">
+    <div class="col-sm-12">
+        <button type="button" style="margin-bottom:8px" class="btn btn-danger pull-right" data-toggle="modal" data-target="#myModal"
+        (click)="add(regForm)">Add</button>
+    </div>
+  </form>
+  <div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+       <!-- Modal content-->
+       <div class="modal-content">
+         <div class="modal-header">
+           <h4 class="modal-title">Postal Code</h4>
+           <button type="button" class="close" data-dismiss="modal">&times;</button>
+           
+         </div>
+         <div class="modal-body">
+           <form #regForm='ngForm'>
+               <div class="col-md-6">
+                   <label>
+                    Postal Code:
+                     <input type="text" placeholder="Postal Code" name="postalCode" class="form-control" [(ngModel)]= mpincode >
+                   </label>
+                 </div>
+                 <button type="submit" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="savePostaldata(regForm.value)" *ngIf="addfrm">Submit</button>
+                 <button type="button" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="updatePostalData()" *ngIf="updatfrm" >Update</button>
+           </form>
+         </div>
+         <div class="modal-footer">
+           <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+         </div>
+       </div>
+   
+     </div>
+   </div>
+  
+  
+  <table class="table table-striped" >
+   <thead>
+     <tr style="font-size:15px">
+       <th>Id</th>
+       <th>Postalcode</th>
+       <th>Edit</th>
+       <th>Delete</th>
+     </tr>
+   </thead>
+   <tbody>
+     <tr *ngFor = "let data of postalCodes">
+       <td>{{data.id}}</td>
+       <td>{{data.postalCode}}</td>
+       <td>
+         <span>
+           <span (click)="editPostal(data)" data-toggle="modal" data-target="#myModal"  class="glyphicon glyphicon-pencil">
+             <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
+           </span>
+         </span>
+       </td>
+       <td>
+         <span>
+           <span (click)="deletePostalCode(data.id)" value="delete">
+             <i class="fa fa-trash" style="font-size:24px;color:red"></i>
+           </span>
+         </span>
+       </td>
+     </tr>
+   </tbody>
+  </table>
+  </div>

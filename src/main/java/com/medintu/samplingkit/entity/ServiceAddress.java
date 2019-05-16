@@ -6,7 +6,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @javax.persistence.Entity
-@Table(name = "Service_Address")
+@Table(name = "service_address")
 public class ServiceAddress implements Entity {
 	private static final long serialVersionUID = 1L;
 	

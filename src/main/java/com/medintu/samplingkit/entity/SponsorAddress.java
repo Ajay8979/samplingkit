@@ -24,6 +24,15 @@ public class SponsorAddress implements Entity {
 	private String region;
 	private String state;
 	private String zipcode;
+	private Long sponsor_id;
+
+	public Long getSponsor_id() {
+		return sponsor_id;
+	}
+
+	public void setSponsor_id(Long sponsor_id) {
+		this.sponsor_id = sponsor_id;
+	}
 
 	public SponsorAddress() {
 		// TODO Auto-generated constructor stub

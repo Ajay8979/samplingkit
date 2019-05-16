@@ -40,13 +40,50 @@ export class SponsorUserComponent implements OnInit {
    state:any;
    zipcode:any;
   ethenicData: any=[];
-  mappers: any=[];
+
   eventdetail:boolean=false;
   ruleDataTable: any=[];
+  addressData: any=[];
+  rulesData: any=[];
+  testCodeDetails: any=[];
+  testCodeData: any=[];
+  multiplepostdata: any=[];
+  postCodeData: any=[];
+  postalCodes: any=[];
+
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  postalCodeName: any;
+  selectedpostCode: any;
+  sponsorId: any;
+  updateSponsor:any={};
+ 
+
 
 
   constructor(private fb: FormBuilder,private DataService:DataService) {
-    this.getSponsorList()
+    this.getSponsorList();
+  
+   }
+   initializeData(){
+      this.multiplepostcode();
+      this.getAllTestCodeDetails();
+      this.getAllEthenic()
+   }
+   getPostalCodeforEdit(id){
+     this.sponsorId=id;
+     this.DataService.getSponsorUpdate(id).subscribe(data=>{
+      this.updateSponsor=data.resultData;
+      this.selectedItems =  this.updateSponsor.postalCodes;
+     });
+    this.multiplepostcode();
+   }
+   updateSponsorDetails(data){
+    this.DataService.updateSponsorDetails(data,this.sponsorId).subscribe(data=>{
+
+      this.getSponsorList();
+     });
    }
    getAllEthenic(){
     this.DataService.getEthenic().subscribe(data=>{
@@ -58,61 +95,142 @@ export class SponsorUserComponent implements OnInit {
       this.SponsorsData=data.resultData;
     })
   }
-   ruleTable(selectedEthenicName,selectedGender,minage,maxage){
-    var tableObj={gender:selectedGender,minage:minage,maxage:maxage}
-    this.ruleDataTable.push(tableObj)
-  
-    var obja={ruleName:'Gender',ruleValue:selectedGender.toString(),ethnicGroupId:selectedEthenicName.id}
-    var objb={ruleName:'Min-Age',ruleValue:minage,ethnicGroupId:selectedEthenicName.id}
-    var objc={ruleName:'Max-Age',ruleValue:maxage,ethnicGroupId:selectedEthenicName.id}
-    this.ruleList.push(obja);
-    this.ruleList.push(objb);
-    this.ruleList.push(objc);
-    this.ruleDetails=true;
-   }
-   addEventDetails(eventName,startDate,endDate){
-     var obj={eventName:eventName,startDate:startDate,endDate:endDate}
-     this.mappers.push(obj);
-     this.eventdetail=true;
-   }
-   testTable(testName,testCode,testDesc,isDefault){
-     var obj={testName:testName,testCode:testCode,description:testDesc,isDefalut:isDefault}
-     this.testCodeList.push(obj);
-     this.testDetailsFlag=true;
+   ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName){
+     
+    var gender=selectedGender.toString();
+    var tableObj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+     this.ruleList.push(tableObj)
+
+      this.ruleDetails=true;
    }
 
    step1Details(name,email,phone,budget,postcode){
-      this.obj1={name:name,email:email,phone:phone,budget:budget,postCode:postcode}
+    this.postcode=postcode;
+      this.obj1={name:name,email:email,phone:phone,budget:budget}
     // this.SponsorsData.push(obj);
 
    }
    step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode){
      this.obj2={streetNumber:streetNumber,streetName1:strname1,streetName2:strname2,city:city,country:country,district:district,region:region,state:state,zipcode:zipcode}
     this.addressList.push(this.obj2);
-     this.getAllEthenic()
+    
    
      //  this.addressList.push(obj);
     }
    submitSponsorDetails(){
-  
-    this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postCode:this.postcode,addressList: this.addressList,ruleList:this.ruleList,mappers:this.mappers,testCodeList:this.testCodeList}
+    for(var i = 0; i < this.ruleList.length; i++) {
+      delete this.ruleList[i]['testName'];
+      delete this.ruleList[i]['ethnicName'];
+  }
+    this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postalCodes:this.postcode,addressList: this.addressList,ruleList:this.ruleList}
     console.log(this.obj1);
     this.DataService.createSponsorDetails(this.obj1).subscribe(data=>{
-            this.getSponsorList();
+      this.addressList=[];
+    this.getSponsorList();
     })
-    
-    // this.SponsorsData.push(this.addressList);
-    // this.SponsorsData.push(this.ruleList);
-    // this.SponsorsData.push(this.testCodeList);
-
    }
+   getAddressDetails(id){
+     this.DataService.getAddressDetails(id).subscribe(data=>{
+       this.addressData=data.resultData;
+     })
+   }
+   getRulesDetails(id){
+    this.DataService.getRulesDetails(id).subscribe(data=>{
+      this.rulesData=data.resultData;
+  })
 
+  this.DataService.editEthenicData().subscribe(data=>{
+    this.ethenicData=data.resultData;
+  })
+   this.DataService.editTestListData().subscribe(data=>{
+  this.testCodeData=data.resultData;
+  })
+}
+  getTestCodeDetails(id){
+    this.DataService.getTestCodeDetails(id).subscribe(data=>{
+      this.testCodeDetails=data.resultData;
+   })
 
+ 
+  }
+  getAllTestCodeDetails(){
+    this.DataService.getAllTestCodeDetails().subscribe(response=>{
+      this.testCodeData=response.resultData;
+    
+    })
+     }
+    multiplepostcode(){
+      this.DataService.getMultiplepostCode().subscribe(response=>{
+        this.dropdownList=response.resultData;
+      
+      })
+      /*
+     this.dropdownList = [
+      { item_id: 1, item_text: 'Mumbai' },
+      { item_id: 2, item_text: 'Bangaluru' },
+      { item_id: 3, item_text: 'Pune' },
+      { item_id: 4, item_text: 'Navsari' },
+      { item_id: 5, item_text: 'New Delhi' }
+    ];
+  */
+   
+    }
+    getPostCodeList(id){
+      this.sponsorId=id;
+      this.DataService.getPostCodeList(id).subscribe(response=>{
+        this.testCodeList=response.resultData;
+        this. multiplepostcode();
+       
+      })
+    }
+    updatePostalCode(postalId){
 
+    }
+    onItemSelect(item: any) {
+      console.log(item);
+    }
+    onSelectAll(items: any) {
+      console.log(items);
+    }
 
+    //editPostalCode(postalCodeName){
+      //this.selectedpostCode=postalCodeName;
+    //}
+    updateSelectedPostalCode(postalId){
+      var postCode={id:postalId.id}
+      this.DataService.updateSelectedPostalCode(postCode,this.sponsorId).subscribe(res=>{
+       this. getPostCodeList(this.sponsorId);
+      })
+    }
+    updateSelectedAddress(formData:any){
+      delete formData ['isEditable1'];
+        this.DataService.updateSelectedAddress(formData).subscribe(data=>{
+          this. getPostCodeList(this.sponsorId);
+        })
+    }
+    updateSelectedRule(formData:any){
+      delete formData ['isEditable2'];
+      var gender=formData.gender.toString();
+      formData.gender=gender;
+
+     this.DataService.updateSelectedRule(formData).subscribe(data=>{
+
+     })
+    }
 
 
   ngOnInit() {
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'postalCode',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    
+    //next form
     $(document).ready(function() {
       var count = 0; // To Count Blank Fields
       /*------------ Validation Function-----------------*/
@@ -168,9 +286,11 @@ export class SponsorUserComponent implements OnInit {
       return true;
       }
       });
+      
       });
 
-      
+       
   }
+ 
   
 }

@@ -1,5 +1,6 @@
 import { IndexService } from './../services/index.service';
 import { Component, OnInit } from '@angular/core';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -15,7 +16,7 @@ export class FinalComponent implements OnInit {
 
   
 
-  constructor(private sends:IndexService) { }
+  constructor(private sends:IndexService,private router:Router) { }
 
   ngOnInit() 
   {
@@ -23,4 +24,13 @@ export class FinalComponent implements OnInit {
     this.firstname=this.sends.seconddata['firstName'];
     this.id=sessionStorage.getItem('message');
   }
+
+  
+  viewResult(){
+    this.router.navigate(['viewresults']);
+  }
+  LoginPage(){
+    this.router.navigate(['loginpageaction']);
+  }
+
 }
