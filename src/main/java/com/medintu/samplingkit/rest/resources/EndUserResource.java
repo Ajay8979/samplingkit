@@ -121,7 +121,7 @@ public class EndUserResource {
 
 			TestCodeSponsorIdMapper ruleMapper = endUserService.getDefaultTestCodes(endUserMapper);
 
-			if (null != ruleMapper)
+			if (!CollectionUtils.isEmpty(ruleMapper.getTestCodes()))
 				response = new Response(ruleMapper, HttpStatus.OK, "Success");
 			else {
 				response = new Response(
