@@ -1,1 +1,0 @@
-trafficApp.constant('APIURL', 'http://localhost:8080/traffic/rest');
