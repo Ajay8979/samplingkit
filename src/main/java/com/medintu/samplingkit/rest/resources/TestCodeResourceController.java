@@ -89,7 +89,7 @@ public class TestCodeResourceController {
 
 				for (TestCode testCode : allTestcodes) {
 					TestMapper testMapper = new TestMapper();
-					testMapper.setTectCodeId(testCode.getId());
+					testMapper.setId(testCode.getId());
 					testMapper.setTestName(testCode.getTestName());
 					testMapper.setTestCode(testCode.getTestCode());
 					testMapper.setIsDefaultTest(testCode.getDefaultTest());

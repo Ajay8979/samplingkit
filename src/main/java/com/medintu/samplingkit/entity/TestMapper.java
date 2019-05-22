@@ -2,7 +2,7 @@ package com.medintu.samplingkit.entity;
 
 public class TestMapper {
 
-	private Long tectCodeId;
+	private Long id;
 
 	private String testName;
 
@@ -12,12 +12,12 @@ public class TestMapper {
 
 	private Boolean isDefaultTest;
 
-	public Long getTectCodeId() {
-		return tectCodeId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setTectCodeId(Long tectCodeId) {
-		this.tectCodeId = tectCodeId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTestName() {
