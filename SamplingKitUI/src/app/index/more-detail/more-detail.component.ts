@@ -52,6 +52,7 @@ export class MoreDetailComponent implements OnInit {
     requestobj['quetionary3']={'"How many partners have you had sex with in the last 12 moths?"': this.users.value.protect2};
     requestobj['quetionary4']={'"How oftner have you had sex under in influence of alchol or recreational drugs?"': this.users.value.protect3};
     this.sends.seconddata=requestobj;
+    localStorage.setItem('primaryuser',JSON.stringify(this.sends.seconddata));
     this.router.navigate(['address']);
     console.log("this is more details"+this.sends.seconddata);
   }

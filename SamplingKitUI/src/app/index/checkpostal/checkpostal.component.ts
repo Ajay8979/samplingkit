@@ -21,6 +21,7 @@ export class CheckpostalComponent implements OnInit {
   customForm:FormGroup;
   resultData:any;
   testName:any;
+  checkpostal:any;
   getdata:Array<any>=[];
 
 
@@ -40,9 +41,8 @@ export class CheckpostalComponent implements OnInit {
        some['testName']=this.firstcodelength[0].testName;
        this.getdata.push(some);
      }
-
+  
   }
-
 
 
   onCheckChange(testvalue)

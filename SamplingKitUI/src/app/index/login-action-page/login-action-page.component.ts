@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { IndexService } from '../services/index.service';
 
 
+
 @Component({
   selector: 'app-login-action-page',
   templateUrl: './login-action-page.component.html',
@@ -31,10 +32,13 @@ export class LoginActionPageComponent implements OnInit {
     });
   }
 
-  viewResult(){
+  viewResult()
+  {
     this.routerNavigate.navigate(['viewresults']);
   }
-  LoginPage(){
+
+  LoginPage()
+  {
     this.routerNavigate.navigate(['loginpageaction']);
   }
 

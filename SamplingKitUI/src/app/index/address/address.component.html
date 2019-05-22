@@ -248,7 +248,7 @@
                             <label>Email<span>*</span></label>
                             <input type="text" placeholder="Enter Email" formControlName="notificationEmail">
                             <span
-                            *ngIf="users.controls['notificationEmail'].invalid && users.controls['notificationEmail'].touched"
+                            *ngIf="users.controls['notificationEmail'].invalid && users.controls['notificationEmail'].touched && users.controls['notificationEmail'].dirty"
                             class='text text-danger'>Please enter a valid email
                             </span>
                           </p>

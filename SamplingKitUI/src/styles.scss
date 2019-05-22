@@ -2670,8 +2670,8 @@ fieldset:disabled a.btn {
 
 .btn-info:hover {
   color: #FFF;
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: #06a798;
+  border-color: #06a798;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -2681,15 +2681,15 @@ fieldset:disabled a.btn {
 
 .btn-info.disabled, .btn-info:disabled {
   color: #FFF;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #06a697;
+  border-color: #06a798;
 }
 
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
 .show > .btn-info.dropdown-toggle {
-  color: #FFF;
-  background-color: #117a8b;
-  border-color: #10707f;
+    color: #FFF;
+    background-color: #06a798;
+    border-color: #06a495;
 }
 
 .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
@@ -16138,7 +16138,7 @@ input:-ms-input-placeholder {
     border-radius: 20px;
 }
 .account_form button:hover {
-    background: #136a86;
+    background: #06a798;
     color: white;
 }
 .account_form .inner_1 p {
@@ -16298,7 +16298,7 @@ input:-ms-input-placeholder {
 /* 20. services page css here */
 .login_submit1 input
 {
-  border: 1px solid #136a86;
+  border:1px solid #06a798;
   height: 40px;
   padding: 0 20px;
   background: none;
@@ -16324,7 +16324,7 @@ input:-ms-input-placeholder {
 }
 .panel_heading
 {
-	background-color:#136a86;
+	background-color:#06a798;
     padding:13px 15px 7px 28px;
     text-transform:uppercase;
     margin-bottom:0px;
@@ -16607,9 +16607,9 @@ input:-ms-input-placeholder {
 .error_data h1
 {
   font-size: 40px;
-  color: #da341a;
+  color: #443e3d;
   line-height: 5rem;
-  font-weight: 300;
+  font-weight: 500;
   text-align: center;
   padding: 28px 0px 20px 0px;
 }
@@ -16888,6 +16888,14 @@ input:-ms-input-placeholder {
   float:left;
   margin-left:20px;
   margin-top:32px;
+}
+
+.thanks h5
+{
+  padding-bottom: 20px;
+  padding-top: 10px;
+  color: green;
+  
 }
 
 /* .logo {
