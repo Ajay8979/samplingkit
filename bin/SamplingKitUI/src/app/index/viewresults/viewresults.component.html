@@ -1,0 +1,343 @@
+<!--header start-->
+
+
+<!-- Main Wrapper Start -->
+<!--header area start-->
+<header class="header_area beader_bg3">
+  <!--header top start-->
+  <div class="header_top header_top_three">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="header_top_inner">
+            <div class="top_left">
+              <ul>
+                <li class="currency"><a href="#">support@medintu.co.uk</a>
+
+                </li>
+
+                <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
+
+              </ul>
+            </div>
+            <div class="top_right">
+
+              <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+              
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                    </div>
+                    <div class="form-group btn-container">
+                        <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                    </div>  
+                 </form>-->
+
+              <button class="btn btn-info btn-sm" style="margin-top: 8px;width: auto;" (click)="viewResult()">Track
+                Results</button>&nbsp;&nbsp;
+              <button class="btn btn-success btn-sm" style="margin-top: 8px" (click)="LoginPage()">Login</button>
+
+            </div>
+
+            <div class="logo logo_three">
+              <a href="index.html"><img src="assets/img/img/logo.png" alt=""></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!--header top start-->
+  <!--header middel start-->
+  <div class="header_middle">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-9 offset-lg-3 offset-md-0">
+          <div class="main_menu menu_three header_position">
+            <nav>
+              <ul>
+
+                <li><a href="#">home</a></li>
+                <li><a href="#">Aboutus</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Individuals</a></li>
+                <li class="pull-right google2">
+                  <div id="google_translate_element"></div>
+                </li>
+              </ul>
+
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--header middel end-->
+
+
+
+</header>
+<!--header area end-->
+
+<!--Offcanvas menu area start-->
+
+<div class="off_canvars_overlay">
+
+</div>
+<div class="Offcanvas_menu Offcanvas_three">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="canvas_open">
+          <span>MENU</span>
+          <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+        </div>
+        <div class="Offcanvas_menu_wrapper">
+          <div class="canvas_close">
+            <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+          </div>
+
+          <div id="menu" class="text-left ">
+            <ul class="offcanvas_main_menu">
+              <li class="menu-item-has-children active">
+                <a href="#">Home</a>
+
+              </li>
+              <li class="menu-item-has-children">
+                <a href="#">About</a>
+
+              </li>
+              <li class="menu-item-has-children">
+                <a href="#">Gallery</a>
+              </li>
+
+              <li class="menu-item-has-children">
+                <a href="#">contact</a>
+              </li>
+
+            </ul>
+          </div>
+
+          <div class="Offcanvas_footer">
+            <span><a href="#"><i class="fa fa-envelope-o"></i> info@yourdomain.com</a></span>
+            <ul>
+              <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+              <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+              <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+              <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+              <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Offcanvas menu area end-->
+
+
+<!--header end-->
+
+<!--first page start -->
+<div class="about_section mt-60">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <div class="about_content text-left">
+          <h1 class="text-center">Track your test results</h1>
+          <p>It's easy to track the status of your test kit online and in many cases access your results and additional
+            information.</p>
+          <p>Please note, you can only track our test.hiv branded test kits that will include your 'PX' Tracking Code
+            and an Access Key on the paperwork.</p>
+          <p>Lost or forgotten your details?
+            You may be able to request a reminder, and we'll text your details.</p>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <div class="about_content text-center">
+          <h1 class="text-center">Track your test results</h1>
+          <p>Simply enter your tracking code and access key...</p><br>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]='orderId' id="code" placeholder="PX kit Code">
+          </div>
+          <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]='accessKey' id="key" placeholder="Access Key">
+          </div>
+          <button type="submit" class="btn btn-success pull-right" (click)=viewOrderResult(orderId,accessKey)
+            data-toggle="modal" data-target="#myModal">View Results</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--header end-->
+
+
+<!--footer area start-->
+<footer class="footer_widgets">
+  <div class="container">
+    <div class="footer_top">
+      <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-7">
+          <div class="widgets_container contact_us">
+            <h3>Contacts us</h3>
+            <div class="footer_contact">
+              <ul>
+                <li><i class="fa fa-home"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing
+                  and typesetting industry. Lorem Ipsum</li>
+                <li><i class="fa fa-phone"></i><span>Phone:</span> (+91) 866-540-3229</li>
+                <li><i class="fa fa-envelope-square"></i><span>Email:</span> info@Lorem Ipsum .com</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+        <div class="col-lg-2 col-md-6 col-sm-5">
+          <div class="widgets_container widget_menu">
+            <h3>Information</h3>
+
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4 col-sm-4">
+          <div class="widgets_container widget_menu">
+            <h3>My Account</h3>
+            <div class="footer_menu">
+              <div class="footer_contact">
+                <ul>
+                  <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of
+                    HIV home-sampling screening. </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  <div class="footer_bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <div class="copyright_area text-center">
+            <p>Copyright &copy; 2019 <a href="#">Medintu</a> All Right Reserved.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+<!--footer area end-->
+
+
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Your Order Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <h5 class="modal-title">Personal Info</h5>
+        <h4 class="text text-danger" *ngIf="ordertrack">Invalid order Id, if valid order please contact support</h4>
+        <table class="table" *ngIf="!ordertrack">
+          <!-- <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Order Code</th>
+                    <th>Post Code</th>
+                    <th>PX Code</th>
+                    <th>Status</th>
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of orderDetailsData;let i=index">
+                     <td>{{i+1}}</td>
+                    <td>{{item.firstName}}</td>
+                    <td>{{item.lastName}}</td>
+                    <td>{{item.email}}</td>
+                    <td>{{item.oppositeGender}}</td>
+                    <td>{{item.mobile}}</td>
+                    <td>{{item.orderCode}}</td>
+                    <td>{{item.postCode}}</td>
+                    <td>YF45</td>
+                    <td>{{item.status}}</td>
+                  </tr>
+                </tbody> -->
+          <tr *ngFor="let item of orderDetailsData;let i=index">
+            <td>
+              <strong><label>Name:</label> </strong> &nbsp;&nbsp; {{item.firstName}}<br />
+              <strong><label>Last Name: </label></strong> &nbsp;&nbsp; {{item.lastName}}<br />
+              <strong><label>Email Id: </label></strong> &nbsp;&nbsp; {{item.email}}<br />
+              <strong><label>Gender: </label></strong> &nbsp;&nbsp; {{item.oppositeGender}}<br />
+            </td>
+            <td>
+              <strong><label>Mobile: </label></strong> &nbsp;&nbsp; {{item.mobile}}<br />
+              <strong><label>Last Name: </label></strong> &nbsp;&nbsp; {{item.orderCode}}<br />
+              <strong><label>Email Id: </label></strong> &nbsp;&nbsp; {{item.postCode}}<br />
+              <strong><label>Gender: </label></strong> &nbsp;&nbsp; YF45<br />
+            </td>
+            <td>
+              <span><strong><label>Status: </label></strong>&nbsp;&nbsp;<button
+                  class="btn round">{{item.status}}</button></span>
+            </td>
+          </tr>
+        </table>
+        <table class="table" *ngIf="!ordertrack">
+          <h5 class="modal-title">Observation Report</h5>
+          <tr>
+            <td><strong>Specimen:</strong> &nbsp;&nbsp;sample {{trackresult.orderId}}</td>
+            <td><strong>Service:</strong> &nbsp;&nbsp;LAB</td>
+          </tr>
+        </table>
+        <table class="table table-striped table-bordered">
+          <tr>
+            <th>Test Id</th>
+            <th>Test Name</th>
+            <th>Units</th>
+            <th>Status</th>
+            <th>Test Time</th>
+          </tr>
+          <!-- <tr>
+            <td>POS1243</td>
+            <td>POS1243</td>
+            <td>POS1243</td>
+            <td>POS1243</td>
+            <td>POS1243</td>
+          </tr> -->
+          <tr *ngFor="let item of trackresult;let i=index">
+            <td>{{item.orderId}}</td>
+            <td>{{item.testName}}</td>
+            <td>{{item.units}}</td>
+            <td>{{item.status}}</td>
+            <td>{{item.testTime}}</td>
+          </tr>
+        </table>
+
+
+        <h4 class="text text-primary" *ngIf="orderStatus">Your Order is in Progress, lab test results need to be
+          recieved</h4>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

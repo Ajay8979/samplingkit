@@ -1,0 +1,433 @@
+<div class="app-title">
+  <div>
+    <h1><i class="fa fa-th-list"></i> Commissioner</h1>
+    <p>Commissioner Details</p>
+  </div>
+  <ul class="app-breadcrumb breadcrumb">
+  </ul>
+</div>
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12">
+
+    <!-- User info -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+
+      </div>
+      <div class="panel-body">
+        <div class="tile">
+          <h4 class="panel-title">&nbsp;&nbsp;Commissioner Info</h4>
+
+          <table class="table profile__table">
+            <tbody>
+              <tr>
+                <th><strong>Name</strong></th>
+                <th><strong>Budget</strong></th>
+                <th><strong>District Codes</strong></th>
+                <th><strong>Edit</strong></th>
+              </tr>
+              <tr>
+                <td>
+                  <div *ngIf="!isEditable1">{{name}}</div>
+                  <input type="text" *ngIf="isEditable1" class="form-control" [(ngModel)]="name">
+                </td>
+                <td>
+                  <div *ngIf="!isEditable1">{{budget}}</div>
+                  <input type="text" *ngIf="isEditable1" class="form-control" [(ngModel)]="budget">
+                </td>
+                <td >
+                  <span *ngIf="!isEditable1">
+                    <span *ngFor="let i of postalCodesDetails">
+                      {{i.postalCode}}
+                    </span>
+                  </span>
+                    <div *ngIf="isEditable1" >
+                      <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="dropdownList"
+                        [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                        (onSelectAll)="onSelectAll($event)">
+                      </ng-multiselect-dropdown>
+                    </div>
+                </td>
+                <td>
+                    <button class="btn btn-info btn-sm " (click)="isEditable1=!isEditable1;getPostalCodeforEdit(id)"
+                      *ngIf="!isEditable1"><i class="fa fa-edit"></i>Edit</button>
+                    <button class="btn btn-success btn-sm" *ngIf="isEditable1"
+                      (click)="isEditable1=!isEditable1;updateSponsorDetails(name,budget,selectedItems)">Save</button>
+                  </td>
+              </tr>
+            </tbody>
+            <!-- <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Budget</th>
+                  <th>Edit</th>
+                  <th>View</th>
+                </tr>
+              </thead>
+            <tbody>
+                <tr *ngFor="let item of SponsorsData| filter:term |paginate: { itemsPerPage: 5, currentPage: p };let i=index ">
+                  <td>{{i+1}}</td>
+                  <td>{{item.name}}</td>
+                  <td>{{item.budget}}</td>
+                  <td>
+                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal"  data-backdrop="static" data-target="#editSponsor"
+                      (click)="getPostalCodeforEdit(item.id)"><i class="fa fa-edit"></i>Edit</a>
+                  </td>
+                  <td>
+                      <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rulemyModal" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-plus"></i>Add Rules</a>&nbsp;&nbsp;
+                    <a href="" data-backdrop="static"  class="btn btn-success btn-sm" data-toggle="modal" data-target="#postCodeslist"
+                      (click)="getPostCodeList(item.id)"><i class="fa fa-edit"></i>District Codes</a>&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href=""
+                      data-toggle="modal" data-target="#addressDetails"
+                      (click)="getAddressDetails(item.id)" data-backdrop="static" ><i class="fa fa-edit"></i>Contacts</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm"
+                      data-toggle="modal" data-target="#ruleDetails" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-edit"></i>Rules</a>&nbsp;&nbsp;
+                  </td>
+                </tr>
+              </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- Community -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+      </div>
+      <div class="panel-body">
+        <div class="tile">
+          <h4 class="panel-title">&nbsp;&nbsp;Address Details</h4>
+          <table class="table profile__table">
+            <tbody>
+              <tr>
+                <th><strong>Email Id</strong></th>
+
+                <td>
+                  <div *ngIf="!isEditable3">{{address.email}}</div>
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.email">
+                </td>
+
+              </tr>
+              <tr>
+                <th><strong>Phone Number</strong></th>
+                <td>
+                  <div *ngIf="!isEditable3">{{address.phone}}</div>
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.phone">
+                </td>
+
+              </tr>
+              <tr *ngIf="!isEditable3">
+                  <th><strong>Address</strong></th>
+                  <td>
+                  <div >Street Number #{{address.streetNumber}}, {{streetName1}}<br>
+                    City: {{address.city}}, District: {{address.district}} - Postal Code: {{address.postCode}}
+                  </div>
+                </td>
+              </tr>
+              <tr *ngIf="isEditable3">
+                <th *ngIf="isEditable3"><strong>Street Number:</strong></th>
+
+                <td>
+                  <!-- <div *ngIf="!isEditable3">{{address.streetNumber}}</div> -->
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.streetNumber">
+                </td>
+
+              </tr>
+              <tr *ngIf="isEditable3">
+                <th *ngIf="isEditable3"><strong>Street Name1</strong></th>
+
+                <td>
+                  <!-- <div *ngIf="!isEditable3">{{address.streetName1}}</div> -->
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.streetName1">
+                </td>
+
+              </tr>
+              <tr *ngIf="isEditable3">
+                <th *ngIf="isEditable3"><strong>City</strong></th>
+
+                <td>
+                  <!-- <div *ngIf="!isEditable3">{{address.city}}</div> -->
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.city">
+                </td>
+
+              </tr>
+              <tr *ngIf="isEditable3">
+                <th *ngIf="isEditable3"><strong>District</strong></th>
+
+                <td>
+                  <!-- <div *ngIf="!isEditable3">{{address.district}}</div> -->
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.district">
+                </td>
+
+              </tr>
+              <tr *ngIf="isEditable3">
+                <th *ngIf="isEditable3"><strong>Postal Code</strong></th>
+                <td>
+                  <!-- <div *ngIf="!isEditable3">{{address.postCode}}</div> -->
+                  <input type="text" *ngIf="isEditable3" class="form-control" [(ngModel)]="address.postCode">
+                </td>
+
+              </tr>
+              <tr>
+                <td></td>
+                <td>
+                  <button class="btn btn-info btn-sm pull-right" (click)="isEditable3=!isEditable3" *ngIf="!isEditable3"><i
+                      class="fa fa-edit"></i>Edit</button>
+                  <button class="btn btn-success btn-sm pull-right" *ngIf="isEditable3"
+                    (click)="isEditable3=!isEditable3;updateSelectedAddress(address)">Save</button>
+                </td>
+              </tr>
+            </tbody>
+            <!-- <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Street No.</th>
+                  <th>Street Name1</th>
+                  <th>City</th>
+                  <th>District</th>
+                  <th>District Codes</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+            <tbody>
+                
+              <tr *ngFor='let item of address let i=index'>
+                  <td>{{i+1}}</td>
+                <td>
+                  <div *ngIf="!item.isEditable9">{{address.email}}</div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.email">
+                </td>
+                <td>
+                  <div *ngIf="!item.isEditable9">{{address.phone}}</div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.phone">
+                </td>
+                <td>
+                  <div *ngIf="!item.isEditable9">{{address.streetNumber}}</div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.streetNumber">
+                </td>
+                <td>
+                  <div *ngIf="!item.isEditable9">
+                    {{address.streetName1}}
+                  </div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.streetName1">
+                </td>
+
+                <td>
+                  <div *ngIf="!item.isEditable9">
+                    {{address.city}}
+                  </div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.city">
+                </td>
+
+                <td>
+                  <div *ngIf="!item.isEditable9">
+                    {{address.district}}
+                  </div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.district">
+                </td>
+
+                <td>
+                  <div *ngIf="!item.isEditable9">
+                    {{address.postCode}}
+                  </div>
+                  <input type="text" *ngIf="item.isEditable9" class="form-control" [(ngModel)]="address.postCode">
+                </td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="item.isEditable9=!item.isEditable9"
+                    *ngIf="!item.isEditable9">Edit</button>
+                  <button class="btn btn-success btn-sm" *ngIf="item.isEditable9"
+                    (click)="item.isEditable9=!item.isEditable9;updateSelectedAddress(item)">Save</button>
+                </td>
+              </tr>
+              <tr>
+
+            </tbody> -->
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+      </div>
+      <div class="panel-body">
+        <div class="tile">
+          <h4 class="panel-title">&nbsp;&nbsp;Rule Details</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Ethinic Name</th>
+                <th>Test Name</th>
+                <th>Gender</th>
+                <th>Max Age</th>
+                <th>Min Age</th>
+                <th>Status</th>
+                <th>Edit</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of sponsorDetailsRule;let i=index">
+                <td>
+                  <span *ngIf="!isEditable10">{{i+1}}</span>
+                </td>
+                <td>
+                    <span *ngIf="!isEditable10">{{item.ethnicName}}</span>
+                    <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.ethnicName"> -->
+                    <div>
+                        <select [(ngModel)]="item.ethnicGroupId" *ngIf="isEditable10">
+                          <option *ngFor="let c of ethenicData" [ngValue]="c.id">{{c.ethnicName}}</option>
+                        </select>
+                      </div>
+                </td>
+                <td>
+                    <span *ngIf="!isEditable10">{{item.testName}}</span>
+                    <select [(ngModel)]="item.testCodeId" *ngIf="isEditable10">
+                        <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
+                      </select>
+                    
+                    <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.testName"> -->
+                    <!-- <select [(ngModel)]="item.testName">
+                        <option *ngFor="let c of ethenicData" [ngValue]="c.testCodeId"><span *ngIf="isEditable10">{{c.testName}}</span></option>
+                      </select> -->
+                </td>
+                <!-- <td>
+                    <span *ngIf="!isEditable10">{{item.ethnicName}}</span>
+                    <div *ngIf="isEditable10">
+                        
+                      <select [(ngModel)]="item.ethnicGroupId">
+                        <option *ngFor="let c of ethenicData" [ngValue]="c.ethnicGroupId"><span *ngIf="isEditable10">{{c.ethnicName}}</span></option>
+                      </select>
+                    </div>
+                  </td>
+                  <td>
+                    <select [(ngModel)]="item.testCodeId">
+                      <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
+                    </select>
+    
+                  </td> -->
+                <td>
+                  <span *ngIf="!isEditable10">{{item.gender}}</span>
+                  <select class="form-control"  *ngIf="isEditable10" [(ngModel)]="item.gender" multiple
+                  style="height: 60px;">
+                  <option value="Man">Man </option>
+                  <option value="Women">Woman</option>
+                  <option value="Transman ">Transman </option>
+                  <option value="Transwoman ">Transwoman </option>
+                </select>
+                  <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.gender"> -->
+                </td>
+                <td>
+                  <span *ngIf="!isEditable10">{{item.maxAgeGroup}}</span>
+                  <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.maxAgeGroup">
+                </td>
+                <td>
+                  <span *ngIf="!isEditable10">{{item.minAgeGroup}}</span>
+                  <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.minAgeGroup">
+                </td>
+                <td>
+                  <span *ngIf="!isEditable10">{{item.status}}</span>
+                  <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.status"> -->
+                  <select *ngIf="isEditable10" class="" [(ngModel)]="item.status">
+                    <option value="Active">Active</option>
+                    <option value="Inactive">Inactive</option>
+                  </select>
+                </td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="isEditable10=!isEditable10" *ngIf="!isEditable10"><i
+                      class="fa fa-edit"></i>Edit</button>
+                  <button class="btn btn-success btn-sm" *ngIf="isEditable10"
+                    (click)="isEditable10=!isEditable10;updateSelectedRule(item)">Save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+
+      </div>
+      <div class="panel-body">
+        <div class="tile">
+          <h4 class="panel-title">&nbsp;&nbsp;District Code Details</h4>
+          <table class="table profile__table">
+            <tbody>
+              <tr>
+                <th><strong>District Code</strong></th>
+
+                <td>
+                  <span *ngFor="let item of postalCodesDetails">
+                    <span *ngIf="!isEditable12"> {{item.postalCode}}</span>
+                    &nbsp;&nbsp;
+                    <!-- <input type="text" *ngIf="isEditable12" class="" [(ngModel)]="item.postalCode"> -->
+                  </span>
+                </td>
+
+                <!-- <td>
+                  <button class="btn btn-info btn-sm" (click)="isEditable12=!isEditable12" *ngIf="!isEditable12"><i
+                      class="fa fa-edit"></i>Edit</button>
+                  <button class="btn btn-success btn-sm" *ngIf="isEditable12"
+                    (click)="isEditable12=!isEditable12;updateSelectedAddress(zipcode)">Save</button>
+                </td> -->
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default" *ngIf="false">
+      <div class="panel-heading">
+
+      </div>
+      <div class="panel-body">
+        <div class="tile">
+          <h4 class="panel-title">&nbsp;&nbsp;Test Codes Details</h4>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Test Name</th>
+                <th>Description</th>
+                <th>Test Code</th>
+                <th>Edit</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of testcodeDetails">
+                <td>
+                  <span *ngIf="!isEditable13">{{item.testName}}</span>
+                  <input type="text" *ngIf="isEditable13" class="" [(ngModel)]="item.testName">
+                </td>
+                <td>
+                  <span *ngIf="!isEditable13">{{item.description}}</span>
+                  <input type="text" *ngIf="isEditable13" class="" [(ngModel)]="item.description">
+                </td>
+                <td>
+                  <span *ngIf="!isEditable13">{{item.testCode}}</span>
+                  <input type="text" *ngIf="isEditable13" class="" [(ngModel)]="item.testCode">
+                </td>
+                <td>
+                  <button class="btn btn-info btn-sm" (click)="isEditable13=!isEditable13" *ngIf="!isEditable13"><i
+                      class="fa fa-edit"></i>Edit</button>
+                  <button class="btn btn-success btn-sm" *ngIf="isEditable13"
+                    (click)="isEditable13=!isEditable13;updatetestcodeDetails(item)">Save</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

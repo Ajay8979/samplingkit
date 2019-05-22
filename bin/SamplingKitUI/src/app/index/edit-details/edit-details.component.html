@@ -1,0 +1,290 @@
+<!-- Main Wrapper Start -->
+<!--header area start-->
+<header class="header_area beader_bg3">
+    <!--header top start-->
+    <div class="header_top header_top_three">
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <div class="header_top_inner">
+              <div class="top_left">
+                <ul>
+                  <li class="currency"><a href="#">support@medintu.co.uk</a></li>
+                  <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
+                </ul>
+              </div>
+              <div class="top_right">
+
+                  <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+                
+                      <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
+                      </div>
+                      <div class="form-group">
+                          <input type="password" class="form-control" placeholder="Password" required="required"  formControlName="password">
+                      </div>
+                      <div class="form-group btn-container">
+                          <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
+                      </div>  
+                   </form>-->
+    
+                   <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
+                   <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
+                   
+                   </div>
+    
+             
+              <div class="logo logo_three">
+                <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
+              </div>
+            </div>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+    <!--header top start-->
+    <!--header middel start-->
+    <div class="header_middle">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-9 offset-lg-3 offset-md-0">
+            <div class="main_menu menu_three header_position">
+              <nav>
+                <ul>
+  
+                  <li><a href="#">home</a></li>
+                  <li><a href="#">Aboutus</a></li>
+                  <li><a href="#">Business</a></li>
+                  <li><a href="#">Individuals</a></li>
+                  <li class="pull-right google2">
+                    <div id="google_translate_element"></div>
+                  </li>
+                </ul>
+  
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--header middel end-->
+  
+    <!--popup start-->
+   
+      <!-- Modal -->
+    
+  
+  
+    <!--popup end-->
+  
+  </header>
+  <!--header area end-->
+  
+  <!--Offcanvas menu area start-->
+  
+  <div class="off_canvars_overlay">
+  
+  </div>
+  <div class="Offcanvas_menu Offcanvas_three">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <div class="canvas_open">
+            <span>MENU</span>
+            <a href="javascript:void(0)"><i class="ion-navicon"></i></a>
+          </div>
+          <div class="Offcanvas_menu_wrapper">
+            <div class="canvas_close">
+              <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+            </div>
+  
+            <div id="menu" class="text-left ">
+              <ul class="offcanvas_main_menu">
+                <li class="menu-item-has-children active">
+                  <a href="#">Home</a>
+  
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">About</a>
+  
+                </li>
+                <li class="menu-item-has-children">
+                  <a href="#">Gallery</a>
+                </li>
+  
+                <li class="menu-item-has-children">
+                  <a href="#">contact</a>
+                </li>
+  
+              </ul>
+            </div>
+  
+            <div class="Offcanvas_footer">
+              <span><a href="#"><i class="fa fa-envelope-o"></i> info@yourdomain.com</a></span>
+              <ul>
+                <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+                <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+                <li class="pinterest"><a href="#"><i class="fa fa-pinterest-p"></i></a></li>
+                <li class="google-plus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--Offcanvas menu area end-->
+
+
+  <div class="about_section padt2">
+      <div class="container">
+    
+        <h2 class="heading_top">please check the details entered</h2>
+    
+        <div class="row padt2">
+    
+          <div class="col-lg-4 col-md-4">
+    
+            <div class="address address_5">
+    
+               <h4 class="link_2"><span>1</span>Personal Details
+                <a  [routerLink]="['/address']">(edit)</a>
+                </h4>
+              <ul>
+                <li>Name:{{firstname}}</li>
+                <li>sex:{{gender}}</li>
+                <li>Dob:{{dob}}</li>
+              </ul>
+    
+              <h4><span>2</span>Kit and Test Booking</h4>
+              <ul>
+                <li>test:HIV KIT</li>
+                <li>HIV only</li>
+              </ul>
+    
+              <h4><span>3</span>Shipping Address 
+                  <p>(edit)<p>
+                </h4>
+              <ul>
+                <li>{{address}}</li>
+                
+              </ul>
+    
+              <h4 class="link_2"><span>1</span>Personal Details
+                <a  [routerLink]="['/address']">(edit)</a>
+              </h4>
+              <ul>
+                <li>{{mobile}}</li>
+                <li>{{email}}</li>
+              </ul>
+    
+            </div>
+    
+          </div>
+    
+          <div class="col-lg-4 col-md-4">
+    
+            <div class="address">
+    
+              <h4><span>5</span>Provider details</h4>
+              <ul>
+                <li>Your details test results will be passed
+                  to our partner charity youshine MESMAC for onward care,such as if you were to require testing or
+                  treatement</li>
+    
+              </ul>
+    
+              <h4><span>6</span>Research</h4>
+              <ul>
+                <li>Sometimes we work with external agencis such as public Health England or selected universities in the UK
+                  on research to improve HIV services.If you would be happy to receive an invitation in research please tick
+                  thi box</li>
+              </ul>
+    
+              <h4><span>7</span>Agree & Consent</h4>
+              <ul>
+                <li>we want you to know exactly how our service works and how we use the information
+                  you provide.please confirm you have read our
+                  terms of use and privacy policy</li>
+                <input type="checkbox"> I agree with the terms of use and privacy policy
+              </ul>
+    
+            </div>
+    
+          </div>
+    
+          <div class="col-lg-2 col-md-2">
+    
+          </div>
+    
+        </div>
+    
+        <div class="buttons">
+         <button class="btn pull-left" [routerLink]="['/address']"> <i class="fa fa-arrow-circle-left"></i> Back</button>
+          <button class="btn pull-right" (click)="send()"> <span *ngIf="finish">Finish</span>  &nbsp; <span *ngIf="spin" class="fa fa-spinner fa-spin"></span> </button>
+        </div>
+    
+      </div>
+    </div>
+    
+    <!-- A delivery end -->
+
+    <!--footer area start-->
+<footer class="footer_widgets">
+    <div class="container">
+      <div class="footer_top">
+        <div class="row">
+          <div class="col-lg-4 col-md-6 col-sm-7">
+            <div class="widgets_container contact_us">
+              <h3>Contacts us</h3>
+              <div class="footer_contact">
+                <ul>
+                  <li><i class="fa fa-home"></i><span>Addresss:</span> Lorem Ipsum is simply dummy text of the printing
+                    and typesetting industry. Lorem Ipsum</li>
+                  <li><i class="fa fa-phone"></i><span>Phone:</span> (+91) 866-540-3229</li>
+                  <li><i class="fa fa-envelope-square"></i><span>Email:</span> info@Lorem Ipsum .com</li>
+                </ul>
+              </div>
+             
+            </div>
+          </div>
+          <div class="col-lg-2 col-md-6 col-sm-5">
+            <div class="widgets_container widget_menu">
+              <h3>Information</h3>
+  
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-4 col-sm-4">
+            <div class="widgets_container widget_menu">
+              <h3>My Account</h3>
+              <div class="footer_menu">
+                <div class="footer_contact">
+                  <ul>
+                    <li> Proudly operated from Yorkshire by Preventx and MESMAC as the Nationally commissioned provider of
+                      HIV home-sampling screening. </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+  
+  
+  
+        </div>
+      </div>
+    </div>
+    <div class="footer_bottom">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 col-md-12">
+            <div class="copyright_area text-center">
+              <p>Copyright &copy; 2019 <a href="#">Medintu</a> All Right Reserved.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!--footer area end-->

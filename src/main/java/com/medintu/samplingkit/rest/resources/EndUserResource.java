@@ -121,11 +121,13 @@ public class EndUserResource {
 
 			TestCodeSponsorIdMapper ruleMapper = endUserService.getDefaultTestCodes(endUserMapper);
 
-			response = new Response(ruleMapper, HttpStatus.OK, "Success");
-		} else {
-			response = new Response(
-					"Sorry - we're not able to offer postal tests to under 16s in your area, but other services are available.",
-					HttpStatus.NOT_FOUND);
+			if (null != ruleMapper)
+				response = new Response(ruleMapper, HttpStatus.OK, "Success");
+			else {
+				response = new Response(
+						"Sorry - we're not able to offer postal tests in your area, but other services are available.",
+						HttpStatus.CONFLICT);
+			}
 		}
 
 		return response;
