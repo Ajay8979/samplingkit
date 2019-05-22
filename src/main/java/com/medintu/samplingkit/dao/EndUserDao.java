@@ -10,4 +10,11 @@ public interface EndUserDao extends Dao<EndUser, Long> {
 
 	List<EndUser> getEndUsersByOrderCode(String orderCode);
 	
+	List<EndUser> getorderPlacedBySponserId(String sponserId);
+	
+	List<EndUser> getorderDispatchedBySponserId(String sponserId);
+	
+	List<EndUser> getEndUsersInGivenDates(String stratDate, String endDate);
+
+	List<EndUser> searchEndUser(String searchString);
 }

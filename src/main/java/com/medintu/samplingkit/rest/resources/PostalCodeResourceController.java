@@ -88,7 +88,7 @@ public class PostalCodeResourceController {
 
 			List<PostalCode> allPostalCodes = postalCodeService.getAllPostalCodes();
 			if(null != allPostalCodes && !allPostalCodes.isEmpty()){
-			return new Response(allPostalCodes, HttpStatus.OK, "PostalCodes are retrieved Successfully");
+			return new Response(allPostalCodes, 0,allPostalCodes.size(),HttpStatus.OK, "PostalCodes are retrieved Successfully");
 			}
 			return new Response("failure", "unable to retrieve PostalCodes");
 		} catch (Exception exception) {

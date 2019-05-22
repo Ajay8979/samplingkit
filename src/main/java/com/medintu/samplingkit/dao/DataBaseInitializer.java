@@ -1,5 +1,8 @@
 package com.medintu.samplingkit.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.medintu.samplingkit.entity.Role;
@@ -29,14 +32,18 @@ public class DataBaseInitializer {
 
 	public void initDataBase() {
 		
-		/*User adminUser = new User("medintu", this.passwordEncoder.encode("medintu"));
+		User adminUser = new User("medintu", this.passwordEncoder.encode("medintu"));
 		adminUser.setFirstName("medintu");
 		adminUser.setLastName("medintu");
 		adminUser.setEmailId("adminUser@medintu.com");
 		adminUser.addRole(Role.SUPERADMIN);
+		List<User> list = new ArrayList<User>();
+		 list=userDao.findAll();
+		if(null==list ||list.isEmpty()) {
 		this.userDao.save(adminUser);
+		}
 
-		long timestamp = System.currentTimeMillis() - (1000 * 60 * 60 * 24);*/
+		long timestamp = System.currentTimeMillis() - (1000 * 60 * 60 * 24);
 		
 	}
 }

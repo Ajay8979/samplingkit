@@ -23,7 +23,7 @@ import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.SponsorUserService;
 import com.medintu.samplingkit.transfer.UserMapper;
 
-@CrossOrigin(origins="*",allowedHeaders="*")
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @Path("/SponsorUser")
 public class SponsorUserResourceController {
 
@@ -41,7 +41,7 @@ public class SponsorUserResourceController {
 				if ((null != userMapper.getFirstName() && (!userMapper.getFirstName().isEmpty()))
 						&& (null != userMapper.getLastName() && !userMapper.getLastName().isEmpty())
 						&& (null != userMapper.getEmailId() && !userMapper.getEmailId().isEmpty())
-						&& (null != userMapper.getMobileNum() && ! userMapper.getMobileNum().isEmpty())
+						&& (null != userMapper.getMobileNum() && !userMapper.getMobileNum().isEmpty())
 						&& (null != userMapper.getUserName() && !userMapper.getUserName().isEmpty())) {
 					User user2 = new User();
 					user2.setFirstName(userMapper.getFirstName());
@@ -55,21 +55,23 @@ public class SponsorUserResourceController {
 						user2.setSponsorId(userMapper.getSponsorId());
 						user2.addRole(Role.SPONSORUSER);
 						User saveUser = sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "SponsorUser is saved Successfully", saveUser);
+						int usersCount = sponsorUserService.getAllUsersCount();
+						return new Response(saveUser, 0, usersCount, HttpStatus.OK, "SPONSORUSER is saved in DB");
 					}
 					if (userMapper.getRole().equalsIgnoreCase("SUPPORTUSER")) {
 						user2.addRole(Role.SUPPORTUSER);
-						User saveUser1= sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "SupportUser is saved Successfully", saveUser1);
+						User saveUser1 = sponsorUserService.saveUser(user2);
+						int usersCount = sponsorUserService.getAllUsersCount();
+						return new Response(saveUser1, 0, usersCount, HttpStatus.OK, "SUPPORTUSER is saved in DB");
 					}
 
 				}
-				return new Response("Sponsor must not be null", HttpStatus.CONFLICT);
+				return new Response("User must not be null", HttpStatus.CONFLICT);
 			}
 			return new Response("failure", HttpStatus.CONFLICT);
 		} catch (Exception exception) {
 			String message = exception.getMessage();
-			return new Response(message, HttpStatus.CONFLICT, "Unable to save Sponsor ");
+			return new Response(message, HttpStatus.CONFLICT, "Unable to save User ");
 		}
 
 	}
@@ -96,19 +98,21 @@ public class SponsorUserResourceController {
 					user2.setMobileNum(userMapper.getMobileNum());
 					user2.setPassword(userMapper.getFirstName() + userMapper.getLastName());
 					user2.setSponsorId(userMapper.getSponsorId());
-					
+
 					if (userMapper.getRole().equalsIgnoreCase("SPONSORUSER")) {
 						user2.setSponsorId(userMapper.getSponsorId());
 						user2.addRole(Role.SPONSORUSER);
 						User updateUser = sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "User is updated Successfully", updateUser);
+						int usersCount = sponsorUserService.getAllUsersCount();
+						return new Response(updateUser, 0, usersCount, HttpStatus.OK, "SPONSORUSER is updated in DB");
 					}
-					
+
 					if (userMapper.getRole().equalsIgnoreCase("SUPPORTUSER")) {
 						user2.setSponsorId(null);
 						user2.addRole(Role.SUPPORTUSER);
-						sponsorUserService.saveUser(user2);
-						return new Response("Success", HttpStatus.OK, "User is updated Successfully", user2);
+						User updateUser = sponsorUserService.saveUser(user2);
+						int usersCount = sponsorUserService.getAllUsersCount();
+						return new Response(updateUser, 0, usersCount, HttpStatus.OK, "SUPPORTUSER is updated in DB");
 					}
 				}
 				return new Response("User must not be null", HttpStatus.CONFLICT);
@@ -130,7 +134,7 @@ public class SponsorUserResourceController {
 		try {
 			List<User> allUsers = sponsorUserService.getAllUsers();
 			if (!allUsers.isEmpty() && null != allUsers) {
-				return new Response("Success", HttpStatus.OK, "All Sponsors retrieved Successfully", allUsers);
+				return new Response(allUsers, 0, allUsers.size(), HttpStatus.OK, "All SponsorUsers retrieved Successfully");
 			}
 			return new Response(new ArrayList<User>(), "SponsorUser List is Empty");
 		} catch (Exception exception) {
@@ -162,22 +166,49 @@ public class SponsorUserResourceController {
 	}
 
 	@GET
-	@Path("/getAllUsersBySponsorId/{sponsorId}")
-	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAllUsersBySponsorId(@PathParam("sponsorId") Long sponsorId) {
-		List<User> listUsers = sponsorUserService.getAllUsersBySponsorId(sponsorId);
-		return new Response(listUsers);
-
-	}
-	
-	@GET
 	@Path("/getAllUsersBySponsorId")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getAllUsersBySponsor() {
 		List<User> listUsers = sponsorUserService.getAllUsersBySponsor();
 		return new Response(listUsers);
+
+	}
+
+	@GET
+	@Path("/getAllUsersBySponsorId/{sponsorId}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllUsersBySponsorId(@PathParam("sponsorId") Long sponsorId) {
+		try {
+			if (null != sponsorId) {
+				List<User> listUsers = sponsorUserService.getAllUsersBySponsorId(sponsorId);
+				return new Response(listUsers);
+			}
+
+			return new Response("sponsorId must not be  null", HttpStatus.CONFLICT);
+		} catch (Exception exception) {
+			return new Response("failed", HttpStatus.CONFLICT, "Unable to find  Users ");
+		}
+
+	}
+
+	@GET
+	@Path("/getAllUsersPerPage/{pageSize}/{pageNum}")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllUsersPerPage(@PathParam("pageSize") int pageSize, @PathParam("pageNum") int pageNum) {
+
+		try {
+			List<User> allUsers = sponsorUserService.getAllUsersPerPage(pageSize, pageNum);
+			if (!allUsers.isEmpty() && null != allUsers) {
+				return new Response(allUsers, 0, allUsers.size(), HttpStatus.OK, "All Sponsors retrieved Successfully");
+			}
+			return new Response(new ArrayList<User>(), "SponsorUser List is Empty");
+		} catch (Exception exception) {
+			String message = exception.getMessage();
+			return new Response(message, HttpStatus.CONFLICT, "Unable to retrieve Users ");
+		}
 
 	}
 }

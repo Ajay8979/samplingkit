@@ -59,7 +59,7 @@ public class SpecialEventResourceController {
 
 			List<SpecialEvent> allSpecialEvents = specialEventService.getAllSpecialEvents();
 			if (null != allSpecialEvents && !allSpecialEvents.isEmpty()) {
-				return new Response(allSpecialEvents, HttpStatus.OK, "Success");
+				return new Response(allSpecialEvents,0,allSpecialEvents.size(), HttpStatus.OK, "Success");
 			}
 			return new Response("Failure", HttpStatus.CONFLICT);
 		} catch (Exception exception) {

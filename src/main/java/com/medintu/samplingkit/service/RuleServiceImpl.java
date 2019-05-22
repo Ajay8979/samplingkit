@@ -2,42 +2,59 @@ package com.medintu.samplingkit.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.medintu.samplingkit.dao.RuleDao;
 import com.medintu.samplingkit.entity.Rule;
 
 public class RuleServiceImpl implements RuleService {
 
-	private RuleDao dao;
+	@Autowired
+	private RuleDao ruleDao;
+
 	@Override
-	public Rule createRule(Rule rule) {
-		// TODO Auto-generated method stub
-		return dao.save(rule);
+	@Transactional(rollbackOn = Exception.class)
+	public void createRule(List<Rule> rulList) throws Exception {
+
+		for (Rule rule : rulList) {
+			ruleDao.save(rule);
+		}
+
 	}
 
 	@Override
 	public Rule findRuleById(Long id) {
 		// TODO Auto-generated method stub
-		return dao.find(id);
+		return ruleDao.find(id);
 	}
 
 	@Override
 	public List<Rule> getRule() {
 		// TODO Auto-generated method stub
-		return dao.findAll();
+		return ruleDao.findAll();
 	}
 
 	@Override
 	public Rule updateRule(Rule rule) {
 		// TODO Auto-generated method stub
-		return dao.save(rule);
+		return ruleDao.save(rule);
 	}
 
 	@Override
 	public void deleteRuleById(Long id) {
 		// TODO Auto-generated method stub
-		dao.delete(id);
+		ruleDao.delete(id);
 	}
 
-	
+	@Override
+	public boolean updateRuleStatus(Long ruleId, String status) {
+
+		if (ruleDao.updateRuleStatus(ruleId, status) > 0) {
+			return true;
+		}
+		return false;
+	}
 
 }

@@ -73,7 +73,7 @@ public class EthnicGroupController {
 		List<EthnicGroup> ethnicGroups = ethnicgroupservice.getAllEthnicGroups();
 
 		if (!CollectionUtils.isEmpty(ethnicGroups)) {
-			response = new Response(ethnicGroups, HttpStatus.OK, "Ethnic Groups found");
+			response = new Response(ethnicGroups,0,ethnicGroups.size(), HttpStatus.OK, "Ethnic Groups found");
 		} else {
 			response = new Response("Ethnic Groups not found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -100,7 +100,7 @@ public class EthnicGroupController {
 		}
 
 		if (!CollectionUtils.isEmpty(ethnicGroupMappers)) {
-			response = new Response(ethnicGroupMappers, HttpStatus.OK, "Ethnic Groups found");
+			response = new Response(ethnicGroupMappers,0,ethnicGroupMappers.size(), HttpStatus.OK, "Ethnic Groups found");
 		} else {
 			response = new Response("Ethnic Groups not found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -132,7 +132,7 @@ public class EthnicGroupController {
 		}
 
 		if (!CollectionUtils.isEmpty(ethnicGroupResponselist)) {
-			response = new Response(ethnicGroupResponselist, HttpStatus.OK, "Ethnic Groups found");
+			response = new Response(ethnicGroupResponselist,0,ethnicGroupResponselist.size(), HttpStatus.OK, "Ethnic Groups found");
 		} else {
 			response = new Response("Ethnic Groups not found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}

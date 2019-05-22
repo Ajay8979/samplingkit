@@ -10,6 +10,7 @@ import com.medintu.samplingkit.dao.SponsorAddressDao;
 import com.medintu.samplingkit.dao.SponsorDao;
 import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
+import com.medintu.samplingkit.entity.RuleDetailsMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
 import com.medintu.samplingkit.entity.TestCode;
@@ -95,6 +96,11 @@ public class SponsorServiceImpl implements SponsorService {
 	
 	public List<TestCode> getTestCodesBySponsorId(Long sponsorId){
 		return sponsorDao.getTestCodesBySponsorId(sponsorId);
+	}
+
+	@Override
+	public List<RuleDetailsMapper> getRuleDeatilsBySponsorId(Integer sponsorId) {
+		return sponsorDao.getRuleDeatilsBySponsorId(sponsorId);
 	}
 
 }

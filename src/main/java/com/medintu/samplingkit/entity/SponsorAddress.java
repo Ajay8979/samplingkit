@@ -12,30 +12,39 @@ public class SponsorAddress implements Entity {
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name="address_id")
+	@Column(name = "address_id")
 	private Long id;
+
+	private String email;
+
+	private String phone;
+
 	private String streetNumber;
+
 	private String streetName1;
-	private String streetName2;
-	private String suit;
+
 	private String city;
-	private String country;
+
 	private String district;
-	private String region;
-	private String state;
-	private String zipcode;
+
+	private String postCode;
+
 	private Long sponsor_id;
 
-	public Long getSponsor_id() {
-		return sponsor_id;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setSponsor_id(Long sponsor_id) {
-		this.sponsor_id = sponsor_id;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	public SponsorAddress() {
-		// TODO Auto-generated constructor stub
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getStreetNumber() {
@@ -54,36 +63,12 @@ public class SponsorAddress implements Entity {
 		this.streetName1 = streetName1;
 	}
 
-	public String getStreetName2() {
-		return streetName2;
-	}
-
-	public void setStreetName2(String streetName2) {
-		this.streetName2 = streetName2;
-	}
-
-	public String getSuit() {
-		return suit;
-	}
-
-	public void setSuit(String suit) {
-		this.suit = suit;
-	}
-
 	public String getCity() {
 		return city;
 	}
 
 	public void setCity(String city) {
 		this.city = city;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public void setCountry(String country) {
-		this.country = country;
 	}
 
 	public String getDistrict() {
@@ -94,28 +79,20 @@ public class SponsorAddress implements Entity {
 		this.district = district;
 	}
 
-	public String getRegion() {
-		return region;
+	public String getPostCode() {
+		return postCode;
 	}
 
-	public void setRegion(String region) {
-		this.region = region;
+	public void setPostCode(String postCode) {
+		this.postCode = postCode;
 	}
 
-	public String getState() {
-		return state;
+	public Long getSponsor_id() {
+		return sponsor_id;
 	}
 
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getZipcode() {
-		return zipcode;
-	}
-
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setSponsor_id(Long sponsor_id) {
+		this.sponsor_id = sponsor_id;
 	}
 
 	public void setId(Long id) {

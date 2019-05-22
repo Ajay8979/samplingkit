@@ -2,10 +2,13 @@ package com.medintu.samplingkit.entity;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.json.simple.JSONObject;
 
@@ -37,23 +40,11 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	private Date dob;
 
-	private JSONObject quetionary5;
-
-	private JSONObject quetionary6;
-
-	private JSONObject quetionary7;
-
-	private JSONObject quetionary8;
-
 	private String firstName;
 
 	private String lastName;
 
 	private String address;
-
-	private String mobile;
-
-	private String email;
 
 	private String notificationPhone;
 
@@ -66,6 +57,14 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 	private Long sponsorId;
 
 	private String status;
+
+	@Column(name = "created_date")
+	@Temporal(TemporalType.DATE)
+	private Date createdDate;
+
+	@Column(name = "updated_date")
+	@Temporal(TemporalType.DATE)
+	private Date updatedDate;
 
 	public Long getSponsorId() {
 		return sponsorId;
@@ -167,38 +166,6 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 		this.dob = dob;
 	}
 
-	public JSONObject getQuetionary5() {
-		return quetionary5;
-	}
-
-	public void setQuetionary5(JSONObject quetionary5) {
-		this.quetionary5 = quetionary5;
-	}
-
-	public JSONObject getQuetionary6() {
-		return quetionary6;
-	}
-
-	public void setQuetionary6(JSONObject quetionary6) {
-		this.quetionary6 = quetionary6;
-	}
-
-	public JSONObject getQuetionary7() {
-		return quetionary7;
-	}
-
-	public void setQuetionary7(JSONObject quetionary7) {
-		this.quetionary7 = quetionary7;
-	}
-
-	public JSONObject getQuetionary8() {
-		return quetionary8;
-	}
-
-	public void setQuetionary8(JSONObject quetionary8) {
-		this.quetionary8 = quetionary8;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -221,22 +188,6 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	public void setAddress(String address) {
 		this.address = address;
-	}
-
-	public String getMobile() {
-		return mobile;
-	}
-
-	public void setMobile(String mobile) {
-		this.mobile = mobile;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
 	}
 
 	public String getNotificationPhone() {
@@ -277,6 +228,22 @@ public class EndUser implements com.medintu.samplingkit.entity.Entity {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getUpdatedDate() {
+		return updatedDate;
+	}
+
+	public void setUpdatedDate(Date updatedDate) {
+		this.updatedDate = updatedDate;
 	}
 
 }

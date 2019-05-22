@@ -12,37 +12,6 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "test_code", uniqueConstraints = @UniqueConstraint(columnNames = { "test_name", "test_code" }))
 public class TestCode implements com.medintu.samplingkit.entity.Entity {
 
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((id == null) ? 0 : id.hashCode());
-		result = prime * result + ((testName == null) ? 0 : testName.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		TestCode other = (TestCode) obj;
-		if (id == null) {
-			if (other.id != null)
-				return false;
-		} else if (!id.equals(other.id))
-			return false;
-		if (testName == null) {
-			if (other.testName != null)
-				return false;
-		} else if (!testName.equals(other.testName))
-			return false;
-		return true;
-	}
-
 	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -56,6 +25,8 @@ public class TestCode implements com.medintu.samplingkit.entity.Entity {
 
 	@Column(name = "test_code")
 	private String testCode;
+
+	private Boolean defaultTest;
 
 	public TestCode() {
 
@@ -89,10 +60,51 @@ public class TestCode implements com.medintu.samplingkit.entity.Entity {
 		this.id = id;
 	}
 
+	
+
+	public Boolean getDefaultTest() {
+		return defaultTest;
+	}
+
+	public void setDefaultTest(Boolean defaultTest) {
+		this.defaultTest = defaultTest;
+	}
+
 	@Override
 	public Long getId() {
 		// TODO Auto-generated method stub
 		return id;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((testName == null) ? 0 : testName.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TestCode other = (TestCode) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		if (testName == null) {
+			if (other.testName != null)
+				return false;
+		} else if (!testName.equals(other.testName))
+			return false;
+		return true;
 	}
 
 }

@@ -19,13 +19,9 @@ public class Sponsor implements com.medintu.samplingkit.entity.Entity {
 	private Long id;
 	@Column(name = "sponsor_name")
 	private String name;
-	@Column(name = "phone_number", unique = true)
-	private String phone;
-	@Column(name = "email_address", unique = true)
-	private String email;
 
 	@Column(name = "budget")
-	private String budget;
+	private Double budget;
 
 	public Sponsor() {
 		// TODO Auto-generated constructor stub
@@ -43,36 +39,17 @@ public class Sponsor implements com.medintu.samplingkit.entity.Entity {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getBudget() {
+	public Double getBudget() {
 		return budget;
 	}
 
-	public void setBudget(String budget) {
+	public void setBudget(Double budget) {
 		this.budget = budget;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Sponsor [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", budget=" + budget
-				+ "]";
+		return "Sponsor [id=" + id + ", name=" + name + ", budget=" + budget + "]";
 	}
 
 	@Override

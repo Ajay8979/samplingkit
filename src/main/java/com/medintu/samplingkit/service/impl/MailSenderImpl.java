@@ -4,6 +4,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -17,6 +18,9 @@ public class MailSenderImpl implements MailSender {
 
 	@Autowired
 	private JavaMailSenderImpl mailSender;
+
+	@Autowired
+	private TaskExecutor taskExecutor;
 
 	public void setEmailTemplate(SimpleMailMessage emailTemplate) {
 		this.emailTemplate = emailTemplate;
@@ -34,30 +38,44 @@ public class MailSenderImpl implements MailSender {
 		String fromEmail = emailTemplate.getFrom();
 
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
-		try {
-			MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		taskExecutor.execute(new Runnable() {
+			public void run() {
+				try {
+					MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
 
-			helper.setFrom(fromEmail);
-			helper.setTo(toEmail);
-			helper.setSubject(emailSubject);
-			helper.setText(emailBody);
+					helper.setFrom(fromEmail);
+					helper.setTo(toEmail);
+					helper.setSubject(emailSubject);
+					helper.setText(emailBody);
 
-			/*
-			 * uncomment the following lines for attachment FileSystemResource
-			 * file = new FileSystemResource("attachment.jpg");
-			 * helper.addAttachment(file.getFilename(), file);
-			 */
+					/*
+					 * uncomment the following lines for attachment FileSystemResource file = new
+					 * FileSystemResource("attachment.jpg");
+					 * helper.addAttachment(file.getFilename(), file);
+					 */
 
-			mailSender.send(mimeMessage);
-			System.out.println("Mail sent successfully.");
-		} catch (MessagingException e) {
-			e.printStackTrace();
-		}
-
-		
-		
-		
+					mailSender.send(mimeMessage);
+					System.out.println("Mail sent successfully.");
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+		/*
+		 * try { MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+		 * 
+		 * helper.setFrom(fromEmail); helper.setTo(toEmail);
+		 * helper.setSubject(emailSubject); helper.setText(emailBody);
+		 * 
+		 * 
+		 * uncomment the following lines for attachment FileSystemResource file = new
+		 * FileSystemResource("attachment.jpg");
+		 * helper.addAttachment(file.getFilename(), file);
+		 * 
+		 * 
+		 * mailSender.send(mimeMessage); System.out.println("Mail sent successfully.");
+		 * } catch (MessagingException e) { e.printStackTrace(); }
+		 */
 	}
-
 
 }

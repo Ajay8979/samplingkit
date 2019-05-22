@@ -21,19 +21,16 @@ public class Rule implements Entity {
 
 	private String gender;
 
-	@Column(name = "ethnic_groupid")
-	private Long ethnicGroupId;
-
 	private Date startDate;
 
 	private Date endDate;
 
-	@Column(name = "testcode_id")
-	private Long tectCodeId;
 	@Column(name = "min_age_group")
 	private Long minAgeGroup;
 	@Column(name = "max_age_group")
 	private Long maxAgeGroup;
+
+	private String status;
 
 	public Long getSponsor_id() {
 		return sponsor_id;
@@ -51,14 +48,6 @@ public class Rule implements Entity {
 		this.gender = gender;
 	}
 
-	public Long getEthnicGroupId() {
-		return ethnicGroupId;
-	}
-
-	public void setEthnicGroupId(Long ethnicGroupId) {
-		this.ethnicGroupId = ethnicGroupId;
-	}
-
 	public Date getStartDate() {
 		return startDate;
 	}
@@ -73,14 +62,6 @@ public class Rule implements Entity {
 
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
-	}
-
-	public Long getTectCodeId() {
-		return tectCodeId;
-	}
-
-	public void setTectCodeId(Long tectCodeId) {
-		this.tectCodeId = tectCodeId;
 	}
 
 	public Long getMinAgeGroup() {
@@ -101,6 +82,14 @@ public class Rule implements Entity {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Override

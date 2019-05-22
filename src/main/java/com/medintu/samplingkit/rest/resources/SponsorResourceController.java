@@ -1,6 +1,5 @@
 package com.medintu.samplingkit.rest.resources;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,19 +19,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
+import com.medintu.samplingkit.dao.EndUserDao;
 import com.medintu.samplingkit.dao.RuleDao;
 import com.medintu.samplingkit.dao.SponsorAddressDao;
 import com.medintu.samplingkit.dao.SponsorDao;
 import com.medintu.samplingkit.dao.SponsorPostlcodeDao;
+import com.medintu.samplingkit.dao.SponsorSpentDao;
+import com.medintu.samplingkit.dao.TestResultDao;
+import com.medintu.samplingkit.entity.DashboardSponsor;
+import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
+import com.medintu.samplingkit.entity.RuleDetailsMapper;
+import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
 import com.medintu.samplingkit.entity.SponsorMapper;
 import com.medintu.samplingkit.entity.SponsorPostlcode;
+import com.medintu.samplingkit.entity.SponsorSpentMapper;
 import com.medintu.samplingkit.entity.SponsorWithPostalMapper;
 import com.medintu.samplingkit.entity.TestCode;
+import com.medintu.samplingkit.entity.TestResult;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.SponsorService;
 
@@ -49,9 +56,18 @@ public class SponsorResourceController {
 
 	@Autowired
 	SponsorAddressDao sponsorAddressDao;
-	
+
 	@Autowired
 	SponsorDao sponsorDao;
+
+	@Autowired
+	EndUserDao endUserDao;
+
+	@Autowired
+	TestResultDao testResultDao;
+
+	@Autowired
+	private SponsorSpentDao sponsorSpentDao;
 
 	@Path("/createSponsor")
 	@POST
@@ -61,42 +77,27 @@ public class SponsorResourceController {
 		Response response = null;
 		Sponsor sponsor = null;
 		SponsorAddress sponsorAddress = null;
-		List<Rule> ruleLists = null;
 		try {
 			if (null != sponsorMapper) {
 
 				sponsor = new Sponsor();
 				sponsor.setName(sponsorMapper.getName());
-				sponsor.setEmail(sponsorMapper.getEmail());
-				sponsor.setPhone(sponsorMapper.getPhone());
 				sponsor.setBudget(sponsorMapper.getBudget());
 
 				Sponsor createSponsor = sponsorService.createSponsor(sponsor);
-				ruleLists = new ArrayList<>();
-				List<Rule> ruleList = sponsorMapper.getRuleList();
-				if (!CollectionUtils.isEmpty(ruleList)) {
-					for (Rule rule : ruleList) {
-						rule.setSponsor_id(createSponsor.getId());
-						ruleLists.add(rule);
-						ruleDao.save(rule);
-					}
-				}
 
 				List<SponsorAddress> addressList = sponsorMapper.getAddressList();
 
 				if (!CollectionUtils.isEmpty(addressList)) {
 					for (SponsorAddress sponsorAddress2 : addressList) {
 						sponsorAddress = new SponsorAddress();
+						sponsorAddress.setEmail(sponsorAddress2.getEmail());
+						sponsorAddress.setPhone(sponsorAddress2.getPhone());
+						sponsorAddress.setPostCode(sponsorAddress2.getPostCode());
 						sponsorAddress.setStreetNumber(sponsorAddress2.getStreetNumber());
 						sponsorAddress.setStreetName1(sponsorAddress2.getStreetName1());
-						sponsorAddress.setStreetName2(sponsorAddress2.getStreetName2());
-						sponsorAddress.setSuit(sponsorAddress2.getSuit());
-						sponsorAddress.setState(sponsorAddress2.getState());
-						sponsorAddress.setRegion(sponsorAddress2.getRegion());
-						sponsorAddress.setZipcode(sponsorAddress2.getZipcode());
 						sponsorAddress.setDistrict(sponsorAddress2.getDistrict());
 						sponsorAddress.setCity(sponsorAddress2.getCity());
-						sponsorAddress.setCountry(sponsorAddress2.getCountry());
 						sponsorAddress.setSponsor_id(createSponsor.getId());
 						sponsorAddressDao.save(sponsorAddress);
 
@@ -136,7 +137,7 @@ public class SponsorResourceController {
 
 		List<Sponsor> sponsors = sponsorService.getAllSponsors();
 		if (!CollectionUtils.isEmpty(sponsors)) {
-			response = new Response(sponsors, HttpStatus.OK, "Sponsors Found");
+			response = new Response(sponsors, 0, sponsors.size(), HttpStatus.OK, "Sponsors Found");
 		} else {
 			response = new Response("Sponsors not found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -151,7 +152,8 @@ public class SponsorResourceController {
 		Response response = null;
 		List<SponsorAddress> sponserAddresses = sponsorService.getSponsorAddressesBySponsorId(sponsorId);
 		if (!CollectionUtils.isEmpty(sponserAddresses)) {
-			response = new Response(sponserAddresses, HttpStatus.OK, "Sponsor Addresses Found");
+			response = new Response(sponserAddresses, 0, sponserAddresses.size(), HttpStatus.OK,
+					"Sponsor Addresses Found");
 		} else {
 			response = new Response("Sponsor Addresses not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -200,7 +202,7 @@ public class SponsorResourceController {
 		Response response = null;
 		List<Rule> rules = sponsorService.getSponsorRulesBySponsorId(sponsorId);
 		if (!CollectionUtils.isEmpty(rules)) {
-			response = new Response(rules, HttpStatus.OK, "Rules Found");
+			response = new Response(rules, 0, rules.size(), HttpStatus.OK, "Rules Found");
 		} else {
 			response = new Response("Rules not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -212,9 +214,11 @@ public class SponsorResourceController {
 	@Path("/rules/update")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateSponsorRulesById(Rule rule) {
+	public Response updateSponsorRulesById(RuleMapper ruleMapper) {
 
 		Response response = null;
+		Rule rule = new Rule();
+		BeanUtils.copyProperties(ruleMapper, rule);
 		Rule updatedRule = sponsorService.updateSponsorRulesById(rule);
 		if (null != updatedRule) {
 			response = new Response(updatedRule, HttpStatus.OK, "Rule Updated");
@@ -264,7 +268,7 @@ public class SponsorResourceController {
 		Response response = null;
 		List<PostalCode> postalCodes = sponsorService.getPostCodesBySponsorId(sponsorId);
 		if (!CollectionUtils.isEmpty(postalCodes)) {
-			response = new Response(postalCodes, HttpStatus.OK, "Postal Codes Found");
+			response = new Response(postalCodes, 0, postalCodes.size(), HttpStatus.OK, "Postal Codes Found");
 		} else {
 			response = new Response("Postal Codes not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -272,20 +276,20 @@ public class SponsorResourceController {
 		return response;
 
 	}
-	
+
 	@Path("/sponsorWithPostalCode/{sponsorId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getSponsorWithPostalCode(@PathParam("sponsorId") Long sponsorId) {
 
 		Response response = null;
-		Sponsor spor=sponsorDao.find(sponsorId);
+		Sponsor spor = sponsorDao.find(sponsorId);
 		SponsorWithPostalMapper sponsorWithPostalMapper = new SponsorWithPostalMapper();
 		BeanUtils.copyProperties(spor, sponsorWithPostalMapper);
 		List<PostalCode> postalCodes = sponsorService.getPostCodesBySponsorId(sponsorId);
 		sponsorWithPostalMapper.setPostalCodes(postalCodes);
-		
-		if (null!=spor) {
+
+		if (null != spor) {
 			response = new Response(sponsorWithPostalMapper, HttpStatus.OK, "Postal Codes Found");
 		} else {
 			response = new Response("Postal Codes not Found", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -294,28 +298,31 @@ public class SponsorResourceController {
 		return response;
 
 	}
-	
+
 	@Path("/sponsorWithPostalCode/{sponsorId}")
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response updateSponsorWithPostalCode(@PathParam("sponsorId") Long sponsorId,SponsorWithPostalMapper sponsorWithPostalMapper) {
-		Sponsor sponsor= new Sponsor();
+	public Response updateSponsorWithPostalCode(@PathParam("sponsorId") Long sponsorId,
+			SponsorWithPostalMapper sponsorWithPostalMapper) {
+		Sponsor sponsor = new Sponsor();
 		Response response = null;
-		BeanUtils.copyProperties(sponsorWithPostalMapper,sponsor);
+		BeanUtils.copyProperties(sponsorWithPostalMapper, sponsor);
 		sponsor.setId(sponsorId);
-		Sponsor spor=sponsorDao.save(sponsor);
-		
-		BeanUtils.copyProperties(spor, sponsorWithPostalMapper);
-		List<PostalCode> postalCodes = sponsorService.getPostCodesBySponsorId(sponsorId);
-		sponsorWithPostalMapper.setPostalCodes(postalCodes);
+		Sponsor spor = sponsorDao.save(sponsor);
+
+		/*
+		 * BeanUtils.copyProperties(spor, sponsorWithPostalMapper); List<PostalCode>
+		 * postalCodes = sponsorService.getPostCodesBySponsorId(sponsorId);
+		 * sponsorWithPostalMapper.setPostalCodes(postalCodes);
+		 */
 		sponsorPostlcodeDao.deletePostalCodesBySponsorId(sponsorId);
-		for(PostalCode post:sponsorWithPostalMapper.getPostalCodes()) {
+		for (PostalCode post : sponsorWithPostalMapper.getPostalCodes()) {
 			SponsorPostlcode sponsorPostlcode = new SponsorPostlcode();
 			sponsorPostlcode.setPostal_id(post.getId());
 			sponsorPostlcode.setSponsor_id(sponsorId);
 			sponsorPostlcodeDao.save(sponsorPostlcode);
 		}
-		if (null!=spor) {
+		if (null != spor) {
 			response = new Response(sponsorWithPostalMapper, HttpStatus.OK, "Postal Codes Found");
 		} else {
 			response = new Response("Postal Codes not Found", HttpStatus.INTERNAL_SERVER_ERROR);
@@ -333,7 +340,7 @@ public class SponsorResourceController {
 		Response response = null;
 		List<TestCode> testCodes = sponsorService.getTestCodesBySponsorId(sponsorId);
 		if (!CollectionUtils.isEmpty(testCodes)) {
-			response = new Response(testCodes, HttpStatus.OK, "Postal Codes Found");
+			response = new Response(testCodes, 0, testCodes.size(), HttpStatus.OK, "Postal Codes Found");
 		} else {
 			response = new Response("Postal Codes not Found", HttpStatus.INTERNAL_SERVER_ERROR);
 
@@ -341,9 +348,6 @@ public class SponsorResourceController {
 		return response;
 
 	}
-	
-	
-	
 
 	@Path("/sponsorDetails/{sponsorId}")
 	@GET
@@ -367,14 +371,9 @@ public class SponsorResourceController {
 			objMap.put("postalCodes", postalCodes);
 		}
 
-		List<Rule> rules = sponsorService.getSponsorRulesBySponsorId(sponsorId);
-		if (!CollectionUtils.isEmpty(rules)) {
-			objMap.put("rules", rules);
-		}
-
-		List<TestCode> testCodes = sponsorService.getTestCodesBySponsorId(Long.valueOf(sponsorId));
-		if (!CollectionUtils.isEmpty(testCodes)) {
-			objMap.put("testCodes", testCodes);
+		List<RuleDetailsMapper> ruleDetailsMappers = sponsorService.getRuleDeatilsBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(ruleDetailsMappers)) {
+			objMap.put("rules", ruleDetailsMappers);
 		}
 
 		if (!CollectionUtils.isEmpty(objMap)) {
@@ -385,7 +384,72 @@ public class SponsorResourceController {
 
 		return response;
 	}
-	
-	
+
+	@Path("/sponsorOrder/{sponsorId}")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response SponsorOrderDetailsById(@PathParam("sponsorId") Long sponsorId) {
+		Response response = null;
+		Integer placed = null;
+		Integer dispatched = null;
+		Integer reactive = null;
+		Integer nonReactive = null;
+		Double budgetSpent = null;
+		Double budgetRemaining = null;
+
+		List<EndUser> orderOPlaced = endUserDao.getorderPlacedBySponserId(sponsorId.toString());
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			placed = orderOPlaced.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		List<EndUser> orderODispatched = endUserDao.getorderDispatchedBySponserId(sponsorId.toString());
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			dispatched = orderODispatched.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		List<TestResult> reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			reactive = reactiveResultsBySponsorId.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		List<TestResult> nonreactiveResultsBySponsorId = testResultDao
+				.getReactiveResultsBySponsorId(sponsorId.toString());
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			nonReactive = nonreactiveResultsBySponsorId.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		List<SponsorSpentMapper> sponsorBudgetDetails = sponsorSpentDao.getSponsorBudgetDetails(sponsorId);
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			budgetSpent = sponsorBudgetDetails.get(0).getSponsorSpent();
+			budgetRemaining = sponsorBudgetDetails.get(0).getRemainingAmount();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		DashboardSponsor dashboardSponsor = new DashboardSponsor();
+		dashboardSponsor.setOrderDispatched(dispatched);
+		dashboardSponsor.setOrderplaced(placed);
+		dashboardSponsor.setResultNonReactive(nonReactive);
+		dashboardSponsor.setResultReactive(reactive);
+		dashboardSponsor.setSponsorBudgetSpent(budgetSpent);
+		dashboardSponsor.setSponsorBudgetRemaining(budgetRemaining);
+		response = new Response(dashboardSponsor, HttpStatus.OK, "Sponsor Details Found");
+
+		return response;
+
+	}
 
 }

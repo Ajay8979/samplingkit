@@ -59,15 +59,15 @@
 
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com" />
-		<property name="port" value="587" />
-		<property name="username" value="unlock.delete@gmail.com" />
-		<property name="password" value="123123654" />
+		<property name="host" value="${mail.host}" />
+		<property name="port" value="${mail.port}" />
+		<property name="username" value="${mail.username}" />
+		<property name="password" value="${mail.password}" />
 		<property name="javaMailProperties">
 			<props>
-				<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
-				<prop key="mail.smtp.starttls.enable">true</prop>
-				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.ssl.trust">${mail.host}</prop>
+				<prop key="mail.smtp.starttls.enable">${mail.starttls.enable}</prop>
+				<prop key="mail.smtp.auth">${mail.auth}</prop>
 			</props>
 		</property>
 	</bean>
@@ -75,9 +75,8 @@
 
 	<bean id="emailTemplate"
 		class="org.springframework.mail.SimpleMailMessage">
-		<property name="from" value="unlock.delete@gmail.com" />
-		<property name="subject"
-			value="Confirmation from Traffic App" />
+		<property name="from" value="${mail.username}" />
+		<property name="subject" value="${mail.subject}" />
 		<property name="text">
 			<value>
 		<![CDATA[
@@ -85,6 +84,7 @@
 
                     Thank You for registering for HIV test kit. You can track the kit with your unique Order Code Id.
 
+                    Regards,
                     %s.
 		]]>
 			</value>
@@ -108,7 +108,6 @@
 		class="com.medintu.samplingkit.dao.JpaStatusDao" />
 	<bean id="endUserDao"
 		class="com.medintu.samplingkit.dao.JpaEndUserDao" />
-	<bean id="ruleDao" class="com.medintu.samplingkit.dao.JpaRuleDao" />
 	<bean id="addressDao"
 		class="com.medintu.samplingkit.dao.JpaSponsorAddressDao" />
 
@@ -125,9 +124,18 @@
 	<!-- Service class related to SamplingKit -->
 	<bean id="sponsorAddressDao"
 		class="com.medintu.samplingkit.dao.JpaSponsorAddressDao"></bean>
-		<bean id="sponsorPostlcodeDao"
+	<bean id="sponsorPostlcodeDao"
 		class="com.medintu.samplingkit.dao.JpaSponsorPostlcodeDao"></bean>
-	
+	<bean id="ruleDao" class="com.medintu.samplingkit.dao.JpaRuleDao" />
+	<bean id="testResultdao"
+		class="com.medintu.samplingkit.dao.JpaTestResultDao" />
+	<bean id="sponsorSpentDao"
+		class="com.medintu.samplingkit.dao.JpaSponsorSpentDao" />
+	<bean id="ruleEthnicGroupDao"
+		class="com.medintu.samplingkit.dao.JpaRuleEthnicGroupDao" />
+	<bean id="ruleTestCodeDao"
+		class="com.medintu.samplingkit.dao.JpaRuleTestCodeDao" />
+
 
 	<bean id="tesCodeService"
 		class="com.medintu.samplingkit.service.TestCodeServiceImpl" />
@@ -146,10 +154,13 @@
 		class="com.medintu.samplingkit.service.PostalCodeServiceImpl" />
 	<bean id="sponsorUserService"
 		class="com.medintu.samplingkit.service.SponsorUserServiceImpl">
-
 		<constructor-arg ref="sponsorUserDao" />
 		<constructor-arg ref="passwordEncoder" />
 	</bean>
+	<bean id="ruleService"
+		class="com.medintu.samplingkit.service.RuleServiceImpl" />
+	<bean id="testResultService"
+		class="com.medintu.samplingkit.service.impl.TestResultServiceImpl" />
 	<!-- Dao class related to trafficApp -->
 
 	<bean id="userDao" class="com.medintu.samplingkit.dao.JpaUserDao" />
@@ -162,11 +173,20 @@
 		<constructor-arg ref="accessTokenDao" />
 	</bean>
 
+	<bean id="userConfiguration"
+		class="com.medintu.samplingkit.entity.EndUserConfiguration" />
 
 	<bean id="mailService"
 		class="com.medintu.samplingkit.service.impl.MailSenderImpl" />
 
-
+	<bean id="taskExecutor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5"></property>
+		<property name="maxPoolSize" value="10"></property>
+		<property name="queueCapacity" value="40"></property>
+		<property name="waitForTasksToCompleteOnShutdown"
+			value="true"></property>
+	</bean>
 
 
 	<bean id="messageSource"

@@ -10,6 +10,8 @@ public class TestMapper {
 
 	private String testCode;
 
+	private Boolean isDefaultTest;
+
 	public Long getTectCodeId() {
 		return tectCodeId;
 	}
@@ -40,6 +42,14 @@ public class TestMapper {
 
 	public void setTestCode(String testCode) {
 		this.testCode = testCode;
+	}
+
+	public Boolean getIsDefaultTest() {
+		return isDefaultTest;
+	}
+
+	public void setIsDefaultTest(Boolean isDefaultTest) {
+		this.isDefaultTest = isDefaultTest;
 	}
 
 }

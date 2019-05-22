@@ -46,8 +46,10 @@ public class TestCodeResourceController {
 					testCode.setDescription(testCodeMapper.getDescription());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
+					testCode.setDefaultTest(new Boolean(testCodeMapper.isDefalut()));
 					TestCode createTestCode = testCodeService.createTestCode(testCode);
-					return new Response("Success", HttpStatus.OK, "Testcode added Successfully", createTestCode);
+					int testCodeCount = testCodeService.getToalTestCodeCount();
+					return new Response(createTestCode, 0, testCodeCount, HttpStatus.OK, "Testcode added Successfully");
 				}
 			}
 			return new Response("Failure", HttpStatus.CONFLICT);
@@ -65,7 +67,8 @@ public class TestCodeResourceController {
 		try {
 			List<TestCode> allTestcodes = testCodeService.getAllTestcodes();
 			if (allTestcodes != null && !allTestcodes.isEmpty()) {
-				return new Response("Success", HttpStatus.OK, "Successfully Retrieved all testCodes", allTestcodes);
+				return new Response(allTestcodes, 0, allTestcodes.size(), HttpStatus.OK,
+						"Successfully Retrieved all testCodes");
 			}
 			return new Response("Fail", HttpStatus.NOT_FOUND, "Test code  Not Found");
 		} catch (Exception exception) {
@@ -89,13 +92,15 @@ public class TestCodeResourceController {
 					testMapper.setTectCodeId(testCode.getId());
 					testMapper.setTestName(testCode.getTestName());
 					testMapper.setTestCode(testCode.getTestCode());
+					testMapper.setIsDefaultTest(testCode.getDefaultTest());
 					testMapper.setDescription(testCode.getDescription());
 					testCodeMappers.add(testMapper);
 				}
 			}
 
 			if (!CollectionUtils.isEmpty(testCodeMappers)) {
-				return new Response("Success", HttpStatus.OK, "Successfully Retrieved all testCodes", testCodeMappers);
+				return new Response(testCodeMappers, 0, testCodeMappers.size(), HttpStatus.OK,
+						"Successfully Retrieved all testCodes");
 			}
 			return new Response("Fail", HttpStatus.NOT_FOUND, "Test code  Not Found");
 		} catch (Exception exception) {
@@ -139,6 +144,7 @@ public class TestCodeResourceController {
 					testCode.setId(testCodeMapper.getId());
 					testCode.setTestCode(testCodeMapper.getTestCode());
 					testCode.setTestName(testCodeMapper.getTestName());
+					testCode.setDefaultTest(new Boolean(testCodeMapper.isDefalut()));
 					testCode.setDescription(testCodeMapper.getDescription());
 
 					testCodeService.updateTestCode(testCode);
@@ -150,6 +156,23 @@ public class TestCodeResourceController {
 
 		} catch (Exception exception) {
 			return new Response("Fail", "Unable to update TestCode", HttpStatus.NOT_ACCEPTABLE);
+		}
+	}
+
+	@GET
+	@Path("/getAllTestcodesPerPaze/{pageSize}/{pageNum}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllTestcodesPerPaze(@PathParam("pageSize") int pageSize, @PathParam("pageNum") int pageNum) {
+		try {
+			List<TestCode> allTestcodes = testCodeService.getAllTestcodesPerPage(pageSize, pageNum);
+			if (allTestcodes != null && !allTestcodes.isEmpty()) {
+				int testCodeCount = testCodeService.getToalTestCodeCount();
+				return new Response(allTestcodes, 0, testCodeCount, HttpStatus.OK,
+						"All testCodes are Retrieved Successfully");
+			}
+			return new Response("Fail", HttpStatus.NOT_FOUND, "Test code  Not Found");
+		} catch (Exception exception) {
+			return new Response("unable to get all records", HttpStatus.NOT_FOUND, "Test code  Not Found");
 		}
 	}
 

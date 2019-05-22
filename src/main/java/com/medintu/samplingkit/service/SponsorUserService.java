@@ -12,9 +12,17 @@ public interface SponsorUserService {
 	
 	public List<User> getAllUsers();
 	
+	public List<User> getAllUsersPerPage(int pageSize,int pageNum);
+	
 	public void deleteUserById(Long id);
 
 	public List<User> getAllUsersBySponsorId(Long sponsorId);
 	
 	public List<User> getAllUsersBySponsor();
+
+	public List<User>  getAllUsersBySponsorByCondition(String email, String mobileNum);
+
+	public int getAllUsersCount();
+	
+	
 }

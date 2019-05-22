@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
+import com.medintu.samplingkit.entity.RuleDetailsMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
 import com.medintu.samplingkit.entity.TestCode;
@@ -35,5 +36,7 @@ public interface SponsorService {
 	public boolean updatePostCodesBySponsorId(PostalCode postalCode, Long sponsorId);
 
 	public List<TestCode> getTestCodesBySponsorId(Long sponsorId);
+
+	public List<RuleDetailsMapper> getRuleDeatilsBySponsorId(Integer sponsorId);
 
 }

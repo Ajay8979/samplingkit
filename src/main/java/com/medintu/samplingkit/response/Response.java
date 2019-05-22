@@ -70,8 +70,6 @@ public class Response {
 		this.status = status;
 		this.resultData = resultData;
 	}
-	
-	
 
 	public Response(String status, HttpStatus status_code, String message) {
 		super();
@@ -80,7 +78,7 @@ public class Response {
 		this.message = message;
 	}
 
-	public Response(String status, String errorMessage,HttpStatus errorCode) {
+	public Response(String status, String errorMessage, HttpStatus errorCode) {
 		super();
 		this.status = status;
 		this.errorCode = errorCode;
@@ -132,9 +130,9 @@ public class Response {
 
 	public Response(Object resultData, HttpStatus errorCode, String errorMessage, ExceptionType exceptionType) {
 		this.resultData = resultData;
-		this.errorCode=errorCode;
-		this.errorMessage=errorMessage;
-		this.exceptionType=exceptionType;
+		this.errorCode = errorCode;
+		this.errorMessage = errorMessage;
+		this.exceptionType = exceptionType;
 	}
 
 	/*
@@ -224,7 +222,7 @@ public class Response {
 	public void setPages(int pages) {
 		this.pages = pages;
 	}
-	
+
 	public HttpStatus getStatus_code() {
 		return status_code;
 	}
@@ -240,6 +238,5 @@ public class Response {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
 
 }

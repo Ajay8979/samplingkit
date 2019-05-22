@@ -72,7 +72,7 @@ public class StatusResourceController {
 		try {
 			List<Status> allStatus = statusService.getAllStatus();
 			if (null != allStatus && !allStatus.isEmpty()) {
-				return new Response("Success", HttpStatus.OK, "All records are retrieved", allStatus);
+				return new Response( allStatus,0,allStatus.size(), HttpStatus.OK, "All records are retrieved");
 			}
 			return new Response("failure", HttpStatus.CONFLICT);
 		} catch (Exception exception) {

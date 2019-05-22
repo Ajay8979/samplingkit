@@ -6,7 +6,7 @@ import com.medintu.samplingkit.entity.Rule;
 
 public interface RuleService {
 	
-	public Rule createRule(Rule rule);
+	public void createRule(List<Rule> rulList) throws Exception;
 
 	public Rule findRuleById(Long id);
 
@@ -15,5 +15,7 @@ public interface RuleService {
 	public Rule updateRule(Rule rule);
 
 	public void deleteRuleById(Long id);
+
+	public boolean updateRuleStatus(Long ruleId, String status);
 
 }

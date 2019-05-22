@@ -2,14 +2,12 @@ package com.medintu.samplingkit.entity;
 
 import java.util.List;
 
-public class SponsorWithPostalMapper   {
+public class SponsorWithPostalMapper {
 	private Long id;
 	private String name;
-	private String phone;
-	private String email;
 
-	private String budget;
-	
+	private Double budget;
+
 	private List<PostalCode> postalCodes;
 
 	public List<PostalCode> getPostalCodes() {
@@ -36,42 +34,22 @@ public class SponsorWithPostalMapper   {
 		this.name = name;
 	}
 
-	public String getPhone() {
-		return phone;
-	}
-
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getBudget() {
+	public Double getBudget() {
 		return budget;
 	}
 
-	public void setBudget(String budget) {
+	public void setBudget(Double budget) {
 		this.budget = budget;
 	}
 
-	
-
 	@Override
 	public String toString() {
-		return "Sponsor [id=" + id + ", name=" + name + ", phone=" + phone + ", email=" + email + ", budget=" + budget
-				+ "]";
+		return "SponsorWithPostalMapper [id=" + id + ", name=" + name + ", budget=" + budget + ", postalCodes="
+				+ postalCodes + "]";
 	}
 
 	public Long getId() {
 		return id;
 	}
-
-	
 
 }
