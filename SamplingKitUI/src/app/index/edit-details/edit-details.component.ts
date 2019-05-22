@@ -10,6 +10,7 @@ import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
   styleUrls: ['./edit-details.component.scss']
 })
 export class EditDetailsComponent implements OnInit {
+  
 
   firstname: any;
   requestobj: any;
@@ -22,12 +23,13 @@ export class EditDetailsComponent implements OnInit {
   OBSLoginForm:FormGroup;
   id:number=1;
   value:number=2;
+  spin:boolean=false;
+  finish:boolean=true;
 
   constructor(private router:Router,private sends:IndexService,private authService:AuthService,private fb:FormBuilder) { }
 
   ngOnInit() 
   {
-    
   //  this.router.navigate(['result']);
     this.requestobj={};
     this.resultobj=this.sends.seconddata;
@@ -35,8 +37,8 @@ export class EditDetailsComponent implements OnInit {
     this.gender=this.sends.seconddata['gender'];
     this.dob=this.sends.seconddata['dob'];
     this.address=this.sends.seconddata['address'];
-    this.mobile=this.sends.seconddata['mobile'];
-    this.email=this.sends.seconddata['email'];
+    this.mobile=this.sends.seconddata['notificationPhone'];
+    this.email=this.sends.seconddata['notificationEmail'];
     
 
     this.OBSLoginForm = this.fb.group({
@@ -51,12 +53,17 @@ export class EditDetailsComponent implements OnInit {
     if(this.authService.loginAction(formData)){
      this.router.navigate(['dashboard']);
     }
+    this.sends.another(this.resultobj);
   }
 
   send()
   {
-    this.sends.another(this.resultobj);
+    this.spin=true;
+    this.finish=false; 
+    this.sends.another(this.sends.seconddata);
   }
+
+  
 
   viewResult(){
     this.router.navigate(['viewresults']);

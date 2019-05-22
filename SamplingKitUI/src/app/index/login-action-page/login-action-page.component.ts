@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from './../../services/auth.service';
 import { Router } from '@angular/router';
 import { IndexService } from '../services/index.service';
+
 
 @Component({
   selector: 'app-login-action-page',
@@ -15,11 +16,11 @@ export class LoginActionPageComponent implements OnInit {
 
   constructor(private fb:FormBuilder,private authService:AuthService,private routerNavigate:Router,private sendservice:IndexService) {}
   
-  LoginAction(formData:any){
+  LoginAction(formData:any)
+  {
     if(this.authService.loginAction(formData)){
      this.routerNavigate.navigate(['dashboard']);
    }
-  
   }
 
   ngOnInit() 

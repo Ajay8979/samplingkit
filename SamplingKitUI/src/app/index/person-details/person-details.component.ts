@@ -24,6 +24,7 @@ export class PersonDetailsComponent implements OnInit {
   obj1: {};
   gender:any;
   oppositeGender:any;
+  errorvalue:boolean=false;
 
   id:number=1;
  
@@ -34,32 +35,29 @@ export class PersonDetailsComponent implements OnInit {
 
 
 
-  ngOnInit() {
-
-    
-   this.OBSLoginForm = this.fb.group({
+  ngOnInit()
+  {
+    this.OBSLoginForm = this.fb.group({
       'username': [null,Validators.required],
       'password': [null,Validators.required]
     });
 
     let params:any = this.activatedRoute.snapshot.params; 
 
-	
 	  if(params.id==1)
 	  {
 	   this.gender=this.sendservice.persondata['gender'];
      this.oppositeGender=this.sendservice.persondata['oppositeGender'];
     }
-
     
    }
+
 
    LoginActions(formData:any){
     if(this.authService.loginAction(formData)){
      this.routerNavigate.navigate(['dashboard']);
    }
-  
-  }
+   }
 
 
   LoginAction(formdata)
@@ -73,21 +71,21 @@ export class PersonDetailsComponent implements OnInit {
     this.sendservice.sendone(requestobj);
   }
   
-  createGenderEthenic(gender,oppositeGender,selectedEthenicName)
+  createGenderEthenic(gender,oppositeGender,selectedEthenicName,dates,postalcode)
   {
     var id=selectedEthenicName.id;
     // this.sendservice.ethnicGroupId=id;
     sessionStorage.setItem('ethenicGroupId',id);
-    var obj={gender:gender,oppositeGender:oppositeGender,ethnicGroupId:id}
+    var obj={gender:gender,oppositeGender:oppositeGender,ethnicGroupId:id,postCode:postalcode}
     this.sendservice.persondata['selectedEthenicName']=selectedEthenicName;
-    this.sendservice.persondata=obj;
     this.requestobj=obj;
-    this.requestobj.age=this.sendservice.logindata['age'];
-    this.requestobj.postCode=this.sendservice.logindata['postCode'];
-    console.log(this.sendservice.persondata)
-    console.log(this.requestobj);
-     this.sendservice.sendone(this.requestobj);
+    this.requestobj['age']=this.sendservice.logindata;
+    this.sendservice.persondetails=this.requestobj;
+    localStorage.setItem('primaryuser',JSON.stringify(this.requestobj));
+    console.log( this.sendservice.persondetails);
+    this.sendservice.sendone(this.requestobj);
     //this.routerNavigate.navigate(['test']);
+    this.errorvalue=this.sendservice.testerror;
    }
 
   send()
@@ -95,13 +93,13 @@ export class PersonDetailsComponent implements OnInit {
     this.routerNavigate.navigate(['login']);
   }
 
-  getEthenicDetails(){
+  getEthenicDetails()
+  {
      this.sendservice.getethnic().subscribe(data=>{
      this.ethenicData=data.resultData;
-   })
+     })
   }
 
-  
   viewResult(){
     this.routerNavigate.navigate(['viewresults']);
   }

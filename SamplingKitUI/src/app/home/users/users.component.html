@@ -5,8 +5,8 @@
   </div>
   <ul class="app-breadcrumb breadcrumb">
     <!-- <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
-    
-    
+
+
   </ul>
 </div>
 
@@ -29,27 +29,37 @@
               <form [formGroup]="profileForm">
 
                 <div class="form-group row">
-                    <div class="col-md-12">
-                        <label>
-                            Roles:
-                          <input type="radio" name="role" value="SPONSORUSER" (change)="changeUser()"   formControlName="role">Sponsor User
-                        </label>&nbsp;&nbsp;
-                        <label>
-                          <input type="radio" name="role" value="SUPPORTUSER" formControlName="role">Support User
-                        </label>
-    
-                      </div>
-                      <div class="clearfix"></div>
+                  <div class="col-md-12">
+                    <label>
+                      Roles:
+                      <input type="radio" name="role" value="SPONSORUSER" (change)="changeUser()"
+                        formControlName="role">Sponsor User
+                    </label>&nbsp;&nbsp;
+                    <label>
+                      <input type="radio" name="role" value="SUPPORTUSER" formControlName="role">Support User
+                    </label>
+                    &nbsp;&nbsp;
+                    <label>
+                      <input type="radio" name="role" value="CLINISHUSER" formControlName="role">Clinish User
+                    </label>
+
+                  </div>
+                  <div class="clearfix"></div>
                   <div class="col-md-6">
                     <label>
                       First Name:
                       <input type="text" class="form-control" formControlName="firstName">
+                      <span class="text text-danger"
+                        *ngIf="profileForm.controls['firstName'].invalid && profileForm.controls['firstName'].touched">First Name is required</span>
+
                     </label>
                   </div>
                   <div class="col-md-6">
                     <label>
                       Last Name:
                       <input type="text" class="form-control" formControlName="lastName">
+                      <span class="text text-danger"
+                        *ngIf="profileForm.controls['lastName'].invalid && profileForm.controls['lastName'].touched">Last Name is required</span>
                     </label>
                   </div>
                 </div>
@@ -58,67 +68,86 @@
                   <div class="col-md-6">
                     <label>
                       Email:
-                      <input type="email" class="form-control" formControlName="emailId" >
-                      
+                      <input type="email" class="form-control" formControlName="emailId">
+                      <span class="text text-danger"
+                        *ngIf="profileForm.controls['emailId'].invalid && (profileForm.controls['emailId'].touched || profileForm.controls['emailId'].dirty)">Email Id is required</span>
+
                     </label>
                   </div>
                   <div class="col-md-6">
-                      <label>
-                        Username:
-                        <input type="text" class="form-control" formControlName="userName" >
-                      </label>
-                    </div>
-                  
+                    <label>
+                      Username:
+                      <input type="text" class="form-control" formControlName="userName">
+                      <span class="text text-danger"
+                      *ngIf="profileForm.controls['userName'].invalid && profileForm.controls['userName'].touched">User Name is required</span>
+                    </label>
+                  </div>
+
                 </div>
                 <div class="form-group row">
                   <div class="col-md-6">
                     <label>
                       MobileNo:
-                      <input type="text" class="form-control" formControlName="mobileNum" >
+                      <input type="text" class="form-control" formControlName="mobileNum">
+                      <span class="text text-danger"
+                      *ngIf="profileForm.controls['mobileNum'].invalid && (profileForm.controls['mobileNum'].touched || profileForm.controls['mobileNum'].dirty)"> Valid Mobile Number is required</span>
+                
                     </label>
                   </div>
-                  
+
                   <div class="clearfix"></div>
-                  
-                    <div class="col-md-6">
-                        <label>
-                          Password:
-                          <input type="password" class="form-control" formControlName="passWord" >
-                        </label>
-                      </div>
+
+                  <!-- <div class="col-md-6">
+                    <label>
+                      Password:
+                      <input type="password" class="form-control" formControlName="passWord">
+                    </label>
+                  </div> -->
                 </div>
                 <div class="form-group row">
-                 
+
                   <div class="col-md-6" *ngIf="profileForm.value.role=='SPONSORUSER'">
                     <label>Sponsor Users</label>
-                      <select class="form-control" formControlName="sponsorId">
-                          <option  *ngFor="let name of sponserUsers" [value]="name.id" >{{name.name}}</option>
-                        </select>
-                    </div>
-                   
+                    <select class="form-control" formControlName="sponsorId">
+                      <option *ngFor="let name of sponserUsers" [value]="name.id">{{name.name}}</option>
+                    </select>
                   </div>
+
+                </div>
                 <br>
-                <input type="button" class="btn btn-info float-right" (click)="updateValue()" *ngIf="updatfrm" value="Update" />
-                <input type="submit" class="btn btn-info float-right" (click)="save(profileForm.value)" *ngIf="addfrm" [disabled]="profileForm.invalid" data-dismiss="modal" value="Submit">
-                <!-- <input type="submit" class="btn btn-info" [disabled]="profileForm.invalid" value="Submit"> -->
               </form>
             </div>
           </div>
           <div class="modal-footer">
-              
+            <button class="btn btn-default" data-dismiss="modal">Close</button>
+            <input type="button" class="btn btn-info float-right" (click)="updateValue(profileForm.value)" *ngIf="updatfrm"
+              value="Update" />
+            <input type="submit" class="btn btn-info float-right" (click)="save(profileForm.value)" *ngIf="addfrm"
+              [disabled]="profileForm.invalid" data-dismiss="modal" value="Submit">
+
           </div>
         </div>
 
       </div>
     </div>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="form-group">
+          <input type="text" class="form-control"  [(ngModel)]="term" placeholder="Search Here...">
+        </div>
+      </div>
+      <div class="col-md-9">
+        <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#myModal" (click)="addUsers(profileForm)" data-backdrop="static">Add</button>
+      </div>
+    </div>
     <div class="tile">
-      <button type="button" class="btn btn-danger float-right" data-toggle="modal" data-target="#myModal"
-        (click)="addUsers(profileForm)">Add</button>
+
       <h3 class="tile-title">Users Details</h3>
       <div>
         <table class="table ">
           <thead>
             <tr>
+              <th>Username</th>
               <th>Firstname</th>
               <th>Lastname</th>
               <th>Email</th>
@@ -130,7 +159,8 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let x of data">
+            <tr *ngFor="let x of data | filter:term |paginate: { itemsPerPage: 10, currentPage: p }">
+              <td>{{x.username}}</td>
               <td>{{x.firstName}}</td>
               <td>{{x.lastName}}</td>
               <td>{{x.emailId}}</td>
@@ -139,7 +169,8 @@
               <td>{{x.status}}</td>
               <td>
                 <span>
-                  <span (click)="editForm(x)" data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-pencil">
+                  <span (click)="editForm(x)" data-toggle="modal" data-target="#myModal"
+                    class="glyphicon glyphicon-pencil">
                     <i class="fa fa-edit" style="font-size:24px;color:rgb(49, 17, 233)"></i>
                   </span>
                 </span>
@@ -155,99 +186,8 @@
           </tbody>
         </table>
       </div>
+
     </div>
+    <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
   </div>
 </div>
-
-<!--Adding forms-->
-<!-- <div *ngIf="addfrm">
-  <form [formGroup]="profileForm">
-    <br>
-    
-    <div>
-        <label>
-            First Name:
-            <input type="text" formControlName="firstName" [(ngModel)]="pfname">
-        </label>
-    </div>
-
-    <div>
-        <label>
-            Last Name:
-            <input type="text" formControlName="lastName" [(ngModel)]="plname">
-        </label>
-    </div>
-    <div>
-        <label>
-            Email:
-            <input type="email" formControlName="emailId" [(ngModel)]="pemail">
-        </label>
-    </div>
-    <div>
-      <label>
-          Roles:
-          <input type="text" formControlName="username" [(ngModel)]="pusername">
-      </label>
-  </div>
-  <div>
-    <label>
-        MobileNo:
-        <input type="text" formControlName="mobileNum" [(ngModel)]="pmobileno">
-    </label>
-</div>
-    <br>
-    <input type="button" (click)="saveValue()" value="Save" />
-</form>
-  </div> -->
-
-<!--Update Forms--->
-<!-- <div *ngIf="updatfrm">
-  <form [formGroup]="profileForm">
-
-      <div class="form-group row" >
-          <div class="col-md-6">
-              <label>
-                  First Name:
-                  <input type="text" class="form-control" formControlName="firstName" [(ngModel)]="pfname">
-              </label>
-          </div>
-          <div class="col-md-6">
-              <label>
-                  Last Name:
-                  <input type="text" class="form-control" formControlName="lastName" [(ngModel)]="plname">
-              </label>
-          </div>
-      </div>
-
-      <div class="form-group row" >
-      <div class="col-md-6">
-          <label>
-              Email:
-              <input type="email" class="form-control" formControlName="emailId" [(ngModel)]="pemail">
-          </label>
-      </div>
-      <div class="col-md-6">
-        <label>
-            Roles:
-            <input type="text" class="form-control" formControlName="role" [(ngModel)]="prole">
-        </label>
-    </div>
-   </div>
-   <div class="form-group row" >
-    <div class="col-md-6">
-      <label>
-          MobileNo:
-          <input type="text" class="form-control" formControlName="mobileNum" [(ngModel)]="pmobileno">
-      </label>
-  </div>
-  <div class="col-md-6">
-      <label>
-          Username:
-          <input type="text" class="form-control" formControlName="userName" [(ngModel)]="puserName">
-      </label>
-  </div>
-</div>
-      <br>
-      <input type="button" (click)="updateValue()" value="Update" />
-  </form>
-  </div> -->

@@ -1,6 +1,6 @@
 import { AuthService } from './../../services/auth.service';
 import { Component, OnInit } from "@angular/core";
-import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
+import {Validators, FormBuilder,FormGroup} from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { IndexService } from './../services/index.service';
 
@@ -18,31 +18,52 @@ export class LoginComponent implements OnInit {
   user:FormGroup;
   agepostCodeFlag:boolean=true;
   loginTemplate:boolean=false;
+  values:any;
+  elgible:boolean=true;
+  age:any;
+  ethenicData: any;
+  requestobj: any=[];
+  ethnic={};
+  some={};
+  obj1: {};
+  gender:any;
+  oppositeGender:any;
+  go:any;
+  test:boolean=false;
 
   constructor(private fb:FormBuilder,private authService:AuthService,private routerNavigate:Router,private sendservice:IndexService,private activatedRoute:ActivatedRoute) {}
-  LoginTemplate(){
+  
+  
+  LoginTemplate()
+  {
     this.agepostCodeFlag=false;
     this.loginTemplate=true;
   }
-  homePage(){
+  homePage()
+  {
     this.agepostCodeFlag=true;
     this.loginTemplate=false;
   }
+
 
   LoginAction(formData:any)
   {
     if(this.authService.loginAction(formData)){
      this.routerNavigate.navigate(['dashboard']);
+    }
   }
-  }
-  ngOnInit() {
-
+  
+  ngOnInit()
+  {
+    
     $(document).ready(function () {
-      $('.login-content [data-toggle="flip"]').click(function() {
-      	$('.login-box').toggleClass('flipped');
-      	return false;
-      });
-      });
+
+    $('.login-content [data-toggle="flip"]').click(function() {
+    $('.login-box').toggleClass('flipped');
+    return false;
+    });
+
+  });
 
 
     this.OBSLoginForm = this.fb.group({
@@ -50,40 +71,46 @@ export class LoginComponent implements OnInit {
       'password': [null,Validators.required]
     });
 
-     
-    //age validation
-    this.user = this.fb.group({
-    age: ['',Validators.required],
-    postCode: ['',Validators.required]
-    });
-
-    let params = this.activatedRoute.snapshot.params; 
-    if(params.id==1)
-    {
-        let someobj=this.sendservice.seconddata;
-        this.user.controls.age.setValue(this.sendservice.logindata['age']);
-        this.user.controls.postCode.setValue(this.sendservice.logindata['postCode']);
-    } 
 
   }
 
 
   send(formData)
   {
-     this.sendservice.send(this.user.value);
+     //this.sendservice.send(this.user.value);
      let key=formData.age;
      sessionStorage.setItem('age',key);
      this.sendservice.logindata=this.user.value;
+     
+    
      //this.routerNavigate.navigate(['personsdetails'])
   }
+ 
+  pass(age:any)
+  {
+    if(this.age>18)
+    {
+    this.routerNavigate.navigate(['/personsdetails']);
+    this.sendservice.logindata=age;
+    localStorage.setItem('primaryuser',age)
+    }
+    else
+    {
+      this.routerNavigate.navigate(['ageerror']);
+    }
+  }
   
+
   viewResult(){
     this.routerNavigate.navigate(['viewresults']);
   }
-  /*
-  LoginPage(){
+
+  LoginPage()
+  {
     this.routerNavigate.navigate(['loginpageaction']);
   }
-*/
+
+
+
  
  }

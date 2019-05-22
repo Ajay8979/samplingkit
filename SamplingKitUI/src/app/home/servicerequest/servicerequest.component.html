@@ -1,47 +1,82 @@
 <div class="app-title">
     <div>
-      <h1><i class="fa fa-th-list"></i> Service Request</h1>
-      <p>service request Details</p>
+      <h1><i class="fa fa-th-list"></i> Order Request</h1>
+      <p>Order Details</p>
     </div>
     <ul class="app-breadcrumb breadcrumb">
     </ul>
   </div>
+    <br>
+    <div class="row">
+        <div class="col-md-4">
+            <label>Select to Filter</label>
+            <select class="form-control" [(ngModel)]="search">
+                <option></option>
+                <option value="date">Date</option>
+                <option value="mobile">Mobile Number</option>
+                <option value="email">Email Id</option>
+                <option value="order">Order Numbser</option>
+              </select>
+        </div>
+        <div class="col-md-4" *ngIf="search=='date'">
+            <div class="form-group">
+                <label>Start Date:</label>
+                <input type="date" class="form-control">
+              </div>
+        </div>
+        <div class="col-md-4"  *ngIf="search=='date'">
+            <div class="form-group">
+                <label>End Date:</label>
+                <input type="date" class="form-control">
+              </div>
+        </div>
+        <div class="col-md-4"  *ngIf="search =='mobile' || search =='email'|| search =='order'">
+              <div class="form-group">
+                <label>Search with {{search}}:</label>
+                <input type="text" class="form-control" placeholder="Search Here..">
+              </div>
+        </div>
+   </div>
+   <br>
   <div class="tile">
-      <h3 class="tile-title">Service Requests Details </h3>
+      <h3 class="tile-title">Order Details </h3>
       <table class="table">
           <thead>
             <tr>
               <th>#</th>
-              <th>First Name</th>
+              <!-- <th>First Name</th>
               <th>Last Name</th>
               <th>Email</th>
               <th>Gender</th>
-              <th>Mobile</th>
+              <th>Mobile</th> -->
               <th>Order Code</th>
               <th>Post Code</th>
               <th>PX Code</th>
               <th>Status</th>
-              <th>View</th>
+              <!-- <th>View</th> -->
+              <th>Date</th>
 
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of sponsorIdData;let i=index">
+            <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
                <td>{{i+1}}</td>
-              <td>{{item.firstName}}</td>
+              <!-- <td>{{item.firstName}}</td>
               <td>{{item.lastName}}</td>
               <td>{{item.email}}</td>
               <td>{{item.oppositeGender}}</td>
-              <td>{{item.mobile}}</td>
+              <td>{{item.mobile}}</td> -->
               <td>{{item.orderCode}}</td>
               <td>{{item.postCode}}</td>
               <td>YF45</td>
               <td>{{item.status}}</td>
-              <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td>
+              <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
+              <td>12-23-2019</td>
             </tr>
           </tbody>
         </table>
     </div>
+    <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
 <!-- Modal -->
 <div id="myModal" class="modal fade" role="dialog">
     <div class="modal-dialog">

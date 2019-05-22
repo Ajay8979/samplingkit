@@ -4,46 +4,24 @@
     <p>Status Details</p>
   </div>
   <ul class="app-breadcrumb breadcrumb">
-    <!-- <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
-    
-    
   </ul>
 </div>
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <input type="text" class="form-control" [(ngModel)]="term" placeholder="Search Here...">
+          </div>
+    </div>
+    <div class="col-md-9">
+        <button type="button" style="margin-bottom:8px" class="btn btn-danger float-right" data-toggle="modal" data-backdrop="static" data-target="#myModal"
+        (click)="addStatus(regForm)">Add</button>  
+        </div>
+  </div>
 <div class="tile">
  <h5>Status</h5>
- <div id="myModal" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Status</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <div class="modal-body">
-          <form #regForm='ngForm'>
-              <div class="col-md-6">
-                  <label>
-                    Status:
-                    <input type="text" placeholder="Status" name="nameOfTheStatus" class="form-control" [(ngModel)]= pstatus >
-                  </label>
-                </div>
-                <button type="submit" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="save(regForm.value)" *ngIf="addfrm">Submit</button>
-                <button type="button" data-dismiss="modal" class="btn btn-primary float-right" id="register" (click)="updateStatusData()" *ngIf="updatfrm" >Update</button>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-        </div>
-      </div>
-  
-    </div>
-  </div>
-<button type="button" style="margin-bottom:8px" class="btn btn-danger float-right" data-toggle="modal" data-target="#myModal"
-(click)="addStatus(regForm)">Add</button>
 
-<table class="table table-striped" >
+
+<table class="table" >
   <thead>
     <tr style="font-size:15px">
       <th>Id</th>
@@ -53,7 +31,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let data of statusData">
+    <tr *ngFor="let data of statusData | filter:term |paginate: { itemsPerPage: 10, currentPage: p }">
       <td>{{data.id}}</td>
       <td>{{data.nameOfTheStatus}}</td>
       <td>
@@ -74,3 +52,33 @@
   </tbody>
 </table>
 </div>
+<pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <form [formGroup]="statusForm">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Status</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+      
+          </div>
+          <div class="modal-body">
+      
+            <div class="col-md-12">
+              <input type="text" placeholder="Status" name="nameOfTheStatus" class="form-control" formControlName="nameOfTheStatus">
+              <span class="text text-danger" *ngIf="statusForm.controls['nameOfTheStatus'].invalid && statusForm.controls['nameOfTheStatus'].touched">Status is required</span>
+            </div>
+      
+          </div>
+          <div class="modal-footer">
+            <button type="submit"  [disabled]="statusForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
+              (click)="save(statusForm.value)" *ngIf="addfrm">Submit</button>
+            <button type="button"  [disabled]="statusForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
+              (click)="updateStatusData(statusForm.value)" *ngIf="updatfrm">Update</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>

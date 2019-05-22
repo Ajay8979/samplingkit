@@ -145,7 +145,7 @@
 <!-- A few questions start -->
 
 
-<div class="about_section padt5">
+<div class="about_section more_detail">
 
   <div class="container">
 
@@ -157,7 +157,7 @@
 
       </div>
 
-      <div class="panel_body">
+       <div class="panel_body">
 
         <div class="row">
          
@@ -244,7 +244,7 @@
                 <span>Sometime</span>
               </label>
               <label>
-                <input type="radio"name="protect3" value="Usually" formControlName="protect3"  />
+                <input type="radio" name="protect3" value="Usually" formControlName="protect3"  />
                 <span>Usually</span>
               </label>
               <label>
@@ -253,12 +253,15 @@
               </label>
             </div>
 
-             <div class="buttons button_5">
+          
+           
+
+            <div class="buttons button_5">
 
                 <button class="btn btn-success pull-left question_1"  (click)="first()" ><i class="fa fa-arrow-circle-left"></i>Back</button>
-                <button class="btn pull-right question_2" type="submit">Next <i class="fa fa-arrow-circle-right"></i></button>
+                <button class="btn pull-right question_2" type="submit" [disabled]="users.invalid">Next <i class="fa fa-arrow-circle-right"></i></button>
 
-              </div>
+            </div>
 
             
             </form>

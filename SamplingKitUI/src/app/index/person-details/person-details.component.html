@@ -11,11 +11,11 @@
               <ul>
                 <li class="currency"><a href="#">support@medintu.co.uk</a></li>
                 <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
-               </ul>
+              </ul>
             </div>
             <div class="top_right">
 
-                <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
+              <!---	<form class="inner_form" [formGroup]="OBSLoginForm" (ngSubmit)="LoginAction(OBSLoginForm.value)">
               
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Username" required="required"  formControlName="username">
@@ -27,12 +27,13 @@
                         <button class="btn btn-primary btn-block" [disabled]="OBSLoginForm.invalid">SIGN IN</button>
                     </div>  
                  </form>-->
-  
-                 <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
-                 <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
-                 
-              </div>
-            
+
+              <button class="btn btn-info btn-sm" style="margin-top: 8px;width: auto;" (click)="viewResult()">Track
+                Results</button>&nbsp;&nbsp;
+              <button class="btn btn-success btn-sm" style="margin-top: 8px" (click)="LoginPage()">Login</button>
+
+            </div>
+
             <div class="logo logo_three">
               <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
             </div>
@@ -70,13 +71,10 @@
   <!--header middel end-->
 
   <!--popup start-->
- 
-    <!-- Modal -->
-  
 
+  <!-- Modal -->
 
   <!--popup end-->
-
 </header>
 <!--header area end-->
 
@@ -141,83 +139,107 @@
 <div class="about_section mt-60">
   <div class="container">
     <div class="row">
+
       <div class="col-lg-12 col-md-12">
-        <div class="about_content text-left">
-          <h1>Around 13% of the estimated 100,000 people living with HIV in the UK remain undiagnosed.</h1>
-          <p>Free self-sampling HIV test kits are available in many areas of the country — enter your details below to
-            check your eligibility:</p>
-          <!--<div class="view__work">
-                      <a href="#">view work </a>
-                  </div>-->
+
+        <!----more details start-->
+
+        <div class="account_form form_4">
+
+          <div class="panel">
+
+            <div class="panel_heading">
+
+              <h5 class="text-center">Please Enter Details</h5>
+
+            </div>
+
+            <div class="panel_body">
+
+              <div class="row">
+
+                <div class="col-lg-12 col-md-12">
+
+                  <form class="inner_1" #contactForm="ngForm">
+
+                    <p>
+                      <label>Postal code is <span>*</span></label>
+
+                      <input type="text" [(ngModel)]="postalcode" name="postalcode" class="col-md-7" required
+                        #postal="ngModel">
+                      <span *ngIf="postal.invalid && (postal.dirty || postal.touched)" class="error_form">
+                        <span *ngIf="postal.errors.required" class="error_form">
+                          please enter post code
+                        </span>
+                      </span>
+                    </p>
+
+                    <p>
+                      <label>I am a <span>*</span></label>
+                      <select [(ngModel)]="gender" name="gender" required #persons="ngModel">
+                        <option value="Man">Man</option>
+                        <option value="Female">Woman</option>
+                        <option value="TransMan">TransMan</option>
+                        <option value="TransWoman">TransWoman</option>
+                      </select>
+                      <span *ngIf="persons.invalid && (persons.dirty || persons.touched)" class="error_form">
+                        <span *ngIf="persons.errors.required" class="error_form">
+                          please select gender
+                        </span>
+                      </span>
+                    </p>
+
+                    <p>
+                      <label>I have sex with <span>*</span></label>
+
+                      <select [(ngModel)]="oppositeGender" name="oppositeGender" required #people="ngModel">
+                        <option value="Men">Men</option>
+                        <option value="Women">Woman</option>
+                        <option value="Men and Women">Men and Women</option>
+                      </select>
+                      <span *ngIf="people.invalid && (people.dirty || people.touched)" class="error_form">
+                        <span *ngIf="people.errors.required" class="error_form">
+                          please select oppositeGender
+                        </span>
+                      </span>
+                    </p>
+
+                    <p>
+                      <label>My ethnic group is <span>*</span></label>
+
+                      <select [(ngModel)]="selectedEthenicName" name="selectedEthenicName" class="col-md-7" required
+                        #ethinic="ngModel">
+                        <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+                      </select>
+                      <span *ngIf="ethinic.invalid && (ethinic.dirty || ethinic.touched)" class="error_form">
+                        <span *ngIf="ethinic.errors.required" class="error_form">
+                          please select Ethnic Group
+                        </span>
+                      </span>
+
+                    </p>
+
+                    <button class="btn btn-info btn_another6"
+                      (click)="createGenderEthenic(gender,oppositeGender,selectedEthenicName,dates,postalcode)"
+                      [disabled]="contactForm.invalid">SUBMIT</button>
+                  </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-info btn_another6" [routerLink]="['/login']"><i class="fa fa-arrow-left fa-2x"></i>
+            Chek Eligibility</button>
         </div>
-      </div>
-      <div class="col-lg-12 col-md-12">
-        <div class="account_form another_2">
 
-          <div class="inner_1">
-
-            <p>
-              <label>I am a <span>*</span></label>
-              <select [(ngModel)]="gender" required #persons="ngModel">
-                <option value="Man">Man</option>
-                <option  value="Female">Woman</option>
-                <option value="TransMan">TransMan</option>
-                <option  value="TransWoman">TransWoman</option>
-              </select>
-              <span *ngIf="persons.invalid && (persons.dirty || persons.touched)" class="error_form">
-                <span *ngIf="persons.errors.required" class="error_form">
-                  required this field
-                </span>
-              </span>
-
-            </p>
-            <p>
-              <label>I have sex with <span>*</span></label>
-           
-              <select [(ngModel)]="oppositeGender" required #people="ngModel">
-                <option value="Men">Men</option>
-                <option value="Women">Woman</option>
-                <option value="Men and Women">Men and Women</option>
-              </select>
-              <span *ngIf="people.invalid && (people.dirty || people.touched)" class="error_form">
-                <span *ngIf="people.errors.required" class="error_form">
-                  required this field
-                </span>
-              </span>
-            </p>
-            <p>
-              <label>My ethnic group is <span>*</span></label>
-               
-                 <select [(ngModel)]="selectedEthenicName" class="col-md-7" required #ethinic="ngModel">
-                   <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
-                  
-                </select>
-                <span *ngIf="ethinic.invalid && (ethinic.dirty || ethinic.touched)" class="error_form">
-                  <span *ngIf="ethinic.errors.required" class="error_form">
-                    required this field
-                  </span>
-                </span>
-          
-               </p>
-
-            <button class="btn btn-info btn_another6" (click)="createGenderEthenic(gender,oppositeGender,selectedEthenicName)">SUBMIT</button>
- 
-           </div>
-
-         
-            <button class="btn btn-info btn_another" [routerLink]="['/login',id]"><i class="fa fa-arrow-left fa-2x"></i></button>
-
-       
-
-        </div>
+        <!--more details end-->
 
       </div>
     </div>
   </div>
 </div>
 <!--about section end-->
-
-
 
 <!--footer area start-->
 <footer class="footer_widgets">
@@ -235,7 +257,7 @@
                 <li><i class="fa fa-envelope-square"></i><span>Email:</span> info@Lorem Ipsum .com</li>
               </ul>
             </div>
-           
+
           </div>
         </div>
         <div class="col-lg-2 col-md-6 col-sm-5">
@@ -257,9 +279,6 @@
             </div>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </div>

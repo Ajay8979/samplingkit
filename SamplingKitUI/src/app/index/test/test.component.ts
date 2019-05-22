@@ -37,8 +37,9 @@ export class TestComponent implements OnInit {
 
   second()
   {
-    this.router.navigate(['question']);
+    this.router.navigate(['checkpostal']);
   }
+
 
   viewResult()
   {
@@ -48,5 +49,6 @@ export class TestComponent implements OnInit {
   {
     this.router.navigate(['loginpageaction']);
   }
+
 
 }

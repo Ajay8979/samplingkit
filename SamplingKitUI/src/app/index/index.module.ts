@@ -12,20 +12,19 @@ import { MoreDetailComponent } from './more-detail/more-detail.component';
 import { ResultComponent } from './result/result.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { FinalComponent } from './final/final.component';
-
 import { PostcodeerrorComponent } from './postcodeerror/postcodeerror.component';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
-
 import { ViewresultsComponent } from './viewresults/viewresults.component';
 import { LoginActionPageComponent } from './login-action-page/login-action-page.component';
+import { CheckpostalComponent } from './checkpostal/checkpostal.component';
+import { AgeerrorComponent } from './ageerror/ageerror.component';
 
 
 
 
 @NgModule({
 
-  declarations: [LoginComponent,LoginActionPageComponent,ViewresultsComponent, SignUpComponent, PersonDetailsComponent, TestComponent, AddressComponent, QuestionsComponent, MoreDetailComponent, ResultComponent, EditDetailsComponent, FinalComponent, PostcodeerrorComponent, PagenotfoundComponent],
-
+  declarations: [LoginComponent,LoginActionPageComponent,ViewresultsComponent, SignUpComponent, PersonDetailsComponent, TestComponent, AddressComponent, QuestionsComponent, MoreDetailComponent, ResultComponent, EditDetailsComponent, FinalComponent, PostcodeerrorComponent, PagenotfoundComponent, CheckpostalComponent,CheckpostalComponent, AgeerrorComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,

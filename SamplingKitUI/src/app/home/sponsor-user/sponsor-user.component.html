@@ -1,182 +1,258 @@
-
 <div class="app-title">
-    <div>
-      <h1><i class="fa fa-th-list"></i> Sponsors</h1>
-      <p>Sponsor Details</p>
-    </div>
-    <ul class="app-breadcrumb breadcrumb">
-      <!-- <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
-      
-      
-    </ul>
+  <div>
+    <h1><i class="fa fa-th-list"></i> Commissioner</h1>
+    <p>Commissioner Details</p>
   </div>
-  
-    <button class="btn btn-danger mr-2 mb-2 pull-right" data-toggle="modal" data-target="#myModal" (click)="initializeData()"><i class="fa fa-plus"></i>Add Sponsor</button><br>
-    <br>  
-    
-    <div class="col-md-12">
-      
-      <div class="tile">
-        <h3 class="tile-title">Sponsor Details </h3>
-    
-        <table class="table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Budget</th>
-              <th>View</th>
-              <th>Edit</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let item of SponsorsData;let i=index">
-              <td>{{i+1}}</td>
-              <td>{{item.name}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.phone}}</td>
-              <td>{{item.budget}}</td>
+  <ul class="app-breadcrumb breadcrumb">
+    <!-- <li class="breadcrumb-item"><i class="fa fa-home fa-lg"></i></li> -->
 
-              <td><a href="" class="btn btn-success btn-sm" data-toggle="modal" data-target="#postCodeslist" (click)="getPostCodeList(item.id)">Postal Code</a>&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href="" data-toggle="modal" data-target="#addressDetails" (click)="getAddressDetails(item.id)">Address</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#ruleDetails" (click)="getRulesDetails(item.id)">Rules</a>&nbsp;&nbsp;
-               </td>
-               <td>
-                  <a href=""  class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editSponsor" (click)="getPostalCodeforEdit(item.id)">Edit</a>
-               </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-            <!-- edit sponsor popup -->
-<div id="editSponsor" class="modal fade" role="dialog">
-    <div class="modal-dialog">
-  
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Edit Sponsor</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-           
-              <div class="form-group">
-                <label for="name">Name:</label>
-                <input type="text" [(ngModel)]="updateSponsor.name" class="form-control" id="name">
-              </div>
-              <div class="form-group">
-                <label for="email">Email:</label>
-                <input type="email"  [(ngModel)]="updateSponsor.email" class="form-control" id="email">
-              </div>
-              <div class="form-group">
-                  <label for="phone">Phone:</label>
-                  <input type="text"  [(ngModel)]="updateSponsor.phone" class="form-control" id="phone">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Budget:</label>
-                    <input type="text"  [(ngModel)]="updateSponsor.budget" class="form-control" id="budget">
-                  </div>
-                  <div class="form-group">
-                      <label for="phone">Postal Code:</label>
-                      <div>
-                          <ng-multiselect-dropdown  [placeholder]="'Select Post Code'" [data]="dropdownList" [(ngModel)]="selectedItems"
-                          [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                          </ng-multiselect-dropdown>
-                          </div>
-                    </div>
-             
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success" data-dismiss="modal" (click)="updateSponsorDetails(updateSponsor)">Submit</button>
-          
-        </div>
-      </div>
-  
+
+  </ul>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <input type="text" [(ngModel)]="term" class="form-control" placeholder="Search Here...">
     </div>
   </div>
- 
-     
-      <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog modal-lg">
-        
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              
-              <h4 class="modal-title">Sponsor Details</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                    <div class="content" >
-                            <div class="main">
-                          
-                            <ul id="progressbar">
-                            <li class="active">Sponser Personal Details</li>
-                            <li>Address Details</li>
-                            <li>Rule Details</li>
-                           
-                            </ul>
-                           
-                            <fieldset id="first" style="margin-left: 2px;">
-                                 
-                                <p class="subtitle">Step 1</p>
-                                 <label class="col-md-2">Name: </label>
-                                <input class="col-md-7"  [(ngModel)]="name" name="name" placeholder="Name" type="text" required>
-                                <div class="clearfix"></div>
+  <div class="col-md-9">
+    <button class="btn btn-danger  pull-right" data-toggle="modal" data-target="#myModal" data-backdrop="static"  (click)="initializeData()"><i
+        class="fa fa-plus"></i>Add Commissioner</button>
+  </div>
+</div>
+<div class="tile">
+  <h3 class="tile-title">Commissioner Details </h3>
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <!-- <th>Email</th>
+        <th>Phone</th> -->
+        <th>Budget</th>
+        <th>Edit</th>
+        <th>View</th>
+
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of SponsorsData| filter:term |paginate: { itemsPerPage: 5, currentPage: p };let i=index ">
+        <td>{{i+1}}</td>
+        <td>{{item.name}}</td>
+        <!-- <td>{{item.email}}</td>
+        <td>{{item.phone}}</td> -->
+        <td>{{item.budget}}</td>
+        <td>
+          <a href="" class="btn btn-warning btn-sm" data-toggle="modal"  data-backdrop="static" data-target="#editSponsor"
+            (click)="getPostalCodeforEdit(item.id)"><i class="fa fa-edit"></i>Edit</a>
+        </td>
+        <td>
+            <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rulemyModal" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-plus"></i>Add Rules</a>&nbsp;&nbsp;
+          <a href="" data-backdrop="static"  class="btn btn-success btn-sm" data-toggle="modal" data-target="#postCodeslist"
+            (click)="getPostCodeList(item.id)"><i class="fa fa-edit"></i>District Codes</a>&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href=""
+            data-toggle="modal" data-target="#addressDetails"
+            (click)="getAddressDetails(item.id)" data-backdrop="static" ><i class="fa fa-edit"></i>Contacts</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm"
+            data-toggle="modal" data-target="#ruleDetails" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-edit"></i>Rules</a>&nbsp;&nbsp;
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+<pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+<!-- edit sponsor popup -->
+<div id="editSponsor" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Edit Commissioner Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" [(ngModel)]="updateSponsor.name" class="form-control" id="name">
+        </div>
+        <!-- <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" [(ngModel)]="updateSponsor.email" class="form-control" id="email">
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone:</label>
+          <input type="text" [(ngModel)]="updateSponsor.phone" class="form-control" id="phone">
+        </div> -->
+        <div class="form-group">
+          <label for="phone">Budget:</label>
+          <input type="text" [(ngModel)]="updateSponsor.budget" class="form-control" id="budget">
+        </div>
+        <div class="form-group">
+          <label for="phone">District Codes:</label>
+          <div>
+            <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="dropdownList"
+              [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-success" data-dismiss="modal"
+          (click)="updateSponsorDetails(updateSponsor,selectedItems)">Submit</button>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+
+        <h4 class="modal-title">Commissioner Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="content">
+          <div class="main">
+
+            <ul id="progressbar">
+              <li class="active">Commissioner Details</li>
+              <li>Contact Details</li>
+              <!-- <li>Rule Details</li> -->
+
+            </ul>
+            <form [formGroup]="commissionerform">
+
+            <fieldset id="first" style="margin-left: 2px;">
+              <label class="col-md-4">Commissioner Name: </label>
+              <input class="col-md-5" formControlName="name" [(ngModel)]="name" name="name" placeholder="Name" type="text">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['name'].invalid && commissionerform.controls['name'].touched">Commissioner Name is required</div>
+
+              <!-- <div class="clearfix"></div>
                                 <label class="col-md-2">Email: </label>
                                 <input class="col-md-7"  [(ngModel)]="email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" placeholder="Email" type="text" required>
                                 <div class="clearfix"></div>
                                 <label class="col-md-2">Phone: </label>
-                                <input class="col-md-7"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text" required>
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Budget: </label>
-                                <input class="col-md-7"  [(ngModel)]="budget" name="budget" placeholder="Budget" type="text" required>
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Post Code: </label>
-                                 <div  style="margin-left:108px; width: 60%;">
-                                <ng-multiselect-dropdown  [placeholder]="'Select Post Code'" [data]="dropdownList" [(ngModel)]="selectedpostCode"
-                                [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
-                                </ng-multiselect-dropdown>
-                                </div>
-                                <input class="next_btn btn btn-primary pull-right"   [disabled]="(!name || !email || !phone || !budget ||!selectedpostCode)" (click)="step1Details(name,email,phone,budget,selectedpostCode)" name="next" type="button" value="Next">
-                                </fieldset>
-                                <fieldset style="margin-left: 2px;">
-                             
-                                <p class="subtitle">Step 2</p>
-                                <label class="col-md-2">Street No: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="streetNumber"  placeholder="Street Number" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Street Name1: </label>
-                                <input class="col-md-7" name="strename"   [(ngModel)]="strname1" placeholder="Street Name1" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Street Name2: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="strname2" placeholder="Street Name2" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">City: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="city" placeholder="City" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Country: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="country" placeholder="Country" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">District: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="district" placeholder="District" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Region: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="region" placeholder="Region" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">State: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="state" placeholder="State" type="text">
-                                <div class="clearfix"></div>
-                                <label class="col-md-2">Zipcode: </label>
-                                <input class="col-md-7" name="streetNumber"  [(ngModel)]="zipcode" placeholder="Zip Code" type="text">
-                                <br>
-                                <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
-                                <input class="next_btn btn btn-primary" name="next" type="button" [disabled]='(!streetNumber || !strname1 || !strname2 ||!city || !country || !district || !region ||!state || !zipcode)' (click)="step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)" value="Next">
-                                </fieldset>
-                                <fieldset style="margin-left: 2px;">
+                                <input class="col-md-7"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text" required> -->
+
+              <div class="clearfix"></div>
+              <label class="col-md-4">Budget: </label>
+              <input class="col-md-5" [(ngModel)]="budget" formControlName="budget" name="budget" placeholder="Budget" type="number">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['budget'].invalid && commissionerform.controls['budget'].touched">Budget is required</div>
+              <div class="clearfix"></div>
+              <label class="col-md-4" style="margin-top:18px;">District Codes: </label>
+
+              <div style="margin-left:240px; width: 45%;margin-bottom:38px;">
+                <ng-multiselect-dropdown [placeholder]="'Select District Codes'" [data]="dropdownList"
+                  [(ngModel)]="selectedpostCode" formControlName="selectedpostCode" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+                <div class="text text-danger"
+              *ngIf="commissionerform.controls['selectedpostCode'].invalid && commissionerform.controls['selectedpostCode'].touched">District Code is required</div>
+              </div>
+              <input class="next_btn btn btn-primary pull-right" [disabled]="(!name || !budget ||!selectedpostCode)"
+                (click)="step1Details(name,budget,selectedpostCode)" name="next" type="button" value="Next">
+              <!-- [disabled]="(!name || !email || !phone || !budget ||!selectedpostCode)"  -->
+              <!-- step1Details(name,email,phone,budget,selectedpostCode) -->
+            </fieldset>
+
+            <fieldset style="margin-left: 2px;">
+              <div class="clearfix"></div>
+              <label class="col-md-2">Email: </label>
+              <input class="col-md-7"  [(ngModel)]="email" formControlName="email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" placeholder="Email" type="text" required>
+              
+                  <div class="text text-danger"
+                  *ngIf="commissionerform.controls['email'].invalid && commissionerform.controls['email'].touched">Please enter a valid Email</div>  
+                
+              <div class="clearfix"></div>
+              <label class="col-md-2">Phone: </label>
+              <input class="col-md-7"  [(ngModel)]="phone" formControlName="phone" name="phone" placeholder="Phone" type="tel">
+              <div class="text text-danger" *ngIf="commissionerform.controls['phone'].errors.required">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['phone'].errors.required && (commissionerform.controls['phone'].touched || commissionerform.controls['phone'].dirty)">
+              Phone is required
+              </div>
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['phone'].errors.maxlength">
+              Phone number should be only in number format
+            </div>
+          </div>
+              <div class="clearfix"></div>
+              
+              <div class="clearfix"></div>
+              <label class="col-md-2">Street No: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="streetNumber" formControlName="streetNumber" placeholder="Street Number"
+                type="text">
+                <div class="text text-danger"
+              *ngIf="commissionerform.controls['streetNumber'].invalid && commissionerform.controls['streetNumber'].touched">Street Number is required</div>
+              <div class="clearfix"></div>
+              <label class="col-md-2">Street Name1: </label>
+              <input class="col-md-7" name="strename" [(ngModel)]="strname1" formControlName="strname1" placeholder="Street Name" type="text">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['strname1'].invalid && commissionerform.controls['strname1'].touched">Street Name is required</div>
+              <div class="clearfix"></div>
+
+              <!-- <label class="col-md-2">Street Name2: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="strname2" placeholder="Street Name2" type="text">
+              <div class="clearfix"></div> -->
+
+              <label class="col-md-2">City: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="city" formControlName="city" placeholder="City" type="text">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['city'].invalid && commissionerform.controls['city'].touched">City is required</div>
+
+              <!-- <div class="clearfix"></div>
+              <label class="col-md-2">Country: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="country" placeholder="Country" type="text"> -->
+
+              <div class="clearfix"></div>
+              <label class="col-md-2">District: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="district" formControlName="district" placeholder="District" type="text">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['district'].invalid && commissionerform.controls['district'].touched">District  is required</div>
+              
+              <!-- <div class="clearfix"></div>
+              <label class="col-md-2">Region: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="region" placeholder="Region" type="text">
+              <div class="clearfix"></div>
+              <label class="col-md-2">State: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="state" placeholder="State" type="text"> -->
+
+              <div class="clearfix"></div>
+              <label class="col-md-2">District Codes: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="postCode" formControlName="postCode" placeholder="District Codes" type="text">
+              <div class="text text-danger"
+              *ngIf="commissionerform.controls['postCode'].invalid && commissionerform.controls['postCode'].touched">District Code is required</div>
+              <br>
+              <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+              <!-- <input class="next_btn btn btn-primary" name="next" type="button"
+                [disabled]='(!streetNumber || !strname1 || !city || !district || !zipcode)'
+                (click)="step2Details(streetNumber,strname1,city,district,zipcode)"
+                value="Next">
+                <br> -->
+                <input class="submit_btn btn btn-primary" [disabled]='(!email || !phone || !streetNumber || !strname1 || !city || !district || !postCode)'  type="submit" (click)="step2Details(email,phone,streetNumber,strname1,city,district,postCode);submitSponsorDetails(commissionerform)" data-dismiss="modal" type="Submit">
+                <!-- (!streetNumber || !strname1 || !strname2 ||!city || !country || !district || !region ||!state || !zipcode) -->
+                <!-- step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode) -->
+
+            </fieldset>
+            <!-- <fieldset style="margin-left: 2px;">
                              
                                 <p class="subtitle">Step 3</p>
                                 <label class="col-md-3">Ethenic Group: </label>
@@ -244,300 +320,435 @@
                                       <input class="submit_btn btn btn-primary" *ngIf="ruleDetails" type="submit" (click)="submitSponsorDetails()" data-dismiss="modal" value="Submit">
                               
                                     
-                                </fieldset>
-
-                                </div>
-                                </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
+                                </fieldset> -->
+           
+           </form>
           </div>
-          
         </div>
       </div>
- 
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div> -->
+    </div>
 
+  </div>
+</div>
 
+<!--------Modal ADD Rule Details-->
 
-    
-      <!-- Modal address details -->
-     
-<div id="addressDetails" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-      
-          <!-- Modal content-->
-          <div class="modal-content" style=" width: 119%;">
-            <div class="modal-header">
-              <h4 class="modal-title">Address Details</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            
-            </div>
-            <div class="modal-body">
-                   <table class="table table-responsive">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Street No.</th>
-                                <th>Street Name1</th>
-                                <th>Street Name2</th>
-                                <th>City</th>
-                                <th>Country</th>
-                                <th>District</th>
-                                <th>Region</th>
-                                <th>State</th>
-                                <th>Zipcode</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor='let item of addressData let i=index'>
-                                <td>{{i+1}}</td>
-                                <td>
-                                  <div *ngIf="!item.isEditable1">{{item.streetNumber}}</div>
-                                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetNumber">
-                                </td>
-                                <td>
-                                  <div *ngIf="!item.isEditable1">
-                                  {{item.streetName1}}
-                                  </div>
-                                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetName1">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.streetName2}}
-                                     </div>
-                                     <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetName2">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.city}}
-                                     </div>
-                                     <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.city">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.country}}
-                                     </div>
-                                     <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.country">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.district}}
-                                    </div>
-                                    <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.district">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.region}}
-                                    </div>
-                                    <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.region">
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                  {{item.state}}
-                                     </div>
-                                     <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.state">
-
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable1">
-                                     {{item.zipcode}}
-                                     </div>
-                                     <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.zipcode">
-                                </td>
-                                <td>
-                                    <button class="btn btn-info btn-sm" (click)="item.isEditable1=!item.isEditable1" *ngIf="!item.isEditable1">Edit</button>
-                                     <button  class="btn btn-success btn-sm" *ngIf="item.isEditable1" (click)="item.isEditable1=!item.isEditable1;updateSelectedAddress(item)">Save</button>
-                                </td>
-                              </tr>
-                              <tr>
-                              
-                            </tbody>
-                          </table>
-                         
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-   
-       <!-- Modal rule details -->
-<div id="ruleDetails" class="modal fade" role="dialog">
-        <div class="modal-dialog modal-lg">
-      
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Rule Details</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            
-            </div>
-            <div class="modal-body">
-               
-                    <table class="table">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                               
-                                <th>Gender</th>
-                                <th>Min Age</th>
-                                <th>Max Age</th>
-                                <th>Ethenics Name</th>
-                                <th>Test List</th>
-                                <th>Action</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor='let item of rulesData let i=index'>
-
-                                <td>{{i+1}}</td>
-                                <td>
-                                    <div *ngIf="!item.isEditable2">
-                                  {{item.gender}}
-                                    </div>
-                                   
-                                    <select class="form-control" *ngIf="item.isEditable2" [(ngModel)]="item.gender" multiple style="height: 60px;">
-                                        <option value="Man">Man </option>
-                                        <option value="Women">Woman</option>
-                                        <option value="Transman ">Transman </option>
-                                        <option value="Transwoman ">Transwoman </option>
-                                      </select>
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable2">
-                                    {{item.minAgeGroup}}
-                                    </div>
-                                    <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.minAgeGroup">  
-                                </td>
-                                <td>
-                                    <div *ngIf="!item.isEditable2">
-                                    {{item.maxAgeGroup}}
-                                    </div>
-                                    <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.maxAgeGroup">  
-                                </td>
-                                <td>
-                                  <div>
-                                 
-                                      <select [(ngModel)]="item.ethnicGroupId">
-                                          <option *ngFor="let c of ethenicData" [ngValue]="c.ethnicGroupId">{{c.ethnicName}}</option>
-                                        </select>
-                                  </div>
-                                </td>
-                                <td>
-                                    <select [(ngModel)]="item.testCodeId">
-                                        <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                                    </select>
-                                    
-                                </td>
-                                <td>
-                                    <button class="btn btn-info btn-sm" (click)="item.isEditable2=!item.isEditable2" *ngIf="!item.isEditable2">Edit</button>
-                                    <button  class="btn btn-success btn-sm" *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2;updateSelectedRule(item)">Save</button>
-                                </td>
-
-
-                              </tr>
-                            </tbody>
-                          </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-       <!-- Modal code details -->
-<div id="codeDetails" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-      
-          <!-- Modal content-->
-          <div class="modal-content">
-            <div class="modal-header">
-              <h4 class="modal-title">Modal Header</h4>
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-            
-            </div>
-            <div class="modal-body">
-            
-                    <table class="table">
-                            <thead>
-                              <tr>
-                                <th>#</th>
-                                <th>Test Name</th>
-                                <th>Test Code</th>
-                                <th>Test Description</th>
-                                <th>IsDefault</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor='let item of testCodeDetails let i=index'>
-                                <td>{{i+1}}</td>
-                                <td>{{item.testName}}</td>
-                                <td>{{item.testCode}}</td>
-                                <td>{{item.description}}</td>
-                                <td>{{item.isDefalut}}</td>
-            
-                              </tr>
-                            </tbody>
-                          </table>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-            </div>
-          </div>
-      
-        </div>
-      </div>
-      
-      
-      <!-- Modal -->
-<div id="postCodeslist" class="modal fade" role="dialog">
-    <div class="modal-dialog modal-lg">
-  
-      <!-- Modal content-->
+<div class="modal" id="rulemyModal">
+    <div class="modal-dialog">
       <div class="modal-content">
+
+        <!-- Modal Header -->
         <div class="modal-header">
-            <h4 class="modal-title">Postal Code List</h4>
+          <h4 class="modal-title">Add Rule</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
+        <form [formGroup]="addRuleform">
+        <!-- Modal body -->
         <div class="modal-body">
-        
-            <table class="table">
+          <!-- <p *ngFor="let item of rulesData">{{item.sponsor_id}}</p> -->
+          <p [hidden]="true">{{sponsorId}}</p>
+            <label class="col-md-3">Ethenic Group: </label>
+          
+            <select [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" class="col-md-7">
+                <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+            </select>
+            <div class="text text-danger" *ngIf="addRuleform.controls['selectedEthenicName'].invalid && addRuleform.controls['selectedEthenicName'].touched">
+              Please select Ethenic Group
+            </div>
+            <div class="clearfix"></div>
+            <label class="col-md-3">Gender:</label>
+            
+            <select class="col-md-7" [(ngModel)]="selectedGender" formControlName="selectedGender"  multiple style="height: 60px;">
+                <option value="Man">Man </option>
+                <option value="Women">Woman</option>
+                <option value="Transman ">Transman </option>
+                <option value="Transwoman ">Transwoman </option>
+              </select>
+              <div class="text text-danger" *ngIf="addRuleform.controls['selectedGender'].invalid && addRuleform.controls['selectedGender'].touched">
+                  Please select Gender
+                </div>
+
+              <label class="col-md-3">Test List:</label>  
+            <select [(ngModel)]="selectedTestName" formControlName="selectedTestName" class="col-md-7">
+                <option *ngFor="let c of testCodeData" [ngValue]="c">{{c.testName}}</option>
+            </select>
+            <div class="text text-danger" *ngIf="addRuleform.controls['selectedTestName'].invalid && addRuleform.controls['selectedTestName'].touched">
+                Please select Test
+              </div>
+
+        <div class="clearfix"></div>
+      <label class="col-md-3">Min Age: </label>
+      <input class="col-md-7" name="minage"  [(ngModel)]="minage" formControlName="minage" placeholder="Min Age" type="text">
+      <div class="text text-danger" *ngIf="addRuleform.controls['minage'].invalid && addRuleform.controls['minage'].touched">
+          Minimum Age is Required
+        </div>
+      <div class="clearfix"></div>
+      <label class="col-md-3">Max Age: </label>
+      <input class="col-md-7" name="maxage"  [(ngModel)]="maxage" formControlName="maxage" placeholder="Max Age" type="text">
+      <div class="text text-danger" *ngIf="addRuleform.controls['maxage'].invalid && addRuleform.controls['maxage'].touched">
+          Maximum Age is Required
+        </div>
+      <div class="clearfix"></div>
+      <div class="col-md-10">
+      <button type="button" [disabled]="(!selectedEthenicName || !selectedGender || !minage || !maxage || !selectedTestName)"  (click)="ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId)" class="btn btn-success pull-right">Add Rules</button>
+      </div>
+      <div class="clearfix"></div>
+
+ <br><br><hr>
+
+       <h4 class="text-center text-primary text-center"  *ngIf="ruleDetails"> Rule Details</h4>
+
+        <table class="table" *ngIf="ruleDetails">
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Postal Code</th>
-                    <th>Action</th>
+                    <th>Gender</th>
+                    <th>Ethenic Name</th>
+                    <th>Test Code Name</th>
+                    <th>Min Age</th>
+                    <th>Max Age</th>
+                    <th>Delete</th>
+            
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let item of testCodeList">
-                    <td>
-                      <div>{{item.id}}</div>
-                    </td>
-                    <td>
-                      <div *ngIf="!item.isEditable">{{item.postalCode}}</div>
-                      <select [(ngModel)]="selectedpostCode" class="form-control"  *ngIf="item.isEditable">
-                          <option *ngFor="let c of dropdownList" [ngValue]="c">{{c.postalCode}}</option>
-                      </select>
-                    </td>
-                    <td>
-                        <button class="btn btn-info btn-sm" (click)="item.isEditable=!item.isEditable;editPostalCode(item.postalCode)" *ngIf="!item.isEditable">Edit</button>
-                        <button  class="btn btn-success btn-sm" *ngIf="item.isEditable" (click)="item.isEditable=!item.isEditable;updateSelectedPostalCode(selectedpostCode)">Save</button>
-                    </td>
+                  <tr *ngFor="let item of ruleList">
+                    <td>{{item.gender}}</td>
+                    <td>{{item.ethnicName}}</td>
+                    <td>{{item.testName}}</td>
+                    <td>{{item.maxAgeGroup}}</td>
+                    <td>{{item.minAgeGroup}}</td>
+                    <td (click)="delete(in)"><i class="fa fa-trash"></i></td>
                   </tr>
+    
                 </tbody>
+                <button (click)="ruletable2();addRuleform.reset()" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
               </table>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
+        </form>
+  
+        <!-- Modal footer -->
+        <!-- <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div> -->
+  
       </div>
+    </div>
+  </div>
 
 
+<!--------Modal ADD Rule Details-->
+  
+<!-- Modal address details -->
 
-      
+<div id="addressDetails" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Contact Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+      <div class="modal-body">
+        <table class="table table-responsive">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Street No.</th>
+              <th>Street Name1</th>
+              <!-- <th>Street Name2</th> -->
+              <th>City</th>
+              <!-- <th>Country</th> -->
+              <th>District</th>
+              <!-- <th>Region</th>
+              <th>State</th> -->
+              <th>District Codes</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of addressData let i=index'>
+              <td>{{i+1}}</td>
+              <td>
+                  <div *ngIf="!item.isEditable1">{{item.email}}</div>
+                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.email">
+              </td>
+              <td>
+                  <div *ngIf="!item.isEditable1">{{item.phone}}</div>
+                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.phone">
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable1">{{item.streetNumber}}</div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetNumber">
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.streetName1}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetName1">
+              </td>
+              <!-- <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.streetName2}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.streetName2">
+              </td> -->
+              <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.city}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.city">
+              </td>
+              <!-- <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.country}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.country">
+              </td> -->
+              <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.district}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.district">
+              </td>
+              <!-- <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.region}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.region">
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.state}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.state">
+
+              </td> -->
+              <td>
+                <div *ngIf="!item.isEditable1">
+                  {{item.postCode}}
+                </div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.postCode">
+              </td>
+              <td>
+                <button class="btn btn-info btn-sm" (click)="item.isEditable1=!item.isEditable1"
+                  *ngIf="!item.isEditable1">Edit</button>
+                <button class="btn btn-success btn-sm" *ngIf="item.isEditable1"
+                  (click)="item.isEditable1=!item.isEditable1;updateSelectedAddress(item)">Save</button>
+              </td>
+            </tr>
+            <tr>
+
+          </tbody>
+        </table>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Modal rule details -->
+<div id="ruleDetails" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Rule Details</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+
+              <th>Gender</th>
+              <th>Min Age</th>
+              <th>Max Age</th>
+              <th>Ethenics Name</th>
+              <th>Test List</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let item of rulesData let i=index'>
+
+              <td>{{i+1}}</td>
+              <td>
+                <div *ngIf="!item.isEditable2">
+                  {{item.gender}}
+                </div>
+
+                <select class="form-control" *ngIf="item.isEditable2" [(ngModel)]="item.gender" multiple
+                  style="height: 60px;">
+                  <option value="Man">Man </option>
+                  <option value="Women">Woman</option>
+                  <option value="Transman ">Transman </option>
+                  <option value="Transwoman ">Transwoman </option>
+                </select>
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable2">
+                  {{item.minAgeGroup}}
+                </div>
+                <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.minAgeGroup">
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable2">
+                  {{item.maxAgeGroup}}
+                </div>
+                <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.maxAgeGroup">
+              </td>
+              <td>
+                <div>
+                  <select [(ngModel)]="item.ethnicGroupId" style="height: 60px;" multiple>
+                    <option *ngFor="let c of ethenicData" [ngValue]="c.ethnicGroupId">{{c.ethnicName}}</option>
+                  </select>
+                </div>
+              </td>
+              <td>
+                  <!-- <div *ngIf="!item.isEditable2">
+                      <span *ngFor="let c of testCodeData">{{c.testName}}</span>
+                    </div> -->
+                <!-- <select [(ngModel)]="item.testCodeId" *ngIf="item.isEditable2" multiple>
+                  <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
+                </select> -->
+
+                <select [(ngModel)]="item.testCodeId" style="height: 60px;" multiple >
+                    <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
+                  </select>
+
+              </td>
+              <td>
+                  <div *ngIf="!item.isEditable2">
+                      {{item.status}}
+                    </div>
+                    <select *ngIf="item.isEditable2"  [(ngModel)]="item.status">
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
+                  <!-- <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.minAgeGroup"> -->
+              </td>
+              <td>
+                <button class="btn btn-info btn-sm" (click)="item.isEditable2=!item.isEditable2"
+                  *ngIf="!item.isEditable2">Edit</button>
+                <button class="btn btn-success btn-sm" *ngIf="item.isEditable2"
+                  (click)="item.isEditable2=!item.isEditable2;updateSelectedRule(item)">Save</button>
+              </td>
+
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+<!-- Modal code details -->
+<div id="codeDetails" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">Modal Header</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Test Name</th>
+              <th>Test Code</th>
+              <th>Test Description</th>
+              <th>IsDefault</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of testCodeDetails;let i=index">
+              <td>{{i+1}}</td>
+              <td>{{item.testName}}</td>
+              <td>{{item.testCode}}</td>
+              <td>{{item.description}}</td>
+              <td>{{item.isDefalut}}</td>
+
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div id="postCodeslist" class="modal fade" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title">District Codes List</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>District Codes</th>
+              <!-- <th>Action</th> -->
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of testCodeList">
+              <td>
+                <div>{{item.id}}</div>
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable">{{item.postalCode}}</div>
+                <select [(ngModel)]="selectedpostCode" class="form-control" *ngIf="item.isEditable">
+                  <option *ngFor="let c of dropdownList" [ngValue]="c">{{c.postalCode}}</option>
+                </select>
+              </td>
+              <!-- <td>
+                <button class="btn btn-info btn-sm"
+                  (click)="item.isEditable=!item.isEditable;editPostalCode(item.postalCode)"
+                  *ngIf="!item.isEditable">Edit</button>
+                <button class="btn btn-success btn-sm" *ngIf="item.isEditable"
+                  (click)="item.isEditable=!item.isEditable;updateSelectedPostalCode(selectedpostCode)">Save</button>
+              </td> -->
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>

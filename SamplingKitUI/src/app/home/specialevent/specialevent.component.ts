@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DataService } from 'src/app/services/data.service';
 import { Router, ActivatedRoute } from '@angular/router';
-
+import {FormControl,FormGroup,Validators,FormBuilder} from '@angular/forms'
 
 @Component({
   selector: 'app-specialevent',
@@ -10,15 +10,17 @@ import { Router, ActivatedRoute } from '@angular/router';
   styleUrls: ['./specialevent.component.scss']
 })
 export class SpecialeventComponent implements OnInit {
+  specialEventForm:FormGroup;
   updatfrm : boolean= false;
   addfrm: boolean= false;
   data: NgForm;
   eventData: any;
   peventName:any;
   id: number;
+  eventId: any;
 
   constructor(private dataservice:DataService, public router: Router, 
-    private route: ActivatedRoute) { 
+    private route: ActivatedRoute,private fb:FormBuilder) { 
    
     this.route.params.subscribe(params => {
       this.id = +params['id'];
@@ -27,26 +29,30 @@ export class SpecialeventComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.specialEventForm=this.fb.group({
+      'eventName':[null,Validators.required],
+      })
+
     this.getAllspecialEvent()
-    // this.getEventById(this.id);
   }
-  add(regForm){
-    regForm.reset();
-    this.updatfrm= false;
+  add(){
+    //regForm.reset();
     this.addfrm= true;
+    this.updatfrm= false;
+    
   }
   // Save Special Event
-  saveEvent(regForm:NgForm){
-    this.dataservice.postspecialEvent(regForm).subscribe((res)=>{
-      console.log("savind data is",res);
+  saveEvent(formData:any){
+    this.dataservice.postspecialEvent(formData).subscribe((res)=>{
       this.getAllspecialEvent();
     })
   }
 
   //Update Special Event
- updateEvent(){
-   var dt = { id:this.data['id'], eventName: this.peventName}
-   this.dataservice.updateEvents(dt).subscribe((res)=>{
+ updateEvent(formData:any){
+   formData.id=this.eventId;
+  // var dt = { id:this.data['id'], eventName: this.peventName}
+   this.dataservice.updateEvents(formData).subscribe((res)=>{
      console.log(res)
      this.getAllspecialEvent();
    })
@@ -71,13 +77,15 @@ export class SpecialeventComponent implements OnInit {
     })
   }
   editSpecialevent(data){
+    this.eventId=data.id;
      this.updatfrm= true;
      this.addfrm= false;
-     this.data =data
-     console.log("hfdhf",this.data)
-   //this.peventName = this.data.eventName
-    this.id = this.data['id'];
-   this.peventName = data['eventName'];
+     this.specialEventForm.setValue({
+      'eventName':data.eventName,
+     })
+   //  this.data =data
+    // this.id = this.data['id'];
+   //  this.peventName = data['eventName'];
     
 
    }

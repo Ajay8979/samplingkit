@@ -1,3 +1,4 @@
+
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {AuthService } from '../../services/auth.service'
@@ -41,12 +42,11 @@ export class UsersComponent implements OnInit {
       this.profileForm=this.fb.group({
         'firstName':[null,Validators.required],
         'lastName':[null,Validators.required],
-        'emailId':[null,Validators.required],
+        'emailId':['',Validators.compose([Validators.required,Validators.email])],
         'role':[null,Validators.required],
-        'mobileNum':[null,Validators.required],
+        'mobileNum':['',Validators.compose([Validators.required,Validators.pattern('[6-9]\\d{9}')])],
         'userName':[null,Validators.required],
-        'sponsorId':[null],
-        'passWord':[null,Validators.required],
+        'sponsorId':[null]
         
          })
   }
@@ -64,7 +64,7 @@ export class UsersComponent implements OnInit {
   }
 
   save(formData:any){
-    debugger;
+  
       this.dataservice.postUsers(formData).subscribe(data=>{
         console.log("adding data",data)
         this.getUser();
@@ -86,30 +86,11 @@ export class UsersComponent implements OnInit {
       'sponsorId':data.sponsorId,
       'firstName':data.firstName,
       'lastName':data.lastName,
-      'userName':data.username,
-      'password':data.password
+      'userName':data.username
      
       })
   }
-  /*
-  editForm(data) {
-    console.log("updating", data)
-    this.addfrm = false;
-    this.updatfrm = true;
-
-    this.updata = data;
-    this.pid = this.updata.id;
-    this.pfname = this.updata.firstName;
-    this.plname = this.updata.lastName;
-    this.pemail = this.updata.emailId;
-    this.prole = this.updata.role[0];
-    this.pmobileno = this.updata.mobileNum;
-    this.puserName = this.updata.userName;
-    this.psponsorId=this.updata.sponsorId;
-
-  }
-*/
-
+  
   deleteData(id) {
     this.dataservice.deleteUsers(id).subscribe(data => {
       console.log("deleting data",data)
@@ -118,16 +99,16 @@ export class UsersComponent implements OnInit {
   }
 
   updateValue(data) {
-    var dt = { 
-      id: this.pid, 
-      firstName: this.pfname,
-       lastName: this.plname, 
-       emailId: this.pemail,
-       mobileNum: this.pmobileno,
-       userName: this.puserName,
-       sponsorId: this.psponsorId
-       }
-   this.dataservice.updateUsers(dt).subscribe(data => {
+    // var dt = { 
+    //   id: this.pid, 
+    //   firstName: this.pfname,
+    //    lastName: this.plname, 
+    //    emailId: this.pemail,
+    //    mobileNum: this.pmobileno,
+    //    userName: this.puserName,
+    //    sponsorId: this.psponsorId
+    //    }
+   this.dataservice.updateUsers(data).subscribe(data => {
      console.log("updated",data);
       this.getUser();
       // this.addfrm = true

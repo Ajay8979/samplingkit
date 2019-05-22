@@ -8,6 +8,9 @@ declare var $: any;
   styleUrls: ['./sponsor-user.component.scss']
 })
 export class SponsorUserComponent implements OnInit {
+
+  addRuleform:FormGroup;
+  commissionerform:FormGroup;
   myForm: FormGroup;
   ruleDetails: boolean =false;
   testDetailsFlag:boolean=false;
@@ -26,8 +29,8 @@ export class SponsorUserComponent implements OnInit {
    testDesc:any;
    isDefault:any;
    name:any;
-   email:any;
-   phone:any;
+  //  email:any;
+  //  phone:any;
    budget:any;
    postcode:any;
    streetNumber:any;
@@ -38,7 +41,7 @@ export class SponsorUserComponent implements OnInit {
    district:any;
    region:any;
    state:any;
-   zipcode:any;
+   postCode:any;
   ethenicData: any=[];
 
   eventdetail:boolean=false;
@@ -56,13 +59,33 @@ export class SponsorUserComponent implements OnInit {
   dropdownSettings = {};
   postalCodeName: any;
   selectedpostCode: any;
-  sponsorId: any;
+  public sponsorId: any;
   updateSponsor:any={};
  
 
 
 
   constructor(private fb: FormBuilder,private DataService:DataService) {
+    this.addRuleform = this.fb.group({
+      selectedEthenicName:  ['',Validators.required],
+      selectedGender:  ['',Validators.required],
+      selectedTestName:  ['',Validators.required],
+      minage:  ['',Validators.required],
+      maxage:  ['',Validators.required]
+    })
+    this.commissionerform=this.fb.group({
+      name:   ['',Validators.required],
+      budget: ['',Validators.required],
+      selectedpostCode: ['',Validators.required],
+      email: ['',Validators.required],
+      phone: ['',[Validators.required,Validators.maxLength(11)]],
+      streetNumber: ['',Validators.required],
+      strname1: ['',Validators.required],
+      city: ['',Validators.required],
+      district: ['',Validators.required],
+      postCode: ['',Validators.required]
+
+    })
     this.getSponsorList();
   
    }
@@ -75,12 +98,15 @@ export class SponsorUserComponent implements OnInit {
      this.sponsorId=id;
      this.DataService.getSponsorUpdate(id).subscribe(data=>{
       this.updateSponsor=data.resultData;
+      console.log("Budget Details",this.updateSponsor.budget);
+      console.log("Gender Details",this.updateSponsor.name);
       this.selectedItems =  this.updateSponsor.postalCodes;
      });
     this.multiplepostcode();
    }
-   updateSponsorDetails(data){
-    this.DataService.updateSponsorDetails(data,this.sponsorId).subscribe(data=>{
+   updateSponsorDetails(data,selectedItems){
+    var obj={"name":data.name,"budget":data.budget,postalCodes:selectedItems}
+    this.DataService.updateSponsorDetails(obj,this.sponsorId).subscribe(data=>{
 
       this.getSponsorList();
      });
@@ -95,48 +121,83 @@ export class SponsorUserComponent implements OnInit {
       this.SponsorsData=data.resultData;
     })
   }
-   ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName){
-     
+   ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId){
+    this.sponsorId=sponsorId;
     var gender=selectedGender.toString();
-    var tableObj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-     this.ruleList.push(tableObj)
-
+    var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+    //var tableObj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+    var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.tectCodeId,ethnicGroupId:selectedEthenicName.ethnicGroupId,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+     this.ruleList.push(tableObj);
+     console.log(this.ruleList);
+     console.log(ruleobj);
+  
       this.ruleDetails=true;
+      gender="";minage="";maxage="";selectedTestName="";selectedEthenicName="";
    }
-
-   step1Details(name,email,phone,budget,postcode){
+ruletable2(){
+  this.DataService.createRuleDetails(this.ruleList).subscribe(data=>{
+    this.addressList=[];
+  this.getSponsorList();
+  //this.ruleList="";
+  
+  })
+}
+delete(x){
+//let length=this.ruleList.length;
+this.ruleList.splice(x, 1);
+this.getRulesDetails(x);
+}
+// step1Details(name,email,phone,budget,postcode){
+   step1Details(name,budget,postcode){
     this.postcode=postcode;
-      this.obj1={name:name,email:email,phone:phone,budget:budget}
+     // this.obj1={name:name,email:email,phone:phone,budget:budget}
+     this.obj1={name:name,budget:budget}
     // this.SponsorsData.push(obj);
 
-   }
-   step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode){
-     this.obj2={streetNumber:streetNumber,streetName1:strname1,streetName2:strname2,city:city,country:country,district:district,region:region,state:state,zipcode:zipcode}
+   
+  }
+  //step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode)
+  //this.obj2={streetNumber:streetNumber,streetName1:strname1,streetName2:strname2,city:city,country:country,district:district,region:region,state:state,zipcode:zipcode}
+   step2Details(email,phone,streetNumber,strname1,city,district,postCode){
+     this.obj2={email:email,phone:phone,streetNumber:streetNumber,streetName1:strname1,city:city,district:district,postCode:postCode}
     this.addressList.push(this.obj2);
-    
+
+    // email="";phone="";streetNumber="";strname1="";city="";district="";postCode="";
    
      //  this.addressList.push(obj);
     }
-   submitSponsorDetails(){
+   submitSponsorDetails(commissionerform){
+    
     for(var i = 0; i < this.ruleList.length; i++) {
       delete this.ruleList[i]['testName'];
       delete this.ruleList[i]['ethnicName'];
   }
-    this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postalCodes:this.postcode,addressList: this.addressList,ruleList:this.ruleList}
+  //this.obj1={name:this.name,email:this.email,phone:this.phone,budget:this.budget,postalCodes:this.postcode,addressList: this.addressList,ruleList:this.ruleList}
+    this.obj1={name:this.name,budget:this.budget,postalCodes:this.postcode,addressList: this.addressList}
     console.log(this.obj1);
     this.DataService.createSponsorDetails(this.obj1).subscribe(data=>{
+      
+      this.name="";
+      this.budget="";
+      this.postcode="";
       this.addressList=[];
+      
     this.getSponsorList();
     })
+    commissionerform.reset();
    }
    getAddressDetails(id){
      this.DataService.getAddressDetails(id).subscribe(data=>{
        this.addressData=data.resultData;
+       console.log("Address Details",this.addressData);
      })
    }
    getRulesDetails(id){
+     this.sponsorId=id;
     this.DataService.getRulesDetails(id).subscribe(data=>{
       this.rulesData=data.resultData;
+      // this.sponsorId=this.rulesData.sponsor_id;
+      console.log("Rules Data",  this.rulesData);
   })
 
   this.DataService.editEthenicData().subscribe(data=>{
@@ -192,6 +253,11 @@ export class SponsorUserComponent implements OnInit {
     onSelectAll(items: any) {
       console.log(items);
     }
+//post rule data
+postRuleDetails(item){
+  var ruledata={}
+}
+
 
     //editPostalCode(postalCodeName){
       //this.selectedpostCode=postalCodeName;

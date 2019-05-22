@@ -16,6 +16,7 @@ import { DataService } from './services/data.service';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +30,6 @@ import { HashLocationStrategy, LocationStrategy } from '@angular/common';
     HomeModule,
     IndexModule,
     HttpClientModule,
-   
     RouterModule.forRoot(routes,{ useHash: true }),
 
   ],

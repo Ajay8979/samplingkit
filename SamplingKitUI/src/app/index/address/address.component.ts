@@ -35,10 +35,28 @@ export class AddressComponent implements OnInit {
   });
   });
 
-  this.users = this.fb.group({
+  $(document).ready(function() {
+        
+    $('.text10').click(function(){
+    $(".first_box").toggle();
+    });  
+    $('.text11').click(function(){
+    $(".second_box").toggle();
+    }); 
+    $('.text12').click(function(){
+    $(".third_box").toggle();
+    }); 
+
+  });
+
+  this.users = this.fb.group
+  ({
   firstName: ['',Validators.required],
   lastName : ['',Validators.required],
- 
+  dob : ['',Validators.required],
+  notificationPhone : ['',Validators.required],
+  notificationEmail : ['',[Validators.required,Validators.email]],
+  lastResortLetter : ['',Validators.required]
   });
 
  
@@ -47,22 +65,15 @@ export class AddressComponent implements OnInit {
     'password': [null,Validators.required]
   });
 
+  let someobj=this.sends.seconddata;
 
-  let params:any = this.activatedRoute.snapshot.params; 
+  this.users.controls.firstName.setValue(someobj['firstName']);
+  this.users.controls.lastName.setValue(someobj['lastName']);
+  this.users.controls.dob.setValue(someobj['dob']);
+  this.users.controls.notificationPhone.setValue(someobj['notificationPhone']);
+  this.users.controls.notificationEmail.setValue(someobj['notificationEmail']);
+  this.users.controls.lastResortLetter.setValue(someobj['lastResortLetter']);
 
-  if(params.id==1)
-  {
-      let someobj=this.sends.seconddata;
-      this.users.controls.firstName.setValue(someobj['firstName']);
-      this.detail="submit";
-  } 
-  else
-  {
-      let someobj=this.sends.seconddata;
-      this.users.controls.firstName.setValue(someobj['firstName']);
-      this.users.controls.lastName.setValue(someobj['lastName']);
-  } 
-  
   }
 
 
@@ -79,20 +90,15 @@ export class AddressComponent implements OnInit {
     this.contact=false;
     let requestobj={};
     requestobj=this.sends.seconddata;
+    requestobj['dob']=this.users.value.dob;
     requestobj['firstName']=this.users.value.firstName;
     requestobj['lastName']=this.users.value.lastName;
     requestobj['address']=this.users.value.address;
+    requestobj['notificationEmail']=this.users.value.notificationEmail;
+    requestobj['notificationPhone']=this.users.value.notificationPhone;
+    requestobj['lastResortLetter']=this.users.value.lastResortLetter;
     this.sends.seconddata=requestobj;
-    this.router.navigate(['result']);
-
-    if(this.detail=="submit")
-    {
-      this.router.navigate(['edit']);
-    }
-    else
-    {
-    this.router.navigate(['result']);
-    } 
+    this.router.navigate(['edit']);
   }
 
   first()
@@ -106,6 +112,11 @@ export class AddressComponent implements OnInit {
     this.addressDetails=data.addresses;
     console.log(this.addressDetails)
   })
+  }
+
+  back()
+  {
+    this.router.navigate(['moredetail']);
   }
 
   viewResult()

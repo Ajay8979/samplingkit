@@ -14,8 +14,6 @@ export class FinalComponent implements OnInit {
   firstname: any;
   id: string;
 
-  
-
   constructor(private sends:IndexService,private router:Router) { }
 
   ngOnInit() 
@@ -26,10 +24,13 @@ export class FinalComponent implements OnInit {
   }
 
   
-  viewResult(){
+  viewResult()
+  {
     this.router.navigate(['viewresults']);
   }
-  LoginPage(){
+
+  LoginPage()
+  {
     this.router.navigate(['loginpageaction']);
   }
 

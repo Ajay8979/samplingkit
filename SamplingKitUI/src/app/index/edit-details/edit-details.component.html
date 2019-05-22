@@ -138,19 +138,19 @@
   <!--Offcanvas menu area end-->
 
 
-  <div class="about_section padt5">
+  <div class="about_section padt2">
       <div class="container">
     
         <h2 class="heading_top">please check the details entered</h2>
     
-        <div class="row padt5">
+        <div class="row padt2">
     
           <div class="col-lg-4 col-md-4">
     
             <div class="address address_5">
     
                <h4 class="link_2"><span>1</span>Personal Details
-                <a  [routerLink]="['/address',id]">(edit)</a>
+                <a  [routerLink]="['/address']">(edit)</a>
                 </h4>
               <ul>
                 <li>Name:{{firstname}}</li>
@@ -173,7 +173,7 @@
               </ul>
     
               <h4 class="link_2"><span>1</span>Personal Details
-                <a  [routerLink]="['/result',id]">(edit)</a>
+                <a  [routerLink]="['/address']">(edit)</a>
               </h4>
               <ul>
                 <li>{{mobile}}</li>
@@ -201,7 +201,6 @@
                 <li>Sometimes we work with external agencis such as public Health England or selected universities in the UK
                   on research to improve HIV services.If you would be happy to receive an invitation in research please tick
                   thi box</li>
-                
               </ul>
     
               <h4><span>7</span>Agree & Consent</h4>
@@ -223,8 +222,8 @@
         </div>
     
         <div class="buttons">
-         <button class="btn pull-left" [routerLink]="['/result',value]"> <i class="fa fa-arrow-circle-left"></i> Back</button>
-          <button class="btn pull-right" (click)="send()">Finish</button>
+         <button class="btn pull-left" [routerLink]="['/address']"> <i class="fa fa-arrow-circle-left"></i> Back</button>
+          <button class="btn pull-right" (click)="send()"> <span *ngIf="finish">Finish</span>  &nbsp; <span *ngIf="spin" class="fa fa-spinner fa-spin"></span> </button>
         </div>
     
       </div>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DataService } from 'src/app/services/data.service';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import {FormControl,FormGroup,Validators,FormBuilder} from '@angular/forms'
 
 @Component({
   selector: 'app-status',
@@ -9,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./status.component.scss']
 })
 export class StatusComponent implements OnInit {
-  
+  statusForm:FormGroup;
   statusData: any;
   updatfrm : boolean= false;
   addfrm: boolean= false;
@@ -17,21 +18,25 @@ export class StatusComponent implements OnInit {
   public data: any;
   pid: any;
   id: any;
+  statusId: any;
 
-  constructor(private dataservice:DataService, private http:HttpClient) { }
+  constructor(private dataservice:DataService, private http:HttpClient,private fb:FormBuilder) { }
 
   ngOnInit() {
+    this.statusForm=this.fb.group({
+      'nameOfTheStatus':[null,Validators.required],
+      })
     this.getAllstatus()
   }
   addStatus(regForm){
-    regForm.reset();
+
     this.updatfrm= false;
     this.addfrm= true;
+  
   }
 // Save status data
-  save(regForm:NgForm){
-    this.dataservice.postStatus(regForm).subscribe((res)=>{
-      console.log("save data", res);
+  save(formData:any){
+    this.dataservice.postStatus(formData).subscribe((res)=>{
       this.getAllstatus();
     })
   }
@@ -52,27 +57,20 @@ export class StatusComponent implements OnInit {
   editStatus(data){
    this.updatfrm= true;
     this.addfrm= false;
-    console.log("hfdhf",data)
-    this.data = data;
-
-    this.pstatus = this.data.nameOfTheStatus
-    this.id = this.data.id
+    this.statusId = data.id
+    this.statusForm.setValue({
+      'nameOfTheStatus':data.nameOfTheStatus,
+    })
+     
   }
 
-  //Update Status
 
-  // updateStatusData(){
-  // var dt = { id: this.data.id, nameOfTheStatus: this.pstatus }
-  //   this.dataservice.editStatusData(this.id,dt).subscribe((res)=>{
-  //     console.log("updating data",res)
-  //   })
-  // }
-  
-  updateStatusData() {
-    var dt = { id:  this.data.id, nameOfTheStatus: this.pstatus}
-    this.http.put('rest/Status/updateStatus' + "/" + this.id, dt).subscribe(data => {
-      this.getAllstatus();
-    })
+  updateStatusData(formData:any) {
+   formData.id=this.statusId;
+   this.dataservice.updateStatus(formData).subscribe(data=>{
+     this.getAllstatus();
+   })
+ 
   }
   
   //Delete Status

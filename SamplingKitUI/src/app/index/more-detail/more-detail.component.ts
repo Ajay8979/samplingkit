@@ -47,17 +47,18 @@ export class MoreDetailComponent implements OnInit {
    
     let requestobj={};
     requestobj=this.sends.seconddata;
-    requestobj['quetionary5']={'"When did you last ahve an HIV test?"': this.users.value.hiv};
-    requestobj['quetionary6']={'"Have you had unprotected sex with in the last 12 months?"': this.users.value.protect};
-    requestobj['quetionary7']={'"How many partners have you had sex with in the last 12 moths?"': this.users.value.protect2};
-    requestobj['quetionary8']={'"How oftner have you had sex under in influence of alchol or recreational drugs?"': this.users.value.protect3};
+    requestobj['quetionary1']={'"When did you last ahve an HIV test?"': this.users.value.hiv};
+    requestobj['quetionary2']={'"Have you had unprotected sex with in the last 12 months?"': this.users.value.protect};
+    requestobj['quetionary3']={'"How many partners have you had sex with in the last 12 moths?"': this.users.value.protect2};
+    requestobj['quetionary4']={'"How oftner have you had sex under in influence of alchol or recreational drugs?"': this.users.value.protect3};
     this.sends.seconddata=requestobj;
     this.router.navigate(['address']);
+    console.log("this is more details"+this.sends.seconddata);
   }
 
   first()
   {
-    this.router.navigate(['question']);
+    this.router.navigate(['checkpostal']);
   }
 
   second()

@@ -16,10 +16,13 @@ import { ServicerequestComponent } from './servicerequest/servicerequest.compone
 import { TestcodeComponent } from './testcode/testcode.component';
 import { PostalcodeComponent } from './postalcode/postalcode.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 @NgModule({
   declarations: [DashboardComponent, ReportComponent, HelpComponent, UsersComponent, SponsorUserComponent, EthenicgroupComponent,StatusComponent,SpecialeventComponent, UserdetailsComponent, SponsordetailsComponent, ServicerequestComponent, TestcodeComponent, PostalcodeComponent],
   imports: [
-    CommonModule, ReactiveFormsModule, ReactiveFormsModule, FormsModule, HttpClientModule,NgMultiSelectDropDownModule.forRoot()
+    CommonModule, ReactiveFormsModule, FormsModule, HttpClientModule,Ng2SearchPipeModule,NgMultiSelectDropDownModule.forRoot(),NgxPaginationModule
   ]
 })
 export class HomeModule { }

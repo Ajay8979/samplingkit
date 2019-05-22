@@ -12,6 +12,7 @@ export class ServicerequestComponent implements OnInit {
   address: any;
   notificationEmail: any;
   notificationPhone: any;
+  allServiceRequestData: any=[];
 
 
   constructor(private dataservice:DataService) {
@@ -24,9 +25,16 @@ export class ServicerequestComponent implements OnInit {
    }
 
    getServiceRequestDetails(){
+    if(sessionStorage.getItem('userRole')=='SPONSORUSER'){
     this.dataservice.getServiceRequestDetails(sessionStorage.getItem('sponsorId')).subscribe(response=>{
      this.sponsorIdData=response.resultData;
     })
+  }
+    if((sessionStorage.getItem('userRole')=='SUPPORTUSER') || (sessionStorage.getItem('userRole')=='SUPERADMIN')){
+      this.dataservice.getAllServiceRequestDetails().subscribe(response=>{
+        this.sponsorIdData=response.resultData;
+    })
+  }
   }
 
    ngOnInit() {

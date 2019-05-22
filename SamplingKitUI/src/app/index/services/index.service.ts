@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+
 
 
 
@@ -10,14 +11,17 @@ import { Observable } from 'rxjs';
 })
 export class IndexService {
 
-  server='rest/endUsers/validateAgeAndPostCode';
-  sends='rest/endUsers/validateGenderAndEthnicGroup';
- 
+  host_url="http://192.168.7.144:8080/samplingkit/";
 
-  fourth='rest/ethnicGroups/getAllEthnics';
+  server=this.host_url+'rest/endUsers/validateAgeAndPostCode';
+  sends=this.host_url+'rest/endUsers/validateGenderAndEthnicGroup';
+  fourth=this.host_url+'rest/ethnicGroups/getAllEthnics';
 
   
+ /*sends='http://192.168.7.144:8080/samplingkit/rest/endUsers/validateGenderAndEthnicGroup';
+  fourth='http://192.168.7.144:8080/samplingkit/rest/ethnicGroups/getAllEthnics'; */
 
+  errorData: {};
 
   age:any;
   some:any;
@@ -36,48 +40,46 @@ export class IndexService {
   addressid: string;
   address:any;
   tests: string;
+  testcodes: any;
+  persondetails={};
+  testerror:boolean=false;
+  checkpostal={};
+  err:string='internal server error';
  
   constructor(private http:HttpClient,private router:Router) { }
 
-  send(user)
-  {
-     console.log(user);
-     return this.http.post(this.server,user).subscribe(res => {
-      this.age=res['status'];
-      if(this.age=="Success")
-      {
-        this.router.navigate(['personsdetails']);
-      }
-      else
-      {
-        this.router.navigate(['not']);
-      }
-     })
-
-  }
+  
 
   sendone(user)
   {
-     console.log(user);
-     return this.http.post(this.sends,user).subscribe(res => {
-     if(res['message']=="Success")
-     {
+      console.log(user);
+      return this.http.post(this.sends,user).subscribe(res=> {
+      //this.testname=res.resultData.testCodes[0].testName
+      this.testcodes=res;
+      console.log(this.testcodes);
+      if(res['message']=="Success")
+      {
       this.value=res['resultData'].sponsorId;
-       let tests =res['resultData']['testCodes'];
       sessionStorage.setItem('sponsorId',this.value);
-      sessionStorage.setItem('testCodes',this.tests); 
-       this.router.navigate(['test']);
-     }
-     });
+      this.router.navigate(['test']);
+      }
+      else
+      {
+         this.router.navigate(['not']);
+      }
+      },err =>
+      {
+        alert("something bad happened please try again");
+      });
 
   }
 
   another(data)
   {
-    this.thirdone='rest/endUsers/create/'+sessionStorage.getItem('sponsorId');
 
+      this.thirdone=this.host_url+'rest/endUsers/create/'+sessionStorage.getItem('sponsorId');
       console.log(data);
-     // var obj={EthnicGroupId:sessionStorage.getItem('ethenicGroupId')}
+       // var obj={EthnicGroupId:sessionStorage.getItem('ethenicGroupId')}
       data.ethnicGroupId=sessionStorage.getItem('ethenicGroupId')
       return this.http.post(this.thirdone,data).subscribe(res => {
       this.message1=res['message'];
@@ -87,6 +89,9 @@ export class IndexService {
       {
         this.router.navigate(['final']);
       }
+      },err =>
+      {
+        alert("something bad happened please try again");
       });
       
   }
@@ -99,6 +104,9 @@ export class IndexService {
       {
         this.router.navigate(['result']);
       }
+      },err=>
+      {
+        alert("something bad happened please try again");
       });
       
   }
@@ -118,6 +126,10 @@ export class IndexService {
       {
         alert();
       }
+      },
+      err => 
+      {
+        alert("something bad happened please try again");
       });
       
   }
@@ -127,19 +139,26 @@ export class IndexService {
   {
     return this.http.get(this.fourth);
   }
-  getOrderDetails(orderId):Observable<any>{
-    return this.http.get('rest/endUsers/endUser/'+orderId);
+
+  getOrderDetails(orderId):Observable<any>
+  {
+    return this.http.get(this.host_url+'rest/endUsers/endUser/'+orderId);
   }
+  getTestResult(code):Observable<any>{
+    return this.http.get(this.host_url+'rest/testResult/'+code);
+   } 
+
 
   lookup():Observable<any>
   {
       this.addressid=sessionStorage.getItem('age');
       this.address='https://api.getAddress.io/find/'+this.addressid+'/?api-key=x5CPOTrNhkKPq_1PxN6A_w18921';
-
       return this.http.get(this.address);
   }
 
 
+
+ 
 
 
 

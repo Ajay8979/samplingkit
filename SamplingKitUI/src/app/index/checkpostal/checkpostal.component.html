@@ -9,7 +9,7 @@
           <div class="header_top_inner">
             <div class="top_left">
               <ul>
-                <li class="currency"><a href="#">support@medintu.co.uk</a></li>
+                <li class="currency"><a href="#">support@medintu.co.uk</a> </li>
                 <li><a href="tel:+123123321345">tel: +44-03300587379</a></li>
               </ul>
             </div>
@@ -33,8 +33,6 @@
               <button class="btn btn-success btn-sm" style="margin-top: 8px" (click)="LoginPage()">Login</button>
 
             </div>
-
-
             <div class="logo logo_three">
               <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
             </div>
@@ -71,7 +69,13 @@
   </div>
   <!--header middel end-->
 
+  <!--popup start-->
 
+  <!-- Modal -->
+
+
+
+  <!--popup end-->
 
 </header>
 <!--header area end-->
@@ -136,7 +140,8 @@
 
 <!-- delivery  start -->
 
-<div class="about_section padt5">
+
+<div class="about_section check padt2">
 
   <div class="container">
 
@@ -147,186 +152,55 @@
         <div class="panel">
 
           <div class="panel_heading">
-            <h3>Address and Contact Information</h3>
+            <h3>Tests</h3>
           </div>
+
 
           <div class="panel_body">
 
-            <div class="account_form address">
+            <div class="account_form checkpostal">
 
-              <p>Our kits are small, discreet and fit through your letterbox.</p>
-              <p><b>Please note:</b> Kits are pre-completed with your details, so if you are ordering a kit for a friend
-                or partner please enter their details to ensure we can process your test (we may also remove duplicate
-                orders addressed to the same name).</p>
+  
+              <h2>Current commissioner is providing below test are you willing to take </h2>
 
-              <form class="inner_1" [formGroup]="users" (ngSubmit)="datesends(users.value)">
-
-                <p>
-                  <label>First Name <span>*</span></label>
-                  <input type="text" placeholder="Firstname" formControlName="firstName" required>
-                  <span *ngIf="users.controls['firstName'].invalid && users.controls['firstName'].touched"
-                    class='text text-danger'>Firstname is
-                    Required</span>
-                </p>
-                <p>
-                  <label>Last Name <span>*</span></label>
-                  <input type="text" placeholder="Lastname" formControlName="lastName" required>
-                  <span *ngIf="users.controls['lastName'].invalid && users.controls['lastName'].touched"
-                    class='text text-danger'>Lastname is
-                    Required</span>
-                </p>
-
-                <p>
-                  <label>Date Of birth <span>*</span></label>
-                  <input type="date" formControlName="dob" required>
-                  <span *ngIf="users.controls['dob'].invalid && users.controls['dob'].touched"
-                    class='text text-danger'>Dob is required</span>
-                </p>
+              <form [formGroup]="customForm" (ngSubmit)="show(customForm)">
 
 
-                <p>
-                  <label>Address <span>*</span></label>
-                  <select>
-                    <option *ngFor="let address of addressDetails">{{address}}</option>
-                  </select>
-                  <span style="color:red;">Too many requests</span>
-                </p>
+                  <ng-container *ngIf="firstcodelength.length==1">
+                     <h4 class="testcodes_1">This is the your comission currently your going to this test  <h3> " {{firstcodelength[0].testName}} " </h3></h4>
+                  </ng-container>
 
-                <h2 class="btn btn_look look_3"><i class="fa fa-file-o"></i> &nbsp;
-                  Look up</h2>
-
-
-                <div class="notification">
-
-                  <span class="form_6"><input type="checkbox" class="text10">Textmessage</span>
-                  <span class="form_6"><input type="checkbox" class="text11">Email Notification</span>
-                  <span class="form_6"><input type="checkbox" class="text12">Last Resort Letter</span>
-
-                </div>
-
-                <div class="container notification_address">
-                  <div class="row">
-                    <div class="col-md-4">
-
-
-                      <div class="account_form mt-20 first_box">
-
-                        <div class="form_design1">
-
-                          <p class="panel_heading">Test message</p>
-
-
-                          <p>
-                            <label>Mobile<span>*</span></label>
-                            <input type="number" placeholder="Enter Mobile" formControlName="notificationPhone">
-                            <span
-                              *ngIf="users.controls['notificationPhone'].invalid && users.controls['notificationPhone'].touched"
-                              class='text text-danger'>Please enter mobile nubmer</span>
-                          </p>
-
-                          <p>We will text you as soon as your result is ready..</p>
-
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-
-                    <div class="col-md-4">
-
-
-                      <div class="account_form mt-20 second_box">
-
-
-                        <div class="form_design1">
-
-                          <p class="panel_heading">Email Notification</p>
-
-                          <p>
-                            <label>Email<span>*</span></label>
-                            <input type="text" placeholder="Enter Email" formControlName="notificationEmail">
-                            <span
-                            *ngIf="users.controls['notificationEmail'].invalid && users.controls['notificationEmail'].touched"
-                            class='text text-danger'>Please enter a valid email
-                            </span>
-                          </p>
-
-                          <p>We will e-mail you as soon as your result is ready.</p>
-
-                        </div>
-
-                      </div>
-
-                    </div>
-
-                    <div class="col-md-4">
-
-                      <div class="account_form mt-20 third_box">
-
-                        <div class="form_design1">
-
-                          <p class="panel_heading">Last Resort Letter</p>
-
-                          <p>Sometimes after a number of attempts are made to contact patients, we can't get through
-                            (for
-                            example, a phone number has been disconnected or changed). We would only write to you if
-                            your
-                            test
-                            is reactive, you may need treatment and we're unable to get through to you.</p>
-                          <br />
-
-                          <input type="checkbox" class="recort" formControlName="lastResortLetter">
-                          &nbsp;lastResortLetter
-
-                        </div>
-
-                      </div>
-
-                    </div>
-                  </div>
-                </div>
-
- 
-
-              
-
-                <!--notification end-->
-
+                   <ng-container *ngIf="firstcodelength.length!=1">
+                     <span class="form_6" *ngFor="let testvalue of firstcodelength;let i=index;">
+                    <input type="checkbox" formControlName="firstcode" id="{{testvalue.id}}"
+                    [checked]="testvalue.defaultTest" [value]="testvalue.id" (click)="onCheckChange(testvalue)"/>{{testvalue.testName}}
+                   </span>
+                  </ng-container>
+                 
+                  {{customForm.invalid}}
+            
                 <div class="buttons button_7">
                   <button class="btn pull-left questionaries_1" (click)="back()"> <i
                       class="fa fa-arrow-circle-left"></i> Back</button>
-                  <button class="btn pull-right questionaries_2" type="submit" [disabled]="users.invalid">Next <i
-                      class="fa fa-arrow-circle-right"></i></button>
+                  <button  class="btn pull-right questionaries_2" type="submit"> Next  <i
+                      class="fa fa-arrow-circle-right"></i> </button>
                 </div>
-
-                <!---notifiaction end-->
 
 
               </form>
 
             </div>
-
-            <!--notification start-->
-
           </div>
 
         </div>
-      </div>
 
+
+      </div>
 
     </div>
 
-
-
   </div>
 </div>
-
-<!-- A delivery end -->
-
-
-<!--footer start-->
 
 
 <!--footer area start-->

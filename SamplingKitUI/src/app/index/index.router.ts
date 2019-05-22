@@ -1,3 +1,4 @@
+import { CheckpostalComponent } from './checkpostal/checkpostal.component';
 import { RouterModule } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
 import { PostcodeerrorComponent } from './postcodeerror/postcodeerror.component';
@@ -15,10 +16,8 @@ import { ResultComponent } from './result/result.component';
 import { PersonDetailsComponent } from './person-details/person-details.component';
 import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { ViewresultsComponent } from './viewresults/viewresults.component';
+import { AgeerrorComponent } from './ageerror/ageerror.component';
 import { LoginActionPageComponent } from './login-action-page/login-action-page.component';
-
-
-
 
 
 
@@ -37,6 +36,7 @@ export const Indexroutes: Routes =
     {path:'address/:id',component:AddressComponent},
     {path:'result/:id',component:ResultComponent},
     {path:'question',component:QuestionsComponent},
+    {path:'checkpostal',component:CheckpostalComponent},
     {path:'moredetail',component:MoreDetailComponent},
     {path:'result',component:ResultComponent},
     {path:'edit',component:EditDetailsComponent},
@@ -45,8 +45,8 @@ export const Indexroutes: Routes =
     {path:'pagenotfound',component:PagenotfoundComponent},
     {path:'final',component:FinalComponent},
     {path:'viewresults',component:ViewresultsComponent},
-    {path:'loginpageaction',component:LoginActionPageComponent}
-
+    {path:'loginpageaction',component:LoginActionPageComponent},
+    {path:'ageerror',component:AgeerrorComponent}
     ]
-   }
+    }
 ]

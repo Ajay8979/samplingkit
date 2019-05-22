@@ -1,5 +1,6 @@
 import { DataService } from './../../services/data.service';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, ValidatorFn, FormBuilder, EmailValidator, FormArray, AbstractControl } from '@angular/forms';
 
 @Component({
   selector: 'app-userdetails',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./userdetails.component.scss']
 })
 export class UserdetailsComponent implements OnInit {
+  profileForm: FormGroup;
   userDetails: any;
   username: any;
   firsname: any;
@@ -14,21 +16,31 @@ export class UserdetailsComponent implements OnInit {
   phone: any;
   email: any;
 
-  constructor(private dataservice:DataService) {
-    this.getuserByid();
+  constructor(private dataservice:DataService,private fb:FormBuilder) {
+    this.getusersByid();
    }
-getuserByid(){
+getusersByid(){
 this.dataservice.getuserByid(sessionStorage.getItem('sponsorId')).subscribe(data=>{
-  //this.userDetails=data.resultData;
-  this.username=data.resultData[0];
-  this.firsname=data.resultData[1];
-  this.lastname=data.resultData[2];
-  this.phone=data.resultData[3];
-  this.email=data.resultData[0];
- 
+  this.userDetails=data.resultData;
+  
 })
 }
+save(formData:any){
+  formData.sponsorId=sessionStorage.getItem('sponsorId');
+  formData.role="SPONSORUSER"
+  this.dataservice.postUsers(formData).subscribe(data=>{
+    this.getusersByid();
+  })
+}
   ngOnInit() {
+    this.profileForm=this.fb.group({
+      'firstName':[null,Validators.required],
+      'lastName':[null,Validators.required],
+      'emailId':['',Validators.compose([Validators.required,Validators.email])],
+      'mobileNum':['',Validators.compose([Validators.required,Validators.pattern('[6-9]\\d{9}')])],
+      'userName':[null,Validators.required],
+       })
   }
+
 
 }

@@ -11,11 +11,15 @@ export class ViewresultsComponent implements OnInit {
   orderDetailsData: any=[];
   orderStatus: boolean=false;
   ordertrack: boolean=false;
+  trackresult:any;
 
 
-  constructor(private indexservice:IndexService,private router:Router) { }
+  constructor(private indexservice:IndexService,private router:Router) {
+    // this.ViewTestResult(id);
+   }
 
-  viewOrderResult(orderId,accessKey){
+  viewOrderResult(orderId,accessKey)
+  {
    this.indexservice.getOrderDetails(orderId).subscribe(response=>{
      this.orderDetailsData=response.resultData;
      if(this.orderDetailsData==null){
@@ -25,10 +29,22 @@ export class ViewresultsComponent implements OnInit {
     else if( this.orderDetailsData[0].status=='In Progress'){
         this.orderStatus=true;
         this.ordertrack=false;
-      }
-     
+      }   
    })
+   this.indexservice.getTestResult(orderId).subscribe(response=>{
+    this.trackresult=response;
+    console.log("Track Data",this.trackresult);
+  })
   }
+  // ViewTestResult(trackcode){
+  //   this.indexservice.getTestResult(trackcode).subscribe(response=>{
+  //     this.trackresult=response;
+  //     console.log("Track Data",this.trackresult);
+  //   })
+  // }
+
+
+
   ngOnInit() {
   }
 
