@@ -121,7 +121,8 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 	}
 
 	@Override
-	public TestCodeSponsorIdMapper getTestCodeByPostCode(String postCode, String gender, Long ethnicGroupId, Integer age) {
+	public TestCodeSponsorIdMapper getTestCodeByPostCode(String postCode, String gender, Long ethnicGroupId,
+			Integer age) {
 
 		String shortPostCode = postCode.replaceAll("\\s", "");
 		if (shortPostCode.length() > 4) {
@@ -312,9 +313,9 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 
 		Query query = getEntityManager()
 				.createNativeQuery("select r.rule_id,r.gender,r.min_age_group,r.max_age_group,r.sponsor_id,"
-						+ "r.ethnic_groupid,r.testcode_id,r.status,e.ethnic_name,e.ethnic_type,"
-						+ "t.test_code,t.test_name,t.description,t.defaultTest from rule_configuration r,test_code t,ethnic_group e where r.ethnic_groupid=e.ethnic_id and r.testcode_id=t.testcode_id and r.sponsor_id="
-						+ sponsorId);
+						+ "re.ethnic_id,rt.testcode_id,r.status,e.ethnic_name,e.ethnic_type,"
+						+ "t.test_code,t.test_name,t.description,t.defaultTest from rule_configuration r,rule_ethnicgroup re,rule_testcode rt,test_code t,ethnic_group e where r.rule_id=re.rule_id and e.ethnic_id=re.ethnic_id"
+						+ " and r.rule_id=rt.rule_id and t.testcode_id=rt.testcode_id and r.sponsor_id=" + sponsorId);
 
 		List<Object[]> resultObjects = query.getResultList();
 
