@@ -177,7 +177,7 @@ public class RuleResourceController {
 				ruleTestCode.setRuleId(createdRule.getId());
 				ruleTestCodeDao.save(ruleTestCode);
 			}
-			response = new Response("Rule updated successfully ", HttpStatus.CONFLICT);
+			response = new Response("Rule updated successfully ", HttpStatus.OK);
 
 		} catch (Exception e) {
 			response = new Response("Rule not updated ", HttpStatus.CONFLICT);

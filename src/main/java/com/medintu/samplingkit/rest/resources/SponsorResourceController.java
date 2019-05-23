@@ -371,9 +371,10 @@ public class SponsorResourceController {
 			objMap.put("postalCodes", postalCodes);
 		}
 
-		List<RuleDetailsMapper> ruleDetailsMappers = sponsorService.getRuleDeatilsBySponsorId(sponsorId);
-		if (!CollectionUtils.isEmpty(ruleDetailsMappers)) {
-			objMap.put("rules", ruleDetailsMappers);
+		//List<RuleDetailsMapper> ruleDetailsMappers = sponsorService.getRuleDeatilsBySponsorId(sponsorId);
+		List<RuleMapper> rulesBySponsorId = ruleDao.getRulesBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(rulesBySponsorId)) {
+			objMap.put("rules", rulesBySponsorId);
 		}
 
 		if (!CollectionUtils.isEmpty(objMap)) {

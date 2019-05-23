@@ -1,7 +1,6 @@
 package com.medintu.samplingkit.service.impl;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Date;
 import java.util.HashMap;
@@ -18,6 +17,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 
+import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.service.MailSender;
 
 public class MailSenderImpl implements MailSender {
@@ -39,10 +39,10 @@ public class MailSenderImpl implements MailSender {
 		this.mailSender = javaMailSender;
 	}
 
-	public void sendMail(String dear, String toMail) {
+	public void sendMail(EndUser endUser) {
 
-		String toEmail = toMail;
-		String emailBody = String.format(emailTemplate.getText(), dear, "Medintu");
+		String toEmail = endUser.getNotificationEmail();
+		String emailBody = String.format(emailTemplate.getText(), endUser.getFirstName(), "Medintu");
 		String emailSubject = emailTemplate.getSubject();
 		String fromEmail = emailTemplate.getFrom();
 
@@ -68,15 +68,18 @@ public class MailSenderImpl implements MailSender {
 					// HTML mail content
 
 					Map<String, String> inputValues = new HashMap<String, String>();
-					inputValues.put("orderDate", new Date().toString());
-					inputValues.put("orderNumber", "PO8835353");
-					inputValues.put("userName", "Sam");
+					inputValues.put("orderDate", endUser.getCreatedDate().toString());
+					inputValues.put("orderNumber", endUser.getOrderCode());
+					inputValues.put("userName", endUser.getFirstName());
+					inputValues.put("address", endUser.getAddress());
+					inputValues.put("firstName", endUser.getFirstName());
+					inputValues.put("lastName", endUser.getLastName());
 
 					String htmlText = htmlToString();
 
 					for (Map.Entry<String, String> entry : inputValues.entrySet()) {
 
-						htmlText=htmlText.replace(entry.getKey().trim(), entry.getValue().trim());
+						htmlText = htmlText.replace(entry.getKey().trim(), entry.getValue().trim());
 					}
 
 					messageBodyPart.setContent(htmlText, "text/html");
