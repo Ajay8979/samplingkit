@@ -4,6 +4,7 @@ import {Validators, FormBuilder,FormGroup} from "@angular/forms";
 import { Router, ActivatedRoute } from '@angular/router';
 import { IndexService } from './../services/index.service';
 
+
 declare var $: any;
 
 
@@ -20,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginTemplate:boolean=false;
   values:any;
   elgible:boolean=true;
-  age:any;
+  public age:any;
   ethenicData: any;
   requestobj: any=[];
   ethnic={};
@@ -29,6 +30,7 @@ export class LoginComponent implements OnInit {
   gender:any;
   oppositeGender:any;
   go:any;
+  storage:any;
   test:boolean=false;
 
   constructor(private fb:FormBuilder,private authService:AuthService,private routerNavigate:Router,private sendservice:IndexService,private activatedRoute:ActivatedRoute) {}
@@ -63,6 +65,10 @@ export class LoginComponent implements OnInit {
     return false;
     });
 
+    // this.storage=localStorage.getItem("primaryuser");
+     //this.age=JSON.parse(this.storage);
+     this.age=30;
+
   });
 
 
@@ -88,7 +94,7 @@ export class LoginComponent implements OnInit {
  
   pass(age:any)
   {
-    if(this.age>18)
+    if(age>18)
     {
     this.routerNavigate.navigate(['/personsdetails']);
     this.sendservice.logindata=age;

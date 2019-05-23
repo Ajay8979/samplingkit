@@ -98,6 +98,7 @@ export class AddressComponent implements OnInit {
     requestobj['notificationPhone']=this.users.value.notificationPhone;
     requestobj['lastResortLetter']=this.users.value.lastResortLetter;
     this.sends.seconddata=requestobj;
+    localStorage.setItem('primaryuser',JSON.stringify(this.sends.seconddata));
     this.router.navigate(['edit']);
   }
 
