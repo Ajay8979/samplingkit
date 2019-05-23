@@ -69,7 +69,7 @@ export class IndexService {
       }
       },err =>
       {
-        alert("something bad happened please try again");
+        this.router.navigate(['internal']);
       });
 
   }
@@ -91,7 +91,7 @@ export class IndexService {
       }
       },err =>
       {
-        alert("something bad happened please try again");
+        this.router.navigate(['internal']);
       });
       
   }
@@ -106,7 +106,7 @@ export class IndexService {
       }
       },err=>
       {
-        alert("something bad happened please try again");
+        this.router.navigate(['internal']);
       });
       
   }
@@ -129,7 +129,7 @@ export class IndexService {
       },
       err => 
       {
-        alert("something bad happened please try again");
+        this.router.navigate(['internal']);
       });
       
   }

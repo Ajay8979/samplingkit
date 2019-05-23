@@ -1,3 +1,4 @@
+import { InternalerrorComponent } from './internalerror/internalerror.component';
 import { CheckpostalComponent } from './checkpostal/checkpostal.component';
 import { RouterModule } from '@angular/router';
 import { PagenotfoundComponent } from './pagenotfound/pagenotfound.component';
@@ -18,6 +19,7 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { ViewresultsComponent } from './viewresults/viewresults.component';
 import { AgeerrorComponent } from './ageerror/ageerror.component';
 import { LoginActionPageComponent } from './login-action-page/login-action-page.component';
+
 
 
 
@@ -46,7 +48,8 @@ export const Indexroutes: Routes =
     {path:'final',component:FinalComponent},
     {path:'viewresults',component:ViewresultsComponent},
     {path:'loginpageaction',component:LoginActionPageComponent},
-    {path:'ageerror',component:AgeerrorComponent}
+    {path:'ageerror',component:AgeerrorComponent},
+    {path:'internal',component:InternalerrorComponent}
     ]
     }
 ]
