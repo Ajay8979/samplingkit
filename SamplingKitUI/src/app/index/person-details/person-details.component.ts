@@ -42,13 +42,7 @@ export class PersonDetailsComponent implements OnInit {
       'password': [null,Validators.required]
     });
 
-    let params:any = this.activatedRoute.snapshot.params; 
 
-	  if(params.id==1)
-	  {
-	   this.gender=this.sendservice.persondata['gender'];
-     this.oppositeGender=this.sendservice.persondata['oppositeGender'];
-    }
     
    }
 
