@@ -209,7 +209,7 @@
 
                       <select [(ngModel)]="selectedEthenicName" name="selectedEthenicName" class="col-md-7" required
                         #ethinic="ngModel">
-                        <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
+                        <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicType}}</option>
                       </select>
                       <span *ngIf="ethinic.invalid && (ethinic.dirty || ethinic.touched)" class="error_form">
                         <span *ngIf="ethinic.errors.required" class="error_form">

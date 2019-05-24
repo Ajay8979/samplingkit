@@ -139,9 +139,9 @@ export class SponsorUserComponent implements OnInit {
    ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId){
     
     var gender=selectedGender.toString();
-      var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-     var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,testCodes:selectedTestName,ethnicGroups:selectedEthenicName,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-     delete tableObj['ethnicName'];
+      var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicType:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+     var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,testCodes:selectedTestName,ethnicGroups:selectedEthenicName,ethnicType:selectedEthenicName.ethnicType,testName:selectedTestName.testName}
+     delete tableObj['ethnicType'];
       delete tableObj['testName'];
     this.ruleList.push(tableObj);
   
@@ -341,7 +341,7 @@ postRuleDetails(item){
     this.dropdownSettings1 = {
       singleSelection: false,
       idField: 'id',
-      textField: 'ethnicName',
+      textField: 'ethnicType',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,

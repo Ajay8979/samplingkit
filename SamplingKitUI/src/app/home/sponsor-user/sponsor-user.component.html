@@ -470,13 +470,13 @@
                 <td>{{item.gender}}</td>
                 <td>
                   <tr *ngFor="let subItem of item.ethnicGroups">
-                 <td>{{subItem.ethnicName}}</td>
+                 {{subItem.ethnicType}},
                 </tr>
                 </td>
 
                 <td>
                 <tr *ngFor="let subItem of item.testCodes">
-                <td>{{subItem.testName}}</td>
+                {{subItem.testName}},
                 </tr>
                 </td>
 

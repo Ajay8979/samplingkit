@@ -54,6 +54,7 @@ export class AddressComponent implements OnInit {
   firstName: ['',Validators.required],
   lastName : ['',Validators.required],
   dob : ['',Validators.required],
+  address :['',Validators.required],
   notificationPhone : ['',Validators.required],
   notificationEmail : ['',[Validators.required,Validators.email]],
   lastResortLetter : ['',Validators.required]
