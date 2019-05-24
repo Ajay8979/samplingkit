@@ -180,10 +180,11 @@ public class EndUserResource {
 				}
 
 				/*
-				 * sponsorDao.updatesponsorBudget(sponserId, sponsorSpent.getBudgetSpent());
+				 * sponsorDao.updatesponsorBudget(sponserId,
+				 * sponsorSpent.getBudgetSpent());
 				 */ }
 
-			/* writehl7File(endUser); */
+			writehl7File(endUser);
 			response = new Response("Success", HttpStatus.OK, generateOrderCode);
 		} else {
 			response = new Response("Failed to add End User.", HttpStatus.CONFLICT, generateOrderCode);
@@ -480,7 +481,8 @@ public class EndUserResource {
 			hl7Message.setOruMessage(oruMess);
 			hl7Message.setOrmMessage(ormMess);
 
-			// mail.sendMail(endUserMapper.getFirstName(), endUserMapper.getEmail(), file);
+			// mail.sendMail(endUserMapper.getFirstName(),
+			// endUserMapper.getEmail(), file);
 
 			System.out.println(fileNew.length());
 		} catch (HL7Exception | IOException e) {

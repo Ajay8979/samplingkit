@@ -126,7 +126,7 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 
 		String shortPostCode = postCode.replaceAll("\\s", "");
 		if (shortPostCode.length() > 4) {
-			shortPostCode = shortPostCode.substring(0, postCode.length() - 3);
+			shortPostCode = shortPostCode.substring(0, shortPostCode.length() - 3);
 		} else {
 			shortPostCode = postCode;
 		}
@@ -138,7 +138,7 @@ public class JpaSponsorDao extends JpaDao<Sponsor, Long> implements SponsorDao {
 						+ "rule_testcode rt,ethnic_group e,test_code t where sp.sponsor_id=r.sponsor_id"
 						+ " and sp.postal_id=p.id " + "and r.rule_id=re.rule_id and e.ethnic_id=re.ethnic_id"
 						+ " and r.rule_id=rt.rule_id and t.testcode_id=rt.testcode_id and r.max_age_group>=" + age
-						+ " and r.min_age_group<=" + age + " and " + "re.ethnic_id=50 and p.postal_code='"
+						+ " and r.min_age_group<=" + age + " and " + "re.ethnic_id="+ethnicGroupId+" and p.postal_code='"
 						+ shortPostCode + "' and r.status='Active'");
 		List<Object[]> resultList = query.getResultList();
 
