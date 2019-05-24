@@ -95,7 +95,7 @@
         <div class="form-group">
           <label for="phone">District Codes:</label>
           <div>
-            <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="dropdownList"
+            <ng-multiselect-dropdown [placeholder]="'Select District Code'" [data]="dropdownList"
               [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
               (onSelectAll)="onSelectAll($event)">
             </ng-multiselect-dropdown>
@@ -131,8 +131,8 @@
           <div class="main">
 
             <ul id="progressbar">
-              <li class="active">Commissioner Details</li>
-              <li>Contact Details</li>
+              <li class="active com">Commissioner Details</li>
+              <li class="cont">Contact Details</li>
               <!-- <li>Rule Details</li> -->
 
             </ul>
@@ -236,10 +236,10 @@
               <input class="col-md-7" name="streetNumber" [(ngModel)]="state" placeholder="State" type="text"> -->
 
               <div class="clearfix"></div>
-              <label class="col-md-2">District Codes: </label>
-              <input class="col-md-7" name="streetNumber" [(ngModel)]="postCode" formControlName="postCode" placeholder="District Codes" type="text">
+              <label class="col-md-2">Post Code: </label>
+              <input class="col-md-7" name="streetNumber" [(ngModel)]="postCode" formControlName="postCode" placeholder="Post Code" type="text">
               <div class="text text-danger"
-              *ngIf="commissionerform.controls['postCode'].invalid && commissionerform.controls['postCode'].touched">District Code is required</div>
+              *ngIf="commissionerform.controls['postCode'].invalid && commissionerform.controls['postCode'].touched">Post Code is required</div>
               <br>
               <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
               <!-- <input class="next_btn btn btn-primary" name="next" type="button"
@@ -350,44 +350,61 @@
         <div class="modal-body">
           <!-- <p *ngFor="let item of rulesData">{{item.sponsor_id}}</p> -->
           <p [hidden]="true">{{sponsorId}}</p>
-            <label class="col-md-3">Ethenic Group: </label>
+            <!-- <label class="col-md-3">Ethenic Group: </label> -->
           
-            <select [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" class="col-md-7">
+            <ng-multiselect-dropdown [placeholder]="'Select Ethnic Group'" [data]="ethenicData" [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName"   [settings]="dropdownSettings1" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown> 
+
+            <!-- <select [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" style="height: 60px;" class="col-md-7" multiple>
                 <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
-            </select>
+            </select> -->
             <div class="text text-danger" *ngIf="addRuleform.controls['selectedEthenicName'].invalid && addRuleform.controls['selectedEthenicName'].touched">
               Please select Ethenic Group
             </div>
-            <div class="clearfix"></div>
-            <label class="col-md-3">Gender:</label>
+            <br/>
+            <!-- <label class="col-md-3">Gender:</label> -->
             
-            <select class="col-md-7" [(ngModel)]="selectedGender" formControlName="selectedGender"  multiple style="height: 60px;">
+            <!-- <select class="col-md-7" [(ngModel)]="selectedGender" formControlName="selectedGender"  multiple style="height: 60px;">
                 <option value="Man">Man </option>
                 <option value="Women">Woman</option>
                 <option value="Transman ">Transman </option>
                 <option value="Transwoman ">Transwoman </option>
-              </select>
+              </select> -->
+
+              <ng-multiselect-dropdown [placeholder]="'Select Gender'" [data]="genderdata" [(ngModel)]="selectedGender" formControlName="selectedGender"   [settings]="dropdownSettings4" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown> 
+
+
               <div class="text text-danger" *ngIf="addRuleform.controls['selectedGender'].invalid && addRuleform.controls['selectedGender'].touched">
                   Please select Gender
                 </div>
+              <br/>
+              <!-- <label class="col-md-3">Test List:</label>   -->
 
-              <label class="col-md-3">Test List:</label>  
-            <select [(ngModel)]="selectedTestName" formControlName="selectedTestName" class="col-md-7">
+              <ng-multiselect-dropdown [placeholder]="'Select Test Code'" [data]="testCodeData" [(ngModel)]="selectedTestName" formControlName="selectedTestName"   [settings]="dropdownSettings3" (onSelect)="onItemSelect($event)"
+              (onSelectAll)="onSelectAll($event)">
+            </ng-multiselect-dropdown> 
+
+
+            <!-- <select [(ngModel)]="selectedTestName" formControlName="selectedTestName" class="col-md-7" style="height: 60px;" multiple>
                 <option *ngFor="let c of testCodeData" [ngValue]="c">{{c.testName}}</option>
-            </select>
+            </select> -->
+            
             <div class="text text-danger" *ngIf="addRuleform.controls['selectedTestName'].invalid && addRuleform.controls['selectedTestName'].touched">
                 Please select Test
               </div>
 
         <div class="clearfix"></div>
-      <label class="col-md-3">Min Age: </label>
-      <input class="col-md-7" name="minage"  [(ngModel)]="minage" formControlName="minage" placeholder="Min Age" type="text">
+      <!-- <label class="col-md-3">Min Age: </label> -->
+      <input  name="minage"  [(ngModel)]="minage" formControlName="minage" placeholder="Min Age" type="text">
       <div class="text text-danger" *ngIf="addRuleform.controls['minage'].invalid && addRuleform.controls['minage'].touched">
           Minimum Age is Required
         </div>
       <div class="clearfix"></div>
-      <label class="col-md-3">Max Age: </label>
-      <input class="col-md-7" name="maxage"  [(ngModel)]="maxage" formControlName="maxage" placeholder="Max Age" type="text">
+      <!-- <label class="col-md-3">Max Age: </label> -->
+      <input  name="maxage"  [(ngModel)]="maxage" formControlName="maxage" placeholder="Max Age" type="text">
       <div class="text text-danger" *ngIf="addRuleform.controls['maxage'].invalid && addRuleform.controls['maxage'].touched">
           Maximum Age is Required
         </div>
@@ -468,7 +485,7 @@
               <th>District</th>
               <!-- <th>Region</th>
               <th>State</th> -->
-              <th>District Codes</th>
+              <th>Post Code</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -614,23 +631,20 @@
                 <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.maxAgeGroup">
               </td>
               <td>
-                <div>
-                  <select [(ngModel)]="item.ethnicGroupId" style="height: 60px;" multiple>
-                    <option *ngFor="let c of ethenicData" [ngValue]="c.ethnicGroupId">{{c.ethnicName}}</option>
-                  </select>
-                </div>
+                <div *ngFor="let subItem of item.ethnicGroups"></div>
+                        
+                     <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="ethenicData"
+                    [(ngModel)]="item.ethnicGroups"  [settings]="dropdownSettings1" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown> 
+                
               </td>
               <td>
-                  <!-- <div *ngIf="!item.isEditable2">
-                      <span *ngFor="let c of testCodeData">{{c.testName}}</span>
-                    </div> -->
-                <!-- <select [(ngModel)]="item.testCodeId" *ngIf="item.isEditable2" multiple>
-                  <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                </select> -->
-
-                <select [(ngModel)]="item.testCodeId" style="height: 60px;" multiple >
-                    <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                  </select>
+                <div *ngFor="let sublist of item.testCodes" ></div>
+                <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="testCodeData"
+                [(ngModel)]="item.testCodes"  [settings]="dropdownSettings2" (onSelect)="onItemSelect($event)"
+                (onSelectAll)="onSelectAll($event)">
+              </ng-multiselect-dropdown>
 
               </td>
               <td>

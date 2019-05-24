@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup, FormControl, FormArray } from "@angular/forms";
 import { DataService } from 'src/app/services/data.service';
+import { delegateToClassInput } from '@angular/core/src/render3/instructions';
 declare var $: any;
 @Component({
   selector: 'app-sponsor-user',
@@ -16,11 +17,14 @@ export class SponsorUserComponent implements OnInit {
   testDetailsFlag:boolean=false;
   ruleList:any=[];
   testCodeList:any=[];
+  selectedtestcode:any;
+  selectedethnic:any;
   sponsorDetails:FormGroup;
   addressList: any=[];
    SponsorsData:any=[];
    obj1:any;
    obj2:any;
+   ethnicGroupId:any;
 
    ruleName:any;
    ruleValue:any;
@@ -61,6 +65,12 @@ export class SponsorUserComponent implements OnInit {
   selectedpostCode: any;
   public sponsorId: any;
   updateSponsor:any={};
+  dropdownSettings1: {};
+  dropdownSettings2: {};
+  dropdownSettings3: {};
+  dropdownSettings4: {};
+  dropdownSettings5: {};
+  subItem: any=[];
  
 
 
@@ -114,6 +124,7 @@ export class SponsorUserComponent implements OnInit {
    getAllEthenic(){
     this.DataService.getEthenic().subscribe(data=>{
       this.ethenicData=data.resultData;
+      console.log("All ethnic data",this.ethenicData);
     })
   }
   getSponsorList(){
@@ -123,12 +134,24 @@ export class SponsorUserComponent implements OnInit {
   }
    ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId){
     this.sponsorId=sponsorId;
+    for(var i = 0; i < selectedEthenicName.length; i++) {
+      delete selectedEthenicName[i].ethnicName;
+      delete selectedEthenicName[i].ethnicType;
+  }
+  for(var i = 0; i < selectedTestName.length; i++) {
+    delete selectedTestName[i].testName;
+    delete selectedTestName[i].description;
+    delete selectedTestName[i].testCode;
+    delete selectedTestName[i].isDefaultTest;
+}
     var gender=selectedGender.toString();
+    console.log("Selected Enthnic ",selectedEthenicName[0].id);
     var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
     //var tableObj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-    var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.tectCodeId,ethnicGroupId:selectedEthenicName.ethnicGroupId,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+    //var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.tectCodeId,ethnicGroupId:selectedEthenicName.ethnicGroupId,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+    var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,testCodes:selectedTestName,ethnicGroups:selectedEthenicName,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
      this.ruleList.push(tableObj);
-     console.log(this.ruleList);
+     console.log("The Rule List",this.ruleList);
      console.log(ruleobj);
   
       this.ruleDetails=true;
@@ -196,16 +219,23 @@ this.getRulesDetails(x);
      this.sponsorId=id;
     this.DataService.getRulesDetails(id).subscribe(data=>{
       this.rulesData=data.resultData;
-      // this.sponsorId=this.rulesData.sponsor_id;
-      console.log("Rules Data",  this.rulesData);
+     // for(var i=0;i<=data.resultData.length;i++){
+    //  var obj=data.resultData[i].ethnicGroups[i];
+     //   delete obj['ethnicType'];
+    //  this.subItem.push(obj);
+
+     // }
+
+      this.getAllEthenic();
+      this.getAllTestCodeDetails();
   })
 
-  this.DataService.editEthenicData().subscribe(data=>{
-    this.ethenicData=data.resultData;
-  })
-   this.DataService.editTestListData().subscribe(data=>{
-  this.testCodeData=data.resultData;
-  })
+  // this.DataService.editEthenicData().subscribe(data=>{
+  //   this.ethenicData=data.resultData;
+  // })
+  //  this.DataService.editTestListData().subscribe(data=>{
+  // this.testCodeData=data.resultData;
+  // })
 }
   getTestCodeDetails(id){
     this.DataService.getTestCodeDetails(id).subscribe(data=>{
@@ -217,12 +247,14 @@ this.getRulesDetails(x);
   getAllTestCodeDetails(){
     this.DataService.getAllTestCodeDetails().subscribe(response=>{
       this.testCodeData=response.resultData;
+      console.log("Test code details", this.testCodeData);
     
     })
      }
     multiplepostcode(){
       this.DataService.getMultiplepostCode().subscribe(response=>{
         this.dropdownList=response.resultData;
+        console
       
       })
       /*
@@ -275,7 +307,29 @@ postRuleDetails(item){
         })
     }
     updateSelectedRule(formData:any){
+      // var ethnicGroupsData=formData.ethnicGroupId
+      // var testCodesData=formData.
+      // console.log(formData.ethnicGroups);
+      // var updatereqObj={
+      //   "id":formData.id,
+      //   "gender":formData.gender,
+      //   "startDate":"",
+      //   "endDate":"",
+      //   "minAgeGroup":formData.minAgeGroup,
+      //   "maxAgeGroup":formData.maxAgeGroup,
+      //   "status":formData.status,
+      //   "sponsor_id": this.sponsorId,
+      //   "ethnicGroups":ethnicGroupsData,
+      //   "testCodes":[{}]
+      // }
       delete formData ['isEditable2'];
+      delete formData ['ethnicGroupId'];
+        delete formData ['testCodeId'];
+    //   for(var i = 0; i < formData.length; i++) {
+    //     delete formData[i]['ethnicGroupId'];
+    //     delete formData[i]['testCodeId'];
+    // }
+      console.log("Rules FormData", formData);
       var gender=formData.gender.toString();
       formData.gender=gender;
 
@@ -283,13 +337,58 @@ postRuleDetails(item){
 
      })
     }
-
+    genderdata:any=['Man','Woman','Transman','Transwoman'];
 
   ngOnInit() {
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
       textField: 'postalCode',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'ethnicName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings2 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'testName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings3 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'testName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings4 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'testName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings5 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'testName',
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
@@ -334,14 +433,17 @@ postRuleDetails(item){
       });
       // Adding Class Active To Show Steps Forward;
       $('.active').next().addClass('active');
+      $('.com').removeClass('active');
       });
       $(".pre_btn").click(function() { // Function Runs On PREVIOUS Button Click
       $(this).parent().prev().fadeIn('slow');
+      $('.com').addClass('active');
+      $('.cont').removeClass('active');
       $(this).parent().css({
       'display': 'none'
       });
       // Removing Class Active To Show Steps Backward;
-      $('.active:last').removeClass('active');
+     
       });
       // Validating All Input And Textarea Fields
       $(".submit_btn").click(function(e) {

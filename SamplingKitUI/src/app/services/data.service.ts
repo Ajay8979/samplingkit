@@ -116,7 +116,8 @@ getAddressDetails(id):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/addresses/'+id);
 }
 getRulesDetails(id):Observable<any>{
-  return this.http.get(this.host_url+'rest/sponsor/rules/'+id);
+  //return this.http.get(this.host_url+'rest/sponsor/rules/'+id);
+  return this.http.get(this.host_url+'rest/rules/'+id);
 }
 getTestCodeDetails(id):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/testCodes/'+id);
@@ -145,7 +146,8 @@ getMultiplepostCode():Observable<any>{
 
 }
 createRuleDetails(ruledata):Observable<any>{
-  return this.http.post(this.host_url+"rest/rules/createRuleList",ruledata);
+  return this.http.post(this.host_url+"rest/rules/createRuleListMapper",ruledata);
+  //http://192.168.7.144:8080/samplingkit/rest/rules/createRuleListMapper
 }
 
  //Get All Postalcode 
@@ -224,8 +226,9 @@ getuserByid(id):Observable<any>{
 }
 updateSelectedRule(data):Observable<any>{
 
-  return this.http.put(this.host_url+'rest/sponsor/rules/update',data) 
-
+  //return this.http.put(this.host_url+'rest/sponsor/rules/update',data) 
+  //return this.http.put(this.host_url+'rest/rules/update',data) 
+  return this.http.put("http://192.168.7.144:8080/samplingkit/rest/rules/update",data);
 }
 getSponsorUpdate(id):Observable<any>{
 
