@@ -2670,8 +2670,8 @@ fieldset:disabled a.btn {
 
 .btn-info:hover {
   color: #FFF;
-  background-color: #138496;
-  border-color: #117a8b;
+  background-color: #06a798;
+  border-color: #06a798;
 }
 
 .btn-info:focus, .btn-info.focus {
@@ -2681,15 +2681,15 @@ fieldset:disabled a.btn {
 
 .btn-info.disabled, .btn-info:disabled {
   color: #FFF;
-  background-color: #17a2b8;
-  border-color: #17a2b8;
+  background-color: #06a697;
+  border-color: #06a798;
 }
 
 .btn-info:not(:disabled):not(.disabled):active, .btn-info:not(:disabled):not(.disabled).active,
 .show > .btn-info.dropdown-toggle {
-  color: #FFF;
-  background-color: #117a8b;
-  border-color: #10707f;
+    color: #FFF;
+    background-color: #06a798;
+    border-color: #06a495;
 }
 
 .btn-info:not(:disabled):not(.disabled):active:focus, .btn-info:not(:disabled):not(.disabled).active:focus,
@@ -16138,7 +16138,7 @@ input:-ms-input-placeholder {
     border-radius: 20px;
 }
 .account_form button:hover {
-    background: #136a86;
+    background: #06a798;
     color: white;
 }
 .account_form .inner_1 p {
@@ -16298,7 +16298,7 @@ input:-ms-input-placeholder {
 /* 20. services page css here */
 .login_submit1 input
 {
-  border: 1px solid #136a86;
+  border:1px solid #06a798;
   height: 40px;
   padding: 0 20px;
   background: none;
@@ -16324,7 +16324,7 @@ input:-ms-input-placeholder {
 }
 .panel_heading
 {
-	background-color:#136a86;
+	background-color:#06a798;
     padding:13px 15px 7px 28px;
     text-transform:uppercase;
     margin-bottom:0px;
@@ -16353,17 +16353,18 @@ input:-ms-input-placeholder {
 
 .text2 label
 {
-	
-    padding: 2px 8px 2px 10px;
-	position:relative;
-	cursor:pointer;
+	padding: 2px 6px 2px 0px;
+    position: relative;
+    cursor: pointer;
 }
 
 .text2 label input
 { 
-  position: relative;
-  top: 2px;
-  left: -3px;
+    position: relative;
+    top: 2px;
+    width: 0%;
+    opacity: 0;
+	padding: 2px 9px 4px 12px;
 }
 .google2
 {
@@ -16372,9 +16373,18 @@ input:-ms-input-placeholder {
 
 .text2 label input:checked ~ span
 { 
-  color:gray;
-  cursor:pointer;
+    background-color:#06a798;
+    cursor: pointer;
+    padding: 2px 9px 4px 12px;
+    color: white;
 }
+.text2 label input ~ span
+{ 
+    border:1px solid #e8d9d9;
+    cursor: pointer;
+	  padding: 2px 9px 4px 12px;
+}
+
 .padt5
 {
 	padding-top:5%;
@@ -16455,7 +16465,7 @@ input:-ms-input-placeholder {
 .inside_4 img
 {
 	padding-top:20px;
-	padding-bottom:40px;
+	padding-bottom:0px;
 }
 .address_5 h4
 {
@@ -16607,9 +16617,9 @@ input:-ms-input-placeholder {
 .error_data h1
 {
   font-size: 40px;
-  color: #da341a;
+  color: #443e3d;
   line-height: 5rem;
-  font-weight: 300;
+  font-weight: 500;
   text-align: center;
   padding: 28px 0px 20px 0px;
 }
@@ -16889,6 +16899,53 @@ input:-ms-input-placeholder {
   margin-left:20px;
   margin-top:32px;
 }
+
+.thanks h5
+{
+  padding-bottom: 20px;
+  padding-top: 10px;
+  color: green;
+  
+}
+
+body .userway
+{
+  top:193px !important;
+  left:10px !important;
+}
+body .userway .userway_accessibility_icon .userway_hide
+{
+  right:-60px !important;
+}
+.internal_error h1
+{
+  text-align: center;
+  color: green;
+  font-size: 120px;
+  padding-top: 35px;
+} 
+
+.internal_error h2
+{
+  text-align: center;
+  text-transform: uppercase;
+  padding-top: 8%;
+}
+.test_image
+{
+  padding-top:30px;
+}
+.test_image .inner_image {
+  width: 100%;
+  margin: 0 auto;
+  border: 1px solid #f3f0f0;
+  padding: 4px;
+  min-height: 473px;
+}
+.inner_image p {
+  padding: 16px;
+}
+
 
 /* .logo {
   position: absolute;

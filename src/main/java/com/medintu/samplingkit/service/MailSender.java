@@ -1,7 +1,9 @@
 package com.medintu.samplingkit.service;
 
+import com.medintu.samplingkit.entity.EndUser;
+
 public interface MailSender {
 
-	void sendMail(String dear, String toMail);
+	void sendMail(EndUser endUser);
 
 }

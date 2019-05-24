@@ -2,17 +2,17 @@ package com.medintu.samplingkit.entity;
 
 public class EthnicGroupMapper {
 
-	private Long ethnicGroupId;
+	private Long id;
 
 	private String ethnicName;
 	private String ethnicType;
 
-	public Long getEthnicGroupId() {
-		return ethnicGroupId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setEthnicGroupId(Long ethnicGroupId) {
-		this.ethnicGroupId = ethnicGroupId;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getEthnicName() {

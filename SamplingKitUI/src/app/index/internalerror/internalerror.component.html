@@ -31,8 +31,7 @@
                  <button class="btn btn-info btn-sm"  style="margin-top: 8px;width: auto;" (click)="viewResult()">Track Results</button>&nbsp;&nbsp;
                  <button class="btn btn-success btn-sm"  style="margin-top: 8px" (click)="LoginPage()">Login</button>
                  
-                 </div>
-                 
+              </div>
             
             <div class="logo logo_three">
               <a href="index.html"><img src="assets/img/img/logos2.png" alt=""></a>
@@ -138,151 +137,25 @@
 <!--Offcanvas menu area end-->
 
 
-
-<!---more start-->
-
-
-<!-- A few questions start -->
-
-
-<div class="about_section more_detail">
-
-  <div class="container">
-
-    <div class="panel">
-
-      <div class="panel_heading">
-
-        <h3>A few quick ask questions</h3>
-
-      </div>
-
-       <div class="panel_body">
-
-        <div class="row">
-         
-          <div class="col-lg-12 col-md-12">
-
-           <form  [formGroup]="users" (ngSubmit)="datessend(users.value)">
-
-            <div class="text2">
-              <p>When did you last have an HIV test?</p>
-              <label>
-                <input type="radio" name="hiv" value="never tested" formControlName="hiv"  />
-                <span>Never tested</span>
-              </label>
-              <label>
-                <input type="radio" name="hiv" value="Over a year ago" formControlName="hiv"  />
-                <span>Over a year ago</span>
-              </label>
-              <label>
-                <input type="radio" name="hiv" value="with in last year" formControlName="hiv"  />
-                <span>with in last year</span>
-              </label>
-            </div>
-
-
-            <div class="text2">
-              <p>Have you had unprotected sex with in the last 12 months?</p>
-              <label>
-                <input type="radio" name="protect" value="No" formControlName="protect" />
-                <span>No</span>
-              </label>
-              <label>
-                <input type="radio"  name="protect" value="Yes with i partner" formControlName="protect" />
-                <span>Yes with i partner</span>
-              </label>
-              <label>
-                <input type="radio"  name="protect" value="yes with 2-5 partners" formControlName="protect" />
-                <span>yes with 2-5 partners</span>
-              </label>
-              <label>
-                <input type="radio"  name="protect" value="yes with 6-12 partners" formControlName="protect" />
-                <span>yes with 6-12 partners</span>
-              </label>
-              <label>
-                <input type="radio"  name="protect" value="yes more than 12 partners" formControlName="protect" />
-                <span>yes more than 12 partners</span>
-              </label>
-            </div>
-
-
-            <div class="text2">
-              <p>How many partners have you had sex with in the last 12 moths?</p>
-              <label>
-                <input type="radio" name="protect2" value="No sexual problem" formControlName="protect2"  />
-                <span>No sexual problem</span>
-              </label>
-              <label>
-                <input type="radio" name="protect2" value="just 1 partner" formControlName="protect2" />
-                <span>just 1 partner</span>
-              </label>
-              <label>
-                <input type="radio" name="protect2" value="2-5 partners" formControlName="protect2" />
-                <span>2-5 partners</span>
-              </label>
-              <label>
-                <input type="radio" name="protect2" value="6-12 partners" formControlName="protect2" />
-                <span>6-12 partners</span>
-              </label>
-              <label>
-                <input type="radio" name="protect2" value="more than 12 partners" formControlName="protect2"  />
-                <span>more than 12 partners</span>
-              </label>
-            </div>
-
-
-
-            <div class="text2">
-              <p>How oftner have you had sex under in influence of alchol or recreational drugs?</p>
-              <label>
-                <input type="radio" name="protect3" value="Never" formControlName="protect3"  />
-                <span>Never</span>
-              </label>
-              <label>
-                <input type="radio" name="protect3" value="Sometime" formControlName="protect3"  />
-                <span>Sometime</span>
-              </label>
-              <label>
-                <input type="radio" name="protect3" value="Usually" formControlName="protect3"  />
-                <span>Usually</span>
-              </label>
-              <label>
-                <input type="radio" name="protect3" value="always" formControlName="protect3"  />
-                <span>always</span>
-              </label>
-            </div>
-
-          
-           
-
-            <div class="buttons button_5">
-
-                <button class="btn btn-success pull-left question_1"  (click)="first()" ><i class="fa fa-arrow-circle-left"></i>Back</button>
-                <button class="btn pull-right question_2" type="submit" [disabled]="users.invalid">Next <i class="fa fa-arrow-circle-right"></i></button>
-
-            </div>
-
-            
-            </form>
-
+ <!--about section area -->
+ <div class="about_section mt-60">
+    <div class="container">  
+      <div class="row">
+         <div class="col-lg-12 col-md-12">
+              <div class="about_content text-left internal_error">
+    
+                   <h1>500</h1>
+                 
+                   <h2>"Internal Server Error"</h2>
+               
+              </div>
           </div>
-        </div>
-
-      </div>
-    </div>
-
-   
-
-  </div>
+       </div>
+    </div>     
 </div>
-
-<!-- A few questions end -->
-
+<!--about section end-->
 
 
-
-<!---more end-->
 
 <!--footer area start-->
 <footer class="footer_widgets">
@@ -306,7 +179,6 @@
         <div class="col-lg-2 col-md-6 col-sm-5">
           <div class="widgets_container widget_menu">
             <h3>Information</h3>
-
           </div>
         </div>
         <div class="col-lg-6 col-md-4 col-sm-4">
@@ -322,9 +194,6 @@
             </div>
           </div>
         </div>
-
-
-
       </div>
     </div>
   </div>
@@ -340,4 +209,3 @@
     </div>
   </div>
 </footer>
-<!--footer area end-->

@@ -92,7 +92,7 @@ public class EthnicGroupController {
 		if (!CollectionUtils.isEmpty(ethnicGroups)) {
 			for (EthnicGroup ethnicGroup : ethnicGroups) {
 				EthnicGroupMapper ethnicGroupMapper = new EthnicGroupMapper();
-				ethnicGroupMapper.setEthnicGroupId(ethnicGroup.getId());
+				ethnicGroupMapper.setId(ethnicGroup.getId());
 				ethnicGroupMapper.setEthnicName(ethnicGroup.getEthnicName());
 				ethnicGroupMapper.setEthnicType(ethnicGroup.getEthnicType());
 				ethnicGroupMappers.add(ethnicGroupMapper);

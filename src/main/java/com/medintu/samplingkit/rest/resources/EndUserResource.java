@@ -121,11 +121,13 @@ public class EndUserResource {
 
 			TestCodeSponsorIdMapper ruleMapper = endUserService.getDefaultTestCodes(endUserMapper);
 
-			response = new Response(ruleMapper, HttpStatus.OK, "Success");
-		} else {
-			response = new Response(
-					"Sorry - we're not able to offer postal tests to under 16s in your area, but other services are available.",
-					HttpStatus.NOT_FOUND);
+			if (!CollectionUtils.isEmpty(ruleMapper.getTestCodes()))
+				response = new Response(ruleMapper, HttpStatus.OK, "Success");
+			else {
+				response = new Response(
+						"Sorry - we're not able to offer postal tests in your area, but other services are available.",
+						HttpStatus.CONFLICT);
+			}
 		}
 
 		return response;
@@ -148,13 +150,6 @@ public class EndUserResource {
 		endUser.setSponsorId(sponserId);
 		endUser.setStatus("In Progress");
 
-		if (!StringUtils.isEmpty(endUserMapper.getNotificationEmail())) {
-			try {
-				mailSenderImpl.sendMail(endUserMapper.getFirstName(), endUserMapper.getNotificationEmail());
-			} catch (Exception e) {
-
-			}
-		}
 		endUser.setCreatedDate(new Date());
 		EndUser createdEndUser = endUserService.addEndUser(endUser);
 
@@ -174,6 +169,16 @@ public class EndUserResource {
 				sponsorSpent.setTxDate(new Date());
 				sponsorSpent.setSponsorId(sponserId);
 				sponsorSpentDao.save(sponsorSpent);
+
+				if (!StringUtils.isEmpty(createdEndUser.getNotificationEmail())) {
+					try {
+						mailSenderImpl.sendMail(endUser);
+						System.out.println("mail sent successful");
+					} catch (Exception e) {
+
+					}
+				}
+
 				/*
 				 * sponsorDao.updatesponsorBudget(sponserId, sponsorSpent.getBudgetSpent());
 				 */ }
