@@ -7,7 +7,7 @@ import { HttpHeaders, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler } fr
   providedIn: "root"
 })
 export class AuthService {
-host_url="";
+host_url="http://192.168.7.144:8080/samplingkit/";
   url: any = this.host_url+"rest/user/authenticate";
 
 
@@ -37,10 +37,12 @@ host_url="";
       )
       .subscribe(
         (res) => {
+          console.log(res);
            sessionStorage.setItem('userData', res['resultData']['token']);
+           sessionStorage.setItem('username', res['resultData']['user'].username);
           sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
 
-       if(res['resultData']['user'].roles[0]=="SPONSORUSER"){
+       if((res['resultData']['user'].roles[0]=="SPONSORUSER")|| (res['resultData']['user'].roles[0]=="ADMIN")){
             sessionStorage.setItem('sponsorId',res['resultData']['user'].sponsorId)
           }
           if(res['resultData']['user'].roles[0]=="SUPPORTUSER"){

@@ -40,9 +40,9 @@
    <br>
   <div class="tile">
       <h3 class="tile-title">Order Details </h3>
-      <table class="table">
+      <table class="table" *ngIf="userrole=='ADMIN'">
           <thead>
-            <tr>
+            <tr >
               <th>#</th>
               <!-- <th>First Name</th>
               <th>Last Name</th>
@@ -54,27 +54,167 @@
               <th>PX Code</th>
               <th>Status</th>
               <!-- <th>View</th> -->
-              <th>Date</th>
+              <th>Date of Request</th>
 
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
                <td>{{i+1}}</td>
-              <!-- <td>{{item.firstName}}</td>
-              <td>{{item.lastName}}</td>
-              <td>{{item.email}}</td>
-              <td>{{item.oppositeGender}}</td>
-              <td>{{item.mobile}}</td> -->
+              <!-- <td >{{item.firstName}}</td>
+              <td >{{item.lastName}}</td>
+              <td >{{item.notificationEmail}}</td>
+              <td >{{item.oppositeGender}}</td>
+              <td >{{item.notificationPhone}}</td> -->
               <td>{{item.orderCode}}</td>
               <td>{{item.postCode}}</td>
               <td>YF45</td>
               <td>{{item.status}}</td>
               <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
-              <td>12-23-2019</td>
+              <td>{{item.createdDate | date:'MMM d, y'}}</td>
             </tr>
           </tbody>
         </table>
+        <table class="table" *ngIf="userrole=='SPONSORUSER'">
+            <thead>
+              <tr >
+                <th>#</th>
+                <!-- <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Mobile</th> -->
+                <th>Order Code</th>
+                <th>Post Code</th>
+                <th>PX Code</th>
+                <th>Status</th>
+                <!-- <th>View</th> -->
+                <th>Date of Request</th>
+  
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                 <td>{{i+1}}</td>
+                <!-- <td >{{item.firstName}}</td>
+                <td >{{item.lastName}}</td>
+                <td >{{item.notificationEmail}}</td>
+                <td >{{item.oppositeGender}}</td>
+                <td >{{item.notificationPhone}}</td> -->
+                <td>{{item.orderCode}}</td>
+                <td>{{item.postCode}}</td>
+                <td>YF45</td>
+                <td>{{item.status}}</td>
+                <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
+                <td>{{item.createdDate | date:'MMM d, y'}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <table class="table" *ngIf="userrole=='SUPPORTUSER'">
+              <thead>
+                <tr >
+                  <th>#</th>
+                  <!-- <th>First Name</th>
+                  <th>Last Name</th>
+                  <th>Email</th>
+                  <th>Gender</th>
+                  <th>Mobile</th> -->
+                  <th>Order Code</th>
+                  <th>Post Code</th>
+                  <th>PX Code</th>
+                  <th>Status</th>
+                  <!-- <th>View</th> -->
+                  <th>Date of Request</th>
+    
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                   <td>{{i+1}}</td>
+                  <!-- <td >{{item.firstName}}</td>
+                  <td >{{item.lastName}}</td>
+                  <td >{{item.notificationEmail}}</td>
+                  <td >{{item.oppositeGender}}</td>
+                  <td >{{item.notificationPhone}}</td> -->
+                  <td>{{item.orderCode}}</td>
+                  <td>{{item.postCode}}</td>
+                  <td>YF45</td>
+                  <td>{{item.status}}</td>
+                  <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
+                  <td>{{item.createdDate | date:'MMM d, y'}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table" *ngIf="false">
+                <thead>
+                  <tr >
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>Mobile</th>
+                    <th>Order Code</th>
+                    <th>Post Code</th>
+                    <th>PX Code</th>
+                    <th>Status</th>
+                    <!-- <th>View</th> -->
+                    <th>Date of Request</th>
+      
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                     <td>{{i+1}}</td>
+                    <td >{{item.firstName}}</td>
+                    <td >{{item.lastName}}</td>
+                    <td >{{item.notificationEmail}}</td>
+                    <td >{{item.oppositeGender}}</td>
+                    <td >{{item.notificationPhone}}</td>
+                    <td>{{item.orderCode}}</td>
+                    <td>{{item.postCode}}</td>
+                    <td>YF45</td>
+                    <td>{{item.status}}</td>
+                    <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
+                    <td>{{item.createdDate | date:'MMM d, y'}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table" *ngIf="false">
+                  <thead>
+                    <tr >
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Email</th>
+                      <th>Gender</th>
+                      <th>Mobile</th>
+                      <th>Order Code</th>
+                      <th>Post Code</th>
+                      <th>PX Code</th>
+                      <th>Status</th>
+                      <!-- <th>View</th> -->
+                      <th>Date of Request</th>
+        
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let item of sponsorIdData|paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                       <td>{{i+1}}</td>
+                      <td >{{item.firstName}}</td>
+                      <td >{{item.lastName}}</td>
+                      <td >{{item.notificationEmail}}</td>
+                      <td >{{item.oppositeGender}}</td>
+                      <td >{{item.notificationPhone}}</td>
+                      <td>{{item.orderCode}}</td>
+                      <td>{{item.postCode}}</td>
+                      <td>YF45</td>
+                      <td>{{item.status}}</td>
+                      <!-- <td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal" (click)="getNotificationDetails(item)">Notification Details</button></td> -->
+                      <td>{{item.createdDate | date:'MMM d, y'}}</td>
+                    </tr>
+                  </tbody>
+                </table>
     </div>
     <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
 <!-- Modal -->

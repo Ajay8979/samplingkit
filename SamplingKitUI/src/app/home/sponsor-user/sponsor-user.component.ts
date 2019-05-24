@@ -71,6 +71,10 @@ export class SponsorUserComponent implements OnInit {
   dropdownSettings4: {};
   dropdownSettings5: {};
   subItem: any=[];
+  looptestcodes: any;
+  looptestcodesid: any;
+  loopethnicode: any=[];
+  loopethniccodeid: any=[];
  
 
 
@@ -133,36 +137,21 @@ export class SponsorUserComponent implements OnInit {
     })
   }
    ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId){
-    this.sponsorId=sponsorId;
-    for(var i = 0; i < selectedEthenicName.length; i++) {
-      delete selectedEthenicName[i].ethnicName;
-      delete selectedEthenicName[i].ethnicType;
-  }
-  for(var i = 0; i < selectedTestName.length; i++) {
-    delete selectedTestName[i].testName;
-    delete selectedTestName[i].description;
-    delete selectedTestName[i].testCode;
-    delete selectedTestName[i].isDefaultTest;
-}
+    
     var gender=selectedGender.toString();
-    console.log("Selected Enthnic ",selectedEthenicName[0].id);
-    var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-    //var tableObj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-    //var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.tectCodeId,ethnicGroupId:selectedEthenicName.ethnicGroupId,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-    var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,testCodes:selectedTestName,ethnicGroups:selectedEthenicName,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
-     this.ruleList.push(tableObj);
-     console.log("The Rule List",this.ruleList);
-     console.log(ruleobj);
+      var ruleobj={gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,tectCodeId:selectedTestName.id,ethnicGroupId:selectedEthenicName.id,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+     var tableObj={sponsor_id:sponsorId,gender:gender,minAgeGroup:minage,maxAgeGroup:maxage,testCodes:selectedTestName,ethnicGroups:selectedEthenicName,ethnicName:selectedEthenicName.ethnicName,testName:selectedTestName.testName}
+     delete tableObj['ethnicName'];
+      delete tableObj['testName'];
+    this.ruleList.push(tableObj);
   
-      this.ruleDetails=true;
-      gender="";minage="";maxage="";selectedTestName="";selectedEthenicName="";
+     this.ruleDetails=true;
    }
 ruletable2(){
   this.DataService.createRuleDetails(this.ruleList).subscribe(data=>{
     this.addressList=[];
+    this.ruleList=[];
   this.getSponsorList();
-  //this.ruleList="";
-  
   })
 }
 delete(x){

@@ -9,8 +9,10 @@ declare var $: any;
 })
 export class HomeComponent implements OnInit {
   role:any;
+  username: string;
   constructor(private authService: AuthService, private routerNavigate: Router) {
     this.role=sessionStorage.getItem('userRole');
+    this.username=sessionStorage.getItem('username');
    }
 
   logoutAction() {

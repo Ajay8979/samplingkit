@@ -69,12 +69,11 @@
     <!-- Sidebar menu-->
     <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
     <aside class="app-sidebar">
-      <div style="background: brown;" class="app-sidebar__user"><span style="color: orangered;
+      <div class="text-center" class="app-sidebar__user"><span style="color:white;
         font-size: 35px;"><i class="fa fa-user" aria-hidden="true"></i></span>&nbsp;&nbsp;
-        <div>
-          <p class="app-sidebar__user-name">{{role}}</p>
-         
-        </div>
+
+          <p class="text-center app-sidebar__user-name">{{username}}</p>
+      
       </div>
       <ul class="app-menu" *ngIf="role=='SUPERADMIN'">
         <li><a class="app-menu__item active"  routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
@@ -100,7 +99,6 @@
          
            <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
             <ul class="treeview-menu">
-              <li><a class="treeview-item"   routerLink="/userdetail" routerLinkActive="active"><i class="icon fa fa-users"></i>Users</a></li>
               <li><a class="treeview-item"  routerLink="/sponsordetail" routerLinkActive="active"><i class="icon fa fa-user"></i>Commissioner</a></li>
               <li><a class="treeview-item"  routerLink="/servicerequest" routerLinkActive="active"><i class="icon fa fa-user"></i>Order Request</a></li>
             </ul>
@@ -120,6 +118,19 @@
           </li><hr>
           <li><a class="app-menu__item" href="" (click)="logoutAction()"><i class="app-menu__icon fa fa-sign-out"></i><span class="app-menu__label">Logout</span></a></li>
         </ul>
+        <ul class="app-menu" *ngIf="role=='ADMIN'">
+            <li><a class="app-menu__item active"  routerLink="/dashboard" routerLinkActive="active"><i class="app-menu__icon fa fa-dashboard"></i><span class="app-menu__label">Dashboard</span></a></li>
+           
+             <li class="treeview"><a class="app-menu__item" href="#" data-toggle="treeview"><i class="app-menu__icon fa fa-edit"></i><span class="app-menu__label">Management</span><i class="treeview-indicator fa fa-angle-right"></i></a>
+              <ul class="treeview-menu">
+                <li><a class="treeview-item"   routerLink="/userdetail" routerLinkActive="active"><i class="icon fa fa-users"></i>Users</a></li>
+                <li><a class="treeview-item"  routerLink="/sponsordetail" routerLinkActive="active"><i class="icon fa fa-user"></i>Commissioner</a></li>
+                <li><a class="treeview-item"  routerLink="/servicerequest" routerLinkActive="active"><i class="icon fa fa-user"></i>Order Request</a></li>
+              </ul>
+              
+            </li><hr>
+            <li><a class="app-menu__item" href="" (click)="logoutAction()"><i class="app-menu__icon fa fa-sign-out"></i><span class="app-menu__label">Logout</span></a></li>
+          </ul>
 
     </aside>
     <main  class="app-content">
