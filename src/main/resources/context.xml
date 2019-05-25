@@ -203,6 +203,52 @@
 		<constructor-arg ref="passwordEncoder" />
 	</bean>
 
+
+
+	<bean class="com.medintu.samplingkit.service.impl.DbCompareTask"
+		id="dbCompareTask" />
+	<!-- Spring Quartz -->
+	<bean
+		class="org.springframework.scheduling.quartz.JobDetailFactoryBean"
+		name="dbcompareJob">
+		<!-- org.springframework.scheduling.quartz.JobDetailBean" -->
+		<property
+			value="com.medintu.samplingkit.service.impl.JobScheduler"
+			name="jobClass" />
+		<property name="jobDataAsMap">
+			<map>
+				<entry key="dbCompareTask" value-ref="dbCompareTask" />
+			</map>
+		</property>
+		<property value="true" name="durability" />
+	</bean>
+
+	<!-- simple trigger specify repeat interval and delay time -->
+	<bean
+		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
+		id="dbCompareTrigger">
+		<!-- org.springframework.scheduling.quartz.SimpleTriggerBean -->
+		<property name="jobDetail" ref="dbcompareJob" />
+		<!-- <property name="cronExpression" value=" 0 0 15 ? * * *" /> -->
+		<property value="600000" name="repeatInterval" />
+		<property value="1000" name="startDelay" />
+	</bean>
+
+	<!-- scheduler factory bean to bind,the executing code and time intervalstogether -->
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="jobDetails">
+			<list>
+				<ref bean="dbcompareJob" />
+			</list>
+		</property>
+		<property name="triggers">
+			<list>
+				<ref bean="dbCompareTrigger" />
+			</list>
+		</property>
+	</bean>
+
 	<!-- INIT REST COMPONENTS -->
 
 	<bean id="objectMapper"

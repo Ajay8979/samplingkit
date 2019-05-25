@@ -51,7 +51,7 @@ public class SponsorUserResourceController {
 					user2.setMobileNum(userMapper.getMobileNum());
 					user2.setPassword(userMapper.getFirstName() + userMapper.getLastName());
 					user2.setStatus("Active");
-					if (userMapper.getRole().equalsIgnoreCase("SPONSORUSER")) {
+					if (userMapper.getRole().equalsIgnoreCase("COMMISSIONERUSER")) {
 						user2.setSponsorId(userMapper.getSponsorId());
 						user2.addRole(Role.COMMISSIONERUSER);
 						User saveUser = sponsorUserService.saveUser(user2);
@@ -98,8 +98,9 @@ public class SponsorUserResourceController {
 					user2.setMobileNum(userMapper.getMobileNum());
 					user2.setPassword(userMapper.getFirstName() + userMapper.getLastName());
 					user2.setSponsorId(userMapper.getSponsorId());
+					user2.setStatus(userMapper.getStatus());
 
-					if (userMapper.getRole().equalsIgnoreCase("SPONSORUSER")) {
+					if (userMapper.getRole().equalsIgnoreCase("COMMISSIONERUSER")) {
 						user2.setSponsorId(userMapper.getSponsorId());
 						user2.addRole(Role.COMMISSIONERUSER);
 						User updateUser = sponsorUserService.saveUser(user2);
@@ -134,7 +135,8 @@ public class SponsorUserResourceController {
 		try {
 			List<User> allUsers = sponsorUserService.getAllUsers();
 			if (!allUsers.isEmpty() && null != allUsers) {
-				return new Response(allUsers, 0, allUsers.size(), HttpStatus.OK, "All SponsorUsers retrieved Successfully");
+				return new Response(allUsers, 0, allUsers.size(), HttpStatus.OK,
+						"All SponsorUsers retrieved Successfully");
 			}
 			return new Response(new ArrayList<User>(), "SponsorUser List is Empty");
 		} catch (Exception exception) {
