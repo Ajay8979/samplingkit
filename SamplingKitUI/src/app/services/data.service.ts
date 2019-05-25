@@ -6,7 +6,8 @@ import { Observable, observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  host_url="http://192.168.7.144:8080/samplingkit/";
+
+  host_url="http://192.168.1.137:8080/samplingkit/";
   constructor(private http: HttpClient) { }
 
   getUsersData(): Observable<any> {

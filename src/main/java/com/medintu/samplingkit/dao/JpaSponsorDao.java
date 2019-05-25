@@ -13,7 +13,6 @@ import org.springframework.util.CollectionUtils;
 import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Rule;
 import com.medintu.samplingkit.entity.RuleDetailsMapper;
-import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
 import com.medintu.samplingkit.entity.TestCode;

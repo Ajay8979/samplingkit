@@ -32,7 +32,7 @@ export class ViewresultsComponent implements OnInit {
       }   
    })
    this.indexservice.getTestResult(orderId).subscribe(response=>{
-    this.trackresult=response;
+    this.trackresult=response.resultData;
     console.log("Track Data",this.trackresult);
   })
   }

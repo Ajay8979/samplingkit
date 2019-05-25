@@ -23,6 +23,15 @@ public class TestResult implements Entity {
 	private String testName;
 	private Date testResultDate;
 	private String sponserId;
+	private String orderDate;
+
+	public String getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(String orderDate) {
+		this.orderDate = orderDate;
+	}
 
 	private String STATUS;
 
