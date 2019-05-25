@@ -125,6 +125,8 @@ this.getAllTestCodedata();
     var datarequest={"name":name,"budget":budget,"postalCodes":selectedItems}
     this.dataservice.updateSponsorDetails(datarequest,this.sponsorId).subscribe(data=>{
      this.getSponsorList();
+     this.getAllTestCodedata();
+     this.getAllEthenic();
      this. getPostCodeList(this.sponsorId);
      });
    }

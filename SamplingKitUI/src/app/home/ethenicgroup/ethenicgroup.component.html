@@ -31,6 +31,7 @@
             <th>Group Name</th>
             <th>Group Type</th>
              <th>Action</th>
+             <th></th>
           </tr>
         </thead>
         <tbody>
@@ -59,7 +60,10 @@
              
             <td>
                 <button class="btn btn-info btn-sm" (click)="item.isEditable2=!item.isEditable2" *ngIf="!item.isEditable2">Edit</button>
-                <button  class="btn btn-success btn-sm" [disabled]="!item.ethnicType" *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2;updateEthenicData(item)">Save</button>            
+                <button  class="btn btn-success btn-sm" [disabled]="!item.ethnicType" *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2;updateEthenicData(item)">Save</button>                     
+            </td>
+            <td>
+                <button  class="btn btn-warning btn-sm"  *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2">Cancel</button>
             </td>
           </tr>
         </tbody>

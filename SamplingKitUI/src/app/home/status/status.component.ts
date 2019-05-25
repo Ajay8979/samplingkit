@@ -19,6 +19,7 @@ export class StatusComponent implements OnInit {
   pid: any;
   id: any;
   statusId: any;
+  nameOfTheStatus: string;
 
   constructor(private dataservice:DataService, private http:HttpClient,private fb:FormBuilder) { }
 
@@ -32,12 +33,14 @@ export class StatusComponent implements OnInit {
 
     this.updatfrm= false;
     this.addfrm= true;
+    this.nameOfTheStatus="";
   
   }
 // Save status data
-  save(formData:any){
-    this.dataservice.postStatus(formData).subscribe((res)=>{
+  save(statusForm){
+    this.dataservice.postStatus(statusForm.value).subscribe((res)=>{
       this.getAllstatus();
+      statusForm.reset();
     })
   }
 // Get request for status
@@ -48,11 +51,11 @@ export class StatusComponent implements OnInit {
     })
   }
   //Post request for status
-  saveStatus(formData:any){
-      this.dataservice.postStatus(formData).subscribe(data=>{
-        console.log("adding data",data)
-      })
-  }
+  // saveStatus(formData:any){
+  //     this.dataservice.postStatus(formData).subscribe(data=>{
+  //       console.log("adding data",data)
+  //     })
+  // }
 
   editStatus(data){
    this.updatfrm= true;
@@ -65,12 +68,12 @@ export class StatusComponent implements OnInit {
   }
 
 
-  updateStatusData(formData:any) {
-   formData.id=this.statusId;
-   this.dataservice.updateStatus(formData).subscribe(data=>{
+  updateStatusData(statusForm) {
+    statusForm.id=this.statusId;
+   this.dataservice.updateStatus(statusForm.value,statusForm.id).subscribe(data=>{
+    statusForm.reset();
      this.getAllstatus();
    })
- 
   }
   
   //Delete Status

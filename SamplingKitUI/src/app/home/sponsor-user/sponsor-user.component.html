@@ -610,7 +610,7 @@
 
           </tbody>
         </table>
-
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -645,6 +645,7 @@
               <th>Test List</th>
               <th>Status</th>
               <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -708,6 +709,9 @@
                   *ngIf="!item.isEditable2">Edit</button>
                 <button class="btn btn-success btn-sm" *ngIf="item.isEditable2"
                   (click)="item.isEditable2=!item.isEditable2;updateSelectedRule(item)">Save</button>
+              </td> 
+              <td>
+                  <button  class="btn btn-warning btn-sm"  *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2">Cancel</button>
               </td>
 
 

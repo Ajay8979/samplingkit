@@ -26,7 +26,7 @@ export class ServicerequestComponent implements OnInit {
    }
 
    getServiceRequestDetails(){
-    if((sessionStorage.getItem('userRole')=='SPONSORUSER') || (sessionStorage.getItem('userRole')=='ADMIN')){
+    if((sessionStorage.getItem('userRole')=='COMMISSIONERUSER') || (sessionStorage.getItem('userRole')=='ADMIN')){
     this.dataservice.getServiceRequestDetails(sessionStorage.getItem('sponsorId')).subscribe(response=>{
      this.sponsorIdData=response.resultData;
     })

@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class IndexService {
 
-  host_url="";
+  host_url="http://192.168.7.144:8080/samplingkit/";
 
   server=this.host_url+'rest/endUsers/validateAgeAndPostCode';
   sends=this.host_url+'rest/endUsers/validateGenderAndEthnicGroup';

@@ -6,7 +6,7 @@ import { Observable, observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-  host_url="";
+  host_url="http://192.168.7.144:8080/samplingkit/";
   constructor(private http: HttpClient) { }
 
   getUsersData(): Observable<any> {
@@ -24,6 +24,12 @@ export class DataService {
     return this.http.post(this.host_url+"rest/SponsorUser/createUser",data);
 
   }
+// add contact
+adduserContact(contactdata):Observable<any>{
+  return this.http.post(this.host_url+"rest/sponsoraddress/create",contactdata);
+}
+
+
  // Delet User
   deleteUsers(id):Observable<any>{
     return this.http.delete(this.host_url+'rest/SponsorUser/deleteSponsorUser'+"/"+ id);
@@ -168,6 +174,12 @@ updatePostalcode(data):Observable<any>{
 
 }
 
+// add contact by Id
+adduserContactbyid(contactdata):Observable<any>{
+  return this.http.post(this.host_url+"rest/sponsoraddress/create",contactdata);
+}
+
+
 //Delete Postalcode
 
 deletePostalcode(id):Observable<any>{
@@ -240,8 +252,8 @@ updateSponsorDetails(data,id):Observable<any>{
   return this.http.put(this.host_url+'rest/sponsor/sponsorWithPostalCode/'+id,data) 
 
 }
-updateStatus(data):Observable<any>{
-  return this.http.put(this.host_url+'rest/Status/updateStatus/',data) 
+updateStatus(data,id):Observable<any>{
+  return this.http.put(this.host_url+'rest/Status/updateStatus/'+id,data) 
 }
 getDashboardData(sponsorId):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/sponsorOrder/'+sponsorId);
