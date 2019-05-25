@@ -225,13 +225,13 @@
 
 	<!-- simple trigger specify repeat interval and delay time -->
 	<bean
-		class="org.springframework.scheduling.quartz.SimpleTriggerFactoryBean"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean"
 		id="dbCompareTrigger">
 		<!-- org.springframework.scheduling.quartz.SimpleTriggerBean -->
 		<property name="jobDetail" ref="dbcompareJob" />
-		<!-- <property name="cronExpression" value=" 0 0 15 ? * * *" /> -->
-		<property value="600000" name="repeatInterval" />
-		<property value="1000" name="startDelay" />
+		<property name="cronExpression" value=" 0 0 15 ? * * *" />
+		<!-- <property value="600000" name="repeatInterval" />
+		<property value="1000" name="startDelay" /> -->
 	</bean>
 
 	<!-- scheduler factory bean to bind,the executing code and time intervalstogether -->

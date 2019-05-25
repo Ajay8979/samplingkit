@@ -7,9 +7,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.mail.BodyPart;
 import javax.mail.MessagingException;
@@ -74,21 +71,14 @@ public class DbCompareTask {
 
 		try {
 
-			File fileNew1 = new File(
-					"C:\\Users\\kspandana.CORP\\Documents\\New folder\\eclipse\\Folder\\"/*
-																							 * userConfiguration.
-																							 * writeORU()
-																							 */ /*
-																								 * + endUser.
-																								 * getOrderCode()
-																								 *//* + "ORU.hl7" */);
+			File fileNew1 = new File(userConfiguration.writeORU());
 
 			File[] listOfFiles = fileNew1.listFiles();
 
 			for (File file : listOfFiles) {
 				if (file.isFile()) {
 					System.out.println(file.getName());
-					InputStream is = new FileInputStream(fileNew1);
+					InputStream is = new FileInputStream(file);
 					is = new BufferedInputStream(is);
 					Hl7InputStreamMessageIterator iter = new Hl7InputStreamMessageIterator(is);
 					Message oruReadMessage = null;
