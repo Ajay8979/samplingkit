@@ -53,7 +53,7 @@ public class SponsorUserResourceController {
 					user2.setStatus("Active");
 					if (userMapper.getRole().equalsIgnoreCase("SPONSORUSER")) {
 						user2.setSponsorId(userMapper.getSponsorId());
-						user2.addRole(Role.SPONSORUSER);
+						user2.addRole(Role.COMMISSIONERUSER);
 						User saveUser = sponsorUserService.saveUser(user2);
 						int usersCount = sponsorUserService.getAllUsersCount();
 						return new Response(saveUser, 0, usersCount, HttpStatus.OK, "SPONSORUSER is saved in DB");
@@ -101,7 +101,7 @@ public class SponsorUserResourceController {
 
 					if (userMapper.getRole().equalsIgnoreCase("SPONSORUSER")) {
 						user2.setSponsorId(userMapper.getSponsorId());
-						user2.addRole(Role.SPONSORUSER);
+						user2.addRole(Role.COMMISSIONERUSER);
 						User updateUser = sponsorUserService.saveUser(user2);
 						int usersCount = sponsorUserService.getAllUsersCount();
 						return new Response(updateUser, 0, usersCount, HttpStatus.OK, "SPONSORUSER is updated in DB");
