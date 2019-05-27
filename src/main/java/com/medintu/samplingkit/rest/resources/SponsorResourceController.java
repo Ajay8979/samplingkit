@@ -421,16 +421,28 @@ public class SponsorResourceController {
 		Integer nonReactive = null;
 		Double budgetSpent = null;
 		Double budgetRemaining = null;
+		List<EndUser> orderOPlaced=null;
+		List<EndUser> orderODispatched =null;
+		List<TestResult> reactiveResultsBySponsorId=null;
+		List<TestResult> nonreactiveResultsBySponsorId=null;
+		if(null!=sponsorId){
 
-		List<EndUser> orderOPlaced = endUserDao.getorderPlacedBySponserId(sponsorId.toString());
+	 orderOPlaced = endUserDao.getorderPlacedBySponserId(sponsorId.toString());
+		}else{
+			 orderOPlaced = endUserDao.getorderPlacedBySponserId(null);	
+		}
 
 		if (!CollectionUtils.isEmpty(orderOPlaced)) {
 			placed = orderOPlaced.size();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
-
-		List<EndUser> orderODispatched = endUserDao.getorderDispatchedBySponserId(sponsorId.toString());
+		if(null!=sponsorId){
+		 orderODispatched = endUserDao.getorderDispatchedBySponserId(sponsorId.toString());
+		}else{
+			 orderODispatched = endUserDao.getorderDispatchedBySponserId(null);
+	
+		}
 
 		if (!CollectionUtils.isEmpty(orderOPlaced)) {
 			dispatched = orderODispatched.size();
@@ -438,16 +450,25 @@ public class SponsorResourceController {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
 
-		List<TestResult> reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+		if(null!=sponsorId){
+		 reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+		}
+		else{
+			 reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
+			}
 
 		if (!CollectionUtils.isEmpty(orderOPlaced)) {
 			reactive = reactiveResultsBySponsorId.size();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
-
-		List<TestResult> nonreactiveResultsBySponsorId = testResultDao
+		if(null!=sponsorId){
+		nonreactiveResultsBySponsorId = testResultDao
 				.getReactiveResultsBySponsorId(sponsorId.toString());
+		}else{
+			nonreactiveResultsBySponsorId = testResultDao
+					.getReactiveResultsBySponsorId(null);	
+		}
 
 		if (!CollectionUtils.isEmpty(orderOPlaced)) {
 			nonReactive = nonreactiveResultsBySponsorId.size();
