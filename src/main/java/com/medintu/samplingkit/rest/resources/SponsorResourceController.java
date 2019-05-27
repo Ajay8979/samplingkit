@@ -1,7 +1,5 @@
 package com.medintu.samplingkit.rest.resources;
 
-
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -209,10 +207,10 @@ public class SponsorResourceController {
 	 * 
 	 * Response response = null; List<TestCode> testCodes =
 	 * sponsorService.getTestCodesBySponsorId(sponsorId); if
-	 * (!CollectionUtils.isEmpty(testCodes)) { response = new Response(testCodes,
-	 * HttpStatus.OK, "TestCodes Found"); } else { response = new
-	 * Response("TestCode not Found", HttpStatus.INTERNAL_SERVER_ERROR); } return
-	 * response;
+	 * (!CollectionUtils.isEmpty(testCodes)) { response = new
+	 * Response(testCodes, HttpStatus.OK, "TestCodes Found"); } else { response
+	 * = new Response("TestCode not Found", HttpStatus.INTERNAL_SERVER_ERROR); }
+	 * return response;
 	 * 
 	 * }
 	 */
@@ -334,8 +332,9 @@ public class SponsorResourceController {
 		Sponsor spor = sponsorDao.save(sponsor);
 
 		/*
-		 * BeanUtils.copyProperties(spor, sponsorWithPostalMapper); List<PostalCode>
-		 * postalCodes = sponsorService.getPostCodesBySponsorId(sponsorId);
+		 * BeanUtils.copyProperties(spor, sponsorWithPostalMapper);
+		 * List<PostalCode> postalCodes =
+		 * sponsorService.getPostCodesBySponsorId(sponsorId);
 		 * sponsorWithPostalMapper.setPostalCodes(postalCodes);
 		 */
 		sponsorPostlcodeDao.deletePostalCodesBySponsorId(sponsorId);
@@ -421,15 +420,15 @@ public class SponsorResourceController {
 		Integer nonReactive = null;
 		Double budgetSpent = null;
 		Double budgetRemaining = null;
-		List<EndUser> orderOPlaced=null;
-		List<EndUser> orderODispatched =null;
-		List<TestResult> reactiveResultsBySponsorId=null;
-		List<TestResult> nonreactiveResultsBySponsorId=null;
-		if(null!=sponsorId){
+		List<EndUser> orderOPlaced = null;
+		List<EndUser> orderODispatched = null;
+		List<TestResult> reactiveResultsBySponsorId = null;
+		List<TestResult> nonreactiveResultsBySponsorId = null;
+		if (null != sponsorId) {
 
-	 orderOPlaced = endUserDao.getorderPlacedBySponserId(sponsorId.toString());
-		}else{
-			 orderOPlaced = endUserDao.getorderPlacedBySponserId(null);	
+			orderOPlaced = endUserDao.getorderPlacedBySponserId(sponsorId.toString());
+		} else {
+			orderOPlaced = endUserDao.getorderPlacedBySponserId(null);
 		}
 
 		if (!CollectionUtils.isEmpty(orderOPlaced)) {
@@ -437,40 +436,37 @@ public class SponsorResourceController {
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
-		if(null!=sponsorId){
-		 orderODispatched = endUserDao.getorderDispatchedBySponserId(sponsorId.toString());
-		}else{
-			 orderODispatched = endUserDao.getorderDispatchedBySponserId(null);
-	
+		if (null != sponsorId) {
+			orderODispatched = endUserDao.getorderDispatchedBySponserId(sponsorId.toString());
+		} else {
+			orderODispatched = endUserDao.getorderDispatchedBySponserId(null);
+
 		}
 
-		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+		if (!CollectionUtils.isEmpty(orderODispatched)) {
 			dispatched = orderODispatched.size();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
 
-		if(null!=sponsorId){
-		 reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+		if (null != sponsorId) {
+			reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+		} else {
+			reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
 		}
-		else{
-			 reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
-			}
 
-		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+		if (!CollectionUtils.isEmpty(reactiveResultsBySponsorId)) {
 			reactive = reactiveResultsBySponsorId.size();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
-		if(null!=sponsorId){
-		nonreactiveResultsBySponsorId = testResultDao
-				.getReactiveResultsBySponsorId(sponsorId.toString());
-		}else{
-			nonreactiveResultsBySponsorId = testResultDao
-					.getReactiveResultsBySponsorId(null);	
+		if (null != sponsorId) {
+			nonreactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(sponsorId.toString());
+		} else {
+			nonreactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
 		}
 
-		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+		if (!CollectionUtils.isEmpty(nonreactiveResultsBySponsorId)) {
 			nonReactive = nonreactiveResultsBySponsorId.size();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
@@ -478,13 +474,83 @@ public class SponsorResourceController {
 
 		List<SponsorSpentMapper> sponsorBudgetDetails = sponsorSpentDao.getSponsorBudgetDetails(sponsorId);
 
-		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+		if (!CollectionUtils.isEmpty(sponsorBudgetDetails)) {
 			budgetSpent = sponsorBudgetDetails.get(0).getSponsorSpent();
 			budgetRemaining = sponsorBudgetDetails.get(0).getRemainingAmount();
 		} else {
 			response = new Response("Failed", HttpStatus.NO_CONTENT);
 		}
 
+		DashboardSponsor dashboardSponsor = new DashboardSponsor();
+		dashboardSponsor.setOrderDispatched(dispatched);
+		dashboardSponsor.setOrderplaced(placed);
+		dashboardSponsor.setResultNonReactive(nonReactive);
+		dashboardSponsor.setResultReactive(reactive);
+		dashboardSponsor.setSponsorBudgetSpent(budgetSpent);
+		dashboardSponsor.setSponsorBudgetRemaining(budgetRemaining);
+		response = new Response(dashboardSponsor, HttpStatus.OK, "Sponsor Details Found");
+
+		return response;
+
+	}
+
+	@Path("/sponsorOrder/all")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response SponsorOrderDetailsAll() {
+		Response response = null;
+		Integer placed = null;
+		Integer dispatched = null;
+		Integer reactive = null;
+		Integer nonReactive = null;
+		Double budgetSpent = null;
+		Double budgetRemaining = null;
+		List<EndUser> orderOPlaced = null;
+		List<EndUser> orderODispatched = null;
+		List<TestResult> reactiveResultsBySponsorId = null;
+		List<TestResult> nonreactiveResultsBySponsorId = null;
+
+		orderOPlaced = endUserDao.getorderPlacedBySponserId(null);
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			placed = orderOPlaced.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		orderODispatched = endUserDao.getorderDispatchedBySponserId(null);
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			dispatched = orderODispatched.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		reactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			reactive = reactiveResultsBySponsorId.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		nonreactiveResultsBySponsorId = testResultDao.getReactiveResultsBySponsorId(null);
+
+		if (!CollectionUtils.isEmpty(orderOPlaced)) {
+			nonReactive = nonreactiveResultsBySponsorId.size();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+
+		List<SponsorSpentMapper> sponsorBudgetDetails = sponsorSpentDao.getSponsorBudgetDetails(null);
+
+		if (!CollectionUtils.isEmpty(sponsorBudgetDetails)) {
+			budgetSpent = sponsorBudgetDetails.get(0).getSponsorSpent();
+			budgetRemaining = sponsorBudgetDetails.get(0).getRemainingAmount();
+		} else {
+			response = new Response("Failed", HttpStatus.NO_CONTENT);
+		}
+		
 		DashboardSponsor dashboardSponsor = new DashboardSponsor();
 		dashboardSponsor.setOrderDispatched(dispatched);
 		dashboardSponsor.setOrderplaced(placed);

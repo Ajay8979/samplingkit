@@ -69,7 +69,7 @@ public class JpaSponsorSpentDao extends JpaDao<SponsorSpent, Long> implements Sp
 
 		} else {
 			Query query = getEntityManager().createNativeQuery(
-					"select ss.sponsor_id,sum(ss.budget_spent),s.budget,s.sponsor_name from sponsor s,sponsor_spent ss where s.id=ss.sponsor_id Group By ss.sponsor_id");
+					"select ss.sponsor_id,sum(ss.budget_spent),sum(s.budget),s.sponsor_name from sponsor s,sponsor_spent ss where s.id=ss.sponsor_id Group By ss.sponsor_id");
 			List<Object[]> resultList = query.getResultList();
 
 			if (!CollectionUtils.isEmpty(resultList)) {

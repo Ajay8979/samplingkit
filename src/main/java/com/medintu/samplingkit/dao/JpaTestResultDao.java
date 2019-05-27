@@ -43,7 +43,9 @@ public class JpaTestResultDao extends JpaDao<TestResult, Long> implements TestRe
 
 		Query query = getEntityManager().createNativeQuery(queryString, TestResult.class);
 		query.setParameter(1, "Reactive");
-		query.setParameter(2, sponsorId);
+		if (sponsorId != null) {
+			query.setParameter(2, sponsorId);
+		}
 		return query.getResultList();
 	}
 
@@ -56,7 +58,9 @@ public class JpaTestResultDao extends JpaDao<TestResult, Long> implements TestRe
 		}
 		Query query = getEntityManager().createNativeQuery(queryString, TestResult.class);
 		query.setParameter(1, "Non-Reactive");
-		query.setParameter(2, sponsorId);
+		if (sponsorId != null) {
+			query.setParameter(2, sponsorId);
+		}
 		return query.getResultList();
 	}
 
