@@ -1,10 +1,13 @@
 package com.medintu.samplingkit.rest.resources;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -33,12 +36,8 @@ import com.medintu.samplingkit.entity.EndUserConfiguration;
 import com.medintu.samplingkit.entity.EndUserMapper;
 import com.medintu.samplingkit.entity.EndUserTests;
 import com.medintu.samplingkit.entity.Hl7Message;
-import com.medintu.samplingkit.entity.ORMMessage;
-import com.medintu.samplingkit.entity.ORUMessage;
-import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.SponsorSpent;
 import com.medintu.samplingkit.entity.TestCode;
-import com.medintu.samplingkit.entity.TestResult;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.EndUserService;
 import com.medintu.samplingkit.service.TestResultService;
@@ -47,19 +46,8 @@ import com.medintu.samplingkit.service.impl.MailSenderImpl;
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HL7Exception;
 import ca.uhn.hl7v2.HapiContext;
-import ca.uhn.hl7v2.model.Message;
-import ca.uhn.hl7v2.model.v25.datatype.XAD;
-import ca.uhn.hl7v2.model.v25.datatype.XPN;
-import ca.uhn.hl7v2.model.v25.group.ORU_R01_ORDER_OBSERVATION;
 import ca.uhn.hl7v2.model.v25.message.ORM_O01;
-import ca.uhn.hl7v2.model.v25.message.ORU_R01;
-import ca.uhn.hl7v2.model.v25.segment.MSH;
-import ca.uhn.hl7v2.model.v25.segment.OBR;
-import ca.uhn.hl7v2.model.v25.segment.OBX;
-import ca.uhn.hl7v2.model.v25.segment.ORC;
-import ca.uhn.hl7v2.model.v25.segment.PID;
 import ca.uhn.hl7v2.parser.Parser;
-import ca.uhn.hl7v2.util.Hl7InputStreamMessageIterator;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Path("endUsers")
@@ -180,8 +168,7 @@ public class EndUserResource {
 				}
 
 				/*
-				 * sponsorDao.updatesponsorBudget(sponserId,
-				 * sponsorSpent.getBudgetSpent());
+				 * sponsorDao.updatesponsorBudget(sponserId, sponsorSpent.getBudgetSpent());
 				 */ }
 
 			writehl7File(endUser);
@@ -318,16 +305,16 @@ public class EndUserResource {
 
 		HapiContext context = new DefaultHapiContext();
 		ORM_O01 ormMessage = null;
-		//ORU_R01 oruMessage = null;
+		// ORU_R01 oruMessage = null;
 		InputStream inputStream = null;
 		Hl7Message hl7Message = new Hl7Message();
 		try {
 			ormMessage = (ORM_O01) endUserService.createMessage("O01", endUser);
 
-			//oruMessage = (ORU_R01) endUserService.createMessage("R01", endUser);
+			// oruMessage = (ORU_R01) endUserService.createMessage("R01", endUser);
 			Parser pipeParser = context.getPipeParser();
 			pipeParser.encode(ormMessage);
-			//System.out.println(ormMessage);
+			// System.out.println(ormMessage);
 
 			File fileORM = null;
 			File fileORU = null;
@@ -339,8 +326,8 @@ public class EndUserResource {
 
 			fileORM = endUserService.writeMessageToFileORM(pipeParser, ormMessage,
 					userConfiguration.writeORM() + endUser.getOrderCode() + "ORM.hl7");
-			//fileORU = endUserService.writeMessageToFileORU(pipeParser, oruMessage,
-					//userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
+			// fileORU = endUserService.writeMessageToFileORU(pipeParser, oruMessage,
+			// userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
 
 			File fileNew = new File(userConfiguration.writeORM() + endUser.getOrderCode() + "ORM.hl7");
 
@@ -351,7 +338,8 @@ public class EndUserResource {
 			 * (iter0.hasNext()) { ormReadMessage = iter0.next(); }
 			 */
 
-			//File fileNew1 = new File(userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
+			// File fileNew1 = new File(userConfiguration.writeORU() +
+			// endUser.getOrderCode() + "ORU.hl7");
 
 			/*
 			 * InputStream is = new FileInputStream(fileNew1); is = new
@@ -474,15 +462,46 @@ public class EndUserResource {
 			 * hl7Message.setOruMessage(oruMess); hl7Message.setOrmMessage(ormMess);
 			 */
 
-			
-
-			//System.out.println(fileNew.length());
+			// System.out.println(fileNew.length());
 		} catch (HL7Exception | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 
+	}
+
+	@Path("/sendSMS")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sendSms() {
+		try {
+			// Construct data
+			String apiKey = "apikey=" + URLEncoder.encode("FpKPuob9yg8-ttvRY79CUiq8OUposMaSWIp3UKaetW", "UTF-8");
+			String message = "&message=" + URLEncoder.encode("This is your message", "UTF-8");
+			String sender = "&sender=" + URLEncoder.encode("Jims Autos", "UTF-8");
+			String numbers = "&numbers=" + URLEncoder.encode("919959550344", "UTF-8");
+
+			// Send data
+			String data = "https://api.txtlocal.com/send/?" + apiKey + numbers + message + sender;
+			URL url = new URL(data);
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+
+			// Get the response
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			String sResult = "";
+			while ((line = rd.readLine()) != null) {
+				// Process line...
+				sResult = sResult + line + " ";
+			}
+			rd.close();
+
+			return sResult;
+		} catch (Exception e) {
+			System.out.println("Error SMS " + e);
+			return "Error " + e;
+		}
 	}
 
 }

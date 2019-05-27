@@ -144,7 +144,9 @@ export class IndexService {
   {
     return this.http.get(this.host_url+'rest/endUsers/endUser/'+orderId);
   }
-  getTestResult(code):Observable<any>{
+
+  getTestResult(code):Observable<any>
+   {
     return this.http.get(this.host_url+'rest/testResult/'+code);
    } 
 

@@ -54,7 +54,7 @@ public class PostalCodeResourceController {
 			if (null != postalCodeMapper) {
 				PostalCode postalCode = new PostalCode();
 				BeanUtils.copyProperties(postalCodeMapper, postalCode);
-				PostalCode postalCode2 = postalCodeService.createPostalCode(postalCode);
+				PostalCode postalCode2 = postalCodeService.UpadtePostalCode(postalCode);
 				return new Response(postalCode2, HttpStatus.OK, "PostalCode is updated Successfully");
 			}
 			return new Response("failure", "unable to update PostalCode");

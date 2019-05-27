@@ -66,15 +66,16 @@ export class AddressComponent implements OnInit {
     'password': [null,Validators.required]
   });
 
-  let someobj=this.sends.seconddata;
+  
 
+  let someobj=this.sends.seconddata;
   this.users.controls.firstName.setValue(someobj['firstName']);
   this.users.controls.lastName.setValue(someobj['lastName']);
   this.users.controls.dob.setValue(someobj['dob']);
   this.users.controls.notificationPhone.setValue(someobj['notificationPhone']);
   this.users.controls.notificationEmail.setValue(someobj['notificationEmail']);
   this.users.controls.lastResortLetter.setValue(someobj['lastResortLetter']);
-
+  
   }
 
 

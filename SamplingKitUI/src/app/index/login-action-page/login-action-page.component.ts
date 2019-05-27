@@ -14,14 +14,22 @@ import { IndexService } from '../services/index.service';
 export class LoginActionPageComponent implements OnInit {
 
   OBSLoginForm:FormGroup;
+  loginActionActive=false;
+  
 
   constructor(private fb:FormBuilder,private authService:AuthService,private routerNavigate:Router,private sendservice:IndexService) {}
   
   LoginAction(formData:any)
   {
     if(this.authService.loginAction(formData)){
-     this.routerNavigate.navigate(['dashboard']);
+      this.loginActionActive=true;
    }
+  }
+
+  navigateToDashboard(){
+    if(this.loginActionActive){
+      this.routerNavigate.navigate(['dashboard']);
+    }
   }
 
   ngOnInit() 
@@ -30,6 +38,11 @@ export class LoginActionPageComponent implements OnInit {
       'username': [null,Validators.required],
       'password': [null,Validators.required]
     });
+
+    this.authService.logindata.subscribe(data => {
+      this.navigateToDashboard();
+    });
+
   }
 
   viewResult()
