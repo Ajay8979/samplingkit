@@ -27,7 +27,7 @@ this.dataservice.getuserByid(sessionStorage.getItem('sponsorId')).subscribe(data
 }
 save(formData:any){
   formData.sponsorId=sessionStorage.getItem('sponsorId');
-  formData.role="SPONSORUSER"
+  formData.role="COMMISSIONERUSER"
   this.dataservice.postUsers(formData).subscribe(data=>{
     this.getusersByid();
   })

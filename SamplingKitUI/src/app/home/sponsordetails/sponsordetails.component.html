@@ -28,6 +28,7 @@
                 <th><strong>Budget</strong></th>
                 <th><strong>District Codes</strong></th>
                 <th><strong>Edit</strong></th>
+                <th></th>
               </tr>
               <tr>
                 <td>
@@ -41,7 +42,7 @@
                 <td >
                   <span *ngIf="!isEditable1">
                     <span *ngFor="let i of postalCodesDetails">
-                      {{i.postalCode}}
+                      {{i.postalCode}},
                     </span>
                   </span>
                     <div *ngIf="isEditable1" >
@@ -57,6 +58,10 @@
                     <button class="btn btn-success btn-sm" *ngIf="isEditable1"
                       (click)="isEditable1=!isEditable1;updateSponsorDetails(name,budget,selectedItems)">Save</button>
                   </td>
+                  <td>
+                      <button class="btn btn-warning btn-sm" *ngIf="isEditable1"
+                          (click)="isEditable1=!isEditable1;">Cancel</button>
+                        </td>
               </tr>
             </tbody>
             <!-- <thead>
@@ -122,7 +127,7 @@
               <tr *ngIf="!isEditable3">
                   <th><strong>Address</strong></th>
                   <td>
-                  <div >Street Number #{{address.streetNumber}}, {{streetName1}}<br>
+                  <div >Street Number #{{address.streetNumber}}, Street Name: {{address.streetName1}}<br>
                     City: {{address.city}}, District: {{address.district}} - Postal Code: {{address.postCode}}
                   </div>
                 </td>
@@ -179,6 +184,10 @@
                   <button class="btn btn-success btn-sm pull-right" *ngIf="isEditable3"
                     (click)="isEditable3=!isEditable3;updateSelectedAddress(address)">Save</button>
                 </td>
+                 <td>
+                <button class="btn btn-warning btn-sm" *ngIf="isEditable3"
+                    (click)="isEditable3=!isEditable3;">Cancel</button>
+                  </td>
               </tr>
             </tbody>
             <!-- <thead>
@@ -265,10 +274,12 @@
                 <th>Ethinic Name</th>
                 <th>Test Name</th>
                 <th>Gender</th>
-                <th>Max Age</th>
                 <th>Min Age</th>
+                <th>Max Age</th>  
+                <th>District Code</th>
                 <th>Status</th>
                 <th>Edit</th>
+                <th></th>
 
               </tr>
             </thead>
@@ -278,20 +289,28 @@
                   <span *ngIf="!isEditable10">{{i+1}}</span>
                 </td>
                 <td>
-                    <span *ngIf="!isEditable10">{{item.ethnicName}}</span>
-                    <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.ethnicName"> -->
+                    <!-- <span *ngIf="!isEditable10">{{item.ethnicName}}</span>
                     <div>
                         <select [(ngModel)]="item.ethnicGroupId" *ngIf="isEditable10">
                           <option *ngFor="let c of ethenicData" [ngValue]="c.id">{{c.ethnicName}}</option>
                         </select>
-                      </div>
+                      </div> -->
+                      <div *ngFor="let subItem of item.ethnicGroups"></div>
+                     <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="ethenicData"
+                    [(ngModel)]="item.ethnicGroups"  [settings]="dropdownSettings1" (onSelect)="onItemSelect($event)"
+                    (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown> 
                 </td>
                 <td>
-                    <span *ngIf="!isEditable10">{{item.testName}}</span>
+                    <!-- <span *ngIf="!isEditable10">{{item.testName}}</span>
                     <select [(ngModel)]="item.testCodeId" *ngIf="isEditable10">
                         <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                      </select>
-                    
+                      </select> -->
+                      <div *ngFor="let sublist of item.testCodes" ></div>
+                      <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="testCodeData"
+                      [(ngModel)]="item.testCodes"  [settings]="dropdownSettings2" (onSelect)="onItemSelect($event)"
+                      (onSelectAll)="onSelectAll($event)">
+                    </ng-multiselect-dropdown>
                     <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.testName"> -->
                     <!-- <select [(ngModel)]="item.testName">
                         <option *ngFor="let c of ethenicData" [ngValue]="c.testCodeId"><span *ngIf="isEditable10">{{c.testName}}</span></option>
@@ -313,8 +332,8 @@
     
                   </td> -->
                 <td>
-                  <span *ngIf="!isEditable10">{{item.gender}}</span>
-                  <select class="form-control"  *ngIf="isEditable10" [(ngModel)]="item.gender" multiple
+                  <span *ngIf="!item.isEditable10">{{item.gender}}</span>
+                  <select class="form-control"  *ngIf="item.isEditable10" [(ngModel)]="item.gender" multiple
                   style="height: 60px;">
                   <option value="Man">Man </option>
                   <option value="Women">Woman</option>
@@ -324,34 +343,47 @@
                   <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.gender"> -->
                 </td>
                 <td>
-                  <span *ngIf="!isEditable10">{{item.maxAgeGroup}}</span>
-                  <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.maxAgeGroup">
+                    <span *ngIf="!item.isEditable10">{{item.minAgeGroup}}</span>
+                    <input type="text" *ngIf="item.isEditable10" class="" [(ngModel)]="item.minAgeGroup">
+                  </td>
+                <td>
+                  <span *ngIf="!item.isEditable10">{{item.maxAgeGroup}}</span>
+                  <input type="text" *ngIf="item.isEditable10" class="" [(ngModel)]="item.maxAgeGroup">
                 </td>
                 <td>
-                  <span *ngIf="!isEditable10">{{item.minAgeGroup}}</span>
-                  <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.minAgeGroup">
-                </td>
+                    <span *ngFor="let item of postalCodesDetails">
+                      <span> {{item.postalCode}}</span>,
+                      &nbsp;&nbsp;
+                      <!-- <input type="text" *ngIf="isEditable12" class="" [(ngModel)]="item.postalCode"> -->
+                    </span>
+                  </td>
+  
                 <td>
-                  <span *ngIf="!isEditable10">{{item.status}}</span>
+                  <span *ngIf="!item.isEditable10">{{item.status}}</span>
                   <!-- <input type="text" *ngIf="isEditable10" class="" [(ngModel)]="item.status"> -->
-                  <select *ngIf="isEditable10" class="" [(ngModel)]="item.status">
+                  <select *ngIf="item.isEditable10" class="" [(ngModel)]="item.status">
                     <option value="Active">Active</option>
                     <option value="Inactive">Inactive</option>
                   </select>
                 </td>
                 <td>
-                  <button class="btn btn-info btn-sm" (click)="isEditable10=!isEditable10" *ngIf="!isEditable10"><i
+                  <button class="btn btn-info btn-sm" (click)="item.isEditable10=!item.isEditable10" *ngIf="!item.isEditable10"><i
                       class="fa fa-edit"></i>Edit</button>
-                  <button class="btn btn-success btn-sm" *ngIf="isEditable10"
-                    (click)="isEditable10=!isEditable10;updateSelectedRule(item)">Save</button>
+                  <button class="btn btn-success btn-sm" *ngIf="item.isEditable10"
+                    (click)="item.isEditable10=!item.isEditable10;updateSelectedRule(item)">Save</button>
+                    
                 </td>
+                <td>
+                <button class="btn btn-warning btn-sm" *ngIf="item.isEditable10"
+                    (click)="item.isEditable10=!item.isEditable10;">Cancel</button>
+                  </td>
               </tr>
             </tbody>
           </table>
         </div>
       </div>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-default" *ngIf="false">
       <div class="panel-heading">
 
       </div>

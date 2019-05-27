@@ -32,15 +32,15 @@
                   <div class="col-md-12">
                     <label>
                       Roles:
-                      <input type="radio" name="role" value="SPONSORUSER" (change)="changeUser()"
-                        formControlName="role">Sponsor User
+                      <input type="radio" name="role" value="COMMISSIONERUSER" (change)="changeUser()"
+                        formControlName="role">Commissioner User
                     </label>&nbsp;&nbsp;
                     <label>
                       <input type="radio" name="role" value="SUPPORTUSER" formControlName="role">Support User
                     </label>
                     &nbsp;&nbsp;
                     <label>
-                      <input type="radio" name="role" value="CLINISHUSER" formControlName="role">Clinish User
+                      <input type="radio" name="role" value="CLINISH" formControlName="role">Clinish User
                     </label>
 
                   </div>
@@ -97,22 +97,27 @@
 
                   <div class="clearfix"></div>
 
-                  <!-- <div class="col-md-6">
+                  <div class="col-md-6" *ngIf="updatfrm">
                     <label>
-                      Password:
-                      <input type="password" class="form-control" formControlName="passWord">
+                      Status:
+                      <select formControlName="status" class="form-control" >
+                        <option value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                      </select>
                     </label>
-                  </div> -->
+                  </div>
                 </div>
                 <div class="form-group row">
 
-                  <div class="col-md-6" *ngIf="profileForm.value.role=='SPONSORUSER'">
-                    <label>Sponsor Users</label>
+                  <div class="col-md-6" *ngIf="profileForm.value.role=='COMMISSIONERUSER'">
+                    <label>Commissioners</label>
                     <select class="form-control" formControlName="sponsorId">
                       <option *ngFor="let name of sponserUsers" [value]="name.id">{{name.name}}</option>
                     </select>
                   </div>
-
+                  <div class="col-md-6" >
+                      <input type="text" class="form-control" formControlName="id" hidden>
+                  </div>
                 </div>
                 <br>
               </form>
@@ -120,9 +125,9 @@
           </div>
           <div class="modal-footer">
             <button class="btn btn-default" data-dismiss="modal">Close</button>
-            <input type="button" class="btn btn-info float-right" (click)="updateValue(profileForm.value)" *ngIf="updatfrm"
-              value="Update" />
-            <input type="submit" class="btn btn-info float-right" (click)="save(profileForm.value)" *ngIf="addfrm"
+            <input type="button" class="btn btn-info float-right" (click)="updateValue(profileForm)" *ngIf="updatfrm"
+              value="Update"  data-dismiss="modal"/>
+            <input type="submit" class="btn btn-info float-right" (click)="save(profileForm)" *ngIf="addfrm"
               [disabled]="profileForm.invalid" data-dismiss="modal" value="Submit">
 
           </div>

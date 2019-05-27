@@ -46,7 +46,9 @@ export class UsersComponent implements OnInit {
         'role':[null,Validators.required],
         'mobileNum':['',Validators.compose([Validators.required,Validators.pattern('[6-9]\\d{9}')])],
         'userName':[null,Validators.required],
-        'sponsorId':[null]
+        'sponsorId':[null],
+        'id':[null],
+        'status':[null]
         
          })
   }
@@ -63,10 +65,11 @@ export class UsersComponent implements OnInit {
     this.addfrm= true;
   }
 
-  save(formData:any){
+  save(profileForm){
   
-      this.dataservice.postUsers(formData).subscribe(data=>{
-        console.log("adding data",data)
+      this.dataservice.postUsers(profileForm.value).subscribe(data=>{
+        console.log("adding data",data);
+        profileForm.reset();
         this.getUser();
       })
   }
@@ -76,7 +79,7 @@ export class UsersComponent implements OnInit {
     })
   }
   editForm(data){
-    console.log("hfdhf",data)
+    console.log("hfdhf",data.id)
     this.updatfrm= true;
     this.addfrm= false;
     this.profileForm.patchValue({
@@ -86,7 +89,9 @@ export class UsersComponent implements OnInit {
       'sponsorId':data.sponsorId,
       'firstName':data.firstName,
       'lastName':data.lastName,
-      'userName':data.username
+      'userName':data.username,
+      'id':data.id,
+      'status':data.status
      
       })
   }
@@ -98,26 +103,24 @@ export class UsersComponent implements OnInit {
     })
   }
 
-  updateValue(data) {
-    // var dt = { 
-    //   id: this.pid, 
-    //   firstName: this.pfname,
-    //    lastName: this.plname, 
-    //    emailId: this.pemail,
-    //    mobileNum: this.pmobileno,
-    //    userName: this.puserName,
-    //    sponsorId: this.psponsorId
-    //    }
-   this.dataservice.updateUsers(data).subscribe(data => {
-     console.log("updated",data);
+  updateValue(profileForm) {
+    var dt = { 
+      id: profileForm.id,
+      role:profileForm.role,
+      firstName: profileForm.firstName,
+       lastName: profileForm.lastName, 
+       emailId: profileForm.emailId,
+       userName: profileForm.userName,
+       mobileNum: profileForm.mobileNum,
+       sponsorId: profileForm.sponsorId,
+       status: profileForm.status
+       }
+       console.log(dt);
+   this.dataservice.updateUsers(profileForm.value).subscribe(data => {
+     
       this.getUser();
-      // this.addfrm = true
-      // this.updatfrm = false;
-      // this.pid = null;
-      // this.pfname = "";
-      // this.plname = "";
-      // this.pemail = ""
     })
+    profileForm.reset();
   }
   
 }

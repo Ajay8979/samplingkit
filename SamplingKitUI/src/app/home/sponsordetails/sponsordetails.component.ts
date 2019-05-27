@@ -29,9 +29,11 @@ export class SponsordetailsComponent implements OnInit {
   testName:any;
   ethnicName:any;
   sponsorDetailsRule: any;
+  ethnicGroupDetails:any;
   postalCodesDetails: any;
   status:any;
-  
+  dropdownSettings1:{}
+  dropdownSettings2:{}
   public sponsorId:any;
   dropdownList = [];
   selectedItems = [];
@@ -90,7 +92,8 @@ export class SponsordetailsComponent implements OnInit {
     delete formData ['ethnicType'];
     delete formData ['description'];
     delete formData ['testCode'];
-    
+    delete formData ['ethnicGroupId'];
+    delete formData ['tectCodeId']
     var gender=formData.gender.toString();
     formData.gender=gender;
 
@@ -122,6 +125,9 @@ this.getAllTestCodedata();
     var datarequest={"name":name,"budget":budget,"postalCodes":selectedItems}
     this.dataservice.updateSponsorDetails(datarequest,this.sponsorId).subscribe(data=>{
      this.getSponsorList();
+     this.getAllTestCodedata();
+     this.getAllEthenic();
+     this. getPostCodeList(this.sponsorId);
      });
    }
    onItemSelect(item: any) {
@@ -151,7 +157,8 @@ this.getAllTestCodedata();
     //console.log("sponsorDetailsRule",this.sponsorDetailsRule);
     this.postalCodesDetails=data.resultData.postalCodes;
     this.testcodeDetails=data.resultData.testCodes;
-
+    this.ethnicGroupDetails=this.sponsorDetailsRule.ethnicGroups;
+console.log("Rules details",this.sponsorDetailsRule);
 
     //address details
   this.address=data.resultData.addresses[0];
@@ -201,7 +208,24 @@ this.getAllTestCodedata();
       itemsShowLimit: 3,
       allowSearchFilter: true
     };
-    
+    this.dropdownSettings1 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'ethnicName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 2,
+      allowSearchFilter: true
+    };
+    this.dropdownSettings2 = {
+      singleSelection: false,
+      idField: 'id',
+      textField: 'testName',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 3,
+      allowSearchFilter: true
+    };
     
        
   }

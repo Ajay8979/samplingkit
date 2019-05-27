@@ -11,9 +11,12 @@ import { HttpHeaders, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler } fr
 })
 export class AuthService {
 
+
   @Output() logindata: EventEmitter<boolean> = new EventEmitter();
 
-  host_url="http://192.168.7.144:8080/samplingkit/";
+ 
+host_url="http://192.168.1.137:8080/samplingkit/";
+
   url: any = this.host_url+"rest/user/authenticate";
 
 
@@ -45,9 +48,14 @@ export class AuthService {
       )
       .subscribe(
         (res) => {
+          console.log(res);
            sessionStorage.setItem('userData', res['resultData']['token']);
-           sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
-           if(res['resultData']['user'].roles[0]=="SPONSORUSER"){
+
+           sessionStorage.setItem('username', res['resultData']['user'].username);
+          sessionStorage.setItem('userRole', res['resultData']['user'].roles[0]);
+
+       if((res['resultData']['user'].roles[0]=="COMMISSIONERUSER")|| (res['resultData']['user'].roles[0]=="ADMIN")){
+
             sessionStorage.setItem('sponsorId',res['resultData']['user'].sponsorId)
           }
           if(res['resultData']['user'].roles[0]=="SUPPORTUSER"){

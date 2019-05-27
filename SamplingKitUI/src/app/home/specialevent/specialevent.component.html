@@ -14,7 +14,7 @@
     </div>
     <div class="col-md-9">
         <button type="button" style="margin-bottom:8px" class="btn btn-danger float-right" data-toggle="modal" data-backdrop="static" data-target="#myModal"
-        (click)="add()">Add</button>
+        (click)="add(specialEventForm)">Add</button>
             </div>
   </div>
 <div class="tile">
@@ -68,13 +68,13 @@
               <input type="text" placeholder="Special Event"  formControlName="eventName" name="eventName" class="form-control">
               <span class="text text-danger" *ngIf="specialEventForm.controls['eventName'].invalid && specialEventForm.controls['eventName'].touched">Special Event Required</span>
             </div>
-      
+            <input type="text" formControlName="id" name="id" hidden>
           </div>
           <div class="modal-footer">
             <button type="submit"  [disabled]="specialEventForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
-              (click)="saveEvent(specialEventForm.value)" *ngIf="addfrm">Submit</button>
+              (click)="saveEvent(specialEventForm)" *ngIf="addfrm">Submit</button>
             <button type="button" [disabled]="specialEventForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
-              (click)="updateEvent(specialEventForm.value)" *ngIf="updatfrm">Update</button>
+              (click)="updateEvent(specialEventForm)" *ngIf="updatfrm">Update</button>
           </div>
         </div>
       </form>

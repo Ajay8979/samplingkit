@@ -29,29 +29,30 @@ export class PostalcodeComponent implements OnInit {
   ngOnInit() {
     this.postalCodeForm=this.fb.group({
      // 'postalCode':[null,Validators.compose([Validators.required,Validators.pattern('^(([gG][iI][rR] {0,}0[aA]{2})|(([aA][sS][cC][nN]|[sS][tT][hH][lL]|[tT][dD][cC][uU]|[bB][bB][nN][dD]|[bB][iI][qQ][qQ]|[fF][iI][qQ][qQ]|[pP][cC][rR][nN]|[sS][iI][qQ][qQ]|[iT][kK][cC][aA]) {0,}1[zZ]{2})|((([a-pr-uwyzA-PR-UWYZ][a-hk-yxA-HK-XY]?[0-9][0-9]?)|(([a-pr-uwyzA-PR-UWYZ][0-9][a-hjkstuwA-HJKSTUW])|([a-pr-uwyzA-PR-UWYZ][a-hk-yA-HK-Y][0-9][abehmnprv-yABEHMNPRV-Y]))) {0,}[0-9][abd-hjlnp-uw-zABD-HJLNP-UW-Z]{2}))$')])],
-      postalCode:['',Validators.compose([Validators.required,Validators.maxLength(4)])]
+      postalCode:['',Validators.compose([Validators.required,Validators.maxLength(4)])],
+      id:[]
     })
     this.getPostalcode()
   }
-  add(regForm){
-  
+  add(postalCodeForm){
     this.updatfrm= false;
     this.addfrm= true;
-
+    postalCodeForm.reset();
   }
   // Save 
-  addPostalCode(formData:any){
-    this.dataservice.postPostalcode(formData).subscribe((res)=>{
-
+  addPostalCode(postalCodeForm){
+    this.dataservice.postPostalcode(postalCodeForm.value).subscribe((res)=>{
+      postalCodeForm.reset();
       this.getPostalcode();
     })
        }
 
   //Update Special Event
-  updatePostalData(formData:any){
-    formData.id=this.pId;
-    this.dataservice.updatePostalcode(formData).subscribe((res)=>{
+  updatePostalData(postalCodeForm){
+    postalCodeForm.id=this.pId;
+    this.dataservice.updatePostalcode(postalCodeForm.value).subscribe((res)=>{
       this.getPostalcode();
+      postalCodeForm.reset();
     })
   }
 // Get all Special Event
@@ -65,6 +66,7 @@ export class PostalcodeComponent implements OnInit {
     this.pId=data.id;
     this.postalCodeForm.setValue({
       'postalCode':data.postalCode,
+      'id':data.id
     })
     this.updatfrm= true;
     this.addfrm= false;

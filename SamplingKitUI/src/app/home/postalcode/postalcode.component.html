@@ -15,7 +15,7 @@
       </div>
       <div class="col-md-9">
           <button type="button" style="margin-bottom:8px" class="btn btn-danger pull-right"  data-backdrop="static" data-toggle="modal" data-target="#myModal"
-          (click)="add(regForm)">Add</button>
+          (click)="add(postalCodeForm)">Add</button>
          </div>
     </div>
   
@@ -70,15 +70,17 @@
         
               <div class="col-md-12">
                 <input type="text" placeholder="District Code" name="postalCode" class="form-control"  formControlName="postalCode">
+               
                 <span class="text text-danger" *ngIf="postalCodeForm.controls['postalCode'].invalid && (postalCodeForm.controls['postalCode'].touched || postalCodeForm.controls['postalCode'].dirty)"> Only 4 Digits District code is Required</span>
               </div>
+              <input type="text" name="postalCode" formControlName="id" hidden>
         
         
             </div>
             <div class="modal-footer">
-              <button type="submit" (click)="addPostalCode(postalCodeForm.value)" *ngIf="addfrm"   data-dismiss="modal"  class="btn btn-primary float-right" id="register"  [disabled]="postalCodeForm.invalid">Submit</button>
+              <button type="submit" (click)="addPostalCode(postalCodeForm)" *ngIf="addfrm"   data-dismiss="modal"  class="btn btn-primary float-right" id="register"  [disabled]="postalCodeForm.invalid">Submit</button>
               <button type="button" data-dismiss="modal" class="btn btn-primary float-right"  [disabled]="postalCodeForm.invalid" id="register"
-                (click)="updatePostalData(postalCodeForm.value)" *ngIf="updatfrm">Update</button>
+                (click)="updatePostalData(postalCodeForm)" *ngIf="updatfrm">Update</button>
             </div>
           </div>
       </form>

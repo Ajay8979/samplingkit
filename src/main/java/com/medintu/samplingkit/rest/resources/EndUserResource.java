@@ -1,10 +1,13 @@
 package com.medintu.samplingkit.rest.resources;
 
-import java.io.BufferedInputStream;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -33,12 +36,8 @@ import com.medintu.samplingkit.entity.EndUserConfiguration;
 import com.medintu.samplingkit.entity.EndUserMapper;
 import com.medintu.samplingkit.entity.EndUserTests;
 import com.medintu.samplingkit.entity.Hl7Message;
-import com.medintu.samplingkit.entity.ORMMessage;
-import com.medintu.samplingkit.entity.ORUMessage;
-import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.SponsorSpent;
 import com.medintu.samplingkit.entity.TestCode;
-import com.medintu.samplingkit.entity.TestResult;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.EndUserService;
 import com.medintu.samplingkit.service.TestResultService;
@@ -47,19 +46,8 @@ import com.medintu.samplingkit.service.impl.MailSenderImpl;
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HL7Exception;
 import ca.uhn.hl7v2.HapiContext;
-import ca.uhn.hl7v2.model.Message;
-import ca.uhn.hl7v2.model.v25.datatype.XAD;
-import ca.uhn.hl7v2.model.v25.datatype.XPN;
-import ca.uhn.hl7v2.model.v25.group.ORU_R01_ORDER_OBSERVATION;
 import ca.uhn.hl7v2.model.v25.message.ORM_O01;
-import ca.uhn.hl7v2.model.v25.message.ORU_R01;
-import ca.uhn.hl7v2.model.v25.segment.MSH;
-import ca.uhn.hl7v2.model.v25.segment.OBR;
-import ca.uhn.hl7v2.model.v25.segment.OBX;
-import ca.uhn.hl7v2.model.v25.segment.ORC;
-import ca.uhn.hl7v2.model.v25.segment.PID;
 import ca.uhn.hl7v2.parser.Parser;
-import ca.uhn.hl7v2.util.Hl7InputStreamMessageIterator;
 
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 @Path("endUsers")
@@ -150,13 +138,6 @@ public class EndUserResource {
 		endUser.setSponsorId(sponserId);
 		endUser.setStatus("In Progress");
 
-		if (!StringUtils.isEmpty(endUserMapper.getNotificationEmail())) {
-			try {
-				mailSenderImpl.sendMail(endUserMapper.getFirstName(), endUserMapper.getNotificationEmail());
-			} catch (Exception e) {
-
-			}
-		}
 		endUser.setCreatedDate(new Date());
 		EndUser createdEndUser = endUserService.addEndUser(endUser);
 
@@ -176,11 +157,21 @@ public class EndUserResource {
 				sponsorSpent.setTxDate(new Date());
 				sponsorSpent.setSponsorId(sponserId);
 				sponsorSpentDao.save(sponsorSpent);
+
+				if (!StringUtils.isEmpty(createdEndUser.getNotificationEmail())) {
+					try {
+						mailSenderImpl.sendMail(endUser);
+						System.out.println("mail sent successful");
+					} catch (Exception e) {
+
+					}
+				}
+
 				/*
 				 * sponsorDao.updatesponsorBudget(sponserId, sponsorSpent.getBudgetSpent());
 				 */ }
 
-			/* writehl7File(endUser); */
+			writehl7File(endUser);
 			response = new Response("Success", HttpStatus.OK, generateOrderCode);
 		} else {
 			response = new Response("Failed to add End User.", HttpStatus.CONFLICT, generateOrderCode);
@@ -310,20 +301,20 @@ public class EndUserResource {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Hl7Message writehl7File(EndUser endUser) {
+	public void writehl7File(EndUser endUser) {
 
 		HapiContext context = new DefaultHapiContext();
 		ORM_O01 ormMessage = null;
-		ORU_R01 oruMessage = null;
+		// ORU_R01 oruMessage = null;
 		InputStream inputStream = null;
 		Hl7Message hl7Message = new Hl7Message();
 		try {
 			ormMessage = (ORM_O01) endUserService.createMessage("O01", endUser);
 
-			oruMessage = (ORU_R01) endUserService.createMessage("R01", endUser);
+			// oruMessage = (ORU_R01) endUserService.createMessage("R01", endUser);
 			Parser pipeParser = context.getPipeParser();
 			pipeParser.encode(ormMessage);
-			System.out.println(ormMessage);
+			// System.out.println(ormMessage);
 
 			File fileORM = null;
 			File fileORU = null;
@@ -335,157 +326,182 @@ public class EndUserResource {
 
 			fileORM = endUserService.writeMessageToFileORM(pipeParser, ormMessage,
 					userConfiguration.writeORM() + endUser.getOrderCode() + "ORM.hl7");
-			fileORU = endUserService.writeMessageToFileORU(pipeParser, oruMessage,
-					userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
+			// fileORU = endUserService.writeMessageToFileORU(pipeParser, oruMessage,
+			// userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
 
 			File fileNew = new File(userConfiguration.writeORM() + endUser.getOrderCode() + "ORM.hl7");
 
-			InputStream is0 = new FileInputStream(fileNew);
-			is0 = new BufferedInputStream(is0);
-			Hl7InputStreamMessageIterator iter0 = new Hl7InputStreamMessageIterator(is0);
-			Message ormReadMessage = null;
-			while (iter0.hasNext()) {
-				ormReadMessage = iter0.next();
-			}
+			/*
+			 * InputStream is0 = new FileInputStream(fileNew); is0 = new
+			 * BufferedInputStream(is0); Hl7InputStreamMessageIterator iter0 = new
+			 * Hl7InputStreamMessageIterator(is0); Message ormReadMessage = null; while
+			 * (iter0.hasNext()) { ormReadMessage = iter0.next(); }
+			 */
 
-			File fileNew1 = new File(userConfiguration.writeORU() + endUser.getOrderCode() + "ORU.hl7");
+			// File fileNew1 = new File(userConfiguration.writeORU() +
+			// endUser.getOrderCode() + "ORU.hl7");
 
-			InputStream is = new FileInputStream(fileNew1);
-			is = new BufferedInputStream(is);
-			Hl7InputStreamMessageIterator iter = new Hl7InputStreamMessageIterator(is);
-			Message oruReadMessage = null;
-			while (iter.hasNext()) {
-				oruReadMessage = iter.next();
-			}
+			/*
+			 * InputStream is = new FileInputStream(fileNew1); is = new
+			 * BufferedInputStream(is); Hl7InputStreamMessageIterator iter = new
+			 * Hl7InputStreamMessageIterator(is); Message oruReadMessage = null; while
+			 * (iter.hasNext()) { oruReadMessage = iter.next(); }
+			 */
 
-			MSH mshSegment = ((ORU_R01) oruReadMessage).getMSH();
-			String applicationName = mshSegment.getSendingApplication().getNamespaceID().toString();
+			/*
+			 * MSH mshSegment = ((ORU_R01) oruReadMessage).getMSH(); String applicationName
+			 * = mshSegment.getSendingApplication().getNamespaceID().toString();
+			 * 
+			 * PID pid = ((ORU_R01)
+			 * oruReadMessage).getPATIENT_RESULT().getPATIENT().getPID(); String
+			 * ethinicGroups = pid.getEthnicGroup(0).getText().toString(); String gender =
+			 * pid.getAdministrativeSex().toString(); String address =
+			 * pid.getPatientAddress(0).getAddressType().toString(); String postalCode =
+			 * pid.getPatientAddress(0).getZipOrPostalCode().toString();
+			 * 
+			 * String phoneNumber =
+			 * pid.getPhoneNumberHome(0).getTelephoneNumber().toString(); String mail =
+			 * pid.getPhoneNumberHome(0).getEmailAddress().toString(); XPN patientName =
+			 * pid.getPatientName(0); String lastName =
+			 * patientName.getFamilyName().getSurname().toString(); String firstName =
+			 * patientName.getGivenName().toString();
+			 * 
+			 * ORU_R01 oru = (ORU_R01) oruReadMessage.getMessage(); OBX obx =
+			 * oru.getPATIENT_RESULT().getORDER_OBSERVATION().getOBSERVATION(0).getOBX();
+			 * String testResult = obx.getValueType().toString(); String testCode =
+			 * obx.getObservationIdentifier().getIdentifier().toString(); String testName =
+			 * obx.getObservationIdentifier().getText().toString(); String abnormalFlags =
+			 * obx.getAbnormalFlags(0).toString(); String abnormalTest =
+			 * obx.getNatureOfAbnormalTest(0).toString(); String abnormalTestResult =
+			 * obx.getObservationResultStatus().toString();
+			 * 
+			 * ORU_R01_ORDER_OBSERVATION orderObservation = ((ORU_R01)
+			 * oruReadMessage).getPATIENT_RESULT() .getORDER_OBSERVATION(); OBR obr =
+			 * orderObservation.getOBR(); String testCodeObr =
+			 * obr.getUniversalServiceIdentifier().getIdentifier().toString(); String
+			 * testNameObr = obr.getUniversalServiceIdentifier().getText().toString();
+			 * 
+			 * ORC orc = ((ORU_R01)
+			 * oruReadMessage).getPATIENT_RESULT().getORDER_OBSERVATION().getORC(); String
+			 * orderId = orc.getPlacerOrderNumber().getUniversalID().toString(); String
+			 * status = "Completed"; String orderStatus = orc.getOrderStatus().toString();
+			 * String SponserId = orc.getOrderingProvider(0).getIDNumber().toString();
+			 */
 
-			PID pid = ((ORU_R01) oruReadMessage).getPATIENT_RESULT().getPATIENT().getPID();
-			String ethinicGroups = pid.getEthnicGroup(0).getText().toString();
-			String gender = pid.getAdministrativeSex().toString();
-			String address = pid.getPatientAddress(0).getAddressType().toString();
-			String postalCode = pid.getPatientAddress(0).getZipOrPostalCode().toString();
+			/*
+			 * TestResult testResultData = new TestResult();
+			 * testResultData.setEthinicGroups(ethinicGroups);
+			 * testResultData.setGender(gender); testResultData.setMail(mail);
+			 * testResultData.setOrderId(orderId); testResultData.setPatientName(firstName);
+			 * testResultData.setPhoneNumber(phoneNumber); testResultData.setSTATUS(status);
+			 * testResultData.setTestCode(testCode); testResultData.setTestName(testResult);
+			 * testResultData.setTestResult(testResult);
+			 * 
+			 * testResultService.createTestResult(testResultData);
+			 * testResultService.updateEnduser(testResultData);
+			 */
 
-			String phoneNumber = pid.getPhoneNumberHome(0).getTelephoneNumber().toString();
-			String mail = pid.getPhoneNumberHome(0).getEmailAddress().toString();
-			XPN patientName = pid.getPatientName(0);
-			String lastName = patientName.getFamilyName().getSurname().toString();
-			String firstName = patientName.getGivenName().toString();
+			/*
+			 * ORUMessage oruMess = new ORUMessage();
+			 * oruMess.setApplicationName(applicationName);
+			 * oruMess.setEthinicGroups(ethinicGroups); oruMess.setFirstName(firstName);
+			 * oruMess.setLastName(lastName); oruMess.setGender(gender);
+			 * oruMess.setMail(mail); oruMess.setPhoneNumber(phoneNumber);
+			 * oruMess.setAddress(address); oruMess.setPostalCode(postalCode);
+			 * oruMess.setAbnormalFlags(abnormalFlags);
+			 * oruMess.setAbnormalTest(abnormalTest);
+			 * oruMess.setAbnormalTestResult(abnormalTestResult);
+			 * oruMess.setTestResult(testResult); oruMess.setTestCode(testCodeObr);
+			 * oruMess.setTestName(testNameObr); oruMess.setOrderNumber(orderId);
+			 * oruMess.setOrderStatus(orderStatus); oruMess.setSponserId(SponserId);
+			 */
 
-			ORU_R01 oru = (ORU_R01) oruReadMessage.getMessage();
-			OBX obx = oru.getPATIENT_RESULT().getORDER_OBSERVATION().getOBSERVATION(0).getOBX();
-			String testResult = obx.getValueType().toString();
-			String testCode = obx.getObservationIdentifier().getIdentifier().toString();
-			String testName = obx.getObservationIdentifier().getText().toString();
-			String abnormalFlags = obx.getAbnormalFlags(0).toString();
-			String abnormalTest = obx.getNatureOfAbnormalTest(0).toString();
-			String abnormalTestResult = obx.getObservationResultStatus().toString();
+			/*
+			 * MSH mshSegment0 = ((ORM_O01) ormReadMessage).getMSH(); String
+			 * applicationName0 =
+			 * mshSegment0.getSendingApplication().getNamespaceID().toString();
+			 * 
+			 * PID pid0 = ((ORM_O01) ormReadMessage).getPATIENT().getPID(); String
+			 * ethiniGruops0 = pid0.getEthnicGroup(0).getText().toString(); String gender0 =
+			 * pid0.getAdministrativeSex().toString(); String phoneNumber0 =
+			 * pid0.getPhoneNumberHome(0).getTelephoneNumber().toString(); String mail0 =
+			 * pid0.getPhoneNumberHome(0).getEmailAddress().toString();
+			 * 
+			 * XPN patientName0 = pid.getPatientName(0); String lastName0 =
+			 * patientName0.getFamilyName().getSurname().toString(); String firstName0 =
+			 * patientName0.getGivenName().toString();
+			 * 
+			 * XAD patientAddress0 = pid.getPatientAddress(0); String address0 =
+			 * patientAddress0.getAddressType().toString(); String postalCode0 =
+			 * patientAddress0.getZipOrPostalCode().toString();
+			 * 
+			 * ORC orc0 = ((ORM_O01) ormReadMessage).getORDER().getORC(); String
+			 * transactionDate0 = orc0.getDateTimeOfTransaction().getTime().toString();
+			 * String orderStatus0 = orc0.getOrderStatus().toString();
+			 * 
+			 * String OrderId0 = orc0.getPlacerOrderNumber().getUniversalID().toString();
+			 * String sponsorId0 = orc0.getOrderingProvider(0).getIDNumber().toString();
+			 * 
+			 * OBR obr0 = ((ORM_O01) ormReadMessage).getORDER().getORDER_DETAIL().getOBR();
+			 * String TestCode0 =
+			 * obr0.getUniversalServiceIdentifier().getIdentifier().toString(); String
+			 * testName0 = obr0.getUniversalServiceIdentifier().getText().toString();
+			 */
 
-			ORU_R01_ORDER_OBSERVATION orderObservation = ((ORU_R01) oruReadMessage).getPATIENT_RESULT()
-					.getORDER_OBSERVATION();
-			OBR obr = orderObservation.getOBR();
-			String testCodeObr = obr.getUniversalServiceIdentifier().getIdentifier().toString();
-			String testNameObr = obr.getUniversalServiceIdentifier().getText().toString();
+			/*
+			 * ORMMessage ormMess = new ORMMessage(); ormMess.setAddress(address0);
+			 * ormMess.setApplicationName(applicationName0);
+			 * ormMess.setEthinicGroups(ethiniGruops0); ormMess.setFirstName(firstName0);
+			 * ormMess.setLastName(lastName0); ormMess.setGender(gender0);
+			 * ormMess.setMail(mail0); ormMess.setPhoneNumber(phoneNumber0);
+			 * ormMess.setOrderNumber(OrderId0); ormMess.setOrderStatus(orderStatus0);
+			 * ormMess.setPostalCode(postalCode0); ormMess.setSponserId(sponsorId0);
+			 * ormMess.setTestCode(TestCode0); ormMess.setTestName(testName0);
+			 * ormMess.setOrderDate(transactionDate0);
+			 * 
+			 * hl7Message.setOruMessage(oruMess); hl7Message.setOrmMessage(ormMess);
+			 */
 
-			ORC orc = ((ORU_R01) oruReadMessage).getPATIENT_RESULT().getORDER_OBSERVATION().getORC();
-			String orderId = orc.getPlacerOrderNumber().getUniversalID().toString();
-			String status = "Completed";
-			String orderStatus = orc.getOrderStatus().toString();
-			String SponserId = orc.getOrderingProvider(0).getIDNumber().toString();
-
-			TestResult testResultData = new TestResult();
-			testResultData.setEthinicGroups(ethinicGroups);
-			testResultData.setGender(gender);
-			testResultData.setMail(mail);
-			testResultData.setOrderId(orderId);
-			testResultData.setPatientName(firstName);
-			testResultData.setPhoneNumber(phoneNumber);
-			testResultData.setSTATUS(status);
-			testResultData.setTestCode(testCode);
-			testResultData.setTestName(testResult);
-			testResultData.setTestResult(testResult);
-
-			testResultService.createTestResult(testResultData);
-			testResultService.updateEnduser(testResultData);
-
-			ORUMessage oruMess = new ORUMessage();
-			oruMess.setApplicationName(applicationName);
-			oruMess.setEthinicGroups(ethinicGroups);
-			oruMess.setFirstName(firstName);
-			oruMess.setLastName(lastName);
-			oruMess.setGender(gender);
-			oruMess.setMail(mail);
-			oruMess.setPhoneNumber(phoneNumber);
-			oruMess.setAddress(address);
-			oruMess.setPostalCode(postalCode);
-			oruMess.setAbnormalFlags(abnormalFlags);
-			oruMess.setAbnormalTest(abnormalTest);
-			oruMess.setAbnormalTestResult(abnormalTestResult);
-			oruMess.setTestResult(testResult);
-			oruMess.setTestCode(testCodeObr);
-			oruMess.setTestName(testNameObr);
-			oruMess.setOrderNumber(orderId);
-			oruMess.setOrderStatus(orderStatus);
-			oruMess.setSponserId(SponserId);
-
-			MSH mshSegment0 = ((ORM_O01) ormReadMessage).getMSH();
-			String applicationName0 = mshSegment0.getSendingApplication().getNamespaceID().toString();
-
-			PID pid0 = ((ORM_O01) ormReadMessage).getPATIENT().getPID();
-			String ethiniGruops0 = pid0.getEthnicGroup(0).getText().toString();
-			String gender0 = pid0.getAdministrativeSex().toString();
-			String phoneNumber0 = pid0.getPhoneNumberHome(0).getTelephoneNumber().toString();
-			String mail0 = pid0.getPhoneNumberHome(0).getEmailAddress().toString();
-
-			XPN patientName0 = pid.getPatientName(0);
-			String lastName0 = patientName0.getFamilyName().getSurname().toString();
-			String firstName0 = patientName0.getGivenName().toString();
-
-			XAD patientAddress0 = pid.getPatientAddress(0);
-			String address0 = patientAddress0.getAddressType().toString();
-			String postalCode0 = patientAddress0.getZipOrPostalCode().toString();
-
-			ORC orc0 = ((ORM_O01) ormReadMessage).getORDER().getORC();
-			String transactionDate0 = orc0.getDateTimeOfTransaction().getTime().toString();
-			String orderStatus0 = orc0.getOrderStatus().toString();
-
-			String OrderId0 = orc0.getPlacerOrderNumber().getUniversalID().toString();
-			String sponsorId0 = orc0.getOrderingProvider(0).getIDNumber().toString();
-
-			OBR obr0 = ((ORM_O01) ormReadMessage).getORDER().getORDER_DETAIL().getOBR();
-			String TestCode0 = obr0.getUniversalServiceIdentifier().getIdentifier().toString();
-			String testName0 = obr0.getUniversalServiceIdentifier().getText().toString();
-
-			ORMMessage ormMess = new ORMMessage();
-			ormMess.setAddress(address0);
-			ormMess.setApplicationName(applicationName0);
-			ormMess.setEthinicGroups(ethiniGruops0);
-			ormMess.setFirstName(firstName0);
-			ormMess.setLastName(lastName0);
-			ormMess.setGender(gender0);
-			ormMess.setMail(mail0);
-			ormMess.setPhoneNumber(phoneNumber0);
-			ormMess.setOrderNumber(OrderId0);
-			ormMess.setOrderStatus(orderStatus0);
-			ormMess.setPostalCode(postalCode0);
-			ormMess.setSponserId(sponsorId0);
-			ormMess.setTestCode(TestCode0);
-			ormMess.setTestName(testName0);
-			ormMess.setOrderDate(transactionDate0);
-
-			hl7Message.setOruMessage(oruMess);
-			hl7Message.setOrmMessage(ormMess);
-
-			// mail.sendMail(endUserMapper.getFirstName(), endUserMapper.getEmail(), file);
-
-			System.out.println(fileNew.length());
+			// System.out.println(fileNew.length());
 		} catch (HL7Exception | IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return hl7Message;
 
+	}
+
+	@Path("/sendSMS")
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public String sendSms() {
+		try {
+			// Construct data
+			String apiKey = "apikey=" + URLEncoder.encode("FpKPuob9yg8-ttvRY79CUiq8OUposMaSWIp3UKaetW", "UTF-8");
+			String message = "&message=" + URLEncoder.encode("This is your message", "UTF-8");
+			String sender = "&sender=" + URLEncoder.encode("Jims Autos", "UTF-8");
+			String numbers = "&numbers=" + URLEncoder.encode("919959550344", "UTF-8");
+
+			// Send data
+			String data = "https://api.txtlocal.com/send/?" + apiKey + numbers + message + sender;
+			URL url = new URL(data);
+			URLConnection conn = url.openConnection();
+			conn.setDoOutput(true);
+
+			// Get the response
+			BufferedReader rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+			String line;
+			String sResult = "";
+			while ((line = rd.readLine()) != null) {
+				// Process line...
+				sResult = sResult + line + " ";
+			}
+			rd.close();
+
+			return sResult;
+		} catch (Exception e) {
+			System.out.println("Error SMS " + e);
+			return "Error " + e;
+		}
 	}
 
 }

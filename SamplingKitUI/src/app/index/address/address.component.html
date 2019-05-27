@@ -52,11 +52,16 @@
 
                 <p>
                   <label>Address <span>*</span></label>
-                  <select>
-                    <option *ngFor="let address of addressDetails">{{address}}</option>
+                <!--  <select>
+                   <option *ngFor="let address of addressDetails">{{address}}</option>
                   </select>
-                  <span style="color:red;">Too many requests</span>
+                  <span style="color:red;">Too many requests</span> -->
+                  <input type="text" placeholder="address" formControlName="address">
+                  
+
                 </p>
+
+
 
                 <h2 class="btn btn_look look_3"><i class="fa fa-file-o"></i> &nbsp;
                   Look up</h2>

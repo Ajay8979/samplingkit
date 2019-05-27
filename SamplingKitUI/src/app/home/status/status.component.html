@@ -74,9 +74,9 @@
           </div>
           <div class="modal-footer">
             <button type="submit"  [disabled]="statusForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
-              (click)="save(statusForm.value)" *ngIf="addfrm">Submit</button>
+              (click)="save(statusForm)" *ngIf="addfrm">Submit</button>
             <button type="button"  [disabled]="statusForm.invalid" data-dismiss="modal" class="btn btn-primary float-right" id="register"
-              (click)="updateStatusData(statusForm.value)" *ngIf="updatfrm">Update</button>
+              (click)="updateStatusData(statusForm)" *ngIf="updatfrm">Update</button>
           </div>
         </div>
       </form>

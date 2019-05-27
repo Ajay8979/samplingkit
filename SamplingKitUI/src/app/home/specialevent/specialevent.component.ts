@@ -31,29 +31,33 @@ export class SpecialeventComponent implements OnInit {
   ngOnInit() {
     this.specialEventForm=this.fb.group({
       'eventName':[null,Validators.required],
+      'id':[]
       })
 
     this.getAllspecialEvent()
   }
-  add(){
+  add(specialEventForm){
     //regForm.reset();
     this.addfrm= true;
     this.updatfrm= false;
+    specialEventForm.reset();
     
   }
   // Save Special Event
-  saveEvent(formData:any){
-    this.dataservice.postspecialEvent(formData).subscribe((res)=>{
+  saveEvent(specialEventForm){
+    this.dataservice.postspecialEvent(specialEventForm.value).subscribe((res)=>{
       this.getAllspecialEvent();
+      specialEventForm.reset();
     })
   }
 
   //Update Special Event
- updateEvent(formData:any){
-   formData.id=this.eventId;
+ updateEvent(specialEventForm){
+  specialEventForm.id=this.eventId;
   // var dt = { id:this.data['id'], eventName: this.peventName}
-   this.dataservice.updateEvents(formData).subscribe((res)=>{
-     console.log(res)
+   this.dataservice.updateEvents(specialEventForm.value).subscribe((res)=>{
+     console.log(res);
+     specialEventForm.reset();
      this.getAllspecialEvent();
    })
  }
@@ -82,6 +86,7 @@ export class SpecialeventComponent implements OnInit {
      this.addfrm= false;
      this.specialEventForm.setValue({
       'eventName':data.eventName,
+      'id':data.id
      })
    //  this.data =data
     // this.id = this.data['id'];

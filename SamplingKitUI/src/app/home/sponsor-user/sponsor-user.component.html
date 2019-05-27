@@ -17,8 +17,8 @@
     </div>
   </div>
   <div class="col-md-9">
-    <button class="btn btn-danger  pull-right" data-toggle="modal" data-target="#myModal" data-backdrop="static"  (click)="initializeData()"><i
-        class="fa fa-plus"></i>Add Commissioner</button>
+    <button class="btn btn-danger  pull-right" data-toggle="modal" data-target="#myModal" data-backdrop="static"
+      (click)="initializeData()"><i class="fa fa-plus"></i>Add Commissioner</button>
   </div>
 </div>
 <div class="tile">
@@ -46,16 +46,19 @@
         <td>{{item.phone}}</td> -->
         <td>{{item.budget}}</td>
         <td>
-          <a href="" class="btn btn-warning btn-sm" data-toggle="modal"  data-backdrop="static" data-target="#editSponsor"
-            (click)="getPostalCodeforEdit(item.id)"><i class="fa fa-edit"></i>Edit</a>
+          <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-backdrop="static"
+            data-target="#editSponsor" (click)="getPostalCodeforEdit(item.id)"><i class="fa fa-edit"></i>Edit</a>
         </td>
         <td>
-            <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rulemyModal" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-plus"></i>Add Rules</a>&nbsp;&nbsp;
-          <a href="" data-backdrop="static"  class="btn btn-success btn-sm" data-toggle="modal" data-target="#postCodeslist"
-            (click)="getPostCodeList(item.id)"><i class="fa fa-edit"></i>District Codes</a>&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href=""
-            data-toggle="modal" data-target="#addressDetails"
-            (click)="getAddressDetails(item.id)" data-backdrop="static" ><i class="fa fa-edit"></i>Contacts</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm"
-            data-toggle="modal" data-target="#ruleDetails" data-backdrop="static"  (click)="getRulesDetails(item.id)"><i class="fa fa-edit"></i>Rules</a>&nbsp;&nbsp;
+          <a href="" class="btn btn-info btn-sm" data-toggle="modal" data-target="#rulemyModal" data-backdrop="static"
+            (click)="getRulesDetails(item.id)"><i class="fa fa-plus"></i>Add Rules</a>&nbsp;&nbsp;
+          <a href="" data-backdrop="static" class="btn btn-success btn-sm" data-toggle="modal"
+            data-target="#postCodeslist" (click)="getPostCodeList(item.id)"><i class="fa fa-edit"></i>District
+            Codes</a>&nbsp;&nbsp;<a class="btn btn-primary btn-sm" href="" data-toggle="modal"
+            data-target="#addressDetails" (click)="getAddressDetails(item.id)" data-backdrop="static"><i
+              class="fa fa-edit"></i>Contacts</a>&nbsp;&nbsp;<a href="" class="btn btn-info btn-sm" data-toggle="modal"
+            data-target="#ruleDetails" data-backdrop="static" (click)="getRulesDetails(item.id)"><i
+              class="fa fa-edit"></i>Rules</a>&nbsp;&nbsp;
         </td>
 
       </tr>
@@ -95,7 +98,7 @@
         <div class="form-group">
           <label for="phone">District Codes:</label>
           <div>
-            <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="dropdownList"
+            <ng-multiselect-dropdown [placeholder]="'Select District Code'" [data]="dropdownList"
               [(ngModel)]="selectedItems" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
               (onSelectAll)="onSelectAll($event)">
             </ng-multiselect-dropdown>
@@ -123,7 +126,7 @@
     <div class="modal-content">
       <div class="modal-header">
 
-        <h4 class="modal-title">Commissioner Details</h4>
+        <!-- <h4 class="modal-title">Commissioner Details</h4> -->
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       <div class="modal-body">
@@ -131,128 +134,148 @@
           <div class="main">
 
             <ul id="progressbar">
-              <li class="active">Commissioner Details</li>
-              <li>Contact Details</li>
+              <li class="active com">Commissioner Details</li>
+              <li class="cont">Contact Details</li>
               <!-- <li>Rule Details</li> -->
 
             </ul>
             <form [formGroup]="commissionerform">
 
-            <fieldset id="first" style="margin-left: 2px;">
-              <label class="col-md-4">Commissioner Name: </label>
-              <input class="col-md-5" formControlName="name" [(ngModel)]="name" name="name" placeholder="Name" type="text">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['name'].invalid && commissionerform.controls['name'].touched">Commissioner Name is required</div>
+              <fieldset id="first" style="margin-left: 2px;">
+                <label class="col-md-4">Commissioner Name: </label>
+                <input class="col-md-5" formControlName="name" [(ngModel)]="name" name="name" placeholder="Name"
+                  type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['name'].invalid && commissionerform.controls['name'].touched">
+                  Commissioner Name is required</div>
 
-              <!-- <div class="clearfix"></div>
+                <!-- <div class="clearfix"></div>
                                 <label class="col-md-2">Email: </label>
                                 <input class="col-md-7"  [(ngModel)]="email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" placeholder="Email" type="text" required>
                                 <div class="clearfix"></div>
                                 <label class="col-md-2">Phone: </label>
                                 <input class="col-md-7"  [(ngModel)]="phone" name="phone" placeholder="Phone" type="text" required> -->
 
-              <div class="clearfix"></div>
-              <label class="col-md-4">Budget: </label>
-              <input class="col-md-5" [(ngModel)]="budget" formControlName="budget" name="budget" placeholder="Budget" type="number">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['budget'].invalid && commissionerform.controls['budget'].touched">Budget is required</div>
-              <div class="clearfix"></div>
-              <label class="col-md-4" style="margin-top:18px;">District Codes: </label>
-
-              <div style="margin-left:240px; width: 45%;margin-bottom:38px;">
-                <ng-multiselect-dropdown [placeholder]="'Select District Codes'" [data]="dropdownList"
-                  [(ngModel)]="selectedpostCode" formControlName="selectedpostCode" [settings]="dropdownSettings" (onSelect)="onItemSelect($event)"
-                  (onSelectAll)="onSelectAll($event)">
-                </ng-multiselect-dropdown>
+                <div class="clearfix"></div>
+                <label class="col-md-4">Budget (£) :</label>
+                <input class="col-md-5" [(ngModel)]="budget" formControlName="budget" name="budget" placeholder="Budget"
+                  type="tel">
                 <div class="text text-danger"
-              *ngIf="commissionerform.controls['selectedpostCode'].invalid && commissionerform.controls['selectedpostCode'].touched">District Code is required</div>
-              </div>
-              <input class="next_btn btn btn-primary pull-right" [disabled]="(!name || !budget ||!selectedpostCode)"
-                (click)="step1Details(name,budget,selectedpostCode)" name="next" type="button" value="Next">
-              <!-- [disabled]="(!name || !email || !phone || !budget ||!selectedpostCode)"  -->
-              <!-- step1Details(name,email,phone,budget,selectedpostCode) -->
-            </fieldset>
+                  *ngIf="commissionerform.controls['budget'].invalid && commissionerform.controls['budget'].touched">
+                  Budget is required</div>
+                <div class="clearfix"></div>
+                <label class="col-md-4" style="margin-top:18px;">District Codes: </label>
 
-            <fieldset style="margin-left: 2px;">
-              <div class="clearfix"></div>
-              <label class="col-md-2">Email: </label>
-              <input class="col-md-7"  [(ngModel)]="email" formControlName="email"  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" placeholder="Email" type="text" required>
-              
+                <div style="margin-left:240px; width: 45%;margin-bottom:38px;">
+                  <ng-multiselect-dropdown [placeholder]="'Select District Codes'" [data]="dropdownList"
+                    [(ngModel)]="selectedpostCode" formControlName="selectedpostCode" [settings]="dropdownSettings"
+                    (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+                  </ng-multiselect-dropdown>
                   <div class="text text-danger"
-                  *ngIf="commissionerform.controls['email'].invalid && commissionerform.controls['email'].touched">Please enter a valid Email</div>  
-                
-              <div class="clearfix"></div>
-              <label class="col-md-2">Phone: </label>
-              <input class="col-md-7"  [(ngModel)]="phone" formControlName="phone" name="phone" placeholder="Phone" type="tel">
-              <div class="text text-danger" *ngIf="commissionerform.controls['phone'].errors.required">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['phone'].errors.required && (commissionerform.controls['phone'].touched || commissionerform.controls['phone'].dirty)">
-              Phone is required
-              </div>
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['phone'].errors.maxlength">
-              Phone number should be only in number format
-            </div>
-          </div>
-              <div class="clearfix"></div>
-              
-              <div class="clearfix"></div>
-              <label class="col-md-2">Street No: </label>
-              <input class="col-md-7" name="streetNumber" [(ngModel)]="streetNumber" formControlName="streetNumber" placeholder="Street Number"
-                type="text">
-                <div class="text text-danger"
-              *ngIf="commissionerform.controls['streetNumber'].invalid && commissionerform.controls['streetNumber'].touched">Street Number is required</div>
-              <div class="clearfix"></div>
-              <label class="col-md-2">Street Name1: </label>
-              <input class="col-md-7" name="strename" [(ngModel)]="strname1" formControlName="strname1" placeholder="Street Name" type="text">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['strname1'].invalid && commissionerform.controls['strname1'].touched">Street Name is required</div>
-              <div class="clearfix"></div>
+                    *ngIf="commissionerform.controls['selectedpostCode'].invalid && commissionerform.controls['selectedpostCode'].touched">
+                    District Code is required</div>
+                </div>
+                <input class="next_btn btn btn-primary pull-right" [disabled]="(!name || !budget ||!selectedpostCode)"
+                  (click)="step1Details(name,budget,selectedpostCode)" name="next" type="button" value="Next">
+                <!-- [disabled]="(!name || !email || !phone || !budget ||!selectedpostCode)"  -->
+                <!-- step1Details(name,email,phone,budget,selectedpostCode) -->
+              </fieldset>
 
-              <!-- <label class="col-md-2">Street Name2: </label>
+              <fieldset style="margin-left: 2px;">
+                <div class="clearfix"></div>
+                <label class="col-md-2">Email: </label>
+                <input class="col-md-7" [(ngModel)]="email" formControlName="email"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" name="email" placeholder="Email" type="text"
+                  required>
+
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['email'].invalid && commissionerform.controls['email'].touched">
+                  Please enter a valid Email</div>
+
+                <div class="clearfix"></div>
+                <label class="col-md-2">Phone: </label>
+                <input class="col-md-7" [(ngModel)]="phone" formControlName="phone" name="phone" placeholder="Phone"
+                  type="number">
+                <div class="text text-danger" *ngIf="commissionerform.controls['phone'].errors.required">
+                  <div class="text text-danger"
+                    *ngIf="commissionerform.controls['phone'].invalid && (commissionerform.controls['phone'].touched || commissionerform.controls['phone'].dirty)">
+                    Phone is required
+                  </div>
+                  <div class="text text-danger" *ngIf="commissionerform.controls['phone'].errors.maxlength">
+                    Phone number should be only in number format
+                  </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="clearfix"></div>
+                <label class="col-md-2">Street No: </label>
+                <input class="col-md-7" name="streetNumber" [(ngModel)]="streetNumber" formControlName="streetNumber"
+                  placeholder="Street Number" type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['streetNumber'].invalid && commissionerform.controls['streetNumber'].touched">
+                  Street Number is required</div>
+                <div class="clearfix"></div>
+                <label class="col-md-2">Street Name1: </label>
+                <input class="col-md-7" name="strename" [(ngModel)]="strname1" formControlName="strname1"
+                  placeholder="Street Name" type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['strname1'].invalid && commissionerform.controls['strname1'].touched">
+                  Street Name is required</div>
+                <div class="clearfix"></div>
+
+                <!-- <label class="col-md-2">Street Name2: </label>
               <input class="col-md-7" name="streetNumber" [(ngModel)]="strname2" placeholder="Street Name2" type="text">
               <div class="clearfix"></div> -->
 
-              <label class="col-md-2">City: </label>
-              <input class="col-md-7" name="streetNumber" [(ngModel)]="city" formControlName="city" placeholder="City" type="text">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['city'].invalid && commissionerform.controls['city'].touched">City is required</div>
+                <label class="col-md-2">City: </label>
+                <input class="col-md-7" name="streetNumber" [(ngModel)]="city" formControlName="city" placeholder="City"
+                  type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['city'].invalid && commissionerform.controls['city'].touched">City is
+                  required</div>
 
-              <!-- <div class="clearfix"></div>
+                <!-- <div class="clearfix"></div>
               <label class="col-md-2">Country: </label>
               <input class="col-md-7" name="streetNumber" [(ngModel)]="country" placeholder="Country" type="text"> -->
 
-              <div class="clearfix"></div>
-              <label class="col-md-2">District: </label>
-              <input class="col-md-7" name="streetNumber" [(ngModel)]="district" formControlName="district" placeholder="District" type="text">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['district'].invalid && commissionerform.controls['district'].touched">District  is required</div>
-              
-              <!-- <div class="clearfix"></div>
+                <div class="clearfix"></div>
+                <label class="col-md-2">District: </label>
+                <input class="col-md-7" name="streetNumber" [(ngModel)]="district" formControlName="district"
+                  placeholder="District" type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['district'].invalid && commissionerform.controls['district'].touched">
+                  District is required</div>
+
+                <!-- <div class="clearfix"></div>
               <label class="col-md-2">Region: </label>
               <input class="col-md-7" name="streetNumber" [(ngModel)]="region" placeholder="Region" type="text">
               <div class="clearfix"></div>
               <label class="col-md-2">State: </label>
               <input class="col-md-7" name="streetNumber" [(ngModel)]="state" placeholder="State" type="text"> -->
 
-              <div class="clearfix"></div>
-              <label class="col-md-2">District Codes: </label>
-              <input class="col-md-7" name="streetNumber" [(ngModel)]="postCode" formControlName="postCode" placeholder="District Codes" type="text">
-              <div class="text text-danger"
-              *ngIf="commissionerform.controls['postCode'].invalid && commissionerform.controls['postCode'].touched">District Code is required</div>
-              <br>
-              <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
-              <!-- <input class="next_btn btn btn-primary" name="next" type="button"
+                <div class="clearfix"></div>
+                <label class="col-md-2">Post Code: </label>
+                <input class="col-md-7" name="streetNumber" [(ngModel)]="postCode" formControlName="postCode"
+                  placeholder="Post Code" type="text">
+                <div class="text text-danger"
+                  *ngIf="commissionerform.controls['postCode'].invalid && commissionerform.controls['postCode'].touched">
+                  Post Code is required</div>
+                <br>
+                <input class="pre_btn btn btn-info" name="previous" type="button" value="Previous">
+                <!-- <input class="next_btn btn btn-primary" name="next" type="button"
                 [disabled]='(!streetNumber || !strname1 || !city || !district || !zipcode)'
                 (click)="step2Details(streetNumber,strname1,city,district,zipcode)"
                 value="Next">
                 <br> -->
-                <input class="submit_btn btn btn-primary" [disabled]='(!email || !phone || !streetNumber || !strname1 || !city || !district || !postCode)'  type="submit" (click)="step2Details(email,phone,streetNumber,strname1,city,district,postCode);submitSponsorDetails(commissionerform)" data-dismiss="modal" type="Submit">
+                <!-- [disabled]='(!email || !phone || !streetNumber || !strname1 || !city || !district || !postCode)' -->
+                <input class="submit_btn btn btn-primary" type="submit"
+                  (click)="step2Details(email,phone,streetNumber,strname1,city,district,postCode);submitSponsorDetails(commissionerform)"
+                  data-dismiss="modal" type="Submit">
                 <!-- (!streetNumber || !strname1 || !strname2 ||!city || !country || !district || !region ||!state || !zipcode) -->
                 <!-- step2Details(streetNumber,strname1,strname2,city,country,district,region,state,zipcode) -->
 
-            </fieldset>
-            <!-- <fieldset style="margin-left: 2px;">
+              </fieldset>
+              <!-- <fieldset style="margin-left: 2px;">
                              
                                 <p class="subtitle">Step 3</p>
                                 <label class="col-md-3">Ethenic Group: </label>
@@ -321,8 +344,8 @@
                               
                                     
                                 </fieldset> -->
-           
-           </form>
+
+            </form>
           </div>
         </div>
       </div>
@@ -337,110 +360,150 @@
 <!--------Modal ADD Rule Details-->
 
 <div class="modal" id="rulemyModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
 
-        <!-- Modal Header -->
-        <div class="modal-header">
-          <h4 class="modal-title">Add Rule</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <form [formGroup]="addRuleform">
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Add Rule</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <form [formGroup]="addRuleform">
         <!-- Modal body -->
         <div class="modal-body">
           <!-- <p *ngFor="let item of rulesData">{{item.sponsor_id}}</p> -->
           <p [hidden]="true">{{sponsorId}}</p>
-            <label class="col-md-3">Ethenic Group: </label>
-          
-            <select [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" class="col-md-7">
+          <!-- <label class="col-md-3">Ethenic Group: </label> -->
+
+          <ng-multiselect-dropdown [placeholder]="'Select Ethnic Group'" [data]="ethenicData"
+            [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" [settings]="dropdownSettings1"
+            (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
+
+          <!-- <select [(ngModel)]="selectedEthenicName" formControlName="selectedEthenicName" style="height: 60px;" class="col-md-7" multiple>
                 <option *ngFor="let c of ethenicData" [ngValue]="c">{{c.ethnicName}}</option>
-            </select>
-            <div class="text text-danger" *ngIf="addRuleform.controls['selectedEthenicName'].invalid && addRuleform.controls['selectedEthenicName'].touched">
-              Please select Ethenic Group
-            </div>
-            <div class="clearfix"></div>
-            <label class="col-md-3">Gender:</label>
-            
-            <select class="col-md-7" [(ngModel)]="selectedGender" formControlName="selectedGender"  multiple style="height: 60px;">
+            </select> -->
+          <div class="text text-danger"
+            *ngIf="addRuleform.controls['selectedEthenicName'].invalid && addRuleform.controls['selectedEthenicName'].touched">
+            Please select Ethenic Group
+          </div>
+          <br />
+          <!-- <label class="col-md-3">Gender:</label> -->
+
+          <!-- <select class="col-md-7" [(ngModel)]="selectedGender" formControlName="selectedGender"  multiple style="height: 60px;">
                 <option value="Man">Man </option>
                 <option value="Women">Woman</option>
                 <option value="Transman ">Transman </option>
                 <option value="Transwoman ">Transwoman </option>
-              </select>
-              <div class="text text-danger" *ngIf="addRuleform.controls['selectedGender'].invalid && addRuleform.controls['selectedGender'].touched">
-                  Please select Gender
-                </div>
+              </select> -->
 
-              <label class="col-md-3">Test List:</label>  
-            <select [(ngModel)]="selectedTestName" formControlName="selectedTestName" class="col-md-7">
+          <ng-multiselect-dropdown [placeholder]="'Select Gender'" [data]="genderdata" [(ngModel)]="selectedGender"
+            formControlName="selectedGender" [settings]="dropdownSettings4" (onSelect)="onItemSelect($event)"
+            (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
+
+
+          <div class="text text-danger"
+            *ngIf="addRuleform.controls['selectedGender'].invalid && addRuleform.controls['selectedGender'].touched">
+            Please select Gender
+          </div>
+          <br />
+          <!-- <label class="col-md-3">Test List:</label>   -->
+
+          <ng-multiselect-dropdown [placeholder]="'Select Test Code'" [data]="testCodeData"
+            [(ngModel)]="selectedTestName" formControlName="selectedTestName" [settings]="dropdownSettings3"
+            (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+          </ng-multiselect-dropdown>
+
+
+          <!-- <select [(ngModel)]="selectedTestName" formControlName="selectedTestName" class="col-md-7" style="height: 60px;" multiple>
                 <option *ngFor="let c of testCodeData" [ngValue]="c">{{c.testName}}</option>
-            </select>
-            <div class="text text-danger" *ngIf="addRuleform.controls['selectedTestName'].invalid && addRuleform.controls['selectedTestName'].touched">
-                Please select Test
-              </div>
+            </select> -->
 
-        <div class="clearfix"></div>
-      <label class="col-md-3">Min Age: </label>
-      <input class="col-md-7" name="minage"  [(ngModel)]="minage" formControlName="minage" placeholder="Min Age" type="text">
-      <div class="text text-danger" *ngIf="addRuleform.controls['minage'].invalid && addRuleform.controls['minage'].touched">
-          Minimum Age is Required
+          <div class="text text-danger"
+            *ngIf="addRuleform.controls['selectedTestName'].invalid && addRuleform.controls['selectedTestName'].touched">
+            Please select Test
+          </div>
+
+          <div class="clearfix"></div>
+          <!-- <label class="col-md-3">Min Age: </label> -->
+          <input name="minage" [(ngModel)]="minage" formControlName="minage" placeholder="Min Age" type="text">
+          <div class="text text-danger"
+            *ngIf="addRuleform.controls['minage'].invalid && addRuleform.controls['minage'].touched">
+            Minimum Age is Required
+          </div>
+          <div class="clearfix"></div>
+          <!-- <label class="col-md-3">Max Age: </label> -->
+          <input name="maxage" [(ngModel)]="maxage" formControlName="maxage" placeholder="Max Age" type="text">
+          <div class="text text-danger"
+            *ngIf="addRuleform.controls['maxage'].invalid && addRuleform.controls['maxage'].touched">
+            Maximum Age is Required
+          </div>
+          <div class="clearfix"></div>
+          <div class="col-md-10">
+            <button type="button"
+              [disabled]="(!selectedEthenicName || !selectedGender || !minage || !maxage || !selectedTestName)"
+              (click)="ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId)"
+              class="btn btn-success pull-right">Add Rules</button>
+          </div>
+          <div class="clearfix"></div>
+
+          <br><br>
+          <hr>
+
+          <h4 class="text-center text-primary text-center" *ngIf="ruleDetails"> Rule Details</h4>
+       
+          <table class="table" *ngIf="ruleDetails">
+            <thead>
+              <tr>
+                <th>Gender</th>
+                <th>Ethenic Name</th>
+                <th>Test Code Name</th>
+                <th>Min Age</th>
+                <th>Max Age</th>
+                <th>Delete</th>
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of ruleList">
+                <td>{{item.gender}}</td>
+                <td>
+                  <tr *ngFor="let subItem of item.ethnicGroups">
+                 {{subItem.ethnicType}},
+                </tr>
+                </td>
+
+                <td>
+                <tr *ngFor="let subItem of item.testCodes">
+                {{subItem.testName}},
+                </tr>
+                </td>
+
+                <td>{{item.maxAgeGroup}}</td>
+                <td>{{item.minAgeGroup}}</td>
+                <td (click)="delete(in)"><i class="fa fa-trash"></i></td>
+              </tr>
+
+            </tbody>
+            <button (click)="ruletable2();addRuleform.reset()" class="btn btn-primary pull-right"
+              data-dismiss="modal">Submit</button>
+          </table>
         </div>
-      <div class="clearfix"></div>
-      <label class="col-md-3">Max Age: </label>
-      <input class="col-md-7" name="maxage"  [(ngModel)]="maxage" formControlName="maxage" placeholder="Max Age" type="text">
-      <div class="text text-danger" *ngIf="addRuleform.controls['maxage'].invalid && addRuleform.controls['maxage'].touched">
-          Maximum Age is Required
-        </div>
-      <div class="clearfix"></div>
-      <div class="col-md-10">
-      <button type="button" [disabled]="(!selectedEthenicName || !selectedGender || !minage || !maxage || !selectedTestName)"  (click)="ruleTable(selectedEthenicName,selectedGender,minage,maxage,selectedTestName,sponsorId)" class="btn btn-success pull-right">Add Rules</button>
-      </div>
-      <div class="clearfix"></div>
+      </form>
 
- <br><br><hr>
-
-       <h4 class="text-center text-primary text-center"  *ngIf="ruleDetails"> Rule Details</h4>
-
-        <table class="table" *ngIf="ruleDetails">
-                <thead>
-                  <tr>
-                    <th>Gender</th>
-                    <th>Ethenic Name</th>
-                    <th>Test Code Name</th>
-                    <th>Min Age</th>
-                    <th>Max Age</th>
-                    <th>Delete</th>
-            
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of ruleList">
-                    <td>{{item.gender}}</td>
-                    <td>{{item.ethnicName}}</td>
-                    <td>{{item.testName}}</td>
-                    <td>{{item.maxAgeGroup}}</td>
-                    <td>{{item.minAgeGroup}}</td>
-                    <td (click)="delete(in)"><i class="fa fa-trash"></i></td>
-                  </tr>
-    
-                </tbody>
-                <button (click)="ruletable2();addRuleform.reset()" class="btn btn-primary pull-right" data-dismiss="modal">Submit</button>
-              </table>
-        </div>
-        </form>
-  
-        <!-- Modal footer -->
-        <!-- <div class="modal-footer">
+      <!-- Modal footer -->
+      <!-- <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
         </div> -->
-  
-      </div>
+
     </div>
   </div>
+</div>
 
 
 <!--------Modal ADD Rule Details-->
-  
+
 <!-- Modal address details -->
 
 <div id="addressDetails" class="modal fade" role="dialog">
@@ -468,7 +531,7 @@
               <th>District</th>
               <!-- <th>Region</th>
               <th>State</th> -->
-              <th>District Codes</th>
+              <th>Post Code</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -476,12 +539,12 @@
             <tr *ngFor='let item of addressData let i=index'>
               <td>{{i+1}}</td>
               <td>
-                  <div *ngIf="!item.isEditable1">{{item.email}}</div>
-                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.email">
+                <div *ngIf="!item.isEditable1">{{item.email}}</div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.email">
               </td>
               <td>
-                  <div *ngIf="!item.isEditable1">{{item.phone}}</div>
-                  <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.phone">
+                <div *ngIf="!item.isEditable1">{{item.phone}}</div>
+                <input type="text" *ngIf="item.isEditable1" class="form-control" [(ngModel)]="item.phone">
               </td>
               <td>
                 <div *ngIf="!item.isEditable1">{{item.streetNumber}}</div>
@@ -547,7 +610,7 @@
 
           </tbody>
         </table>
-
+        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -582,6 +645,7 @@
               <th>Test List</th>
               <th>Status</th>
               <th>Action</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -614,40 +678,40 @@
                 <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.maxAgeGroup">
               </td>
               <td>
-                <div>
-                  <select [(ngModel)]="item.ethnicGroupId" style="height: 60px;" multiple>
-                    <option *ngFor="let c of ethenicData" [ngValue]="c.ethnicGroupId">{{c.ethnicName}}</option>
-                  </select>
+                <div *ngFor="let subItem of item.ethnicGroups"></div>
+
+                <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="ethenicData"
+                  [(ngModel)]="item.ethnicGroups" [settings]="dropdownSettings1" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+
+              </td>
+              <td>
+                <div *ngFor="let sublist of item.testCodes"></div>
+                <ng-multiselect-dropdown [placeholder]="'Select Post Code'" [data]="testCodeData"
+                  [(ngModel)]="item.testCodes" [settings]="dropdownSettings2" (onSelect)="onItemSelect($event)"
+                  (onSelectAll)="onSelectAll($event)">
+                </ng-multiselect-dropdown>
+
+              </td>
+              <td>
+                <div *ngIf="!item.isEditable2">
+                  {{item.status}}
                 </div>
-              </td>
-              <td>
-                  <!-- <div *ngIf="!item.isEditable2">
-                      <span *ngFor="let c of testCodeData">{{c.testName}}</span>
-                    </div> -->
-                <!-- <select [(ngModel)]="item.testCodeId" *ngIf="item.isEditable2" multiple>
-                  <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                </select> -->
-
-                <select [(ngModel)]="item.testCodeId" style="height: 60px;" multiple >
-                    <option *ngFor="let c of testCodeData" [ngValue]="c.testCodeId">{{c.testName}}</option>
-                  </select>
-
-              </td>
-              <td>
-                  <div *ngIf="!item.isEditable2">
-                      {{item.status}}
-                    </div>
-                    <select *ngIf="item.isEditable2"  [(ngModel)]="item.status">
-                        <option value="Active">Active</option>
-                        <option value="Inactive">Inactive</option>
-                      </select>
-                  <!-- <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.minAgeGroup"> -->
+                <select *ngIf="item.isEditable2" [(ngModel)]="item.status">
+                  <option value="Active">Active</option>
+                  <option value="Inactive">Inactive</option>
+                </select>
+                <!-- <input type="text" *ngIf="item.isEditable2" class="form-control" [(ngModel)]="item.minAgeGroup"> -->
               </td>
               <td>
                 <button class="btn btn-info btn-sm" (click)="item.isEditable2=!item.isEditable2"
                   *ngIf="!item.isEditable2">Edit</button>
                 <button class="btn btn-success btn-sm" *ngIf="item.isEditable2"
                   (click)="item.isEditable2=!item.isEditable2;updateSelectedRule(item)">Save</button>
+              </td> 
+              <td>
+                  <button  class="btn btn-warning btn-sm"  *ngIf="item.isEditable2" (click)="item.isEditable2=!item.isEditable2">Cancel</button>
               </td>
 
 

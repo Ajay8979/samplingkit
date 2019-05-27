@@ -13,6 +13,7 @@ export class ServicerequestComponent implements OnInit {
   notificationEmail: any;
   notificationPhone: any;
   allServiceRequestData: any=[];
+  userrole=sessionStorage.getItem('userRole');
 
 
   constructor(private dataservice:DataService) {
@@ -25,7 +26,7 @@ export class ServicerequestComponent implements OnInit {
    }
 
    getServiceRequestDetails(){
-    if(sessionStorage.getItem('userRole')=='SPONSORUSER'){
+    if((sessionStorage.getItem('userRole')=='COMMISSIONERUSER') || (sessionStorage.getItem('userRole')=='ADMIN')){
     this.dataservice.getServiceRequestDetails(sessionStorage.getItem('sponsorId')).subscribe(response=>{
      this.sponsorIdData=response.resultData;
     })

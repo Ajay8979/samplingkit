@@ -1,5 +1,7 @@
 package com.medintu.samplingkit.rest.resources;
 
+
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,6 +18,7 @@ import javax.ws.rs.core.MediaType;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
@@ -25,12 +28,13 @@ import com.medintu.samplingkit.dao.SponsorAddressDao;
 import com.medintu.samplingkit.dao.SponsorDao;
 import com.medintu.samplingkit.dao.SponsorPostlcodeDao;
 import com.medintu.samplingkit.dao.SponsorSpentDao;
+import com.medintu.samplingkit.dao.SponsorUserDao;
 import com.medintu.samplingkit.dao.TestResultDao;
 import com.medintu.samplingkit.entity.DashboardSponsor;
 import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.entity.PostalCode;
+import com.medintu.samplingkit.entity.Role;
 import com.medintu.samplingkit.entity.Rule;
-import com.medintu.samplingkit.entity.RuleDetailsMapper;
 import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;
@@ -40,6 +44,7 @@ import com.medintu.samplingkit.entity.SponsorSpentMapper;
 import com.medintu.samplingkit.entity.SponsorWithPostalMapper;
 import com.medintu.samplingkit.entity.TestCode;
 import com.medintu.samplingkit.entity.TestResult;
+import com.medintu.samplingkit.entity.User;
 import com.medintu.samplingkit.response.Response;
 import com.medintu.samplingkit.service.SponsorService;
 
@@ -65,6 +70,12 @@ public class SponsorResourceController {
 
 	@Autowired
 	TestResultDao testResultDao;
+
+	@Autowired
+	private SponsorUserDao sponsorUserDao;
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 	@Autowired
 	private SponsorSpentDao sponsorSpentDao;
@@ -114,6 +125,18 @@ public class SponsorResourceController {
 					}
 
 				}
+
+				User user = new User();
+				user.setUsername(sponsorMapper.getName());
+				user.setPassword(passwordEncoder.encode(sponsorMapper.getName()));
+				user.setSponsorId(createSponsor.getId());
+				user.addRole(Role.ADMIN);
+				user.setFirstName(sponsorMapper.getName());
+				user.setLastName(sponsorMapper.getName());
+				user.setEmailId(sponsorMapper.getAddressList().get(0).getEmail());
+				user.setMobileNum(sponsorMapper.getAddressList().get(0).getPhone());
+				user.setStatus("Active");
+				sponsorUserDao.save(user);
 
 				if (null != createSponsor) {
 					response = new Response("Success", HttpStatus.OK, "Sponsor Added Successfully", createSponsor);
@@ -371,9 +394,11 @@ public class SponsorResourceController {
 			objMap.put("postalCodes", postalCodes);
 		}
 
-		List<RuleDetailsMapper> ruleDetailsMappers = sponsorService.getRuleDeatilsBySponsorId(sponsorId);
-		if (!CollectionUtils.isEmpty(ruleDetailsMappers)) {
-			objMap.put("rules", ruleDetailsMappers);
+		// List<RuleDetailsMapper> ruleDetailsMappers =
+		// sponsorService.getRuleDeatilsBySponsorId(sponsorId);
+		List<RuleMapper> rulesBySponsorId = ruleDao.getRulesBySponsorId(sponsorId);
+		if (!CollectionUtils.isEmpty(rulesBySponsorId)) {
+			objMap.put("rules", rulesBySponsorId);
 		}
 
 		if (!CollectionUtils.isEmpty(objMap)) {

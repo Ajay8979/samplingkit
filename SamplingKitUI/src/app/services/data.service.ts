@@ -8,8 +8,8 @@ import { Observable, observable } from 'rxjs';
 export class DataService {
 
 
-  
-  host_url="http://192.168.7.144:8080/samplingkit/";
+  host_url="http://192.168.1.137:8080/samplingkit/";
+
   constructor(private http: HttpClient) { }
 
   getUsersData(): Observable<any> {
@@ -27,6 +27,12 @@ export class DataService {
     return this.http.post(this.host_url+"rest/SponsorUser/createUser",data);
 
   }
+// add contact
+adduserContact(contactdata):Observable<any>{
+  return this.http.post(this.host_url+"rest/sponsoraddress/create",contactdata);
+}
+
+
  // Delet User
   deleteUsers(id):Observable<any>{
     return this.http.delete(this.host_url+'rest/SponsorUser/deleteSponsorUser'+"/"+ id);
@@ -119,7 +125,8 @@ getAddressDetails(id):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/addresses/'+id);
 }
 getRulesDetails(id):Observable<any>{
-  return this.http.get(this.host_url+'rest/sponsor/rules/'+id);
+  //return this.http.get(this.host_url+'rest/sponsor/rules/'+id);
+  return this.http.get(this.host_url+'rest/rules/'+id);
 }
 getTestCodeDetails(id):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/testCodes/'+id);
@@ -148,7 +155,8 @@ getMultiplepostCode():Observable<any>{
 
 }
 createRuleDetails(ruledata):Observable<any>{
-  return this.http.post(this.host_url+"rest/rules/createRuleList",ruledata);
+  return this.http.post(this.host_url+"rest/rules/createRuleListMapper",ruledata);
+  //http://192.168.7.144:8080/samplingkit/rest/rules/createRuleListMapper
 }
 
  //Get All Postalcode 
@@ -168,6 +176,12 @@ updatePostalcode(data):Observable<any>{
   return this.http.put(this.host_url+'rest/PostalCode/updatePostalCode',data);
 
 }
+
+// add contact by Id
+adduserContactbyid(contactdata):Observable<any>{
+  return this.http.post(this.host_url+"rest/sponsoraddress/create",contactdata);
+}
+
 
 //Delete Postalcode
 
@@ -227,8 +241,9 @@ getuserByid(id):Observable<any>{
 }
 updateSelectedRule(data):Observable<any>{
 
-  return this.http.put(this.host_url+'rest/sponsor/rules/update',data) 
-
+  //return this.http.put(this.host_url+'rest/sponsor/rules/update',data) 
+  //return this.http.put(this.host_url+'rest/rules/update',data) 
+  return this.http.put(this.host_url+"rest/rules/update",data);
 }
 getSponsorUpdate(id):Observable<any>{
 
@@ -240,8 +255,8 @@ updateSponsorDetails(data,id):Observable<any>{
   return this.http.put(this.host_url+'rest/sponsor/sponsorWithPostalCode/'+id,data) 
 
 }
-updateStatus(data):Observable<any>{
-  return this.http.put(this.host_url+'rest/Status/updateStatus/',data) 
+updateStatus(data,id):Observable<any>{
+  return this.http.put(this.host_url+'rest/Status/updateStatus/'+id,data) 
 }
 getDashboardData(sponsorId):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/sponsorOrder/'+sponsorId);

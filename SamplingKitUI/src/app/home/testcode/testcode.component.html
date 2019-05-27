@@ -28,6 +28,7 @@
         <th>Test Code Description</th>
         <th>Is Default Test</th>
         <th>Edit</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -57,6 +58,9 @@
             *ngIf="!item.isEditable">Edit</button>
           <button type="button" class="btn btn-success" *ngIf="item.isEditable"
             (click)="item.isEditable=!item.isEditable;updateTestCode(item.testName,item.testCode,item.description,item.id,item.defaultTest)">Save</button>
+        </td>
+        <td>
+            <button  class="btn btn-warning btn-sm"  *ngIf="item.isEditable" (click)="item.isEditable=!item.isEditable">Cancel</button>
         </td>
       </tr>
     </tbody>
