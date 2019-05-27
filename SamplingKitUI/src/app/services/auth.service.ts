@@ -11,16 +11,11 @@ import { HttpHeaders, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler } fr
 })
 export class AuthService {
 
-<<<<<<< HEAD
+
 host_url="http://192.168.7.144:8080/samplingkit/";
-=======
 
   @Output() logindata: EventEmitter<boolean> = new EventEmitter();
 
- 
-host_url="http://192.168.1.137:8080/samplingkit/";
-
->>>>>>> 966d62ca838ce07d4c06b0ed105f4d6e1411af4e
   url: any = this.host_url+"rest/user/authenticate";
 
 
