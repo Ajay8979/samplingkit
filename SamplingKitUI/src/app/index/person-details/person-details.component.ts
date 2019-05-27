@@ -23,8 +23,10 @@ export class PersonDetailsComponent implements OnInit {
   requestobj: any=[];
   obj1: {};
   gender:any;
+  persondeatails:any;
   oppositeGender:any;
   errorvalue:boolean=false;
+  postalcode:any;
 
   id:number=1;
  
@@ -42,12 +44,17 @@ export class PersonDetailsComponent implements OnInit {
       'password': [null,Validators.required]
     });
 
+  
+   /*  this.persondeatails=JSON.parse(localStorage.getItem('primaryuser'));
+    this.postalcode=this.persondeatails.postCode;
+    this.gender=this.persondeatails.gender;
+    this.oppositeGender=this.persondeatails.oppositeGender; */
 
-    
    }
 
 
-   LoginActions(formData:any){
+   LoginActions(formData:any)
+   {
     if(this.authService.loginAction(formData)){
      this.routerNavigate.navigate(['dashboard']);
    }

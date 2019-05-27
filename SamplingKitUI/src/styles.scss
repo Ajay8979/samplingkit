@@ -16868,6 +16868,8 @@ input:-ms-input-placeholder {
 .login_1 .img_1
 {
   max-width: 239px;
+  /* margin-top: 30px; */
+  /* margin-bottom: 10px; */
   margin: 0 auto;
 }
 .login_1 .form-group i
@@ -16920,29 +16922,37 @@ body .userway .userway_accessibility_icon .userway_hide
 .internal_error h1
 {
   text-align: center;
-  color: green;
-  font-size: 120px;
-  padding-top: 35px;
+  color: #626762;
+  font-size: 67px;
+  padding-top: 45px;
+  font-family: fantasy;
 } 
 
 .internal_error h2
 {
   text-align: center;
   text-transform: uppercase;
-  padding-top: 8%;
+  padding-top: 7%;
+  /* padding-bottom: 6%; */
+  font-family: cursive;
+  font-size: 26px;
+  padding-bottom: 7%;
+  color: #626762;
 }
 .test_image
 {
   padding-top:30px;
 }
-.test_image .inner_image {
+.test_image .inner_image 
+{
   width: 100%;
   margin: 0 auto;
   border: 1px solid #f3f0f0;
   padding: 4px;
   min-height: 473px;
 }
-.inner_image p {
+.inner_image p
+{
   padding: 16px;
 }
 

@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
   loginTemplate:boolean=false;
   values:any;
   elgible:boolean=true;
-  public age:any;
+  age:any;
   ethenicData: any;
   requestobj: any=[];
   ethnic={};
@@ -31,7 +31,9 @@ export class LoginComponent implements OnInit {
   oppositeGender:any;
   go:any;
   storage:any;
+  agedata:any;
   test:boolean=false;
+  
 
   constructor(private fb:FormBuilder,private authService:AuthService,private routerNavigate:Router,private sendservice:IndexService,private activatedRoute:ActivatedRoute) {}
   
@@ -67,16 +69,20 @@ export class LoginComponent implements OnInit {
 
     // this.storage=localStorage.getItem("primaryuser");
      //this.age=JSON.parse(this.storage);
-     this.age=30;
+     
 
   });
 
 
-    this.OBSLoginForm = this.fb.group({
+  this.OBSLoginForm = this.fb.group({
       'username': [null,Validators.required],
       'password': [null,Validators.required]
-    });
+  });
 
+  
+  /*this.agedata=JSON.parse(localStorage.getItem('primaryuser'));
+  this.age=this.agedata.age;*/
+  
 
   }
 
@@ -107,7 +113,8 @@ export class LoginComponent implements OnInit {
   }
   
 
-  viewResult(){
+  viewResult()
+  {
     this.routerNavigate.navigate(['viewresults']);
   }
 

@@ -19,6 +19,7 @@ import { EditDetailsComponent } from './edit-details/edit-details.component';
 import { ViewresultsComponent } from './viewresults/viewresults.component';
 import { AgeerrorComponent } from './ageerror/ageerror.component';
 import { LoginActionPageComponent } from './login-action-page/login-action-page.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -49,7 +50,8 @@ export const Indexroutes: Routes =
     {path:'viewresults',component:ViewresultsComponent},
     {path:'loginpageaction',component:LoginActionPageComponent},
     {path:'ageerror',component:AgeerrorComponent},
-    {path:'internal',component:InternalerrorComponent}
+    {path:'internal',component:InternalerrorComponent},
+    {path:'header',component:HeaderComponent}
     ]
     }
 ]

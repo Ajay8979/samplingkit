@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { IndexService } from './../services/index.service';
 import { Router } from '@angular/router';
 import {Validators, FormBuilder,FormGroup,FormControl} from "@angular/forms";
+import { identity } from 'rxjs';
+import { ifStmt } from '@angular/compiler/src/output/output_ast';
 
 
 
@@ -23,7 +25,8 @@ export class CheckpostalComponent implements OnInit {
   testName:any;
   checkpostal:any;
   getdata:Array<any>=[];
-
+  identify:string="test";
+  getidentifydata:any;
 
   ngOnInit() 
   {
@@ -41,6 +44,11 @@ export class CheckpostalComponent implements OnInit {
        some['testName']=this.firstcodelength[0].testName;
        this.getdata.push(some);
      }
+
+     //this.getidentifydata= JSON.parse(localStorage.getItem("identifyname"));
+
+   
+     //this.sends.seconddata['testCodes']
   
   }
 
@@ -74,6 +82,7 @@ export class CheckpostalComponent implements OnInit {
       requestobj['testCodes']=this.getdata;
       this.sends.seconddata=requestobj;
       localStorage.setItem('primaryuser',JSON.stringify(requestobj));
+      localStorage.setItem('identifyname',this.identify)
       //this.sends.checkpostal=requestobj;
       console.log(this.sends.seconddata);
       this.router.navigate(['moredetail']);

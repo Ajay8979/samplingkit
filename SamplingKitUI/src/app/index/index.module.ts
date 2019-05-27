@@ -19,13 +19,14 @@ import { LoginActionPageComponent } from './login-action-page/login-action-page.
 import { CheckpostalComponent } from './checkpostal/checkpostal.component';
 import { AgeerrorComponent } from './ageerror/ageerror.component';
 import { InternalerrorComponent } from './internalerror/internalerror.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
 
 @NgModule({
 
-  declarations: [LoginComponent,LoginActionPageComponent,ViewresultsComponent, SignUpComponent, PersonDetailsComponent, TestComponent, AddressComponent, QuestionsComponent, MoreDetailComponent, ResultComponent, EditDetailsComponent, FinalComponent, PostcodeerrorComponent, PagenotfoundComponent, CheckpostalComponent,CheckpostalComponent, AgeerrorComponent, InternalerrorComponent],
+  declarations: [LoginComponent,LoginActionPageComponent,ViewresultsComponent, SignUpComponent, PersonDetailsComponent, TestComponent, AddressComponent, QuestionsComponent, MoreDetailComponent, ResultComponent, EditDetailsComponent, FinalComponent, PostcodeerrorComponent, PagenotfoundComponent, CheckpostalComponent,CheckpostalComponent, AgeerrorComponent, InternalerrorComponent, HeaderComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule,
