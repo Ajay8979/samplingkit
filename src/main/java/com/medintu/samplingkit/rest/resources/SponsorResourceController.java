@@ -1,14 +1,11 @@
 package com.medintu.samplingkit.rest.resources;
 
+
+
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.ElementCollection;
-import javax.persistence.FetchType;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -38,7 +35,6 @@ import com.medintu.samplingkit.entity.EndUser;
 import com.medintu.samplingkit.entity.PostalCode;
 import com.medintu.samplingkit.entity.Role;
 import com.medintu.samplingkit.entity.Rule;
-import com.medintu.samplingkit.entity.RuleDetailsMapper;
 import com.medintu.samplingkit.entity.RuleMapper;
 import com.medintu.samplingkit.entity.Sponsor;
 import com.medintu.samplingkit.entity.SponsorAddress;

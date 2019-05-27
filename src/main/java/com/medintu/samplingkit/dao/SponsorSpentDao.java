@@ -11,4 +11,5 @@ public interface SponsorSpentDao extends Dao<SponsorSpent, Long> {
 	List<SponsorSpentBudgetMapper> getSponsorSpents(Long sponsorId);
 
 	List<SponsorSpentMapper> getSponsorBudgetDetails(Long sponsorId);
+
 }
