@@ -7,7 +7,7 @@ import { Observable, observable } from 'rxjs';
 })
 export class DataService {
 
-  host_url="http://192.168.1.137:8080/samplingkit/";
+  host_url="http://192.168.7.144:8080/samplingkit/";
   constructor(private http: HttpClient) { }
 
   getUsersData(): Observable<any> {
@@ -154,7 +154,6 @@ getMultiplepostCode():Observable<any>{
 }
 createRuleDetails(ruledata):Observable<any>{
   return this.http.post(this.host_url+"rest/rules/createRuleListMapper",ruledata);
-  //http://192.168.7.144:8080/samplingkit/rest/rules/createRuleListMapper
 }
 
  //Get All Postalcode 
@@ -260,11 +259,11 @@ getDashboardData(sponsorId):Observable<any>{
   return this.http.get(this.host_url+'rest/sponsor/sponsorOrder/'+sponsorId);
 
 }
+getsponsorDashboardspentList(sponsorId):Observable<any>{
+  return this.http.get(this.host_url+'rest/spnsorspents/'+sponsorId);
 
 }
 
-
-
-
+}
 
 

@@ -8,7 +8,7 @@ import { HttpHeaders, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler } fr
 })
 export class AuthService {
 
-host_url="http://192.168.1.137:8080/samplingkit/";
+host_url="http://192.168.7.144:8080/samplingkit/";
   url: any = this.host_url+"rest/user/authenticate";
 
 

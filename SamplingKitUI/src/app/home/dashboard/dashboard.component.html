@@ -43,7 +43,7 @@
         </div>
       </div>
     </div>
-    <div class="col-md-6 col-lg-3">
+    <div class="col-md-6 col-lg-3" data-toggle="modal" data-target="#myModalspentbudget" data-backdrop="static" *ngIf="role=='SUPERADMIN'">
       <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-money"></i>
         <div class="info">
           <h4>Budget Spent</h4>
@@ -51,6 +51,209 @@
         </div>
       </div>
     </div>
+    <div class="col-md-6 col-lg-3" data-toggle="modal" data-target="#myModalspentbudget" data-backdrop="static"  *ngIf="role=='ADMIN'">
+        <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-money"></i>
+          <div class="info">
+            <h4>Budget Spent</h4>
+            <p><b>{{dashData.sponsorBudgetSpent}}</b></p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3" data-toggle="modal" data-target="#myModalspentbudget" data-backdrop="static"  *ngIf="role=='COMMISSIONERUSER'">
+          <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-money"></i>
+            <div class="info">
+              <h4>Budget Spent</h4>
+              <p><b>{{dashData.sponsorBudgetSpent}}</b></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3" data-toggle="modal" data-target="#myModalspentbudget" data-backdrop="static"  *ngIf="role=='SUPPORTUSER'">
+            <div class="widget-small info coloured-icon"><i class="icon fa fa-money fa-money"></i>
+              <div class="info">
+                <h4>Budget Spent</h4>
+                <p><b>{{dashData.sponsorBudgetSpent}}</b></p>
+              </div>
+            </div>
+          </div>
+
+    <!--Modal for spent limit supportuser -->
+    <div class="modal " id="myModalspentbudget" *ngIf="role=='SUPPORTUSER'">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title text-center">Budget Spent</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+             <table class="table table-bordered table-striped">
+               <thead>
+                 <th>#</th>
+                 <th>Order Id</th>
+                 <th>Sponsor Name</th>
+                 <th>Budget Spent</th>
+                 <th>Transaction Date</th>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let item of commissionerspentdata |paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                <td>{{i+1}}</td>
+                 <td>{{item.orderId}}</td>
+                 <td>{{item.sponsorName}}</td>
+                 <td>{{item.budgetSpent | currency:'GBP': true}}</td>
+                 <td>{{item.txDate|date: 'dd-MM-yyyy'}}</td>
+                </tr>
+               </tbody>
+             </table>
+             <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      <!--Modal for spent limit Ends -->
+
+       <!--Modal for spent limit for CommissionerUser-->
+    <div class="modal " id="myModalspentbudget" *ngIf="role=='COMMISSIONERUSER'">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+      
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title text-center">Budget Spent</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+      
+            <!-- Modal body -->
+            <div class="modal-body">
+             <table class="table table-bordered table-striped">
+               <thead>
+                 <th>#</th>
+                 <th>Order Id</th>
+                 <th>Sponsor Name</th>
+                 <th>Budget Spent</th>
+                 <th>Transaction Date</th>
+               </thead>
+               <tbody>
+                 <tr *ngFor="let item of commissionerspentdata |paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+                <td>{{i+1}}</td>
+                 <td>{{item.orderId}}</td>
+                 <td>{{item.sponsorName}}</td>
+                 <td>{{item.budgetSpent | currency:'GBP': true}}</td>
+                 <td>{{item.txDate|date: 'dd-MM-yyyy'}}</td>
+                </tr>
+               </tbody>
+             </table>
+             <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+            </div>
+      
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+      
+          </div>
+        </div>
+      </div>
+      <!--Modal for spent limit Ends -->
+
+  <!--Modal for spent limit for ADMIN-->
+  <div class="modal " id="myModalspentbudget" *ngIf="role=='ADMIN'">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title text-center">Budget Spent</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+           <table class="table table-bordered table-striped">
+             <thead>
+               <th>#</th>
+               <th>Order Id</th>
+               <th>Sponsor Name</th>
+               <th>Budget Spent</th>
+               <th>Transaction Date</th>
+             </thead>
+             <tbody>
+               <tr *ngFor="let item of commissionerspentdata |paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+              <td>{{i+1}}</td>
+               <td>{{item.orderId}}</td>
+               <td>{{item.sponsorName}}</td>
+               <td>{{item.budgetSpent | currency:'GBP': true}}</td>
+               <td>{{item.txDate|date: 'dd-MM-yyyy'}}</td>
+              </tr>
+             </tbody>
+           </table>
+           <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <!--Modal for spent limit Ends -->
+
+    
+  <!--Modal for spent limit for SUPERADMIN-->
+  <div class="modal " id="myModalspentbudget" *ngIf="role=='SUPERADMIN'">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title text-center">Budget Spent</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+    
+          <!-- Modal body -->
+          <div class="modal-body">
+           <table class="table table-bordered table-striped">
+             <thead>
+               <th>#</th>
+               <th>Order Id</th>
+               <th>Sponsor Name</th>
+               <th>Budget Spent</th>
+               <th>Transaction Date</th>
+             </thead>
+             <tbody>
+               <tr *ngFor="let item of commissionerspentdata |paginate: { itemsPerPage: 10, currentPage: p };let i=index">
+              <td>{{i+1}}</td>
+               <td>{{item.orderId}}</td>
+               <td>{{item.sponsorName}}</td>
+               <td>{{item.budgetSpent | currency:'GBP': true}}</td>
+               <td>{{item.txDate|date: 'dd-MM-yyyy'}}</td>
+              </tr>
+             </tbody>
+           </table>
+           <pagination-controls (pageChange)="p = $event" class="pull-right"></pagination-controls>
+          </div>
+    
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+    
+        </div>
+      </div>
+    </div>
+    <!--Modal for spent limit Ends -->
+      
+
     <div class="col-md-6 col-lg-3">
       <div class="widget-small warning coloured-icon"><i class="icon fa fa-money fa-money"></i>
         <div class="info">

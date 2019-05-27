@@ -9,19 +9,28 @@ import { Component, OnInit } from '@angular/core';
 export class DashboardComponent implements OnInit {
   role: string;
   dashData: any;
-  constructor(private DataService:DataService) {
-   this.role=sessionStorage.getItem('userRole');
-   this.getDashData();
+  sponsorId: any;
+  commissionerspentdata: any;
+  constructor(private DataService: DataService) {
+    this.role = sessionStorage.getItem('userRole');
+    this.getDashData();
+    this.getSpendListforSponsor();
   }
-  getDashData(){
+  getDashData() {
     //if(this.role="SPONSORUSER"){
     //}
-    this.DataService.getDashboardData(sessionStorage.getItem('sponsorId')).subscribe(response=>{
-      this.dashData=response.resultData;
+    this.sponsorId = sessionStorage.getItem('sponsorId')
+    this.DataService.getDashboardData(this.sponsorId).subscribe(response => {
+      this.dashData = response.resultData;
     })
-    
+
+  }
+  getSpendListforSponsor() {
+    this.sponsorId = sessionStorage.getItem('sponsorId');
+    this.DataService.getsponsorDashboardspentList(this.sponsorId).subscribe(res=>{
+      this.commissionerspentdata=res.resultData;
+    })
   }
   ngOnInit() {
-   
   }
 }
